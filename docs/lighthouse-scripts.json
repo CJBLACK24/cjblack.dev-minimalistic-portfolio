@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "lighthouse": "lighthouse http://localhost:3000 --view --output=html --output-path=./docs/lighthouse-report.html",
+    "lighthouse:ci": "lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-results.json --preset=desktop --quiet --chrome-flags='--headless'"
+  }
+}
