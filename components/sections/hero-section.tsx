@@ -15,6 +15,7 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandFacebook,
+  IconBrandX,
   IconBulb,
   IconPalette,
   IconMessageCircle,
@@ -153,6 +154,18 @@ export function HeroSectionOne() {
             aria-label="Visit Facebook Profile"
           >
             <IconBrandFacebook
+              size={20}
+              className="group-hover:scale-110 transition-transform"
+            />
+          </Link>
+          <Link
+            href="https://x.com/JohnCjblack"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all group"
+            aria-label="Visit X Profile"
+          >
+            <IconBrandX
               size={20}
               className="group-hover:scale-110 transition-transform"
             />

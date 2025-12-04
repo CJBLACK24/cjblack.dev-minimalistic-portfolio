@@ -4,6 +4,7 @@ import {
   IconBrandFacebook,
   IconBrandLinkedin,
   IconBrandInstagram,
+  IconBrandX,
 } from "@tabler/icons-react";
 import { LinkPreview } from "@/components/ui/media/link-preview";
 
@@ -52,6 +53,15 @@ export function Footer() {
             className="flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-[#0A66C2] hover:border-[#0A66C2]/50 transition-all group"
           >
             <IconBrandLinkedin
+              size={20}
+              className="group-hover:scale-110 transition-transform"
+            />
+          </LinkPreview>
+          <LinkPreview
+            url="https://x.com/JohnCjblack"
+            className="flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all group"
+          >
+            <IconBrandX
               size={20}
               className="group-hover:scale-110 transition-transform"
             />
