@@ -2,7 +2,7 @@
 
 > A minimalistic modern portfolio website built with Next.js 16, featuring authentication, database integration, and security protection.
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.0.7-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-7.0-2D3748?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
@@ -54,7 +54,7 @@
 
 | Technology       | Purpose         | Version  |
 | ---------------- | --------------- | -------- |
-| **Next.js**      | React Framework | 16.0.3   |
+| **Next.js**      | React Framework | 16.0.7   |
 | **React**        | UI Library      | 19.2.0   |
 | **TypeScript**   | Type Safety     | 5.x      |
 | **Tailwind CSS** | Styling         | 4.x      |
@@ -92,42 +92,42 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                        CLIENT LAYER                          │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │   Next.js    │  │   React 19   │  │  TypeScript  │      │
-│  │   App Router │  │   Components │  │   Type Safe  │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│                        CLIENT LAYER                         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │   Next.js    │  │   React 19   │  │  TypeScript  │       │
+│  │   App Router │  │   Components │  │   Type Safe  │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                    SECURITY LAYER (Arcjet)                   │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │ Bot Detection│  │ Rate Limiting│  │    Shield    │      │
-│  │   & Verify   │  │Token Bucket  │  │  SQL/XSS Prot│      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│                    SECURITY LAYER (Arcjet)                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │ Bot Detection│  │ Rate Limiting│  │    Shield    │       │
+│  │   & Verify   │  │Token Bucket  │  │  SQL/XSS Prot│       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                      API LAYER (Next.js)                     │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │ /api/auth    │  │ /api/arcjet  │  │ Server Actions│     │
-│  │ Better Auth  │  │  Protected   │  │   (Forms)     │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│                      API LAYER (Next.js)                    │
+│  ┌──────────────┐  ┌──────────────┐  ┌────────────────┐     │
+│  │ /api/auth    │  │ /api/arcjet  │  │ Server Actions │     │
+│  │ Better Auth  │  │  Protected   │  │   (Forms)      │     │
+│  └──────────────┘  └──────────────┘  └────────────────┘     │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                    DATA ACCESS LAYER                         │
+│                    DATA ACCESS LAYER                        │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │                  Prisma ORM (v7)                      │   │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌─────────┐│   │
-│  │  │   User   │ │ Account  │ │ Session  │ │  Verify ││   │
-│  │  │  Model   │ │  Model   │ │  Model   │ │  Model  ││   │
-│  │  └──────────┘ └──────────┘ └──────────┘ └─────────┘│   │
+│  │                  Prisma ORM (v7)                     │   │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌─────────┐  │   │
+│  │  │   User   │ │ Account  │ │ Session  │ │  Verify │  │   │
+│  │  │  Model   │ │  Model   │ │  Model   │ │  Model  │  │   │
+│  │  └──────────┘ └──────────┘ └──────────┘ └─────────┘  │   │
 │  └──────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                      DATABASE LAYER                          │
+│                      DATABASE LAYER                         │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │              PostgreSQL (Prisma Accelerate)          │   │
 │  │           Connection Pooling (pg adapter)            │   │
@@ -409,7 +409,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Christian John Duque (CJ Black)**
+**Christian John Duque (CJ BLACK)**
 
 - 🌐 Website: [cjblack.dev](https://cjblack.dev) (coming soon)
 - 💼 LinkedIn: [cj-black-a5b110335](https://www.linkedin.com/in/cj-black-a5b110335)
@@ -431,6 +431,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  <p>Built with ❤️ by CJ Black</p>
+  <p>Built with ❤️ by cjblack.dev</p>
   <p>⭐ Star this repo if you find it helpful!</p>
+  <p> THANKS FOR VISITING!!! </p>
 </div>
