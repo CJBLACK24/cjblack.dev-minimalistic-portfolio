@@ -39,6 +39,13 @@ export const backendItems = [
     designation: "Framework",
     image: "/ExpressJS.png",
   },
+  {
+    id: 5,
+    name: "GraphQL",
+    designation: "Query Language",
+    image:
+      "https://camo.githubusercontent.com/875c6caef8bb68418d77f505e2a54728a6396bb825a56ebffcec0e8d0ca0fbc3/68747470733a2f2f736b696c6c69636f6e732e6465762f69636f6e733f693d6772617068716c",
+  },
 ];
 
 export const webMobileItems = [
@@ -46,7 +53,8 @@ export const webMobileItems = [
     id: 1,
     name: "React",
     designation: "Library",
-    image: "/react-logo.svg",
+    image:
+      "https://camo.githubusercontent.com/afdf5a3b933086604f6acf89a8fa2a321aaa6d912919c573f87545587a59333f/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656163742d69636f6e2e737667",
   },
   {
     id: 2,
@@ -96,6 +104,13 @@ export const webMobileItems = [
     designation: "Component Lib",
     image: "/shadcn.png",
   },
+  {
+    id: 11,
+    name: "Webpack",
+    designation: "Bundler",
+    image:
+      "https://camo.githubusercontent.com/971dc0f889a81abf890b811ea97765459c01e50470aa92927fc63109867dc35e/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f7765627061636b2d69636f6e2e737667",
+  },
 ];
 
 export const programmingLanguageItems = [
@@ -103,13 +118,15 @@ export const programmingLanguageItems = [
     id: 1,
     name: "JavaScript",
     designation: "Language",
-    image: "/javascript-logo.svg",
+    image:
+      "https://camo.githubusercontent.com/739ff4cc642d6d72a274d75aa0a16d85782c91011453641c1bcc47d872faf42d/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6a732d69636f6e2e737667",
   },
   {
     id: 2,
     name: "TypeScript",
     designation: "Language",
-    image: "/typescript-logo.svg",
+    image:
+      "https://camo.githubusercontent.com/5c3873b6812ecfb1d2bc6ece8c2c548d53d151c2edbf6b0281207672ca3ab0a8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f74732d69636f6e2e737667",
   },
   {
     id: 3,
@@ -142,7 +159,8 @@ export const toolsItems = [
     id: 2,
     name: "GitHub",
     designation: "Platform",
-    image: "/github-logo.svg",
+    image:
+      "https://camo.githubusercontent.com/16b52621932a556fbac9ae4101250a283e6cddf0b2b7ed1a218a2d4d95cd356b/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6769746875622d69636f6e2e737667",
   },
   {
     id: 3,

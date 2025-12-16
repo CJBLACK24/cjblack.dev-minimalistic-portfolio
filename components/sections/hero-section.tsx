@@ -89,25 +89,29 @@ export function HeroSectionOne() {
       id: 2,
       name: "React",
       designation: "UI Library",
-      image: "/react-logo.svg",
+      image:
+        "https://camo.githubusercontent.com/afdf5a3b933086604f6acf89a8fa2a321aaa6d912919c573f87545587a59333f/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656163742d69636f6e2e737667",
     },
     {
       id: 3,
-      name: "TypeScript",
-      designation: "Type Safety",
-      image: "/typescript-logo.svg",
+      name: "JavaScript",
+      designation: "Language",
+      image:
+        "https://camo.githubusercontent.com/739ff4cc642d6d72a274d75aa0a16d85782c91011453641c1bcc47d872faf42d/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6a732d69636f6e2e737667",
     },
     {
       id: 4,
-      name: "Framer Motion",
-      designation: "Animation",
-      image: "/framer-motion-logo.svg",
+      name: "TypeScript",
+      designation: "Type Safety",
+      image:
+        "https://camo.githubusercontent.com/5c3873b6812ecfb1d2bc6ece8c2c548d53d151c2edbf6b0281207672ca3ab0a8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f74732d69636f6e2e737667",
     },
     {
       id: 5,
-      name: "Tailwind CSS",
-      designation: "Styling",
-      image: "/tailwind-logo.svg",
+      name: "Webpack",
+      designation: "Bundler",
+      image:
+        "https://camo.githubusercontent.com/971dc0f889a81abf890b811ea97765459c01e50470aa92927fc63109867dc35e/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f7765627061636b2d69636f6e2e737667",
     },
   ];
 
@@ -301,9 +305,9 @@ export function HeroSectionOne() {
             </motion.div>
 
             {/* Right Column - Content */}
-            <div className="flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left mt-12 md:mt-4">
               {/* Hover Border Gradient Badge */}
-              <div className="mb-8">
+              <div className="mb-5 mt-1">
                 <HoverBorderGradient
                   containerClassName="rounded-full"
                   className="text-sm font-medium"
@@ -467,16 +471,22 @@ export function HeroSectionOne() {
               <div className="flex flex-col items-center md:items-start gap-6 mb-10 w-full">
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
                   <a href="#projects" className="scroll-smooth">
-                    <BorderMagicButton>View my works</BorderMagicButton>
+                    <BorderMagicButton className="gap-2 group">
+                      <IconPalette className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                      View my works
+                    </BorderMagicButton>
                   </a>
 
                   <Link
                     href="https://github.com/CJBLACK24"
                     target="_blank"
-                    className="inline-flex h-12 animate-shimmer items-center justify-center rounded-full border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-size-[200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 hover:text-cyan-400 hover:border-cyan-500/50"
+                    className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
                   >
-                    <IconBrandGithub className="mr-2 h-5 w-5" />
-                    GitHub
+                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl transition-colors hover:text-cyan-400 gap-2">
+                      <IconBrandGithub className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                      GitHub
+                    </span>
                   </Link>
                 </div>
 

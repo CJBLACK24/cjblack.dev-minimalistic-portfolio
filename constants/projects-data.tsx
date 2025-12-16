@@ -56,7 +56,8 @@ export const projectsData = [
       "A comprehensive university management system with role-based dashboards for administrators, teachers, students, and parents. Features real-time messaging via Socket.io and interactive calendars.",
     header: <NUManagementHeader />,
     icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
-    link: "https://github.com/CJBLACK24/National-University-Iloilo-Management-System",
+    link: "https://national-university-iloilo-manageme.vercel.app/",
+    liveDemo: "https://national-university-iloilo-manageme.vercel.app/",
     className: "",
     techStack: [
       {

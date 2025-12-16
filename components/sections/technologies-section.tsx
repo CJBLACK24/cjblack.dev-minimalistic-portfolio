@@ -120,9 +120,9 @@ export function TechnologiesSection() {
       {/* Radial gradient for the container to give a faded look */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white mask-[radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
 
-      <div className="relative z-20 w-full max-w-6xl md:max-w-7xl mx-auto px-4 md:px-8">
+      <div className="relative z-20 w-full max-w-6xl md:max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-20 pt-10">
         {/* Hover Border Gradient Badge */}
-        <div className="mt-1 mb-8 flex justify-center">
+        <div className="mt-8 mb-12 flex justify-center">
           <HoverBorderGradient
             containerClassName="rounded-full"
             className="text-sm font-medium"
@@ -131,10 +131,10 @@ export function TechnologiesSection() {
           </HoverBorderGradient>
         </div>
 
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-10 text-neutral-800 dark:text-neutral-200">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-16 text-neutral-800 dark:text-neutral-200">
           Technologies
         </h2>
-        <BentoGrid className="max-w-full mx-auto md:auto-rows-[20rem]">
+        <BentoGrid className="max-w-full mx-auto md:auto-rows-[22rem] gap-8 md:gap-10">
           {items.map((item, i) => (
             <BentoGridItem
               key={i}
