@@ -19,7 +19,7 @@ export const BookWiseHeader = () => (
       className="object-cover opacity-90 transition-opacity duration-500"
     />
     <InProgressBadge />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
   </div>
 );
 
@@ -40,7 +40,7 @@ export const PatchUpHeader = () => (
       fill
       className="object-cover opacity-90 transition-opacity duration-500"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
   </div>
 );
 
@@ -52,7 +52,7 @@ export const AuthSystemHeader = () => (
       fill
       className="object-cover object-top opacity-90 transition-opacity duration-500"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
   </div>
 );
 
@@ -65,7 +65,7 @@ export const NUManagementHeader = () => (
       className="object-cover object-top opacity-90 transition-opacity duration-500"
     />
     <InProgressBadge />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
   </div>
 );
 
@@ -77,6 +77,6 @@ export const DevEventHeader = () => (
       fill
       className="object-cover object-top opacity-90 transition-opacity duration-500"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
   </div>
 );
