@@ -310,8 +310,12 @@ export function HeroSectionOne() {
               <div className="mb-5 mt-1">
                 <HoverBorderGradient
                   containerClassName="rounded-full"
-                  className="text-sm font-medium"
+                  className="text-sm font-medium flex items-center gap-2"
                 >
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+                  </span>
                   Available for Opportunities
                 </HoverBorderGradient>
               </div>
