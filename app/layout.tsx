@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { inter } from "@/lib/fonts";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { SmoothScroll } from "@/components/ui/effects/smooth-scroll";
 import { WebVitalsReporter } from "@/components/layout/web-vitals";
 
