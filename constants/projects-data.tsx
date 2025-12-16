@@ -1,21 +1,106 @@
-import { IconClipboardCopy, IconTableColumn } from "@tabler/icons-react";
+import {
+  IconClipboardCopy,
+  IconTableColumn,
+  IconSchool,
+  IconCalendarEvent,
+} from "@tabler/icons-react";
 import {
   BookWiseHeader,
   PatchUpHeader,
-  AuthSystemHeader,
+  NUManagementHeader,
+  DevEventHeader,
 } from "../components/projects/project-card-headers";
 
 export const projectsData = [
   {
+    id: "devevent",
+    title: "DevEvent Platform",
+    description:
+      "The hub for every developer event! A modern platform for discovering, hosting, and attending tech events with advanced search, booking wizard, and PDF ticket generation.",
+    header: <DevEventHeader />,
+    icon: <IconCalendarEvent className="h-4 w-4 text-neutral-500" />,
+    link: "https://developer-events-platform.vercel.app",
+    liveDemo: "https://developer-events-platform.vercel.app",
+    className: "",
+    techStack: [
+      {
+        id: 1,
+        name: "Next.js",
+        designation: "Framework",
+        image: "/nextjs-logo.svg",
+      },
+      {
+        id: 2,
+        name: "Tailwind CSS",
+        designation: "Styling",
+        image: "/tailwind-logo.svg",
+      },
+      {
+        id: 3,
+        name: "Prisma",
+        designation: "ORM",
+        image: "/prisma.png",
+      },
+      {
+        id: 4,
+        name: "PostgreSQL",
+        designation: "Database",
+        image: "/postgresql-logo.svg",
+      },
+    ],
+  },
+  {
+    id: "nu-management",
+    title: "NU Iloilo Management System",
+    description:
+      "A comprehensive university management system with role-based dashboards for administrators, teachers, students, and parents. Features real-time messaging via Socket.io and interactive calendars.",
+    header: <NUManagementHeader />,
+    icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
+    link: "https://github.com/CJBLACK24/National-University-Iloilo-Management-System",
+    className: "",
+    techStack: [
+      {
+        id: 1,
+        name: "Next.js",
+        designation: "Framework",
+        image: "/nextjs-logo.svg",
+      },
+      {
+        id: 2,
+        name: "Socket.io",
+        designation: "Real-time",
+        image: "/socket.png",
+      },
+      {
+        id: 3,
+        name: "Prisma",
+        designation: "ORM",
+        image: "/prisma.png",
+      },
+      {
+        id: 4,
+        name: "PostgreSQL",
+        designation: "Database",
+        image: "/postgresql-logo.svg",
+      },
+      {
+        id: 5,
+        name: "Tailwind CSS",
+        designation: "Styling",
+        image: "/tailwind-logo.svg",
+      },
+    ],
+  },
+  {
     id: "patch-up",
     title: "Patch Up: Modern Tire Repair",
     description:
-      "A revolutionary dual-app mobile-controlled electric vulcanizer system. Features two connected mobile apps and one hardware device with real-time chat via Socket.io, routing map for location tracking, and seamless backend integration.",
+      "A revolutionary dual-app mobile-controlled electric vulcanizer system with real-time chat via Socket.io, routing map for location tracking, and seamless backend integration.",
     header: <PatchUpHeader />,
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
     link: "/projects",
-    className: "md:row-span-2", // Spans 2 rows on left
-    viewButton: "/projects", // Add view button for mobile project
+    className: "",
+    viewButton: "/projects",
     techStack: [
       {
         id: 1,
@@ -47,14 +132,7 @@ export const projectsData = [
   },
   {
     id: "bookwise",
-    title: (
-      <span className="flex items-center gap-2 flex-wrap">
-        BookWise: Library System
-        <span className="px-2 py-0.5 text-xs rounded-full bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
-          In Development
-        </span>
-      </span>
-    ),
+    title: "BookWise: Library System",
     description:
       "A comprehensive university library management system for accessing resources, managing inventory, and tracking borrowing history.",
     header: <BookWiseHeader />,
@@ -82,49 +160,6 @@ export const projectsData = [
         image: "/postgresql-logo.svg",
       },
       { id: 4, name: "Prisma", designation: "ORM", image: "/prisma.png" },
-    ],
-  },
-  {
-    id: "auth-system",
-    title: "Fullstack Authentication System",
-    description:
-      "A complete authentication solution featuring email/password login, Google and GitHub OAuth integration, email verification, password reset, and secure session management.",
-    header: <AuthSystemHeader />,
-    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-    link: "/sign-up",
-    liveDemo: "/sign-up",
-    className: "", // Normal grid cell
-    techStack: [
-      {
-        id: 2,
-        name: "Better Auth",
-        designation: "Auth Library",
-        image: "/better-auth.png",
-      },
-      {
-        id: 3,
-        name: "PostgreSQL",
-        designation: "Database",
-        image: "/postgresql-logo.svg",
-      },
-      {
-        id: 4,
-        name: "Prisma",
-        designation: "ORM",
-        image: "/prisma.png",
-      },
-      {
-        id: 5,
-        name: "Tailwind CSS",
-        designation: "Styling",
-        image: "/tailwind-logo.svg",
-      },
-      {
-        id: 7,
-        name: "Neon",
-        designation: "Database",
-        image: "/neon.png",
-      },
     ],
   },
 ];

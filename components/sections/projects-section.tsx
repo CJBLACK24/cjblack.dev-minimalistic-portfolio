@@ -1,15 +1,21 @@
 "use client";
 import React from "react";
-import { BentoGrid, BentoGridItem } from "@/components/ui/layout/bento-grid";
+import {
+  ProjectGrid,
+  ProjectGridItem,
+} from "@/components/ui/layout/project-grid";
 import { SparklesCore } from "@/components/ui/backgrounds/sparkles";
-import { AnimatedTooltip } from "@/components/ui/misc/animated-tooltip";
 import { projectsData } from "@/constants/projects-data";
+import Image from "next/image";
 
 import { AuthAvatar } from "@/components/projects/auth-avatar";
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 px-4 md:px-8 w-full relative">
+    <section
+      id="projects"
+      className="py-24 md:py-32 px-4 md:px-8 w-full relative overflow-hidden"
+    >
       {/* Sparkles Background Effect */}
       <div className="absolute inset-0 w-full h-full">
         <SparklesCore
@@ -17,7 +23,7 @@ export function ProjectsSection() {
           background="transparent"
           minSize={0.4}
           maxSize={1}
-          particleDensity={4}
+          particleDensity={3}
           className="w-full h-full"
           particleColor="#FFFFFF"
         />
@@ -25,35 +31,46 @@ export function ProjectsSection() {
 
       {/* Content */}
       <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 text-neutral-800 dark:text-neutral-200">
-          Featured{" "}
-          <span className="bg-linear-to-r from-white to-cyan-400 bg-clip-text text-transparent">
-            Projects
-          </span>
-        </h2>
-        <BentoGrid className="md:grid-rows-2 md:auto-rows-[20rem]">
-          {projectsData.map((project) => (
-            <BentoGridItem
+        {/* Section Header */}
+        <div className="text-center mb-16 md:mb-20">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            A small selection of{" "}
+            <span className="bg-linear-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+              recent projects
+            </span>
+          </h2>
+        </div>
+
+        {/* Projects Grid - 2 columns using the new ProjectGrid */}
+        <ProjectGrid className="md:grid-cols-2">
+          {projectsData.map((project, index) => (
+            <ProjectGridItem
               key={project.id}
+              index={index}
               title={project.title}
-              description={
-                <div className="flex flex-col gap-4">
-                  <span className="text-lg text-neutral-500 dark:text-neutral-400">
-                    {project.description}
-                  </span>
-                </div>
-              }
+              description={project.description}
               header={project.header}
               icon={project.icon}
               className={project.className}
               liveDemo={project.liveDemo}
               viewButton={project.viewButton}
               techStack={
-                <div className="grid grid-cols-[repeat(auto-fit,minmax(24px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(28px,1fr))] gap-1 md:gap-2 lg:gap-5 w-full max-w-[200px] md:max-w-none md:w-auto md:flex md:items-center">
-                  <AnimatedTooltip
-                    items={project.techStack}
-                    itemClassName="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
-                  />
+                <div className="flex items-center -space-x-2">
+                  {project.techStack.map((tech) => (
+                    <div
+                      key={tech.id}
+                      className="relative w-9 h-9 md:w-10 md:h-10 rounded-full bg-neutral-900 border-2 border-neutral-800 flex items-center justify-center overflow-hidden z-0 hover:z-10 transition-transform duration-200 hover:scale-110"
+                      title={tech.name}
+                    >
+                      <Image
+                        src={tech.image || ""}
+                        alt={tech.name}
+                        width={24}
+                        height={24}
+                        className="object-contain w-3/5 h-3/5"
+                      />
+                    </div>
+                  ))}
                 </div>
               }
               customAction={
@@ -61,7 +78,7 @@ export function ProjectsSection() {
               }
             />
           ))}
-        </BentoGrid>
+        </ProjectGrid>
       </div>
     </section>
   );
