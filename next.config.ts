@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "camo.githubusercontent.com",
+      },
     ],
     // Optimize images in production, disable in development for faster dev server
     unoptimized: process.env.NODE_ENV === "development",
