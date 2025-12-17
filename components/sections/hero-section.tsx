@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { BorderMagicButton } from "@/components/ui/buttons/border-magic-button";
-import { Spotlight } from "@/components/ui/backgrounds/spotlight";
+import { Spotlight } from "@/components/ui/backgrounds/spotlight-new";
 import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
 import { AnimatedTooltip } from "@/components/ui/misc/animated-hero-tooltip";
 import { Tooltip } from "@/components/ui/cards/tooltip-card";
@@ -117,10 +117,7 @@ export function HeroSectionOne() {
 
   return (
     <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 sm:px-6 lg:px-8">
-      <Spotlight
-        className="-top-40 left-0 md:left-60 md:-top-20"
-        fill="white"
-      />
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" />
 
       {/* Header Navigation */}
       <header className="flex items-center justify-between py-4 w-full relative z-50">
@@ -294,7 +291,7 @@ export function HeroSectionOne() {
             >
               <div className="relative w-full max-w-[260px] h-[320px] sm:max-w-[300px] sm:h-[380px] md:max-w-[280px] md:h-[360px] lg:max-w-[380px] lg:h-[480px] xl:max-w-[420px] xl:h-[520px]">
                 <Image
-                  src="/hero-picture-3.jpg"
+                  src="/cj.png"
                   alt="Profile"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
