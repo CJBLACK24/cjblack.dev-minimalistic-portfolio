@@ -42,13 +42,13 @@ export function ProjectsSection() {
           {projectsData.map((project) => (
             <div
               key={project.id}
-              className="h-80 md:h-96 flex items-center justify-center w-full"
+              className="h-100 md:h-140 flex items-center justify-center w-full"
             >
               <PinContainer
                 title={project.link ? "Visit Project" : "View Details"}
                 href={project.link || "#"}
               >
-                <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[20rem] sm:w-104 md:w-120 lg:w-140 h-80 md:h-96">
+                <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[20rem] sm:w-104 md:w-120 lg:w-140 h-100 md:h-140">
                   <h3 className="max-w-xs pb-2! m-0! font-bold  text-xl text-slate-100">
                     {project.title}
                   </h3>

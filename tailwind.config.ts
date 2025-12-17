@@ -12,6 +12,10 @@ module.exports = {
         shimmer: "shimmer 2s linear infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
       },
+      spacing: {
+        100: "25rem",
+        140: "35rem",
+      },
       keyframes: {
         shimmer: {
           from: {
