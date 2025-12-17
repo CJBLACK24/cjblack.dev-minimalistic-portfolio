@@ -3,13 +3,28 @@ import {
   IconTerminal2,
   IconComponents,
   IconBrandGithub,
+  IconHome,
+  IconCode,
+  IconCpu,
 } from "@tabler/icons-react";
 
 //Floating Navigation Items
 export const navItems = [
-  { name: "Home", link: "#home" },
-  { name: "Projects", link: "#projects" },
-  { name: "Technologies", link: "#technologies" },
+  {
+    name: "Home",
+    link: "#home",
+    icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    name: "Projects",
+    link: "#projects",
+    icon: <IconCode className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    name: "Technologies",
+    link: "#technologies",
+    icon: <IconCpu className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
 ];
 
 // Technology Items
@@ -45,6 +60,31 @@ export const backendItems = [
     designation: "Query Language",
     image:
       "https://camo.githubusercontent.com/3680d7839e81609a1618a06fa7d943dc6f8949169284adb3be6ce161e22d9570/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6772617068716c2d69636f6e2e737667",
+  },
+  {
+    id: 6,
+    name: "Redis",
+    designation: "Database",
+    image: "https://cdn.worldvectorlogo.com/logos/redis.svg",
+  },
+  {
+    id: 7,
+    name: "REST API",
+    designation: "Architecture",
+    image:
+      "https://camo.githubusercontent.com/ab09de79f0629e01d86942513abff902dc6948e1d6194b4d4dc3724d82e52831/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f726573746170692d69636f6e2e737667",
+  },
+  {
+    id: 8,
+    name: "WebSocket",
+    designation: "Protocol",
+    image: "https://cdn.worldvectorlogo.com/logos/websocket.svg",
+  },
+  {
+    id: 9,
+    name: "Supabase",
+    designation: "Backend as a Service",
+    image: "/supabase.svg",
   },
 ];
 
@@ -142,6 +182,20 @@ export const programmingLanguageItems = [
     designation: "Language",
     image: "/R_logo.svg",
   },
+  {
+    id: 6,
+    name: "C#",
+    designation: "Language",
+    image:
+      "https://camo.githubusercontent.com/dd75d21504d085f26ff74430df94f208f23beb055880df2bd5faa1219e87d6d8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6373686172702d69636f6e2e737667",
+  },
+  {
+    id: 7,
+    name: "C++",
+    designation: "Language",
+    image:
+      "https://camo.githubusercontent.com/c57992ccd8e44fbfa43178e6de1ec1d0974559148afeb3044100e6fc9142311c/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6370702d69636f6e2e737667",
+  },
 ];
 
 export const toolsItems = [
@@ -156,7 +210,7 @@ export const toolsItems = [
     name: "GitHub",
     designation: "Platform",
     image:
-      "https://camo.githubusercontent.com/16b52621932a556fbac9ae4101250a283e6cddf0b2b7ed1a218a2d4d95cd356b/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6769746875622d69636f6e2e737667",
+      "https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg",
   },
   {
     id: 3,
@@ -236,6 +290,19 @@ export const toolsItems = [
     designation: "Component Lib",
     image: "/shadcn.png",
   },
+  {
+    id: 16,
+    name: "Cloudinary",
+    designation: "Media Management",
+    image: "https://cdn.worldvectorlogo.com/logos/cloudinary-2.svg",
+  },
+  {
+    id: 17,
+    name: "Prettier",
+    designation: "Code Formatter",
+    image:
+      "https://camo.githubusercontent.com/db583023070de5c6f93dcb742c28dde5f5c164e16543e39c1136df08b1436d03/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f70726574746965722d69636f6e2e737667",
+  },
 ];
 
 export const currentlyLearningItems = [
@@ -261,25 +328,17 @@ export const currentlyLearningItems = [
       "https://camo.githubusercontent.com/67bf0811ad0811af2ea7ac7b43e8c16f5fb89fa45e2dcc0a7035e8b053215794/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f646f636b65722d69636f6e2e737667",
   },
   {
-    id: 4,
-    name: "C#",
-    designation: "Language",
-    image:
-      "https://camo.githubusercontent.com/dd75d21504d085f26ff74430df94f208f23beb055880df2bd5faa1219e87d6d8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6373686172702d69636f6e2e737667",
-  },
-  {
-    id: 5,
-    name: "C++",
-    designation: "Language",
-    image:
-      "https://camo.githubusercontent.com/c57992ccd8e44fbfa43178e6de1ec1d0974559148afeb3044100e6fc9142311c/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6370702d69636f6e2e737667",
-  },
-  {
     id: 6,
     name: "Electron",
     designation: "Framework",
     image:
       "https://camo.githubusercontent.com/d4cdfe4caa793b7fe511a00e04f52a4b63918764633fe6772db58c4aab288762/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656475782d69636f6e2e737667",
+  },
+  {
+    id: 7,
+    name: "gRPC",
+    designation: "Protocol",
+    image: "https://cdn.worldvectorlogo.com/logos/grpc.svg",
   },
 ];
 

@@ -28,7 +28,7 @@ export function ProjectsSection() {
       <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white">
             A small selection of{" "}
             <span className="bg-linear-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
               recent projects

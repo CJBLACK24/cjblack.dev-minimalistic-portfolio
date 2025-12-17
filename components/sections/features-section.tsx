@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { cn } from "@/lib/utils";
 import { SparklesCore } from "@/components/ui/backgrounds/sparkles";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "motion/react";
@@ -32,7 +33,7 @@ export function FeaturesSection() {
             title="Quality Focus"
             description="Delivering high-quality results while maintaining attention to every detail."
             icon={
-              <IconBuildingArch className="h-10 w-10 text-white group-hover/canvas-card:text-cyan-400 transition-colors" />
+              <IconBuildingArch className="h-10 w-10 text-white group-hover/canvas-card:text-cyan-400 group-data-[state=hovered]/canvas-card:text-cyan-400 transition-colors" />
             }
           >
             <CanvasRevealEffect
@@ -44,7 +45,7 @@ export function FeaturesSection() {
             title="Reliable Communication"
             description="Keeping you updated at every step to ensure transparency and clarity."
             icon={
-              <IconMessageCircle className="h-10 w-10 text-white group-hover/canvas-card:text-cyan-400 transition-colors" />
+              <IconMessageCircle className="h-10 w-10 text-white group-hover/canvas-card:text-cyan-400 group-data-[state=hovered]/canvas-card:text-cyan-400 transition-colors" />
             }
           >
             <CanvasRevealEffect
@@ -61,7 +62,7 @@ export function FeaturesSection() {
             title="On-Time Delivery"
             description="Making sure projects are completed on schedule, with quality & attention to detail."
             icon={
-              <IconBolt className="h-10 w-10 text-white group-hover/canvas-card:text-cyan-400 transition-colors" />
+              <IconBolt className="h-10 w-10 text-white group-hover/canvas-card:text-cyan-400 group-data-[state=hovered]/canvas-card:text-cyan-400 transition-colors" />
             }
           >
             <CanvasRevealEffect
@@ -92,7 +93,9 @@ const Card = ({
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="border border-black/20 group/canvas-card flex items-center justify-center dark:border-white/20 max-w-sm w-full mx-auto p-4 relative h-120"
+      onClick={() => setHovered(!hovered)}
+      data-state={hovered ? "hovered" : "closed"}
+      className="border border-black/20 group/canvas-card flex items-center justify-center dark:border-white/20 max-w-sm w-full mx-auto p-4 relative h-120 cursor-pointer"
     >
       <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
       <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
@@ -113,14 +116,31 @@ const Card = ({
       </AnimatePresence>
 
       <div className="relative z-20 w-full flex flex-col items-center justify-center text-center">
-        <div className="group-hover/canvas-card:-translate-y-4 transition duration-200">
+        <div
+          className={cn(
+            "group-hover/canvas-card:-translate-y-4 transition duration-200",
+            hovered && "-translate-y-4"
+          )}
+        >
           {icon}
         </div>
-        <h2 className="dark:text-white text-xl text-black mt-4 font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
+        <h2
+          className={cn(
+            "dark:text-white text-xl text-black mt-4 font-bold transition duration-200",
+            hovered
+              ? "text-white -translate-y-2"
+              : "group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2"
+          )}
+        >
           {title}
         </h2>
         <h2
-          className="text-sm dark:text-neutral-300 text-neutral-600 opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-2 font-normal group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200"
+          className={cn(
+            "text-sm dark:text-neutral-300 text-neutral-600 relative z-10 mt-2 font-normal transition duration-200",
+            hovered
+              ? "opacity-100 text-white -translate-y-2"
+              : "opacity-0 group-hover/canvas-card:opacity-100 group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2"
+          )}
           style={{ color: "#e4e4e7" }}
         >
           {description}

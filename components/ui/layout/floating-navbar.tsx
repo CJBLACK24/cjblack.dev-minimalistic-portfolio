@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useState } from "react";
 import {
@@ -99,7 +100,7 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "hidden md:flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/20 rounded-full dark:bg-black bg-white shadow-input z-50 pr-2 pl-8 py-2 items-center justify-center space-x-4",
+          "flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/20 rounded-full dark:bg-black bg-white shadow-input z-50 pr-2 pl-8 py-2 items-center justify-center space-x-4",
           className
         )}
       >
