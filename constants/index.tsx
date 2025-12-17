@@ -209,8 +209,7 @@ export const toolsItems = [
     id: 2,
     name: "GitHub",
     designation: "Platform",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg",
+    image: "github.svg",
   },
   {
     id: 3,
@@ -336,9 +335,17 @@ export const currentlyLearningItems = [
   },
   {
     id: 7,
+    name: "MySQL",
+    designation: "An open source RDBMS",
+    image:
+      "https://camo.githubusercontent.com/166d7510eddc438981693781e5252ddcf99f0445f80b91b7986f2f7f122f9892/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6d7973716c2d69636f6e2e737667",
+  },
+
+  {
+    id: 8,
     name: "gRPC",
     designation: "Protocol",
-    image: "https://cdn.worldvectorlogo.com/logos/grpc.svg",
+    image: "gRPC.svg",
   },
 ];
 

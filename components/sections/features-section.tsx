@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { SparklesCore } from "@/components/ui/backgrounds/sparkles";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
@@ -136,7 +136,7 @@ const Card = ({
         </h2>
         <h2
           className={cn(
-            "text-sm dark:text-neutral-300 text-neutral-600 relative z-10 mt-2 font-normal transition duration-200",
+            "text-base dark:text-neutral-300 text-neutral-600 relative z-10 mt-2 font-normal transition duration-200",
             hovered
               ? "opacity-100 text-white -translate-y-2"
               : "opacity-0 group-hover/canvas-card:opacity-100 group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2"

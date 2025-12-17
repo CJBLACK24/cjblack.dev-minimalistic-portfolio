@@ -4,6 +4,7 @@ import { PinContainer } from "@/components/ui/3d-pin";
 import { SparklesCore } from "@/components/ui/backgrounds/sparkles";
 import { projectsData } from "@/constants/projects-data";
 import Image from "next/image";
+import { IconArrowUpRight } from "@tabler/icons-react";
 
 export function ProjectsSection() {
   return (
@@ -30,7 +31,7 @@ export function ProjectsSection() {
         <div className="text-center mb-16 md:mb-20">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white">
             A small selection of{" "}
-            <span className="bg-linear-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               recent projects
             </span>
           </h2>
@@ -48,7 +49,7 @@ export function ProjectsSection() {
                 href={project.link || "#"}
               >
                 <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[20rem] sm:w-104 md:w-120 lg:w-140 h-80 md:h-96">
-                  <h3 className="max-w-xs pb-2! m-0! font-bold  text-base text-slate-100">
+                  <h3 className="max-w-xs pb-2! m-0! font-bold  text-xl text-slate-100">
                     {project.title}
                   </h3>
                   <div className="text-base m-0! p-0! font-normal">
@@ -64,12 +65,12 @@ export function ProjectsSection() {
                   </div>
 
                   {/* Tech Stack Footer */}
-                  <div className="flex items-center justify-between mt-4">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between mt-4 gap-4 md:gap-0">
                     <div className="flex items-center -space-x-2">
                       {project.techStack.map((tech) => (
                         <div
                           key={tech.id}
-                          className="relative w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center overflow-hidden hover:z-10 hover:scale-110 transition-transform"
+                          className="relative w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center overflow-hidden hover:z-10 hover:scale-110 transition-transform"
                           title={tech.name}
                         >
                           <Image
@@ -83,9 +84,15 @@ export function ProjectsSection() {
                       ))}
                     </div>
                     {/* View Button Text matches Pin Title logic generally, but simple text here */}
-                    <span className="text-cyan-400 text-xs font-bold">
-                      Check Live Site
-                    </span>
+                    {/* View Button Text matches Pin Title logic generally, but simple text here */}
+                    <div className="flex items-center gap-1 group/btn">
+                      <span className="text-cyan-400 text-base font-bold group-hover/btn:underline">
+                        {project.id === "patch-up"
+                          ? "View Project"
+                          : "Check Live Site"}
+                      </span>
+                      <IconArrowUpRight className="h-4 w-4 text-cyan-400 opacity-70 group-hover/btn:opacity-100 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    </div>
                   </div>
                 </div>
               </PinContainer>
