@@ -338,6 +338,10 @@ cjblack-dev_portfolio/
 ├── prisma/                  # Database
 │   └── schema.prisma        # Database schema
 ├── public/                  # Static assets
+│   ├── tech/                # Technology icons
+│   ├── projects/            # Project screenshots
+│   ├── hero/                # Profile & hero images
+│   └── misc/                # Miscellaneous assets
 ├── styles/                  # Global styles
 ├── .env                     # Environment variables (gitignored)
 ├── .env.example             # Environment template

@@ -2,7 +2,7 @@
 import React from "react";
 import { PinContainer } from "@/components/ui/3d-pin";
 import { SparklesCore } from "@/components/ui/backgrounds/sparkles";
-import { projectsData } from "@/constants/projects-data";
+import { projectsData } from "@/constants";
 import Image from "next/image";
 import { IconArrowUpRight } from "@tabler/icons-react";
 

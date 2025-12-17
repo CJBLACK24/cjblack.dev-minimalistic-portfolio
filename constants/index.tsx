@@ -6,9 +6,19 @@ import {
   IconHome,
   IconCode,
   IconCpu,
+  IconClipboardCopy,
+  IconTableColumn,
+  IconSchool,
+  IconCalendarEvent,
 } from "@tabler/icons-react";
+import {
+  BookWiseHeader,
+  PatchUpHeader,
+  NUManagementHeader,
+  DevEventHeader,
+} from "../components/projects/project-card-headers";
 
-//Floating Navigation Items
+// Floating Navigation Items
 export const navItems = [
   {
     name: "Home",
@@ -27,7 +37,6 @@ export const navItems = [
   },
 ];
 
-// Technology Items
 // Technology Items
 export const backendItems = [
   {
@@ -196,6 +205,13 @@ export const programmingLanguageItems = [
     image:
       "https://camo.githubusercontent.com/c57992ccd8e44fbfa43178e6de1ec1d0974559148afeb3044100e6fc9142311c/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6370702d69636f6e2e737667",
   },
+  {
+    id: 8,
+    name: "MySQL",
+    designation: "An open source RDBMS",
+    image:
+      "https://camo.githubusercontent.com/166d7510eddc438981693781e5252ddcf99f0445f80b91b7986f2f7f122f9892/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6d7973716c2d69636f6e2e737667",
+  },
 ];
 
 export const toolsItems = [
@@ -209,7 +225,7 @@ export const toolsItems = [
     id: 2,
     name: "GitHub",
     designation: "Platform",
-    image: "github.svg",
+    image: "/github.svg",
   },
   {
     id: 3,
@@ -335,17 +351,9 @@ export const currentlyLearningItems = [
   },
   {
     id: 7,
-    name: "MySQL",
-    designation: "An open source RDBMS",
-    image:
-      "https://camo.githubusercontent.com/166d7510eddc438981693781e5252ddcf99f0445f80b91b7986f2f7f122f9892/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6d7973716c2d69636f6e2e737667",
-  },
-
-  {
-    id: 8,
     name: "gRPC",
     designation: "Protocol",
-    image: "gRPC.svg",
+    image: "/gRPC.svg",
   },
 ];
 
@@ -389,3 +397,157 @@ export const gridItems = [
 ];
 
 export const words = ["Hello 👋"];
+
+export const projectsData = [
+  {
+    id: "devevent",
+    title: "DevEvent Platform",
+    description:
+      "The hub for every developer event! A modern platform for discovering, hosting, and attending tech events with advanced search, booking wizard, and PDF ticket generation.",
+    header: <DevEventHeader />,
+    icon: <IconCalendarEvent className="h-4 w-4 text-neutral-500" />,
+    link: "https://developer-events-platform.vercel.app",
+    liveDemo: "https://developer-events-platform.vercel.app",
+    className: "",
+    techStack: [
+      {
+        id: 1,
+        name: "Next.js",
+        designation: "Framework",
+        image: "/nextjs-logo.svg",
+      },
+      {
+        id: 2,
+        name: "Tailwind CSS",
+        designation: "Styling",
+        image: "/tailwind-logo.svg",
+      },
+      {
+        id: 3,
+        name: "Prisma",
+        designation: "ORM",
+        image: "/prisma.png",
+      },
+      {
+        id: 4,
+        name: "PostgreSQL",
+        designation: "Database",
+        image: "/postgresql-logo.svg",
+      },
+    ],
+  },
+  {
+    id: "nu-management",
+    title: "NU Iloilo Management System",
+    description:
+      "A comprehensive university management system with role-based dashboards for administrators, teachers, students, and parents. Features real-time messaging via Socket.io and interactive calendars.",
+    header: <NUManagementHeader />,
+    icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
+    link: "https://national-university-iloilo-manageme.vercel.app/",
+    liveDemo: "https://national-university-iloilo-manageme.vercel.app/",
+    className: "",
+    techStack: [
+      {
+        id: 1,
+        name: "Next.js",
+        designation: "Framework",
+        image: "/nextjs-logo.svg",
+      },
+      {
+        id: 2,
+        name: "Socket.io",
+        designation: "Real-time",
+        image: "/socket.png",
+      },
+      {
+        id: 3,
+        name: "Prisma",
+        designation: "ORM",
+        image: "/prisma.png",
+      },
+      {
+        id: 4,
+        name: "PostgreSQL",
+        designation: "Database",
+        image: "/postgresql-logo.svg",
+      },
+      {
+        id: 5,
+        name: "Tailwind CSS",
+        designation: "Styling",
+        image: "/tailwind-logo.svg",
+      },
+    ],
+  },
+  {
+    id: "patch-up",
+    title: "Patch Up: Modern Tire Repair",
+    description:
+      "A revolutionary dual-app mobile-controlled electric vulcanizer system with real-time chat via Socket.io, routing map for location tracking, and seamless backend integration.",
+    header: <PatchUpHeader />,
+    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+    link: "/projects",
+    className: "",
+    viewButton: "/projects",
+    techStack: [
+      {
+        id: 1,
+        name: "React Native",
+        designation: "Framework",
+        image: "/react-native-logo.svg",
+      },
+      {
+        id: 2,
+        name: "MongoDB",
+        designation: "Database",
+        image: "/mongodb-logo.svg",
+      },
+      {
+        id: 3,
+        name: "Arduino",
+        designation: "Hardware",
+        image: "/ardiuno.png",
+      },
+      { id: 4, name: "C++", designation: "Language", image: "/C++.png" },
+      { id: 5, name: "Expo", designation: "Platform", image: "/expo.png" },
+      {
+        id: 6,
+        name: "Socket.io",
+        designation: "Real-time",
+        image: "/socket.png",
+      },
+    ],
+  },
+  {
+    id: "bookwise",
+    title: "BookWise: Library System",
+    description:
+      "A comprehensive university library management system for accessing resources, managing inventory, and tracking borrowing history.",
+    header: <BookWiseHeader />,
+    icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+    link: "https://university-library-management-syste-jet.vercel.app/",
+    liveDemo: "https://university-library-management-syste-jet.vercel.app/",
+    className: "", // Normal grid cell
+    techStack: [
+      {
+        id: 1,
+        name: "Next.js",
+        designation: "Framework",
+        image: "/nextjs-logo.svg",
+      },
+      {
+        id: 2,
+        name: "Tailwind CSS",
+        designation: "Styling",
+        image: "/tailwind-logo.svg",
+      },
+      {
+        id: 3,
+        name: "PostgreSQL",
+        designation: "Database",
+        image: "/postgresql-logo.svg",
+      },
+      { id: 4, name: "Prisma", designation: "ORM", image: "/prisma.png" },
+    ],
+  },
+];

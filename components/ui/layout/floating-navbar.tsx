@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useState } from "react";
 import {
@@ -10,14 +9,6 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import { useSession, signOut } from "@/lib/auth-client";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/primitives/avatar";
-import { IconLogout } from "@tabler/icons-react";
 
 export const FloatingNav = ({
   navItems,
@@ -33,7 +24,6 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(false);
   const pathname = usePathname();
-  const { data: session } = useSession();
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
@@ -78,11 +68,6 @@ export const FloatingNav = ({
       // We don't prevent default here, letting Next.js Link handle the routing
       // But we ensure the href in the Link component is absolute
     }
-  };
-
-  const handleSignOut = async () => {
-    await signOut();
-    window.location.reload();
   };
 
   return (
