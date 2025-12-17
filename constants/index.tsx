@@ -44,7 +44,7 @@ export const backendItems = [
     name: "GraphQL",
     designation: "Query Language",
     image:
-      "https://camo.githubusercontent.com/875c6caef8bb68418d77f505e2a54728a6396bb825a56ebffcec0e8d0ca0fbc3/68747470733a2f2f736b696c6c69636f6e732e6465762f69636f6e733f693d6772617068716c",
+      "https://camo.githubusercontent.com/3680d7839e81609a1618a06fa7d943dc6f8949169284adb3be6ce161e22d9570/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6772617068716c2d69636f6e2e737667",
   },
 ];
 
@@ -99,12 +99,6 @@ export const webMobileItems = [
     image: "/CSS3.svg",
   },
   {
-    id: 10,
-    name: "Shadcn UI",
-    designation: "Component Lib",
-    image: "/shadcn.png",
-  },
-  {
     id: 11,
     name: "Webpack",
     designation: "Bundler",
@@ -132,13 +126,15 @@ export const programmingLanguageItems = [
     id: 3,
     name: "Python",
     designation: "Language",
-    image: "/python-logo.svg",
+    image:
+      "https://camo.githubusercontent.com/d7f81f6d4cfa55056568314a53cac1cfd12f690bccf1e2c1d315ca6a17d39747/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f707974686f6e2d69636f6e2e737667",
   },
   {
     id: 4,
     name: "Java",
     designation: "Language",
-    image: "/java-logo.svg",
+    image:
+      "https://camo.githubusercontent.com/4accd2f20a00fd4364e3456b3525b9af98b827afb9d4ec9f62cce6732552fa06/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6a6176612d69636f6e2e737667",
   },
   {
     id: 5,
@@ -233,6 +229,57 @@ export const toolsItems = [
     name: "Resend",
     designation: "Email API",
     image: "/resend.png",
+  },
+  {
+    id: 15,
+    name: "Shadcn UI",
+    designation: "Component Lib",
+    image: "/shadcn.png",
+  },
+];
+
+export const currentlyLearningItems = [
+  {
+    id: 1,
+    name: "AWS",
+    designation: "Cloud",
+    image:
+      "https://camo.githubusercontent.com/7575696d9955b68522293ed8409d041e78dc26dd51add99b5a5d9aad0747e11e/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6177732d69636f6e2e737667",
+  },
+  {
+    id: 2,
+    name: "Kubernetes",
+    designation: "Orchestration",
+    image:
+      "https://camo.githubusercontent.com/a6a8821f41607abeea51e83b36464bfee4628ad6f4fd1aea4e7415b925a46fc3/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6b756265726e657465732d69636f6e2e737667",
+  },
+  {
+    id: 3,
+    name: "Docker",
+    designation: "Containerization",
+    image:
+      "https://camo.githubusercontent.com/67bf0811ad0811af2ea7ac7b43e8c16f5fb89fa45e2dcc0a7035e8b053215794/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f646f636b65722d69636f6e2e737667",
+  },
+  {
+    id: 4,
+    name: "C#",
+    designation: "Language",
+    image:
+      "https://camo.githubusercontent.com/dd75d21504d085f26ff74430df94f208f23beb055880df2bd5faa1219e87d6d8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6373686172702d69636f6e2e737667",
+  },
+  {
+    id: 5,
+    name: "C++",
+    designation: "Language",
+    image:
+      "https://camo.githubusercontent.com/c57992ccd8e44fbfa43178e6de1ec1d0974559148afeb3044100e6fc9142311c/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6370702d69636f6e2e737667",
+  },
+  {
+    id: 6,
+    name: "Electron",
+    designation: "Framework",
+    image:
+      "https://camo.githubusercontent.com/d4cdfe4caa793b7fe511a00e04f52a4b63918764633fe6772db58c4aab288762/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656475782d69636f6e2e737667",
   },
 ];
 

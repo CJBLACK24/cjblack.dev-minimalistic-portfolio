@@ -8,12 +8,14 @@ import {
   toolsItems,
   webMobileItems,
   programmingLanguageItems,
+  currentlyLearningItems,
 } from "@/constants";
 import {
   IconServer,
   IconTools,
   IconDeviceMobile,
   IconTerminal2,
+  IconBrain,
 } from "@tabler/icons-react";
 import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
 
@@ -37,7 +39,7 @@ export function TechnologiesSection() {
           </div>
         </div>
       ),
-      className: "md:col-span-1 md:row-span-2",
+      className: "md:col-span-1",
       icon: <IconDeviceMobile className="h-4 w-4 text-neutral-500" />,
     },
     {
@@ -80,6 +82,27 @@ export function TechnologiesSection() {
       ),
       className: "md:col-span-1",
       icon: <IconServer className="h-4 w-4 text-neutral-500" />,
+    },
+    {
+      title: "Currently Learning",
+      description: (
+        <span className="text-lg font-normal text-neutral-400">
+          Expanding my skillset with cloud computing, containerization, and
+          system programming.
+        </span>
+      ),
+      header: (
+        <div className="flex flex-1 w-full h-full min-h-24 rounded-xl p-4 items-center justify-center">
+          <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-4 md:gap-10">
+            <AnimatedTooltip
+              items={currentlyLearningItems}
+              itemClassName="w-20 h-20 mr-0 md:-mr-4"
+            />
+          </div>
+        </div>
+      ),
+      className: "md:col-span-1",
+      icon: <IconBrain className="h-4 w-4 text-neutral-500" />,
     },
     {
       title: "Tools",
@@ -134,7 +157,7 @@ export function TechnologiesSection() {
         <h2 className="text-3xl md:text-5xl font-bold text-center mb-16 text-neutral-800 dark:text-neutral-200">
           Technologies
         </h2>
-        <BentoGrid className="max-w-full mx-auto md:auto-rows-[22rem] gap-8 md:gap-10">
+        <BentoGrid className="max-w-full mx-auto md:grid-cols-2 md:auto-rows-[22rem] gap-8 md:gap-10">
           {items.map((item, i) => (
             <BentoGridItem
               key={i}
