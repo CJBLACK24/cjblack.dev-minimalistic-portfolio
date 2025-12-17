@@ -205,13 +205,6 @@ export const programmingLanguageItems = [
     image:
       "https://camo.githubusercontent.com/c57992ccd8e44fbfa43178e6de1ec1d0974559148afeb3044100e6fc9142311c/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6370702d69636f6e2e737667",
   },
-  {
-    id: 8,
-    name: "MySQL",
-    designation: "An open source RDBMS",
-    image:
-      "https://camo.githubusercontent.com/166d7510eddc438981693781e5252ddcf99f0445f80b91b7986f2f7f122f9892/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6d7973716c2d69636f6e2e737667",
-  },
 ];
 
 export const toolsItems = [
@@ -349,8 +342,15 @@ export const currentlyLearningItems = [
     image:
       "https://camo.githubusercontent.com/d4cdfe4caa793b7fe511a00e04f52a4b63918764633fe6772db58c4aab288762/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656475782d69636f6e2e737667",
   },
-  {
+    {
     id: 7,
+    name: "MySQL",
+    designation: "An open source RDBMS",
+    image:
+      "https://camo.githubusercontent.com/166d7510eddc438981693781e5252ddcf99f0445f80b91b7986f2f7f122f9892/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6d7973716c2d69636f6e2e737667",
+  },
+  {
+    id: 8,
     name: "gRPC",
     designation: "Protocol",
     image: "/gRPC.svg",
