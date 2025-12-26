@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { BorderMagicButton } from "@/components/ui/buttons/border-magic-button";
 import { Spotlight } from "@/components/ui/backgrounds/spotlight-new";
 import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
@@ -114,6 +114,42 @@ export function HeroSectionOne() {
         "https://camo.githubusercontent.com/971dc0f889a81abf890b811ea97765459c01e50470aa92927fc63109867dc35e/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f7765627061636b2d69636f6e2e737667",
     },
   ];
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 1, 0.5, 1], // Custom cubic bezier for smooth feel
+      },
+    },
+  };
+
+  const imageVariants: Variants = {
+    hidden: { opacity: 0, rotate: -2 },
+    visible: {
+      opacity: 1,
+      rotate: 0,
+      transition: {
+        duration: 1.2,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
 
   return (
     <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 sm:px-6 lg:px-8">
@@ -265,7 +301,12 @@ export function HeroSectionOne() {
       </header>
 
       {/* Hero Content */}
-      <div className="flex-1 flex flex-col items-center justify-center">
+      <motion.div
+        className="flex-1 flex flex-col items-center justify-center"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
         <div className="absolute inset-y-0 left-0 md:left-0 h-full w-px bg-neutral-800/50 ml-1 md:ml-0">
           <div className="absolute top-0 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
@@ -284,9 +325,7 @@ export function HeroSectionOne() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-center md:-ml-20 lg:-ml-40">
             {/* Left Column - Image */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              variants={imageVariants}
               className="flex justify-center md:justify-end"
             >
               <div className="relative w-full max-w-[260px] h-[320px] sm:max-w-[300px] sm:h-[380px] md:max-w-[280px] md:h-[360px] lg:max-w-[380px] lg:h-[480px] xl:max-w-[420px] xl:h-[520px]">
@@ -304,7 +343,7 @@ export function HeroSectionOne() {
             {/* Right Column - Content */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left mt-12 md:mt-4">
               {/* Hover Border Gradient Badge */}
-              <div className="mb-5 mt-1">
+              <motion.div variants={itemVariants} className="mb-5 mt-1">
                 <HoverBorderGradient
                   containerClassName="rounded-full"
                   className="text-sm font-medium flex items-center gap-2"
@@ -315,18 +354,16 @@ export function HeroSectionOne() {
                   </span>
                   Available for Opportunities
                 </HoverBorderGradient>
-              </div>
+              </motion.div>
 
-              <h1 className="relative z-10 max-w-4xl text-3xl sm:text-4xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-4 md:mb-6 leading-[1.1]">
+              <motion.h1
+                variants={itemVariants}
+                className="relative z-10 max-w-4xl text-3xl sm:text-4xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-4 md:mb-6 leading-[1.1]"
+              >
                 <div className="flex flex-nowrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
-                  <motion.span
-                    initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
-                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="inline-block text-white whitespace-nowrap"
-                  >
+                  <span className="inline-block text-white whitespace-nowrap">
                     Shaping&nbsp;
-                  </motion.span>
+                  </span>
 
                   <motion.div
                     key={currentWordIndex}
@@ -372,30 +409,21 @@ export function HeroSectionOne() {
                 </div>
 
                 <div className="block whitespace-nowrap">
-                  <motion.span
-                    initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
-                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                    className="inline-block text-white"
-                  >
+                  <span className="inline-block text-white">
                     into Real Projects
-                  </motion.span>
+                  </span>
                 </div>
 
                 <div className="block whitespace-nowrap">
                   <span className="text-white">that </span>
-                  <motion.span
-                    initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
-                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-                    className="inline-block text-transparent bg-clip-text bg-linear-to-bl from-cyan-400 to-white"
-                  >
+                  <span className="inline-block text-transparent bg-clip-text bg-linear-to-bl from-cyan-400 to-white">
                     Deliver Results
-                  </motion.span>
+                  </span>
                 </div>
-              </h1>
+              </motion.h1>
 
-              <div
+              <motion.div
+                variants={itemVariants}
                 className="relative z-10 max-w-xl text-xl font-normal mb-6 md:mb-8"
                 style={{ color: "rgb(194, 205, 231)" }}
               >
@@ -469,10 +497,13 @@ export function HeroSectionOne() {
                   </span>
                 </Tooltip>{" "}
                 and developer with a passion for code.
-              </div>
+              </motion.div>
 
               {/* View Works Button, GitHub Link, and Tech Stack */}
-              <div className="flex flex-col items-center md:items-start gap-6 mb-10 w-full">
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col items-center md:items-start gap-6 mb-10 w-full"
+              >
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
                   <a href="#projects" className="scroll-smooth">
                     <BorderMagicButton className="gap-2 group">
@@ -497,11 +528,11 @@ export function HeroSectionOne() {
                 <div className="flex items-center justify-center md:justify-start">
                   <AnimatedTooltip items={techStack} />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

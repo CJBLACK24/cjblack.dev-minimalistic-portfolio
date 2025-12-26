@@ -18,6 +18,7 @@ import {
   IconBrain,
 } from "@tabler/icons-react";
 import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
+import { motion, Variants } from "motion/react";
 
 export function TechnologiesSection() {
   const items = [
@@ -142,8 +143,47 @@ export function TechnologiesSection() {
     },
   ];
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const bentoVariants: Variants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
-    <div
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
       className="relative flex min-h-200 w-full flex-col items-center justify-center overflow-hidden bg-white dark:bg-black py-20"
       id="technologies"
     >
@@ -160,31 +200,42 @@ export function TechnologiesSection() {
 
       <div className="relative z-20 w-full max-w-6xl md:max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-20 pt-10">
         {/* Hover Border Gradient Badge */}
-        <div className="mt-8 mb-12 flex justify-center">
+        <motion.div
+          variants={itemVariants}
+          className="mt-8 mb-12 flex justify-center"
+        >
           <HoverBorderGradient
             containerClassName="rounded-full"
             className="text-sm font-medium"
           >
             Modern. Scalable. Dynamic.
           </HoverBorderGradient>
-        </div>
+        </motion.div>
 
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-16 text-neutral-800 dark:text-neutral-200">
+        <motion.h2
+          variants={itemVariants}
+          className="text-3xl md:text-5xl font-bold text-center mb-16 text-neutral-800 dark:text-neutral-200"
+        >
           Technologies
-        </h2>
+        </motion.h2>
         <BentoGrid className="max-w-full mx-auto md:grid-cols-2 md:auto-rows-[22rem] gap-8 md:gap-10">
           {items.map((item, i) => (
-            <BentoGridItem
+            <motion.div
               key={i}
-              title={item.title}
-              description={item.description}
-              header={item.header}
+              variants={bentoVariants}
               className={item.className}
-              icon={item.icon}
-            />
+            >
+              <BentoGridItem
+                title={item.title}
+                description={item.description}
+                header={item.header}
+                className="h-full"
+                icon={item.icon}
+              />
+            </motion.div>
           ))}
         </BentoGrid>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/primitives/label";
 import { Input } from "@/components/ui/primitives/input";
 import { AnimatedAlert } from "@/components/ui/misc/animated-alert";
 import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
+import { motion, Variants } from "motion/react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -218,8 +219,38 @@ export function ContactSection() {
     }
   };
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
-    <div className="w-full py-20 lg:py-40" id="contact">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+      className="w-full py-20 lg:py-40"
+      id="contact"
+    >
       <AnimatedAlert
         title={alertState.title}
         description={alertState.description}
@@ -228,20 +259,26 @@ export function ContactSection() {
         onClose={() => setAlertState((prev) => ({ ...prev, isVisible: false }))}
       />
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="mt-1 mb-8 flex justify-center">
+        <motion.div
+          variants={itemVariants}
+          className="mt-1 mb-8 flex justify-center"
+        >
           <HoverBorderGradient containerClassName="rounded-full">
             💭Have a questions or ideas? Let&apos;s talk!🚀
           </HoverBorderGradient>
-        </div>
-        <div className="text-center mb-16">
+        </motion.div>
+        <motion.div variants={itemVariants} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Get in Touch - Let&apos;s Connect!
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Left Column: Contact Form */}
-          <div className="lg:col-span-1 bg-neutral-900/50 border border-neutral-800 rounded-3xl p-8">
+          <motion.div
+            variants={itemVariants}
+            className="lg:col-span-1 bg-neutral-900/50 border border-neutral-800 rounded-3xl p-8"
+          >
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center">
                 <IconSend className="text-white w-6 h-6" />
@@ -305,52 +342,62 @@ export function ContactSection() {
                   : "To send"}
               </button>
             </form>
-          </div>
+          </motion.div>
 
           {/* Right Column: Contact Info Cards */}
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Phone */}
-            <ContactCard
-              icon={<IconPhone className="w-6 h-6" />}
-              title="Phone number"
-              value="🇵🇭 +63 960 418 0219"
-              href="#"
-              clickable={false}
-            />
+            <motion.div variants={itemVariants}>
+              <ContactCard
+                icon={<IconPhone className="w-6 h-6" />}
+                title="Phone number"
+                value="🇵🇭 +63 960 418 0219"
+                href="#"
+                clickable={false}
+              />
+            </motion.div>
 
             {/* Email */}
-            <ContactCard
-              icon={<IconMail className="w-6 h-6" />}
-              title="E-mail"
-              value="duquechristianjohncalderon@gmail.com"
-              href="#"
-              clickable={false}
-              copyable
-            />
+            <motion.div variants={itemVariants}>
+              <ContactCard
+                icon={<IconMail className="w-6 h-6" />}
+                title="E-mail"
+                value="duquechristianjohncalderon@gmail.com"
+                href="#"
+                clickable={false}
+                copyable
+              />
+            </motion.div>
 
             {/* LinkedIn */}
-            <ContactCard
-              icon={<IconBrandLinkedin className="w-6 h-6" />}
-              title="LinkedIn"
-              value="cj-black-a5b110335"
-              href="https://www.linkedin.com/in/cj-black-a5b110335"
-            />
+            <motion.div variants={itemVariants}>
+              <ContactCard
+                icon={<IconBrandLinkedin className="w-6 h-6" />}
+                title="LinkedIn"
+                value="cj-black-a5b110335"
+                href="https://www.linkedin.com/in/cj-black-a5b110335"
+              />
+            </motion.div>
 
             {/* GitHub */}
-            <ContactCard
-              icon={<IconBrandGithub className="w-6 h-6" />}
-              title="Github"
-              value="github.com/CJBLACK24"
-              href="https://github.com/CJBLACK24"
-            />
+            <motion.div variants={itemVariants}>
+              <ContactCard
+                icon={<IconBrandGithub className="w-6 h-6" />}
+                title="Github"
+                value="github.com/CJBLACK24"
+                href="https://github.com/CJBLACK24"
+              />
+            </motion.div>
 
             {/* Instagram */}
-            <ContactCard
-              icon={<IconBrandInstagram className="w-6 h-6" />}
-              title="Instagram"
-              value="@cjblack_24"
-              href="https://www.instagram.com/cjblack_24/"
-            />
+            <motion.div variants={itemVariants}>
+              <ContactCard
+                icon={<IconBrandInstagram className="w-6 h-6" />}
+                title="Instagram"
+                value="@cjblack_24"
+                href="https://www.instagram.com/cjblack_24/"
+              />
+            </motion.div>
           </div>
         </div>
 
@@ -408,7 +455,7 @@ export function ContactSection() {
           </AlertDialogContent>
         </AlertDialog>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

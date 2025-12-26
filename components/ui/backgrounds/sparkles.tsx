@@ -86,7 +86,7 @@ export const SparklesCore = (props: ParticlesProps) => {
               },
               modes: {
                 push: {
-                  quantity: 4,
+                  quantity: 2,
                 },
                 repulse: {
                   distance: 200,
@@ -105,7 +105,7 @@ export const SparklesCore = (props: ParticlesProps) => {
               },
               collisions: {
                 absorb: {
-                  speed: 2,
+                  speed: 1,
                 },
                 bounce: {
                   horizontal: {

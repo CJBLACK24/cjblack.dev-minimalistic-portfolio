@@ -73,6 +73,7 @@ export default function Home() {
         <HeroSectionOne />
         <FeaturesSection />
         <ProjectsSection />
+       
         <TechnologiesSection />
         <ContactSection />
         <Footer />

@@ -5,8 +5,31 @@ import { SparklesCore } from "@/components/ui/backgrounds/sparkles";
 import { projectsData } from "@/constants";
 import Image from "next/image";
 import { IconArrowUpRight } from "@tabler/icons-react";
+import { motion, Variants } from "motion/react";
 
 export function ProjectsSection() {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
     <section
       id="projects"
@@ -38,10 +61,17 @@ export function ProjectsSection() {
         </div>
 
         {/* Projects Grid with 3D Pin Effect */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-15">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-15"
+        >
           {projectsData.map((project) => (
-            <div
+            <motion.div
               key={project.id}
+              variants={cardVariants}
               className="h-100 md:h-140 flex items-center justify-center w-full"
             >
               <PinContainer
@@ -99,9 +129,9 @@ export function ProjectsSection() {
                   </div>
                 </div>
               </PinContainer>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
