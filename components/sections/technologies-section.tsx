@@ -24,7 +24,10 @@ export function TechnologiesSection() {
     {
       title: "Web/Mobile Development",
       description: (
-        <span className="text-lg font-normal text-neutral-400">
+        <span
+          className="text-xl font-normal"
+          style={{ color: "rgb(194, 205, 231)" }}
+        >
           Building modern, interactive user interfaces and cross-platform mobile
           apps.
         </span>
@@ -45,7 +48,10 @@ export function TechnologiesSection() {
     {
       title: "Programming Languages",
       description: (
-        <span className="text-lg font-normal text-neutral-400">
+        <span
+          className="text-xl font-normal"
+          style={{ color: "rgb(194, 205, 231)" }}
+        >
           Core languages for building robust and scalable applications.
         </span>
       ),
@@ -65,7 +71,10 @@ export function TechnologiesSection() {
     {
       title: "Backend",
       description: (
-        <span className="text-lg font-normal text-neutral-400">
+        <span
+          className="text-xl font-normal"
+          style={{ color: "rgb(194, 205, 231)" }}
+        >
           Server-side technologies, databases, and APIs for scalable, secure
           applications.
         </span>
@@ -86,7 +95,10 @@ export function TechnologiesSection() {
     {
       title: "Currently Learning",
       description: (
-        <span className="text-lg font-normal text-neutral-400">
+        <span
+          className="text-xl font-normal"
+          style={{ color: "rgb(194, 205, 231)" }}
+        >
           Expanding my skillset with cloud computing, containerization, and
           system programming.
         </span>
@@ -107,7 +119,10 @@ export function TechnologiesSection() {
     {
       title: "Tools",
       description: (
-        <span className="text-lg font-normal text-neutral-400">
+        <span
+          className="text-xl font-normal"
+          style={{ color: "rgb(194, 205, 231)" }}
+        >
           Development tools, version control, deployment platforms, design, and
           real-time communication.
         </span>

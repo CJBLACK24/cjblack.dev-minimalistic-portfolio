@@ -266,10 +266,10 @@ export function HeroSectionOne() {
 
       {/* Hero Content */}
       <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="absolute inset-y-0 left-0 h-full w-px bg-neutral-800/50">
+        <div className="absolute inset-y-0 left-0 md:left-0 h-full w-px bg-neutral-800/50 ml-1 md:ml-0">
           <div className="absolute top-0 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
-        <div className="absolute inset-y-0 right-0 h-full w-px bg-neutral-800/50">
+        <div className="absolute inset-y-0 right-0 md:right-0 h-full w-px bg-neutral-800/50 mr-1 md:mr-0">
           <div className="absolute h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
         <div className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-800/50">
@@ -395,7 +395,10 @@ export function HeroSectionOne() {
                 </div>
               </h1>
 
-              <div className="relative z-10 max-w-xl text-sm sm:text-base md:text-lg font-normal text-neutral-400 mb-6 md:mb-8">
+              <div
+                className="relative z-10 max-w-xl text-xl font-normal mb-6 md:mb-8"
+                style={{ color: "rgb(194, 205, 231)" }}
+              >
                 I&apos;m{" "}
                 <Tooltip
                   content={

@@ -13,13 +13,19 @@ interface ProjectCardProps {
  */
 const ProjectHeader: React.FC<{ item: any }> = ({ item }) => (
   <div className="px-4 md:px-6 py-3 md:py-4 border-b border-neutral-200 dark:border-neutral-800">
-    <p className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-2">
+    <p
+      className="text-xl font-semibold uppercase tracking-wider mb-2"
+      style={{ color: "rgb(194, 205, 231)" }}
+    >
       {item.category}
     </p>
     <h3 className="text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 leading-tight mb-2">
       {item.title}
     </h3>
-    <p className="text-sm md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+    <p
+      className="text-xl leading-relaxed"
+      style={{ color: "rgb(194, 205, 231)" }}
+    >
       {item.description}
     </p>
   </div>
@@ -31,7 +37,7 @@ const ProjectHeader: React.FC<{ item: any }> = ({ item }) => (
  */
 const FeaturesList: React.FC<{ features: string[] }> = ({ features }) => (
   <div className="space-y-2">
-    <h4 className="text-sm md:text-lg font-bold text-neutral-800 dark:text-neutral-200">
+    <h4 className="text-xl md:text-lg font-bold text-neutral-800 dark:text-neutral-200">
       Key Features
     </h4>
     <ul className="space-y-2">

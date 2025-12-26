@@ -10,7 +10,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-24 md:py-32 px-4 md:px-8 w-full relative overflow-hidden"
+      className="py-24 md:py-32 px-2 md:px-8 w-full relative overflow-hidden"
     >
       {/* Sparkles Background Effect */}
       <div className="absolute inset-0 w-full h-full">
@@ -26,7 +26,7 @@ export function ProjectsSection() {
       </div>
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto relative z-10 px-2 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white">
@@ -48,12 +48,15 @@ export function ProjectsSection() {
                 title={project.link ? "Visit Project" : "View Details"}
                 href={project.link || "#"}
               >
-                <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[20rem] sm:w-104 md:w-120 lg:w-140 h-100 md:h-140">
+                <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-72 sm:w-88 md:w-96 lg:w-120 xl:w-140 h-100 md:h-140">
                   <h3 className="max-w-xs pb-2! m-0! font-bold  text-xl text-slate-100">
                     {project.title}
                   </h3>
-                  <div className="text-base m-0! p-0! font-normal">
-                    <span className="text-slate-500 line-clamp-2">
+                  <div className="text-xl m-0! p-0! font-normal">
+                    <span
+                      className="line-clamp-2"
+                      style={{ color: "rgb(194, 205, 231)" }}
+                    >
                       {project.description}
                     </span>
                   </div>
@@ -86,7 +89,7 @@ export function ProjectsSection() {
                     {/* View Button Text matches Pin Title logic generally, but simple text here */}
                     {/* View Button Text matches Pin Title logic generally, but simple text here */}
                     <div className="flex items-center gap-1 group/btn">
-                      <span className="text-cyan-400 text-base font-bold group-hover/btn:underline">
+                      <span className="text-cyan-400 text-xl font-bold group-hover/btn:underline">
                         {project.id === "patch-up"
                           ? "View Project"
                           : "Check Live Site"}

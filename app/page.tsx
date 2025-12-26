@@ -60,7 +60,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5 bg-black text-white">
+    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto px-4 sm:px-10 bg-black text-white">
       <IntroLoader />
 
       <ScrollProgress className="bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
