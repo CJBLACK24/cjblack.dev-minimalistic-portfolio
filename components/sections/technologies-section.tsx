@@ -26,7 +26,7 @@ export function TechnologiesSection() {
       title: "Web/Mobile Development",
       description: (
         <span
-          className="text-xl font-normal"
+          className="text-base sm:text-lg md:text-xl font-normal"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Building modern, interactive user interfaces and cross-platform mobile
@@ -34,11 +34,11 @@ export function TechnologiesSection() {
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-24 rounded-xl p-4 items-center justify-center">
-          <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-4 md:gap-10">
+        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={webMobileItems}
-              itemClassName="w-16 h-16 mr-0 md:-mr-4"
+              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
             />
           </div>
         </div>
@@ -50,18 +50,18 @@ export function TechnologiesSection() {
       title: "Programming Languages",
       description: (
         <span
-          className="text-xl font-normal"
+          className="text-base sm:text-lg md:text-xl font-normal"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Core languages for building robust and scalable applications.
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-24 rounded-xl p-4 items-center justify-center">
-          <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-4 md:gap-10">
+        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={programmingLanguageItems}
-              itemClassName="w-16 h-16 mr-0 md:-mr-4"
+              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
             />
           </div>
         </div>
@@ -73,7 +73,7 @@ export function TechnologiesSection() {
       title: "Backend",
       description: (
         <span
-          className="text-xl font-normal"
+          className="text-base sm:text-lg md:text-xl font-normal"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Server-side technologies, databases, and APIs for scalable, secure
@@ -81,11 +81,11 @@ export function TechnologiesSection() {
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-24 rounded-xl p-4 items-center justify-center">
-          <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-4 md:gap-10">
+        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={backendItems}
-              itemClassName="w-16 h-16 mr-0 md:-mr-4"
+              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
             />
           </div>
         </div>
@@ -97,7 +97,7 @@ export function TechnologiesSection() {
       title: "Currently Learning",
       description: (
         <span
-          className="text-xl font-normal"
+          className="text-base sm:text-lg md:text-xl font-normal"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Expanding my skillset with cloud computing, containerization, and
@@ -105,11 +105,11 @@ export function TechnologiesSection() {
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-24 rounded-xl p-4 items-center justify-center">
-          <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-4 md:gap-10">
+        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={currentlyLearningItems}
-              itemClassName="w-20 h-20 mr-0 md:-mr-4"
+              itemClassName="w-12 h-12 sm:w-14 sm:h-14 md:w-20 md:h-20"
             />
           </div>
         </div>
@@ -121,7 +121,7 @@ export function TechnologiesSection() {
       title: "Tools",
       description: (
         <span
-          className="text-xl font-normal"
+          className="text-base sm:text-lg md:text-xl font-normal"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Development tools, version control, deployment platforms, design, and
@@ -129,11 +129,11 @@ export function TechnologiesSection() {
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-24 rounded-xl p-4 items-center justify-center">
-          <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-4 md:gap-10">
+        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={toolsItems}
-              itemClassName="w-16 h-16 mr-0 md:-mr-4"
+              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
             />
           </div>
         </div>
@@ -218,7 +218,7 @@ export function TechnologiesSection() {
         >
           Technologies
         </motion.h2>
-        <BentoGrid className="max-w-full mx-auto md:grid-cols-2 md:auto-rows-[22rem] gap-8 md:gap-10">
+        <BentoGrid className="max-w-full mx-auto md:grid-cols-2 md:auto-rows-[26rem] gap-6 md:gap-8">
           {items.map((item, i) => (
             <motion.div
               key={i}

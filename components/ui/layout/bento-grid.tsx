@@ -47,20 +47,26 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "group/bento shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border border-neutral-200 bg-white p-4 transition duration-200 hover:shadow-xl dark:border-white/20 dark:bg-black dark:shadow-none relative",
+        "group/bento shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border border-neutral-200 bg-white p-4 hover:shadow-xl dark:border-white/10 dark:bg-black dark:shadow-none relative",
+        "dark:hover:border-cyan-500/50 dark:hover:shadow-[0_0_20px_rgba(6,182,212,0.15),0_0_40px_rgba(6,182,212,0.1)]",
+        "transition-[border-color,box-shadow] duration-100",
         className
       )}
       onClick={onClick}
     >
+      {/* Bottom gradient border line - like JSMastery */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-cyan-500/50 to-transparent" />
+      <div className="absolute bottom-0 left-[10%] right-[10%] h-px bg-linear-to-r from-transparent via-cyan-400/80 to-transparent blur-sm" />
+
       {/* Card content - NOT clickable */}
-      <div className="flex flex-col justify-between h-full mb-16 md:mb-10">
+      <div className="flex flex-col justify-between h-full mb-12 sm:mb-14 md:mb-10">
         {header}
         <div className="transition duration-200 group-hover/bento:translate-x-2">
           {icon}
-          <div className="mt-2 mb-2 font-sans font-bold text-xl md:text-2xl text-neutral-600 dark:text-neutral-200">
+          <div className="mt-2 mb-2 font-sans font-bold text-lg sm:text-xl md:text-2xl text-neutral-600 dark:text-neutral-200">
             {title}
           </div>
-          <div className="font-sans text-lg font-normal text-neutral-600 dark:text-neutral-300">
+          <div className="font-sans text-sm sm:text-base md:text-lg font-normal text-neutral-600 dark:text-neutral-300">
             {description}
           </div>
         </div>
