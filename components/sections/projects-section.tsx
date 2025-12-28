@@ -98,7 +98,7 @@ export function ProjectsSection() {
                   </div>
 
                   {/* Tech Stack Footer */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-4 gap-3 sm:gap-0">
+                  <div className="flex flex-row items-center justify-between mt-4 w-full">
                     <div className="flex items-center -space-x-1.5 sm:-space-x-2">
                       {project.techStack.map((tech) => (
                         <div
@@ -116,10 +116,9 @@ export function ProjectsSection() {
                         </div>
                       ))}
                     </div>
-                    {/* View Button Text matches Pin Title logic generally, but simple text here */}
-                    {/* View Button Text matches Pin Title logic generally, but simple text here */}
-                    <div className="flex items-center gap-1 group/btn">
-                      <span className="text-cyan-400 text-base sm:text-xs md:text-base font-bold group-hover/btn:underline">
+                    {/* View Button - Right Edge */}
+                    <div className="flex items-center gap-1 group/btn ml-auto">
+                      <span className="text-cyan-400 text-sm sm:text-base font-bold group-hover/btn:underline whitespace-nowrap">
                         {project.id === "patch-up"
                           ? "View Project"
                           : "Check Live Site"}

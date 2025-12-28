@@ -68,24 +68,18 @@ export const projectsData = [
       },
       {
         id: 2,
-        name: "Socket.io",
-        designation: "Real-time",
-        image: "/socket.png",
-      },
-      {
-        id: 3,
         name: "Prisma",
         designation: "ORM",
         image: "/prisma.png",
       },
       {
-        id: 4,
+        id: 3,
         name: "PostgreSQL",
         designation: "Database",
         image: "/postgresql-logo.svg",
       },
       {
-        id: 5,
+        id: 4,
         name: "Tailwind CSS",
         designation: "Styling",
         image: "/tailwind-logo.svg",
@@ -105,30 +99,18 @@ export const projectsData = [
     techStack: [
       {
         id: 1,
-        name: "React Native",
-        designation: "Framework",
-        image: "/react-native-logo.svg",
-      },
-      {
-        id: 2,
         name: "MongoDB",
         designation: "Database",
         image: "/mongodb-logo.svg",
       },
       {
-        id: 3,
+        id: 2,
         name: "Arduino",
         designation: "Hardware",
         image: "/ardiuno.png",
       },
-      { id: 4, name: "C++", designation: "Language", image: "/C++.png" },
-      { id: 5, name: "Expo", designation: "Platform", image: "/expo.png" },
-      {
-        id: 6,
-        name: "Socket.io",
-        designation: "Real-time",
-        image: "/socket.png",
-      },
+      { id: 3, name: "C++", designation: "Language", image: "/C++.png" },
+      { id: 4, name: "Expo", designation: "Platform", image: "/expo.png" },
     ],
   },
   {
