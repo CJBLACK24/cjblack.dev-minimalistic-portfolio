@@ -1,33 +1,40 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "tailwindcss";
+
+/* 
+  =============================================================================
+  1. CUSTOM VARIANTS & UTILITIES CONFIG
+  =============================================================================
+  Purposes: Fix Tailwind v4 apply issues and define global markers.
+*/
+
+@custom-variant dark (&:is(.dark *));
+
+/* 
+  =============================================================================
+  2. TAILWIND THEME EXTENSIONS (Centralized Tokens)
+  =============================================================================
+*/
 
 @theme inline {
   --shadow-input: 0px 2px 3px -1px rgba(0, 0, 0, 0.1),
     0px 1px 0px 0px rgba(25, 28, 33, 0.02),
     0px 0px 0px 1px rgba(25, 28, 33, 0.08);
-  --animate-gradient: gradient 8s linear infinite;
-  @keyframes gradient {
-    to {
-      background-position: var(--bg-size, 300%) 0;
-    }
-  }
-  --animate-shiny-text: shiny-text 8s infinite;
-  @keyframes shiny-text {
-    0%,
-    90%,
-    100% {
-      background-position: calc(-100% - var(--shiny-width)) 0;
-    }
-    30%,
-    60% {
-      background-position: calc(100% + var(--shiny-width)) 0;
-    }
-  }
-}
-@custom-variant dark (&:is(.dark *));
 
-@theme inline {
+  /* Precise Spacing System for fine-tuned layouts */
+  --spacing-100: 25rem;
+  --spacing-110: 27.5rem;
+  --spacing-120: 30rem;
+  --spacing-130: 32.5rem;
+  --spacing-140: 35rem;
+  --spacing-150: 37.5rem;
+  --spacing-160: 40rem;
+  --spacing-180: 45rem;
+  --spacing-200: 50rem;
+  --spacing-250: 62.5rem;
+  --spacing-300: 75rem;
+
+  /* Global Color Mapping (Linked to CSS Variables) */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
@@ -61,11 +68,86 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Adaptive Border Radius Scale */
+  --radius-xs: calc(var(--radius) - 6px);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 20px);
+
+  /* Advanced Animation Definitions */
+  --animate-gradient: gradient 8s linear infinite;
+  --animate-shiny-text: shiny-text 8s infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-spotlight: spotlight 2.5s ease 0.75s 1 forwards;
+  --animate-pulse-slow: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-slow-spin: spin 12s linear infinite;
+  --animate-bounce-subtle: bounce-subtle 3s ease-in-out infinite;
+
+  @keyframes gradient {
+    to {
+      background-position: var(--bg-size, 300%) 0;
+    }
+  }
+  @keyframes shiny-text {
+    0%,
+    90%,
+    100% {
+      background-position: calc(-100% - var(--shiny-width)) 0;
+    }
+    30%,
+    60% {
+      background-position: calc(100% + var(--shiny-width)) 0;
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -40%) scale(1);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+  @keyframes bounce-subtle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
 }
+
+/* 
+  =============================================================================
+  3. ROOT DESIGN TOKENS (LIGHT & DARK LOGIC)
+  =============================================================================
+*/
 
 :root {
   --radius: 0.625rem;
@@ -136,34 +218,1081 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* 
+  =============================================================================
+  4. BASE LAYER (Global Resets, Scrollbars, Typography)
+  =============================================================================
+*/
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
+    @apply scroll-smooth;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-cyan-500/30 selection:text-cyan-200;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
+
   p {
-    @apply text-base;
+    @apply text-base leading-relaxed font-normal;
     color: rgb(194, 205, 231);
   }
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  *::-webkit-scrollbar {
-    display: none;
+  /* Sophisticated Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-[6px] h-[6px];
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  * {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-800 rounded-full border-[1.5px] border-transparent bg-clip-padding hover:bg-neutral-700 transition-colors duration-300;
+  }
+
+  /* Universal Focus Styling */
+  :focus-visible {
+    @apply outline-none ring-2 ring-cyan-500/50 ring-offset-2 ring-offset-background;
+  }
+
+  /* Heading Resets */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight text-white;
   }
 }
+
+/* 
+  =============================================================================
+  5. COMPONENT LAYER (Abstraction & Semantic Classes)
+  =============================================================================
+*/
+
+@layer components {
+  /* --- 5.1 GLOBAL LAYOUT CLASSES --- */
+
+  .main-wrapper {
+    @apply relative flex justify-center items-center flex-col overflow-hidden mx-auto px-4 sm:px-10 bg-black text-white min-h-screen;
+  }
+
+  .content-max-width {
+    @apply max-w-7xl w-full mx-auto relative;
+  }
+
+  .section-spacing {
+    @apply py-24 md:py-32 lg:py-48 w-full;
+  }
+
+  .grid-standard {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12;
+  }
+
+  .flex-v-center {
+    @apply flex items-center;
+  }
+
+  .flex-center-all {
+    @apply flex items-center justify-center;
+  }
+
+  /* --- 5.2 THE TYPOGRAPHY SYSTEM --- */
+
+  .heading-xl {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.05];
+  }
+  .heading-lg {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1];
+  }
+  .heading-md {
+    @apply text-2xl sm:text-3xl md:text-4xl leading-[1.2];
+  }
+  .heading-sm {
+    @apply text-xl sm:text-2xl leading-[1.3];
+  }
+
+  .text-body-lg {
+    @apply text-lg sm:text-xl md:text-2xl leading-relaxed text-neutral-400 font-normal;
+  }
+  .text-body-md {
+    @apply text-base sm:text-lg leading-relaxed text-neutral-400;
+  }
+  .text-body-sm {
+    @apply text-sm leading-relaxed text-neutral-500;
+  }
+
+  .text-gradient-cyan {
+    @apply bg-linear-to-r from-cyan-400 via-blue-500 to-purple-400 bg-clip-text text-transparent italic font-semibold;
+  }
+
+  .text-shimmer {
+    @apply bg-linear-to-r from-neutral-500 via-white to-neutral-500 bg-clip-text text-transparent bg-size-[200%_auto] animate-shimmer;
+  }
+
+  /* --- 5.3 HERO SECTION (Branding & Identity) --- */
+  /* Purpose: Introduction, Profile, and Availability */
+
+  .hero-container {
+    @apply relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 sm:px-6 lg:px-8 pt-32 pb-20;
+  }
+
+  .hero-badge-outer {
+    @apply mb-8 inline-block animate-bounce-subtle;
+  }
+
+  .hero-badge-inner {
+    @apply text-sm font-semibold flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-800 bg-neutral-900/50 backdrop-blur-md;
+  }
+
+  .hero-headline {
+    @apply relative z-10 max-w-5xl mb-8 md:mb-10 font-bold tracking-tighter;
+  }
+
+  .hero-subtext {
+    @apply relative z-10 max-w-2xl text-lg sm:text-xl md:text-2xl leading-relaxed text-neutral-400 font-normal mb-12;
+    color: rgb(194, 205, 231);
+  }
+
+  .hero-image-box {
+    @apply relative w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[3/4] xl:aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-neutral-800/80;
+  }
+
+  .hero-image-el {
+    @apply object-cover filter brightness-90 hover:brightness-110 transition-all duration-1000 transform hover:scale-105;
+  }
+
+  .hero-visual-lines {
+    @apply absolute inset-0 opacity-20 pointer-events-none;
+  }
+
+  .hero-line-v {
+    @apply absolute inset-y-0 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent;
+  }
+  .hero-line-h {
+    @apply absolute inset-x-0 h-px bg-linear-to-r from-transparent via-cyan-500 to-transparent;
+  }
+
+  /* --- 5.4 FEATURES SECTION (Values & Workflow) --- */
+  /* Purpose: Quality, Communication, and Reliability Cards */
+
+  .features-wrapper {
+    @apply py-32 md:py-48 px-6 md:px-12 w-full max-w-7xl mx-auto flex flex-col items-center;
+  }
+
+  .features-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-14 w-full;
+  }
+
+  .feature-item-card {
+    @apply relative flex flex-col items-center text-center p-10 rounded-3xl border border-neutral-900 bg-neutral-950/40 hover:bg-neutral-900/40 hover:border-cyan-500/20 transition-all duration-500 h-full;
+  }
+
+  .feature-item-icon-box {
+    @apply w-16 h-16 rounded-2xl bg-neutral-900 flex items-center justify-center mb-8 border border-neutral-800 transition-all duration-500;
+  }
+
+  .feature-item-title {
+    @apply text-2xl font-bold text-white mb-4 transition-colors;
+  }
+
+  .feature-item-desc {
+    @apply text-neutral-400 text-lg leading-relaxed;
+  }
+
+  .feature-reveal-overlay {
+    @apply absolute inset-0 z-0 opacity-0 transition-opacity duration-700 pointer-events-none;
+  }
+
+  /* --- 5.5 PROJECTS SECTION (The Showcase) --- */
+  /* Purpose: Visualizing Technical Achievements */
+
+  .projects-container {
+    @apply py-32 md:py-48 relative overflow-hidden;
+  }
+
+  .projects-header-box {
+    @apply text-center mb-24 md:mb-32 max-w-4xl mx-auto px-6;
+  }
+
+  .projects-item-wrapper {
+    @apply h-[450px] sm:h-[500px] md:h-[550px] lg:h-[600px] flex items-center justify-center w-full px-6 transition-transform hover:scale-[1.01] duration-500;
+  }
+
+  .projects-item-card {
+    @apply flex flex-col p-8 rounded-[2rem] border border-white/5 bg-neutral-950/70 backdrop-blur-xl w-full max-w-[650px] shadow-2xl;
+  }
+
+  .projects-item-title {
+    @apply text-3xl font-bold text-neutral-100 mb-2 truncate;
+  }
+
+  .projects-item-desc {
+    @apply text-lg text-neutral-400 line-clamp-2 mb-8;
+  }
+
+  .projects-image-viewport {
+    @apply flex-1 w-full rounded-2xl overflow-hidden relative border border-white/5 bg-black/50 shadow-inner group-hover:border-cyan-500/20 transition-colors;
+  }
+
+  .projects-tech-stack {
+    @apply flex items-center justify-between mt-8 w-full px-2;
+  }
+
+  .projects-tech-group {
+    @apply flex items-center -space-x-3 sm:-space-x-4 hover:space-x-1 transition-all duration-300;
+  }
+
+  /* --- 5.6 TECHNOLOGIES SECTION (Expertise) --- */
+  /* Purpose: Visual Stack and Skill Groups */
+
+  .tech-section-root {
+    @apply relative py-32 md:py-48 flex flex-col items-center bg-black;
+  }
+
+  .tech-bento-container {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl mx-auto px-8;
+  }
+
+  .tech-bento-item {
+    @apply relative p-10 rounded-[2.5rem] border border-neutral-900 bg-neutral-950/50 hover:bg-neutral-900/50 hover:border-cyan-500/30 transition-all duration-700 shadow-2xl overflow-hidden backdrop-blur-md flex flex-col;
+  }
+
+  .tech-visual-header {
+    @apply flex-1 w-full min-h-[180px] rounded-3xl p-6 mb-8 flex items-center justify-center bg-neutral-900/40 border border-neutral-800/40 relative;
+  }
+
+  .tech-icon-instance {
+    @apply relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 transition-all duration-500 transform hover:scale-125 hover:z-50 filter hover:drop-shadow-[0_0_15px_rgba(6,182,212,0.4)];
+  }
+
+  .tech-title-text {
+    @apply text-2xl sm:text-3xl font-bold text-white mb-4;
+  }
+
+  /* --- 5.7 CONTACT SECTION (Reach Out) --- */
+  /* Purpose: Inquiries and Social Connectivity */
+
+  .contact-section-inner {
+    @apply grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-14 w-full max-w-7xl mx-auto px-8 py-32 md:py-48;
+  }
+
+  .contact-form-side {
+    @apply lg:col-span-1 bg-neutral-950/50 backdrop-blur-2xl border border-neutral-900 rounded-[3rem] p-12 shadow-[0_0_100px_rgba(0,0,0,0.8)] relative;
+  }
+
+  .contact-info-grid {
+    @apply lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 h-fit;
+  }
+
+  .contact-info-card {
+    @apply p-8 rounded-[2.5rem] border border-neutral-900 bg-neutral-950/30 hover:bg-neutral-900/40 transition-all duration-500 relative;
+  }
+
+  .contact-label {
+    @apply text-sm font-bold text-neutral-500 uppercase tracking-widest mb-3 block;
+  }
+
+  .contact-value {
+    @apply text-xl font-semibold text-white truncate transition-colors;
+  }
+
+  .contact-input-box {
+    @apply relative mb-8;
+  }
+
+  .contact-input-el {
+    @apply w-full bg-neutral-900 border border-neutral-800 text-white rounded-2xl px-5 py-4 text-base focus:bg-neutral-800 focus:border-cyan-500/50 transition-all shadow-inner outline-none;
+  }
+
+  /* --- 5.8 GLOBAL UI COMPONENTS (Modals, Alerts, Nav) --- */
+
+  .nav-floating-bg {
+    @apply flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-neutral-800 rounded-full bg-black/80 backdrop-blur-lg shadow-[0_0_30px_rgba(0,0,0,0.5)] z-[1000] px-8 py-3 items-center space-x-6;
+  }
+
+  .nav-action-btn {
+    @apply border text-sm font-bold relative border-white/10 text-white px-6 py-2.5 rounded-full hover:bg-white hover:text-black transition-all duration-300;
+  }
+
+  .footer-wrapper {
+    @apply w-full py-20 border-t border-neutral-900 flex flex-col md:flex-row items-center justify-between gap-12 max-w-7xl mx-auto px-10;
+  }
+
+  .dialog-box {
+    @apply fixed inset-0 z-[10000] bg-black/90 backdrop-blur-2xl flex items-center justify-center p-6;
+  }
+
+  .dialog-card {
+    @apply bg-neutral-950 border border-neutral-800 rounded-[3rem] p-12 max-w-2xl w-full shadow-[0_0_150px_rgba(0,0,0,0.9)];
+  }
+
+  /* --- 5.9 DECORATIVE & BOX STYLES --- */
+
+  .box-glow-cyan {
+    @apply shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:shadow-[0_0_50px_rgba(6,182,212,0.25)] transition-shadow duration-500;
+  }
+
+  .glass-card {
+    @apply bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl;
+  }
+
+  .gradient-border-b {
+    @apply absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-cyan-500/60 to-transparent;
+  }
+
+  .gradient-border-b-glow {
+    @apply absolute bottom-0 left-[15%] right-[15%] h-px bg-linear-to-r from-transparent via-cyan-400 to-transparent blur-md opacity-70;
+  }
+}
+
+/* 
+  =============================================================================
+  6. UTILITY LAYER (Atomic Classes & Variants)
+  =============================================================================
+*/
+
+/* Text Balance & Wraps */
+.text-balance {
+  text-wrap: balance;
+}
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Masking Utilities */
+.mask-faded-radial {
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+}
+
+.mask-fade-edges {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+/* Perspective Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Scroll Behavior Modifier */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Hover Utilities */
+.hover-lift-sm {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
+.hover-lift-md {
+  @apply transition-transform duration-300 hover:-translate-y-2;
+}
+.hover-lift-lg {
+  @apply transition-transform duration-300 hover:-translate-y-4;
+}
+
+.hover-scale-subtle {
+  @apply transition-transform duration-500 hover:scale-[1.02];
+}
+
+/* 
+  =============================================================================
+  7. LEGACY & SPECIFIC CSS OVERRIDES
+  =============================================================================
+*/
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
+
+/* 
+  =============================================================================
+  8. DETAILED COMPONENT SUB-ELEMENTS (Atomic Granularity)
+  =============================================================================
+  The following classes provide ultra-specific styling for internal component elements
+  to avoid repeated tailwind syntax in TSX files across the entire project.
+*/
+
+/* Avatar System */
+.avatar-v1-root {
+  @apply relative flex h-12 w-12 shrink-0 overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900;
+}
+.avatar-v1-fallback {
+  @apply flex h-full w-full items-center justify-center rounded-2xl bg-cyan-600/20 text-cyan-400 font-bold text-sm;
+}
+
+/* Form Field Atomic Elements */
+.form-input-wrapper {
+  @apply flex flex-col gap-2 w-full mb-8;
+}
+.form-input-label {
+  @apply text-sm font-semibold text-neutral-500 tracking-wide ml-2;
+}
+.form-input-field {
+  @apply bg-neutral-950 border border-neutral-900 text-white rounded-2xl px-6 py-4.5 text-base focus:border-cyan-500/40 transition-all outline-none;
+}
+
+/* Alert System Atomic Elements */
+.alert-toast-container {
+  @apply fixed bottom-8 right-8 z-[99999] flex flex-col gap-4;
+}
+.alert-toast-item {
+  @apply px-6 py-4 rounded-2xl border backdrop-blur-2xl shadow-2xl flex items-center gap-4 min-w-[300px];
+}
+
+/* Project Card Atomic Elements */
+.project-card-header {
+  @apply flex flex-col gap-2 mb-6;
+}
+.project-card-footer {
+  @apply flex items-center justify-between mt-auto pt-6 border-t border-white/5;
+}
+
+/* Bento Item Atomic Elements */
+.bento-item-badge {
+  @apply absolute top-6 right-6 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] uppercase font-bold tracking-widest;
+}
+
+/* Nav Item Atomic Elements */
+.nav-item-indicator {
+  @apply absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400 opacity-0 transition-opacity;
+}
+
+/* Grid Background System */
+.bg-grid-modern {
+  @apply absolute inset-0 bg-size-[50px_50px] bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] opacity-50;
+}
+
+.bg-dot-modern {
+  @apply absolute inset-0 bg-size-[30px_30px] bg-[radial-gradient(#222_1px,transparent_0)] opacity-40;
+}
+
+/* 
+  =============================================================================
+  9. ADVANCED BUTTON SYSTEMS
+  =============================================================================
+  Comprehensive button variants for CTAs, actions, and interactive elements.
+*/
+
+/* Border Magic Button - Animated spinning gradient border */
+.btn-magic-outer {
+  @apply relative inline-flex h-12 overflow-hidden rounded-full p-px focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:ring-offset-2 focus:ring-offset-black cursor-pointer;
+}
+
+.btn-magic-glow {
+  @apply absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22d3ee_0%,#083344_50%,#22d3ee_100%)];
+}
+
+.btn-magic-inner {
+  @apply inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-2 text-sm font-semibold text-white backdrop-blur-3xl transition-all hover:bg-slate-900;
+}
+
+/* Hover Border Gradient Button */
+.btn-gradient-container {
+  @apply relative flex rounded-full border content-center bg-black/20 hover:bg-black/10 transition duration-500 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px w-fit;
+}
+
+.btn-gradient-inner {
+  @apply w-auto text-white z-10 bg-black px-5 py-2.5 rounded-full text-sm font-semibold;
+}
+
+.btn-gradient-blur {
+  @apply flex-none inset-0 overflow-hidden absolute z-0 rounded-full blur-[2px];
+}
+
+/* GitHub Style Button */
+.btn-github {
+  @apply relative inline-flex h-12 overflow-hidden rounded-full p-px focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50;
+}
+
+.btn-github-spin {
+  @apply absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)];
+}
+
+.btn-github-text {
+  @apply inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-2 text-sm font-medium text-white backdrop-blur-3xl transition-colors hover:text-cyan-400 gap-2;
+}
+
+/* Icon Button Variants */
+.btn-icon-sm {
+  @apply w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300;
+}
+
+.btn-icon-md {
+  @apply w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300;
+}
+
+.btn-icon-lg {
+  @apply w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300;
+}
+
+.btn-icon-neutral {
+  @apply bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 hover:bg-neutral-800;
+}
+
+.btn-icon-ghost {
+  @apply bg-transparent text-neutral-400 hover:text-white hover:bg-neutral-900/50;
+}
+
+/* 
+  =============================================================================
+  10. INTRO LOADER & SPLASH SCREENS
+  =============================================================================
+  Loading states and initial page transitions.
+*/
+
+.loader-overlay {
+  @apply fixed inset-0 z-9999 flex items-center justify-center bg-black;
+}
+
+.loader-text {
+  @apply text-5xl md:text-7xl font-bold text-cyan-100 select-none;
+}
+
+.loader-pulse {
+  @apply animate-pulse text-neutral-600;
+}
+
+.loader-spinner {
+  @apply w-12 h-12 border-4 border-neutral-800 border-t-cyan-500 rounded-full animate-spin;
+}
+
+.loader-dots {
+  @apply flex gap-2;
+}
+
+.loader-dot {
+  @apply w-3 h-3 rounded-full bg-cyan-500 animate-bounce;
+}
+
+.loader-dot-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.loader-dot-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.loader-dot-delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* 
+  =============================================================================
+  11. TOOLTIP SYSTEMS
+  =============================================================================
+  Animated tooltips for tech stacks and interactive elements.
+*/
+
+.tooltip-container {
+  @apply relative cursor-help;
+}
+
+.tooltip-content {
+  @apply absolute z-50 px-4 py-3 text-sm font-medium text-white bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl backdrop-blur-xl whitespace-nowrap;
+}
+
+.tooltip-top {
+  @apply bottom-full left-1/2 -translate-x-1/2 mb-3;
+}
+
+.tooltip-bottom {
+  @apply top-full left-1/2 -translate-x-1/2 mt-3;
+}
+
+.tooltip-left {
+  @apply right-full top-1/2 -translate-y-1/2 mr-3;
+}
+
+.tooltip-right {
+  @apply left-full top-1/2 -translate-y-1/2 ml-3;
+}
+
+.tooltip-arrow {
+  @apply absolute w-3 h-3 bg-neutral-900 border-neutral-800 rotate-45;
+}
+
+.tooltip-arrow-top {
+  @apply -bottom-1.5 left-1/2 -translate-x-1/2 border-r border-b;
+}
+
+.tooltip-arrow-bottom {
+  @apply -top-1.5 left-1/2 -translate-x-1/2 border-l border-t;
+}
+
+/* Tech Stack Tooltip (Animated) */
+.tech-tooltip-wrapper {
+  @apply relative flex items-center justify-center;
+}
+
+.tech-tooltip-popup {
+  @apply absolute -top-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 px-4 py-2 bg-neutral-950 border border-neutral-800 rounded-xl shadow-2xl pointer-events-none opacity-0 scale-90 transition-all duration-300;
+}
+
+.tech-tooltip-visible {
+  @apply opacity-100 scale-100;
+}
+
+.tech-tooltip-name {
+  @apply text-sm font-bold text-white whitespace-nowrap;
+}
+
+.tech-tooltip-desc {
+  @apply text-xs text-neutral-400 whitespace-nowrap;
+}
+
+/* 
+  =============================================================================
+  12. INPUT & FORM VARIANTS
+  =============================================================================
+  Extended form styling for various input types and states.
+*/
+
+/* Input Sizes */
+.input-sm {
+  @apply h-10 px-4 py-2 text-sm rounded-xl;
+}
+
+.input-md {
+  @apply h-12 px-5 py-3 text-base rounded-2xl;
+}
+
+.input-lg {
+  @apply h-14 px-6 py-4 text-lg rounded-2xl;
+}
+
+/* Input States */
+.input-default {
+  @apply bg-neutral-900 border border-neutral-800 text-white placeholder:text-neutral-600;
+}
+
+.input-focus {
+  @apply focus:bg-neutral-800 focus:border-cyan-500/50 focus:ring-4 focus:ring-cyan-500/10;
+}
+
+.input-error {
+  @apply border-red-500/50 bg-red-500/5 focus:border-red-500 focus:ring-red-500/10;
+}
+
+.input-success {
+  @apply border-emerald-500/50 bg-emerald-500/5 focus:border-emerald-500 focus:ring-emerald-500/10;
+}
+
+/* Textarea Specifics */
+.textarea-base {
+  @apply min-h-[140px] resize-none leading-relaxed;
+}
+
+/* Label Variants */
+.label-default {
+  @apply text-sm font-semibold text-neutral-400 mb-2 block tracking-wide;
+}
+
+.label-required::after {
+  content: " *";
+  @apply text-red-400;
+}
+
+/* Form Group */
+.form-group {
+  @apply flex flex-col gap-2 mb-6;
+}
+
+.form-row {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.form-actions {
+  @apply flex items-center justify-end gap-4 mt-8 pt-6 border-t border-neutral-900;
+}
+
+/* 
+  =============================================================================
+  13. MODAL VARIATIONS
+  =============================================================================
+  Different modal styles for various use cases.
+*/
+
+/* Modal Sizes */
+.modal-sm {
+  @apply max-w-md;
+}
+
+.modal-md {
+  @apply max-w-2xl;
+}
+
+.modal-lg {
+  @apply max-w-4xl;
+}
+
+.modal-xl {
+  @apply max-w-6xl;
+}
+
+.modal-full {
+  @apply max-w-[95vw] max-h-[95vh];
+}
+
+/* Modal Parts */
+.modal-header {
+  @apply flex items-center justify-between pb-6 mb-6 border-b border-neutral-800;
+}
+
+.modal-title {
+  @apply text-2xl font-bold text-white;
+}
+
+.modal-close-btn {
+  @apply w-10 h-10 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-800 transition-all;
+}
+
+.modal-body {
+  @apply flex-1 overflow-y-auto;
+}
+
+.modal-footer {
+  @apply flex items-center justify-end gap-4 pt-6 mt-6 border-t border-neutral-800;
+}
+
+/* CV Preview Modal Specific */
+.cv-modal-container {
+  @apply bg-neutral-950 border border-neutral-800 rounded-[2.5rem] max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] flex flex-col;
+}
+
+.cv-modal-toolbar {
+  @apply flex items-center justify-between px-8 py-5 bg-neutral-900/50 border-b border-neutral-800;
+}
+
+.cv-modal-iframe {
+  @apply flex-1 w-full bg-white;
+}
+
+/* Alert Dialog Specific */
+.alert-dialog-overlay {
+  @apply fixed inset-0 z-[10000] bg-black/80 backdrop-blur-xl flex items-center justify-center p-6;
+}
+
+.alert-dialog-content {
+  @apply bg-neutral-900 border border-neutral-800 rounded-3xl p-8 max-w-md w-full shadow-2xl;
+}
+
+.alert-dialog-title {
+  @apply text-xl font-bold text-white mb-2;
+}
+
+.alert-dialog-description {
+  @apply text-neutral-400 text-base leading-relaxed mb-6;
+}
+
+.alert-dialog-actions {
+  @apply flex items-center justify-end gap-3;
+}
+
+/* 
+  =============================================================================
+  14. SCROLL PROGRESS & INDICATORS
+  =============================================================================
+  Progress bars and scroll indicators.
+*/
+
+.scroll-progress-bar {
+  @apply fixed top-0 left-0 right-0 h-1 z-[1000] origin-left;
+}
+
+.scroll-progress-gradient {
+  @apply bg-linear-to-r from-transparent via-cyan-500 to-transparent h-full;
+}
+
+/* Section Progress Dots */
+.section-dots-container {
+  @apply fixed right-6 top-1/2 -translate-y-1/2 z-[500] flex flex-col gap-3;
+}
+
+.section-dot {
+  @apply w-3 h-3 rounded-full bg-neutral-800 transition-all duration-300 cursor-pointer hover:bg-neutral-600;
+}
+
+.section-dot-active {
+  @apply bg-cyan-500 scale-125 shadow-[0_0_10px_rgba(6,182,212,0.5)];
+}
+
+/* 
+  =============================================================================
+  15. SPARKLE & PARTICLE EFFECTS
+  =============================================================================
+  Background effect placeholders for sparkle components.
+*/
+
+.sparkles-container {
+  @apply absolute inset-0 w-full h-full pointer-events-none overflow-hidden;
+}
+
+.sparkle-particle {
+  @apply absolute rounded-full bg-white;
+}
+
+/* 
+  =============================================================================
+  16. CARD VARIATIONS
+  =============================================================================
+  Extended card styles for different contexts.
+*/
+
+/* Card Sizes */
+.card-compact {
+  @apply p-4 rounded-xl;
+}
+
+.card-normal {
+  @apply p-6 rounded-2xl;
+}
+
+.card-spacious {
+  @apply p-10 rounded-3xl;
+}
+
+/* Card Styles */
+.card-solid {
+  @apply bg-neutral-900 border border-neutral-800;
+}
+
+.card-ghost {
+  @apply bg-transparent border border-neutral-800/50;
+}
+
+.card-gradient {
+  @apply bg-linear-to-br from-neutral-900 to-neutral-950 border border-neutral-800;
+}
+
+/* Card States */
+.card-interactive {
+  @apply cursor-pointer transition-all duration-500 hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)];
+}
+
+.card-selected {
+  @apply border-cyan-500 shadow-[0_0_20px_rgba(6,182,212,0.2)];
+}
+
+/* 
+  =============================================================================
+  17. BADGES & TAGS
+  =============================================================================
+  Status indicators and category labels.
+*/
+
+.badge-base {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
+}
+
+.badge-cyan {
+  @apply bg-cyan-500/10 border border-cyan-500/20 text-cyan-400;
+}
+
+.badge-purple {
+  @apply bg-purple-500/10 border border-purple-500/20 text-purple-400;
+}
+
+.badge-emerald {
+  @apply bg-emerald-500/10 border border-emerald-500/20 text-emerald-400;
+}
+
+.badge-amber {
+  @apply bg-amber-500/10 border border-amber-500/20 text-amber-400;
+}
+
+.badge-rose {
+  @apply bg-rose-500/10 border border-rose-500/20 text-rose-400;
+}
+
+/* Status Dots */
+.status-dot {
+  @apply relative flex h-3 w-3;
+}
+
+.status-dot-ping {
+  @apply absolute inline-flex h-full w-full animate-ping rounded-full opacity-75;
+}
+
+.status-dot-core {
+  @apply relative inline-flex h-3 w-3 rounded-full;
+}
+
+.status-online {
+  @apply bg-emerald-400;
+}
+
+.status-offline {
+  @apply bg-neutral-500;
+}
+
+.status-busy {
+  @apply bg-amber-400;
+}
+
+/* 
+  =============================================================================
+  18. LINK PREVIEW STYLES
+  =============================================================================
+  Hover card link previews for social footers.
+*/
+
+.link-preview-trigger {
+  @apply relative inline-flex items-center justify-center;
+}
+
+.link-preview-card {
+  @apply absolute z-50 w-64 bg-neutral-950 border border-neutral-800 rounded-2xl p-4 shadow-2xl pointer-events-none opacity-0 scale-95 transition-all duration-300;
+}
+
+.link-preview-visible {
+  @apply opacity-100 scale-100 pointer-events-auto;
+}
+
+.link-preview-image {
+  @apply w-full h-32 rounded-xl object-cover mb-3 bg-neutral-900;
+}
+
+.link-preview-title {
+  @apply text-sm font-bold text-white truncate mb-1;
+}
+
+.link-preview-url {
+  @apply text-xs text-neutral-500 truncate;
+}
+
+/* 
+  =============================================================================
+  19. DIVIDERS & SEPARATORS
+  =============================================================================
+  Visual separators for content sections.
+*/
+
+.divider-horizontal {
+  @apply w-full h-px bg-neutral-900;
+}
+
+.divider-vertical {
+  @apply h-full w-px bg-neutral-900;
+}
+
+.divider-gradient-h {
+  @apply w-full h-px bg-linear-to-r from-transparent via-neutral-800 to-transparent;
+}
+
+.divider-gradient-v {
+  @apply h-full w-px bg-linear-to-b from-transparent via-neutral-800 to-transparent;
+}
+
+.divider-glow {
+  @apply w-full h-px bg-linear-to-r from-transparent via-cyan-500/30 to-transparent;
+}
+
+/* 
+  =============================================================================
+  20. RESPONSIVE UTILITIES
+  =============================================================================
+  Mobile-first responsive helpers.
+*/
+
+.hide-mobile {
+  @apply hidden sm:block;
+}
+
+.hide-tablet {
+  @apply hidden md:block;
+}
+
+.hide-desktop {
+  @apply block lg:hidden;
+}
+
+.show-mobile-only {
+  @apply block sm:hidden;
+}
+
+.container-fluid {
+  @apply w-full px-4 sm:px-6 md:px-8 lg:px-12;
+}
+
+.container-narrow {
+  @apply max-w-3xl mx-auto;
+}
+
+.container-wide {
+  @apply max-w-[1440px] mx-auto;
+}
+
+/* 
+  =============================================================================
+  DOCUMENTATION & INDEXING
+  =============================================================================
+  
+  SECTION REFERENCE:
+  ------------------
+  Hero Section:
+    - .hero-headline: The primary H1 equivalent.
+    - .hero-image-box: The container for the main portrait.
+    - .hero-badge-inner: Availability status element.
+    - .hero-visual-lines: Decorative grid lines.
+  
+  Technologies Section:
+    - .tech-bento-item: The individual skill category cards.
+    - .tech-visual-header: The icon showcase area within bento items.
+    - .tech-icon-instance: Individual technology icons.
+  
+  Features Section:
+    - .feature-item-card: The core grid items for Quality, Communication, etc.
+    - .feature-reveal-overlay: The effect wrapper for canvas reveal.
+    - .feature-item-icon-box: Icon container with hover effects.
+  
+  Projects Section:
+    - .projects-item-card: Main project card container.
+    - .projects-tech-group: Tech stack icon row.
+    - .projects-image-viewport: Screenshot/preview area.
+  
+  Contact Section:
+    - .contact-form-side: The main container for the email form.
+    - .contact-info-card: Grid items for social links and info.
+    - .contact-input-el: Styled input fields.
+
+  BUTTON REFERENCE:
+  -----------------
+  - .btn-magic-outer/.btn-magic-inner: Animated spinning border button.
+  - .btn-gradient-container: Hover border gradient button.
+  - .btn-github: GitHub-styled CTA button.
+  - .btn-icon-*: Icon-only button variants.
+
+  UTILITY REFERENCE:
+  ------------------
+  - .hover-lift-*: Lift on hover (sm, md, lg).
+  - .glass-card: Glassmorphism card style.
+  - .gradient-border-b: Bottom gradient line.
+  - .mask-*: Masking utilities for fade effects.
+
+  END OF GLOBALS.CSS - COMPREHENSIVE STYLING SYSTEM
+  Total Lines: 1000+
+  =============================================================================
+*/
