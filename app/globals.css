@@ -363,7 +363,7 @@
   }
 
   .hero-image-box {
-    @apply relative w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[3/4] xl:aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-neutral-800/80;
+    @apply relative w-full aspect-4/5 sm:aspect-3/4 md:aspect-4/5 lg:aspect-3/4 xl:aspect-4/5 rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-neutral-800/80;
   }
 
   .hero-image-el {
