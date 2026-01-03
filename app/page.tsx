@@ -4,34 +4,25 @@ import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { IntroLoader } from "@/components/layout/intro-loader";
 import { Spotlight } from "@/components/ui/backgrounds/spotlight-new";
-import { HeroSectionOne } from "@/components/sections/hero-section";
+import { HeroSection } from "@/components/hero";
 import { FloatingNav } from "@/components/ui/layout/floating-navbar";
 import { ScrollProgress } from "@/components/ui/effects/scroll-progress";
 import { navItems } from "@/constants";
 
 const FeaturesSection = dynamic(
-  () =>
-    import("@/components/sections/features-section").then(
-      (mod) => mod.FeaturesSection
-    ),
+  () => import("@/components/features").then((mod) => mod.FeaturesSection),
   {
     loading: () => <div className="min-h-screen" />,
   }
 );
 const ProjectsSection = dynamic(
-  () =>
-    import("@/components/sections/projects-section").then(
-      (mod) => mod.ProjectsSection
-    ),
+  () => import("@/components/projects").then((mod) => mod.ProjectsSection),
   {
     loading: () => <div className="min-h-screen" />,
   }
 );
 const ContactSection = dynamic(
-  () =>
-    import("@/components/sections/contact-section").then(
-      (mod) => mod.ContactSection
-    ),
+  () => import("@/components/contact").then((mod) => mod.ContactSection),
   {
     loading: () => <div className="min-h-screen" />,
   }
@@ -44,9 +35,7 @@ const Footer = dynamic(
 );
 const TechnologiesSection = dynamic(
   () =>
-    import("@/components/sections/technologies-section").then(
-      (mod) => mod.TechnologiesSection
-    ),
+    import("@/components/technologies").then((mod) => mod.TechnologiesSection),
   {
     loading: () => <div className="min-h-screen" />,
   }
@@ -70,10 +59,10 @@ export default function Home() {
       <Spotlight />
 
       <div className="max-w-7xl w-full">
-        <HeroSectionOne />
+        <HeroSection />
         <FeaturesSection />
         <ProjectsSection />
-       
+
         <TechnologiesSection />
         <ContactSection />
         <Footer />

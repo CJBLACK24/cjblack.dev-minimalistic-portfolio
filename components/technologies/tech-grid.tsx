@@ -1,15 +1,9 @@
 "use client";
+
 import React from "react";
-import { cn } from "@/lib/utils";
+import { motion, Variants } from "motion/react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/layout/bento-grid";
 import { AnimatedTooltip } from "@/components/ui/misc/animated-tooltip";
-import {
-  backendItems,
-  toolsItems,
-  webMobileItems,
-  programmingLanguageItems,
-  currentlyLearningItems,
-} from "@/constants";
 import {
   IconServer,
   IconTools,
@@ -17,10 +11,15 @@ import {
   IconTerminal2,
   IconBrain,
 } from "@tabler/icons-react";
-import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
-import { motion, Variants } from "motion/react";
+import {
+  backendItems,
+  toolsItems,
+  webMobileItems,
+  programmingLanguageItems,
+  currentlyLearningItems,
+} from "@/constants";
 
-export function TechnologiesSection() {
+export const TechGrid = () => {
   const items = [
     {
       title: "Web/Mobile Development",
@@ -143,29 +142,6 @@ export function TechnologiesSection() {
     },
   ];
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   const bentoVariants: Variants = {
     hidden: { opacity: 0, y: 10 },
     visible: {
@@ -179,63 +155,18 @@ export function TechnologiesSection() {
   };
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={containerVariants}
-      className="relative flex min-h-200 w-full flex-col items-center justify-center overflow-hidden bg-white dark:bg-black py-20"
-      id="technologies"
-    >
-      <div
-        className={cn(
-          "absolute inset-0",
-          "bg-size-[40px_40px]",
-          "bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
-          "dark:bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]"
-        )}
-      />
-      {/* Radial gradient for the container to give a faded look */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white mask-[radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
-
-      <div className="relative z-20 w-full max-w-6xl md:max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-20 pt-10">
-        {/* Hover Border Gradient Badge */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-8 mb-12 flex justify-center"
-        >
-          <HoverBorderGradient
-            containerClassName="rounded-full"
-            className="text-sm font-medium"
-          >
-            Modern. Scalable. Dynamic.
-          </HoverBorderGradient>
+    <BentoGrid className="max-w-full mx-auto md:grid-cols-2 md:auto-rows-[26rem] gap-6 md:gap-8">
+      {items.map((item, i) => (
+        <motion.div key={i} variants={bentoVariants} className={item.className}>
+          <BentoGridItem
+            title={item.title}
+            description={item.description}
+            header={item.header}
+            className="h-full"
+            icon={item.icon}
+          />
         </motion.div>
-
-        <motion.h2
-          variants={itemVariants}
-          className="text-3xl md:text-5xl font-bold text-center mb-16 text-neutral-800 dark:text-neutral-200"
-        >
-          Technologies
-        </motion.h2>
-        <BentoGrid className="max-w-full mx-auto md:grid-cols-2 md:auto-rows-[26rem] gap-6 md:gap-8">
-          {items.map((item, i) => (
-            <motion.div
-              key={i}
-              variants={bentoVariants}
-              className={item.className}
-            >
-              <BentoGridItem
-                title={item.title}
-                description={item.description}
-                header={item.header}
-                className="h-full"
-                icon={item.icon}
-              />
-            </motion.div>
-          ))}
-        </BentoGrid>
-      </div>
-    </motion.div>
+      ))}
+    </BentoGrid>
   );
-}
+};
