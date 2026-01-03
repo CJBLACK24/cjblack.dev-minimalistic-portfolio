@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 
 import { motion, Variants } from "motion/react";

@@ -5,10 +5,6 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  IconBrandGithub,
-  IconBrandLinkedin,
-  IconBrandFacebook,
-  IconBrandX,
   IconLogout,
 } from "@tabler/icons-react";
 import { useSession, signOut } from "@/lib/auth-client";
