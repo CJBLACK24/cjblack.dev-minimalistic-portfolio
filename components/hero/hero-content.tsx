@@ -10,12 +10,14 @@ import {
   IconMessageCircle,
   IconCode,
   IconBrandGithub,
+  IconArrowNarrowDown,
 } from "@tabler/icons-react";
 import { BorderMagicButton } from "@/components/ui/buttons/border-magic-button";
 import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
 import { AnimatedTooltip } from "@/components/ui/misc/animated-hero-tooltip";
 import { Tooltip } from "@/components/ui/cards/tooltip-card";
 import { FlipWords } from "@/components/ui/text/flip-words";
+import { HeroContentProps } from "@/types";
 
 const techStack = [
   {
@@ -54,12 +56,6 @@ const techStack = [
   },
 ];
 
-interface HeroContentProps {
-  containerVariants: Variants;
-  imageVariants: Variants;
-  itemVariants: Variants;
-}
-
 export const HeroContent = ({
   containerVariants,
   imageVariants,
@@ -88,15 +84,15 @@ export const HeroContent = ({
         <div className="absolute mx-auto h-px w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
       </div>
 
-      <div className="py-8 md:py-12 w-full">
+      <div className="py-8 md:py-12 w-full h-full flex flex-col justify-center">
         {/* Two Column Layout: Image Left, Content Right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-center md:-ml-20 lg:-ml-40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center w-full px-6 sm:px-10 md:px-16 lg:px-20">
           {/* Left Column - Image */}
           <motion.div
             variants={imageVariants}
             className="flex justify-center md:justify-end"
           >
-            <div className="relative w-full max-w-[260px] h-[320px] sm:max-w-[300px] sm:h-[380px] md:max-w-[280px] md:h-[360px] lg:max-w-[380px] lg:h-[480px] xl:max-w-[420px] xl:h-[520px]">
+            <div className="relative w-full max-w-[280px] h-[340px] sm:max-w-[320px] sm:h-[400px] md:max-w-[340px] md:h-[420px] lg:max-w-[420px] lg:h-[520px] xl:max-w-[460px] xl:h-[580px]">
               <Image
                 src="/cj.png"
                 alt="Profile"
@@ -109,12 +105,12 @@ export const HeroContent = ({
           </motion.div>
 
           {/* Right Column - Content */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left mt-12 md:mt-4">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             {/* Hover Border Gradient Badge */}
-            <motion.div variants={itemVariants} className="mb-5 mt-1">
+            <motion.div variants={itemVariants} className="mb-6">
               <HoverBorderGradient
                 containerClassName="rounded-full"
-                className="text-sm font-medium flex items-center gap-2"
+                className="text-xs sm:text-sm font-medium flex items-center gap-2"
               >
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -126,7 +122,7 @@ export const HeroContent = ({
 
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 max-w-4xl text-3xl sm:text-4xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-4 md:mb-6 leading-[1.1]"
+              className="relative z-10 w-full text-3xl sm:text-4xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1]"
             >
               <div className="flex flex-nowrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
                 <span className="inline-block text-white whitespace-nowrap">
@@ -275,8 +271,17 @@ export const HeroContent = ({
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
                 <a href="#projects" className="scroll-smooth">
                   <BorderMagicButton className="gap-2 group">
-                    <IconPalette className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                    View my works
+                    <span>View works</span>
+                    <motion.div
+                      whileHover={{ y: 5 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
+                    >
+                      <IconArrowNarrowDown className="w-5 h-5" />
+                    </motion.div>
                   </BorderMagicButton>
                 </a>
 

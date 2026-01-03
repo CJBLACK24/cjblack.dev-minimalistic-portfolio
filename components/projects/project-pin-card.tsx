@@ -3,21 +3,7 @@
 import Image from "next/image";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { PinContainer } from "@/components/ui/3d-pin";
-
-interface TechItem {
-  id: number;
-  name: string;
-  image?: string;
-}
-
-interface ProjectProps {
-  id: number | string;
-  title: string;
-  description: string;
-  link: string;
-  techStack: TechItem[];
-  header?: React.ReactNode;
-}
+import { ProjectProps } from "@/types";
 
 export const ProjectPinCard = ({ project }: { project: ProjectProps }) => {
   return (

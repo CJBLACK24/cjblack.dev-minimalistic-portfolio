@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/primitives/label";
 import { Input } from "@/components/ui/primitives/input";
 import { AnimatedAlert } from "@/components/ui/misc/animated-alert";
 import { cn } from "@/lib/utils";
-import { motion, Variants } from "motion/react";
+import { motion } from "motion/react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,6 +19,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/primitives/alert-dialog";
 import confetti from "canvas-confetti";
+import { SectionProps } from "@/types";
 
 // Cooldown durations in milliseconds
 const COOLDOWN_DURATIONS = [
@@ -70,7 +71,7 @@ const LabelInputContainer = ({
   );
 };
 
-export const ContactForm = ({ itemVariants }: { itemVariants: Variants }) => {
+export const ContactForm = ({ itemVariants }: SectionProps) => {
   const form = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [alertState, setAlertState] = useState<{

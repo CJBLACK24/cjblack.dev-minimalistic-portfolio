@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { motion, Variants } from "motion/react";
+import { motion } from "motion/react";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -12,15 +12,7 @@ import {
   IconCopy,
 } from "@tabler/icons-react";
 import confetti from "canvas-confetti";
-
-interface ContactCardProps {
-  icon: React.ReactNode;
-  title: string;
-  value: string;
-  href: string;
-  copyable?: boolean;
-  clickable?: boolean;
-}
+import { ContactCardProps, SectionProps } from "@/types";
 
 const ContactCard = ({
   icon,
@@ -95,7 +87,7 @@ const ContactCard = ({
   );
 };
 
-export const ContactInfo = ({ itemVariants }: { itemVariants: Variants }) => {
+export const ContactInfo = ({ itemVariants }: SectionProps) => {
   return (
     <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Phone */}

@@ -4,6 +4,8 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 
+import { FeatureCardProps } from "@/types";
+
 export const Icon = ({ className, ...rest }: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
@@ -25,12 +27,7 @@ export const FeatureCard = ({
   icon,
   children,
   description,
-}: {
-  title: string;
-  icon: React.ReactNode;
-  children?: React.ReactNode;
-  description: string;
-}) => {
+}: FeatureCardProps) => {
   const [hovered, setHovered] = React.useState(false);
   return (
     <div

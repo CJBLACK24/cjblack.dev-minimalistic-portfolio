@@ -69,55 +69,17 @@ export const HeroNavbar = () => {
 
   return (
     <header className="flex items-center justify-between py-4 w-full relative z-50">
-      {/* Social Media Icons */}
-      <div className="flex items-center gap-3">
+      {/* Logo Branding */}
+      <div className="flex items-center">
         <Link
-          href="https://github.com/CJBLACK24"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all group"
-          aria-label="Visit GitHub Profile"
+          href="/"
+          className="text-2xl font-bold text-white tracking-tighter flex items-center group"
+          aria-label="CJ Black Logo"
         >
-          <IconBrandGithub
-            size={20}
-            className="group-hover:scale-110 transition-transform"
-          />
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/cj-black-a5b110335"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-[#0A66C2] hover:border-[#0A66C2]/50 transition-all group"
-          aria-label="Visit LinkedIn Profile"
-        >
-          <IconBrandLinkedin
-            size={20}
-            className="group-hover:scale-110 transition-transform"
-          />
-        </Link>
-        <Link
-          href="https://www.facebook.com/ChrisNoLimit1124"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-[#1877F2] hover:border-[#1877F2]/50 transition-all group"
-          aria-label="Visit Facebook Profile"
-        >
-          <IconBrandFacebook
-            size={20}
-            className="group-hover:scale-110 transition-transform"
-          />
-        </Link>
-        <Link
-          href="https://x.com/JohnCjblack"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all group"
-          aria-label="Visit X Profile"
-        >
-          <IconBrandX
-            size={20}
-            className="group-hover:scale-110 transition-transform"
-          />
+          <span>CJ</span>
+          <span className="text-cyan-500 text-5xl leading-[0.1] mb-5 group-hover:scale-125 transition-transform duration-300">
+            .
+          </span>
         </Link>
       </div>
 
