@@ -53,7 +53,11 @@ function NavItem({ href, label, isActive = false, onClick }: NavItemProps) {
   );
 }
 
-function VerticalNavbar() {
+function VerticalNavbar({
+  onDownloadCV,
+}: {
+  onDownloadCV: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}) {
   const [activeItem] = useState("About");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -65,9 +69,67 @@ function VerticalNavbar() {
     { href: "/#contact", label: "Contact" },
   ];
 
+  const socialLinks = [
+    {
+      href: "https://x.com/JohnCjblack",
+      icon: IconBrandX,
+      color: "hover:text-[#2FA4FF]",
+    },
+    {
+      href: "https://github.com/CJBLACK24",
+      icon: IconBrandGithub,
+      color: "hover:text-[#2FA4FF]",
+    },
+    {
+      href: "https://www.linkedin.com/in/cj-black-a5b110335",
+      icon: IconBrandLinkedin,
+      color: "hover:text-[#0A66C2]",
+    },
+    {
+      href: "https://www.facebook.com/ChrisNoLimit1124",
+      icon: IconBrandFacebook,
+      color: "hover:text-[#1877F2]",
+    },
+    {
+      href: "https://www.instagram.com/cjblack_24/",
+      icon: IconBrandInstagram,
+      color: "hover:text-[#E4405F]",
+    },
+  ];
+
+  // Animation variants for menu items
+  const menuItemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: i * 0.05,
+        duration: 0.3,
+        ease: [0.25, 0.46, 0.45, 0.94], // easeOutQuad
+      },
+    }),
+    exit: { opacity: 0, x: -20, transition: { duration: 0.2 } },
+  };
+
+  const socialItemVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: (i: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: 0.2 + i * 0.05,
+        duration: 0.3,
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+      },
+    }),
+  };
+
   return (
     <>
-      {/* Desktop Vertical Navbar */}
+      {/* Desktop Vertical Navbar - visible on sm and up */}
       <nav
         className="fixed left-0 top-0 h-screen w-10 sm:w-12 md:w-14 lg:w-16 hidden sm:flex flex-col items-center z-50"
         style={{ backgroundColor: "#090b1d" }}
@@ -95,10 +157,17 @@ function VerticalNavbar() {
         </div>
       </nav>
 
-      {/* Mobile Top Navbar */}
-      <nav
-        className="fixed top-0 left-0 right-0 h-14 sm:hidden flex items-center justify-between px-4 z-50"
-        style={{ backgroundColor: "#090b1d" }}
+      {/* Mobile Top Navbar with Glassmorphism */}
+      <motion.nav
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="fixed top-0 left-0 right-0 h-14 sm:hidden flex items-center justify-between px-4 z-50 border-b border-white/10"
+        style={{
+          background: "rgba(9, 11, 29, 0.8)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+        }}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center justify-center">
@@ -108,45 +177,125 @@ function VerticalNavbar() {
         </Link>
 
         {/* Mobile Menu Button */}
-        <button
+        <motion.button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 text-white/70 hover:text-white transition-colors"
           aria-label="Toggle mobile menu"
+          whileTap={{ scale: 0.95 }}
         >
-          {isMobileMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
-        </button>
-      </nav>
+          <motion.div
+            animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            {isMobileMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
+          </motion.div>
+        </motion.button>
+      </motion.nav>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown with Glassmorphism */}
       <motion.div
         initial={false}
         animate={{
           height: isMobileMenuOpen ? "auto" : 0,
           opacity: isMobileMenuOpen ? 1 : 0,
         }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed top-14 left-0 right-0 sm:hidden z-40 overflow-hidden"
-        style={{ backgroundColor: "#090b1d" }}
+        transition={{
+          duration: 0.4,
+          ease: [0.25, 0.46, 0.45, 0.94],
+          opacity: { duration: 0.3 },
+        }}
+        className="fixed top-14 left-10 right-0 sm:hidden z-40 overflow-hidden border-b border-white/10"
+        style={{
+          background: "rgba(9, 11, 29, 0.95)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+        }}
       >
-        <div className="flex flex-col py-4 px-6 gap-3">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`
-                py-2 text-sm font-medium tracking-wider uppercase
-                transition-all duration-300 ease-out
-                ${
-                  item.label === activeItem
-                    ? "text-white"
-                    : "text-white/50 hover:text-white/80"
-                }
-              `}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="flex flex-col py-5 px-6 gap-4">
+          {/* Navigation Links */}
+          <div className="flex flex-col gap-2">
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.label}
+                custom={index}
+                variants={menuItemVariants}
+                initial="hidden"
+                animate={isMobileMenuOpen ? "visible" : "hidden"}
+              >
+                <Link
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`
+                    py-2.5 text-base font-medium tracking-wider uppercase
+                    transition-all duration-300 ease-out block
+                    ${
+                      item.label === activeItem
+                        ? "text-white"
+                        : "text-white/50 hover:text-white/80"
+                    }
+                  `}
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Divider */}
+          <motion.div
+            className="h-px bg-white/10 my-2"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: isMobileMenuOpen ? 1 : 0 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
+          />
+
+          {/* Social Icons */}
+          <div className="flex items-center gap-3 py-2">
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={social.href}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2.5 bg-white/5 hover:bg-white/10 rounded-lg text-white/70 ${social.color} transition-all duration-300`}
+                custom={index}
+                variants={socialItemVariants}
+                initial="hidden"
+                animate={isMobileMenuOpen ? "visible" : "hidden"}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <social.icon size={20} />
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Download CV Button */}
+          <motion.button
+            onClick={(e) => {
+              onDownloadCV(e);
+              setIsMobileMenuOpen(false);
+            }}
+            className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg font-semibold text-base transition-all duration-300"
+            style={{
+              backgroundColor: "#2FA4FF",
+              color: "#020013",
+            }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{
+              opacity: isMobileMenuOpen ? 1 : 0,
+              y: isMobileMenuOpen ? 0 : 10,
+            }}
+            transition={{ delay: 0.35, duration: 0.3 }}
+            whileHover={{
+              scale: 1.02,
+              boxShadow: "0 0 20px rgba(47, 164, 255, 0.4)",
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <IconDownload size={20} />
+            <span>Download CV</span>
+          </motion.button>
         </div>
       </motion.div>
     </>
@@ -215,14 +364,14 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen w-full bg-[#020013] overflow-x-hidden flex items-center justify-center relative ">
       {/* Vertical Navigation Bar */}
-      <VerticalNavbar />
+      <VerticalNavbar onDownloadCV={handleDownloadCVClick} />
 
       {/* Top Right Actions - Social Icons & Download CV */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="fixed top-4 sm:top-6 right-4 sm:right-6 md:right-8 z-50 flex items-center gap-3 sm:gap-4"
+        className="fixed top-4 sm:top-6 right-4 sm:right-6 md:right-8 z-50 hidden sm:flex items-center gap-3 sm:gap-4"
       >
         {/* Social Icons */}
         <div className="flex items-center gap-2 sm:gap-3">
