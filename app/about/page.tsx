@@ -30,9 +30,12 @@ function NavItem({ href, label, isActive = false, onClick }: NavItemProps) {
       href={href}
       onClick={onClick}
       className={`
-        relative py-3 px-2 text-xs sm:text-sm font-medium tracking-wider uppercase
-        transition-all duration-300 ease-out
-        ${isActive ? "text-white" : "text-white/50 hover:text-white/80"}
+        relative py-4 px-3 text-xs sm:text-sm font-medium tracking-wider uppercase transition-all duration-300 ease-out 
+        ${
+          isActive
+            ? "text-white bg-[#020013]"
+            : "text-white/50 hover:text-white/80 hover:bg-[#020013]"
+        }
       `}
       style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
     >
@@ -40,10 +43,10 @@ function NavItem({ href, label, isActive = false, onClick }: NavItemProps) {
       {isActive && (
         <motion.span
           layoutId="activeNav"
-          className="absolute left-0 top-0 bottom-0 w-[2px] bg-linear-to-b from-[#2FA4FF] to-purple-500"
+          className="absolute right-0 top-0 bottom-0 w-px bg-linear-to-b from-[#2FA4FF] to-purple-500 "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
         />
       )}
     </Link>
@@ -66,13 +69,13 @@ function VerticalNavbar() {
     <>
       {/* Desktop Vertical Navbar */}
       <nav
-        className="fixed left-0 top-0 h-screen w-12 sm:w-14 md:w-16 lg:w-20 hidden sm:flex flex-col items-center z-50"
+        className="fixed left-0 top-0 h-screen w-10 sm:w-12 md:w-14 lg:w-16 hidden sm:flex flex-col items-center z-50"
         style={{ backgroundColor: "#090b1d" }}
       >
         {/* Logo */}
         <Link
           href="/"
-          className="mt-4 sm:mt-6 mb-6 sm:mb-8 flex items-center justify-center"
+          className="mt-4 sm:mt-6 mb-6 sm:mb-8 flex items-center justify-center px-2 py-1 bg-[#020013] rounded-br-xs"
         >
           <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">
             CJ<span className="text-[#2FA4FF]">.</span>
@@ -80,7 +83,7 @@ function VerticalNavbar() {
         </Link>
 
         {/* Navigation Items */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-5 md:gap-6">
+        <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-5 md:gap-2">
           {navItems.map((item) => (
             <NavItem
               key={item.label}
@@ -194,7 +197,7 @@ export default function AboutPage() {
       y: 0,
       transition: { duration: 0.6, ease: "easeOut" },
     },
-  };
+  } as const;
 
   const handleDownloadCVClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsCVModalOpen(true);
@@ -210,7 +213,7 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="min-h-screen w-full bg-[#020013] overflow-x-hidden flex items-center justify-center relative">
+    <main className="min-h-screen w-full bg-[#020013] overflow-x-hidden flex items-center justify-center relative ">
       {/* Vertical Navigation Bar */}
       <VerticalNavbar />
 
@@ -270,17 +273,19 @@ export default function AboutPage() {
         cvUrl="/CV/cjblack_resume.pdf"
       />
 
-      {/* Main Content - responsive padding for navbar */}
-      <motion.div
+      {/* About Section - Main Content */}
+      <motion.section
+        id="about-section"
+        aria-label="About Me"
         className="max-w-6xl w-full flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 
-          px-4 sm:pl-20 md:pl-24 lg:pl-28 sm:pr-6 md:pr-8 lg:pr-12 
+          px-4 sm:pl-16 md:pl-20 lg:pl-24 sm:pr-6 md:pr-10 lg:pr-16 
           pt-20 sm:pt-6 md:pt-8 lg:pt-10 pb-6 sm:pb-8 md:pb-10 lg:pb-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Header Section */}
-        <div>
+        <header>
           <motion.h1
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white"
             variants={itemVariants}
@@ -288,13 +293,13 @@ export default function AboutPage() {
             Meet your junior <br className="hidden md:block" />
             <span className="text-[#2FA4FF]">full-stack developer.</span>
           </motion.h1>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-start">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-start">
           {/* Left Side - Image */}
-          <motion.div
+          <motion.figure
             variants={itemVariants}
-            className="relative w-full aspect-video sm:aspect-[4/3] lg:aspect-square max-h-[280px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-[450px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+            className="relative w-full aspect-[4/4] sm:aspect-[4/4] lg:aspect-[4/4] max-h-[280px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
           >
             <Image
               src="/cjblackdev.jpg"
@@ -303,21 +308,21 @@ export default function AboutPage() {
               className="object-cover"
               priority
             />
-          </motion.div>
+          </motion.figure>
 
           {/* Right Side - Content */}
-          <motion.div
+          <motion.article
             variants={itemVariants}
             className="flex flex-col gap-4 sm:gap-5 md:gap-6 text-white/90"
           >
             <motion.div
               variants={itemVariants}
-              className="space-y-3 sm:space-y-4 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-white/80"
+              className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-white/80"
             >
               <p>
-                I&apos;m a junior full-stack developer and Next.js enthusiast
-                working with the MERN and PERN stacks, building both web and
-                mobile applications from concept to deployment.
+                Hey! I&apos;m Christian John Calderon Duque, a web and mobile
+                vibe coder and Next.js enthusiast working with the MERN and PERN
+                stacks, building modern applications from concept to deployment.
               </p>
               <p>
                 I develop faster using AI-assisted, agentic code editors to
@@ -325,8 +330,9 @@ export default function AboutPage() {
                 maintain clean, structured codebases while actively reviewing
                 and refining what I ship. As a vibe coder, I focus on turning
                 ideas into real products—handling authentication like Google
-                OAuth, setting up custom domains and hosting, deploying
-                production-ready apps, and improving performance and security.
+                OAuth, integrating databases, setting up custom domains and
+                hosting, deploying production-ready apps, and improving
+                performance and security.
               </p>
               <p>
                 I understand data flow across the stack, value code quality and
@@ -334,9 +340,9 @@ export default function AboutPage() {
                 building practical, real-world applications.
               </p>
             </motion.div>
-          </motion.div>
-        </div>
-      </motion.div>
+          </motion.article>
+        </section>
+      </motion.section>
     </main>
   );
 }
