@@ -10,6 +10,7 @@ import {
   IconTableColumn,
   IconSchool,
   IconCalendarEvent,
+  IconUser,
 } from "@tabler/icons-react";
 import {
   BookWiseHeader,
@@ -23,7 +24,7 @@ export const navItems = [
   {
     name: "About",
     link: "/about",
-    icon: <span className="text-lg">👨‍💻</span>,
+    icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
     name: "Home",

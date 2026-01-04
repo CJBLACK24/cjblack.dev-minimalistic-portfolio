@@ -68,11 +68,11 @@ export const HeroNavbar = () => {
       <div className="flex items-center">
         <Link
           href="/"
-          className="text-4xl font-bold text-white tracking-tighter flex items-center group"
+          className="text-2xl font-bold text-white tracking-tighter flex items-center group"
           aria-label="CJ Black Logo"
         >
           <span>CJ</span>
-          <span className="text-cyan-500 text-5xl leading-[0.1] mb-3 group-hover:scale-125 transition-transform duration-300">
+          <span className="text-cyan-500 text-5xl leading-[0.1] mb-4 group-hover:scale-125 transition-transform duration-300">
             .
           </span>
         </Link>
@@ -91,7 +91,11 @@ export const HeroNavbar = () => {
       </nav>
 
       <div className="hidden md:flex items-center gap-4">
-        <BorderMagicButton
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-blue-500/20"
+          style={{ backgroundColor: "#2FA4FF", color: "#020013" }}
           onClick={(e) => {
             setIsCVModalOpen(true);
             confetti({
@@ -101,12 +105,12 @@ export const HeroNavbar = () => {
                 x: e.clientX / window.innerWidth,
                 y: e.clientY / window.innerHeight,
               },
-              colors: ["#06b6d4", "#3b82f6", "#ffffff"],
+              colors: ["#2FA4FF", "#020013", "#ffffff"],
             });
           }}
         >
           Download CV
-        </BorderMagicButton>
+        </motion.button>
 
         <CVPreviewModal
           isOpen={isCVModalOpen}

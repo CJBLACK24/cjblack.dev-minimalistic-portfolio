@@ -73,17 +73,17 @@ export const HeroContent = ({
       variants={containerVariants}
     >
       {/* Background/Grid Lines */}
-      <div className="absolute inset-y-0 left-0 md:left-0 h-full w-px bg-neutral-800/50 ml-1 md:ml-0">
+      <div className="absolute inset-y-0 -left-6 md:left-0 h-full w-px bg-neutral-800/50">
         <div className="absolute top-0 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
       </div>
-      <div className="absolute inset-y-0 right-0 md:right-0 h-full w-px bg-neutral-800/50 mr-1 md:mr-0">
+      <div className="absolute inset-y-0 -right-6 md:right-0 h-full w-px bg-neutral-800/50">
         <div className="absolute h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-800/50">
-        <div className="absolute mx-auto h-px w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
+      <div className="absolute bottom-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50">
+        <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
       </div>
-      <div className="absolute inset-x-0 top-0 h-px w-full bg-neutral-800/50">
-        <div className="absolute mx-auto h-px w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
+      <div className="absolute top-0 left-[-1.5rem] right-[-1.5rem] md:left-0 md:right-0 h-px w-auto bg-neutral-800/50">
+        <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
       </div>
 
       <div className="py-8 md:py-12 w-full h-full flex flex-col justify-center">
@@ -107,7 +107,7 @@ export const HeroContent = ({
           </motion.div>
 
           {/* Right Column - Content */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          <div className="flex flex-col items-start text-left">
             {/* Hover Border Gradient Badge */}
             <motion.div variants={itemVariants} className="mb-6">
               <HoverBorderGradient
@@ -124,9 +124,9 @@ export const HeroContent = ({
 
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 w-full text-3xl sm:text-4xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1]"
+              className="relative z-10 w-full text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-white mb-6 leading-[1.1]"
             >
-              <div className="flex flex-nowrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
+              <div className="flex flex-nowrap items-center justify-start gap-1.5 sm:gap-2">
                 <span className="inline-block text-white whitespace-nowrap">
                   Shaping&nbsp;
                 </span>
@@ -140,25 +140,25 @@ export const HeroContent = ({
                 >
                   {currentWordIndex === 0 && (
                     <IconBulb
-                      className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
                       stroke={2}
                     />
                   )}
                   {currentWordIndex === 1 && (
                     <IconPalette
-                      className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
                       stroke={2}
                     />
                   )}
                   {currentWordIndex === 2 && (
                     <IconMessageCircle
-                      className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
                       stroke={2}
                     />
                   )}
                   {currentWordIndex === 3 && (
                     <IconCode
-                      className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
                       stroke={2}
                     />
                   )}
@@ -265,42 +265,33 @@ export const HeroContent = ({
               and developer with a passion for code.
             </motion.div>
 
-            {/* View Works Button, GitHub Link, and Tech Stack */}
+            {/* View Works Button and Tech Stack */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col items-center md:items-start gap-6 mb-10 w-full"
+              className="flex flex-col items-start gap-6 mb-10 w-full"
             >
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-                <a href="#projects" className="scroll-smooth">
-                  <BorderMagicButton className="gap-2 group">
-                    <span>View works</span>
-                    <motion.div
-                      whileHover={{ y: 5 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 10,
-                      }}
-                    >
-                      <IconArrowNarrowDown className="w-5 h-5" />
-                    </motion.div>
-                  </BorderMagicButton>
+              <div className="w-full sm:w-[90%] md:w-auto px-4 sm:px-0">
+                <a href="#projects" className="scroll-smooth block w-full">
+                  <div className="relative inline-flex h-12 overflow-hidden rounded-md p-px focus:outline-none w-full md:w-60">
+                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22d3ee_0%,#083344_50%,#22d3ee_100%)]" />
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-md bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl gap-2 group hover:bg-slate-900 transition-colors">
+                      <span>View works</span>
+                      <motion.div
+                        whileHover={{ y: 5 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 10,
+                        }}
+                      >
+                        <IconArrowNarrowDown className="w-5 h-5" />
+                      </motion.div>
+                    </span>
+                  </div>
                 </a>
-
-                <Link
-                  href="https://github.com/CJBLACK24"
-                  target="_blank"
-                  className="group relative inline-flex h-12 overflow-hidden rounded-full p-px focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
-                >
-                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl transition-colors hover:text-cyan-400 gap-2">
-                    <IconBrandGithub className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                    GitHub
-                  </span>
-                </Link>
               </div>
 
-              <div className="flex items-center justify-center md:justify-start">
+              <div className="flex items-center justify-start mt-4">
                 <AnimatedTooltip items={techStack} />
               </div>
             </motion.div>

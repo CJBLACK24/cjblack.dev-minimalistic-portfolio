@@ -5,12 +5,18 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  IconHome,
   IconCode,
   IconMail,
   IconX,
-  IconLayoutSidebar,
+  IconMenu2,
   IconDownload,
+  IconBrandX,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconUser,
+  IconCpu,
 } from "@tabler/icons-react";
 import {
   Drawer,
@@ -22,28 +28,39 @@ import {
 import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
 import confetti from "canvas-confetti";
 
-interface NavItem {
-  name: string;
-  link: string;
-  icon: React.ComponentType<{ className?: string }>;
-}
-
-const navItems: NavItem[] = [
-  { name: "Home", link: "#home", icon: IconHome },
-  { name: "Technologies", link: "#technologies", icon: IconCode },
-  { name: "Contact", link: "#contact", icon: IconMail },
-];
-
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const pathname = usePathname();
 
+  const fullNavItems = [
+    { name: "About", link: "/about", icon: IconUser },
+    { name: "Projects", link: "/#projects", icon: IconCode },
+    { name: "Technologies", link: "/#technologies", icon: IconCpu },
+    { name: "Contact", link: "/#contact", icon: IconMail },
+  ];
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 },
+  };
+
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     link: string
   ) => {
-    // If we are on the home page, we handle smooth scrolling manually
     if (pathname === "/") {
       e.preventDefault();
       setOpen(false);
@@ -54,40 +71,39 @@ export function MobileMenu() {
           const targetId = link.replace("#", "");
           const element = document.getElementById(targetId);
           if (element) {
-            element.scrollIntoView({
-              behavior: "smooth",
-            });
+            element.scrollIntoView({ behavior: "smooth" });
           }
         }
-      }, 400);
+      }, 400); // Wait for drawer to close
     } else {
-      // If we are NOT on the home page, we let Next.js Link handle navigation
-      // But we need to ensure we close the drawer
       setOpen(false);
-      // We don't prevent default, so it navigates to href
     }
   };
 
   return (
     <Drawer direction="right" open={open} onOpenChange={setOpen}>
-      <DrawerTrigger>
-        <div className="p-2 hover:bg-neutral-900 rounded-lg transition-colors cursor-pointer">
-          <IconLayoutSidebar className="w-6 h-6 text-white" />
-        </div>
+      <DrawerTrigger asChild>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer text-white"
+        >
+          <IconMenu2 className="w-8 h-8" />
+        </motion.button>
       </DrawerTrigger>
       <DrawerContent
-        className="bg-black border-l border-neutral-800 w-screen! max-w-none! h-full"
+        className="border-l border-white/10 w-[100%]! md:w-[500px]! h-full"
+        style={{ backgroundColor: "#020013" }}
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
         <DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
-        <div className="flex flex-col h-full p-6">
-          <motion.div
-            className="flex justify-between items-center mb-8"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            <button
+        <div className="flex flex-col h-full p-6 relative overflow-y-auto">
+          {/* Header with CV Button and Close Icon */}
+          <div className="flex justify-between items-center mb-10">
+            <motion.button
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
               onClick={(e) => {
                 setIsCVModalOpen(true);
                 confetti({
@@ -97,24 +113,39 @@ export function MobileMenu() {
                     x: e.clientX / window.innerWidth,
                     y: e.clientY / window.innerHeight,
                   },
-                  colors: ["#06b6d4", "#3b82f6", "#ffffff"],
+                  colors: ["#2FA4FF", "#020013", "#ffffff"],
                 });
               }}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-cyan-500 to-blue-500 text-white font-medium hover:from-cyan-600 hover:to-blue-600 transition-all"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-blue-500/20"
+              style={{ backgroundColor: "#2FA4FF", color: "#020013" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <IconDownload className="w-4 h-4" />
               Download CV
-            </button>
-            <DrawerClose>
-              <div className="p-2 hover:bg-neutral-900 rounded-full transition-colors">
-                <IconX className="w-6 h-6 text-white" />
-              </div>
+            </motion.button>
+
+            <DrawerClose asChild>
+              <motion.button
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ delay: 0.1 }}
+                className="p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white"
+              >
+                <IconX className="w-8 h-8" />
+              </motion.button>
             </DrawerClose>
-          </motion.div>
-          <nav className="flex flex-col gap-3">
-            {navItems.map((item, index) => {
+          </div>
+
+          {/* Navigation Links */}
+          <motion.nav
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col gap-4 mb-auto will-change-transform"
+          >
+            {fullNavItems.map((item) => {
               const Icon = item.icon;
-              // Construct absolute href if it's a hash link
               const href = item.link.startsWith("#")
                 ? `/${item.link}`
                 : item.link;
@@ -122,28 +153,79 @@ export function MobileMenu() {
               return (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.1,
-                    ease: "easeOut",
-                  }}
+                  variants={itemVariants}
+                  className="will-change-transform"
                 >
                   <Link
                     href={href}
                     onClick={(e) => handleNavClick(e, item.link)}
-                    className="flex items-center justify-between p-4 rounded-xl border border-neutral-800 hover:bg-neutral-900 transition-colors group"
+                    className="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group active:scale-95"
                   >
-                    <span className="text-lg font-medium text-neutral-300 group-hover:text-white transition-colors">
+                    <span className="text-lg font-medium text-white/80 group-hover:text-white">
                       {item.name}
                     </span>
-                    <Icon className="w-5 h-5 text-neutral-500 group-hover:text-white transition-colors" />
+                    <Icon className="w-5 h-5 text-white/50 group-hover:text-[#2FA4FF] transition-colors" />
                   </Link>
                 </motion.div>
               );
             })}
-          </nav>
+          </motion.nav>
+
+          {/* Social Icons Footer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-8 pt-8 border-t border-white/10"
+          >
+            <p className="text-white/40 text-sm font-medium mb-4 uppercase tracking-wider">
+              Connect with me
+            </p>
+            <div className="flex items-center gap-4 flex-wrap">
+              {[
+                {
+                  icon: IconBrandX,
+                  href: "https://x.com/JohnCjblack",
+                  color: "hover:text-[#2FA4FF]",
+                },
+                {
+                  icon: IconBrandGithub,
+                  href: "https://github.com/CJBLACK24",
+                  color: "hover:text-white",
+                },
+                {
+                  icon: IconBrandLinkedin,
+                  href: "https://www.linkedin.com/in/cj-black-a5b110335",
+                  color: "hover:text-[#0A66C2]",
+                },
+                {
+                  icon: IconBrandFacebook,
+                  href: "https://www.facebook.com/ChrisNoLimit1124",
+                  color: "hover:text-[#1877F2]",
+                },
+                {
+                  icon: IconBrandInstagram,
+                  href: "https://www.instagram.com/cjblack_24/",
+                  color: "hover:text-[#E4405F]",
+                },
+              ].map((social, i) => (
+                <motion.a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-3 bg-white/5 rounded-lg text-white/60 ${social.color} transition-colors border border-white/5`}
+                  whileHover={{
+                    scale: 1.1,
+                    backgroundColor: "rgba(255,255,255,0.1)",
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <social.icon size={20} />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
         </div>
 
         <CVPreviewModal

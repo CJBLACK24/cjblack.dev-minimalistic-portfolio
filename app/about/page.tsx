@@ -63,6 +63,7 @@ function VerticalNavbar({
 
   // Same nav items as hero navbar
   const navItems = [
+    { href: "/#home", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/#projects", label: "Projects" },
     { href: "/#technologies", label: "Technologies" },
@@ -162,11 +163,11 @@ function VerticalNavbar({
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="fixed top-0 left-0 right-0 h-14 sm:hidden flex items-center justify-between px-4 z-50 border-b border-white/10"
+        className="fixed top-0 left-0 right-0 h-14 sm:hidden flex items-center justify-between px-4 z-50 border-b border-white/10 will-change-transform"
         style={{
-          background: "rgba(9, 11, 29, 0.8)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
+          background: "rgba(9, 11, 29, 0.9)", // Slightly more opaque
+          backdropFilter: "blur(8px)", // Reduced blur for performance
+          WebkitBackdropFilter: "blur(8px)",
         }}
       >
         {/* Logo */}
@@ -200,15 +201,14 @@ function VerticalNavbar({
           opacity: isMobileMenuOpen ? 1 : 0,
         }}
         transition={{
-          duration: 0.4,
-          ease: [0.25, 0.46, 0.45, 0.94],
-          opacity: { duration: 0.3 },
+          duration: 0.3, // Faster duration
+          ease: "easeInOut", // Simpler ease
         }}
-        className="fixed top-14 left-10 right-0 sm:hidden z-40 overflow-hidden border-b border-white/10"
+        className="fixed top-14 left-0 right-0 sm:hidden z-40 overflow-hidden border-b border-white/10 will-change-transform"
         style={{
-          background: "rgba(9, 11, 29, 0.95)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+          background: "rgba(9, 11, 29, 0.98)", // Almost opaque for better perf
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
         }}
       >
         <div className="flex flex-col py-5 px-6 gap-4">
