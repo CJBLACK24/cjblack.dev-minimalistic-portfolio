@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -20,27 +21,37 @@ export function IntroLoader() {
   ];
 
   useEffect(() => {
+    // Check if we've already shown the intro in this session
+    const hasSeenIntro = sessionStorage.getItem("hasSeenIntro");
+    if (hasSeenIntro) {
+      setIsLoading(false);
+      return;
+    }
+
     const interval = setInterval(() => {
       setHelloIndex((prev) => {
         const nextIndex = prev + 1;
-        
+
         // First word - already handled by initial customDelay
         if (nextIndex === 1) {
           setCustomDelay(200); // Speed up after first word
         }
-        
+
         // Last word - set 1 second delay and trigger fade out
         if (nextIndex === hellos.length - 1) {
           setCustomDelay(500); // 1 second delay for last word
-          setTimeout(() => setIsLoading(false), 500); // Fade out after 1 second
+          setTimeout(() => {
+            setIsLoading(false);
+            sessionStorage.setItem("hasSeenIntro", "true");
+          }, 500); // Fade out after 1 second
         }
-        
+
         // If we've shown all greetings, clear interval
         if (nextIndex >= hellos.length) {
           clearInterval(interval);
           return prev;
         }
-        
+
         return nextIndex;
       });
     }, customDelay);

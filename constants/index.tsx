@@ -21,6 +21,11 @@ import {
 // Floating Navigation Items
 export const navItems = [
   {
+    name: "About",
+    link: "/about",
+    icon: <span className="text-lg">👨‍💻</span>,
+  },
+  {
     name: "Home",
     link: "#home",
     icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
@@ -342,7 +347,7 @@ export const currentlyLearningItems = [
     image:
       "https://camo.githubusercontent.com/d4cdfe4caa793b7fe511a00e04f52a4b63918764633fe6772db58c4aab288762/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656475782d69636f6e2e737667",
   },
-    {
+  {
     id: 7,
     name: "MySQL",
     designation: "An open source RDBMS",

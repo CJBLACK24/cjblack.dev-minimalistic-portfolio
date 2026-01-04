@@ -106,7 +106,7 @@ function VerticalNavbar({
       transition: {
         delay: i * 0.05,
         duration: 0.3,
-        ease: [0.25, 0.46, 0.45, 0.94], // easeOutQuad
+        ease: [0.25, 0.46, 0.45, 0.94] as const, // easeOutQuad
       },
     }),
     exit: { opacity: 0, x: -20, transition: { duration: 0.2 } },
@@ -120,7 +120,7 @@ function VerticalNavbar({
       transition: {
         delay: 0.2 + i * 0.05,
         duration: 0.3,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 20,
       },
@@ -339,12 +339,39 @@ export default function AboutPage() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const headerVariants = {
+    hidden: { opacity: 0, y: -30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  } as const;
+
+  const imageVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  } as const;
+
+  const contentVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.1 },
+    },
+  } as const;
+
+  const textItemVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   } as const;
 
@@ -437,7 +464,7 @@ export default function AboutPage() {
         <header>
           <motion.h1
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white"
-            variants={itemVariants}
+            variants={headerVariants}
           >
             Meet your junior <br className="hidden md:block" />
             <span className="text-[#2FA4FF]">full-stack developer.</span>
@@ -447,8 +474,8 @@ export default function AboutPage() {
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-start">
           {/* Left Side - Image */}
           <motion.figure
-            variants={itemVariants}
-            className="relative w-full aspect-[4/4] sm:aspect-[4/4] lg:aspect-[4/4] max-h-[280px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+            variants={imageVariants}
+            className="relative w-full aspect-square sm:aspect-square lg:aspect-square max-h-[280px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
           >
             <Image
               src="/cjblackdev.jpg"
@@ -461,19 +488,19 @@ export default function AboutPage() {
 
           {/* Right Side - Content */}
           <motion.article
-            variants={itemVariants}
+            variants={contentVariants}
             className="flex flex-col gap-4 sm:gap-5 md:gap-6 text-white/90"
           >
             <motion.div
-              variants={itemVariants}
               className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-white/80"
+              variants={contentVariants}
             >
-              <p>
+              <motion.p variants={textItemVariants}>
                 Hey! I&apos;m Christian John Calderon Duque, a web and mobile
                 vibe coder and Next.js enthusiast working with the MERN and PERN
                 stacks, building modern applications from concept to deployment.
-              </p>
-              <p>
+              </motion.p>
+              <motion.p variants={textItemVariants}>
                 I develop faster using AI-assisted, agentic code editors to
                 integrate features, connect frontend and backend logic, and
                 maintain clean, structured codebases while actively reviewing
@@ -482,12 +509,12 @@ export default function AboutPage() {
                 OAuth, integrating databases, setting up custom domains and
                 hosting, deploying production-ready apps, and improving
                 performance and security.
-              </p>
-              <p>
+              </motion.p>
+              <motion.p variants={textItemVariants}>
                 I understand data flow across the stack, value code quality and
                 readability, and continuously sharpen my fundamentals while
                 building practical, real-world applications.
-              </p>
+              </motion.p>
             </motion.div>
           </motion.article>
         </section>
