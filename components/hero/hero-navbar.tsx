@@ -4,9 +4,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  IconLogout,
-} from "@tabler/icons-react";
+import { IconLogout } from "@tabler/icons-react";
 import { useSession, signOut } from "@/lib/auth-client";
 import confetti from "canvas-confetti";
 import {
@@ -19,9 +17,10 @@ import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 
 const navItems = [
-  { name: "Projects", link: "#projects" },
-  { name: "Technologies", link: "#technologies" },
-  { name: "Contact", link: "#contact" },
+  { name: "About", link: "/about" },
+  { name: "Projects", link: "/#projects" },
+  { name: "Technologies", link: "/#technologies" },
+  { name: "Contact", link: "/#contact" },
 ];
 
 export const HeroNavbar = () => {
@@ -69,11 +68,11 @@ export const HeroNavbar = () => {
       <div className="flex items-center">
         <Link
           href="/"
-          className="text-2xl font-bold text-white tracking-tighter flex items-center group"
+          className="text-4xl font-bold text-white tracking-tighter flex items-center group"
           aria-label="CJ Black Logo"
         >
           <span>CJ</span>
-          <span className="text-cyan-500 text-5xl leading-[0.1] mb-5 group-hover:scale-125 transition-transform duration-300">
+          <span className="text-cyan-500 text-5xl leading-[0.1] mb-3 group-hover:scale-125 transition-transform duration-300">
             .
           </span>
         </Link>
