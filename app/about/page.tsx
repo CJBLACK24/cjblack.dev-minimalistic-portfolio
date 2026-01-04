@@ -362,7 +362,7 @@ export default function AboutPage() {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.1 },
+      transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.1 },
     },
   } as const;
 
