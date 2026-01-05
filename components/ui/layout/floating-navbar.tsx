@@ -49,7 +49,7 @@ export const FloatingNav = ({
     link: string
   ) => {
     // If we are on the home page, we can just scroll smoothly
-    if (pathname === "/") {
+    if (pathname === "/" && link.startsWith("#")) {
       e.preventDefault();
       if (link === "#home") {
         window.scrollTo({ top: 0, behavior: "smooth" });

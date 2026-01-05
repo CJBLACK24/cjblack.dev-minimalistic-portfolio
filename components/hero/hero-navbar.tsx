@@ -94,7 +94,7 @@ export const HeroNavbar = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-blue-500/20"
+          className="px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-blue-500/20 cursor-pointer"
           style={{ backgroundColor: "#2FA4FF", color: "#020013" }}
           onClick={(e) => {
             setIsCVModalOpen(true);
