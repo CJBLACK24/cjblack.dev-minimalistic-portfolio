@@ -61,14 +61,16 @@ export function MobileMenu() {
     e: React.MouseEvent<HTMLAnchorElement>,
     link: string
   ) => {
-    if (pathname === "/") {
+    const isHashLink = link.includes("#");
+
+    if (pathname === "/" && isHashLink) {
       e.preventDefault();
       setOpen(false);
       setTimeout(() => {
-        if (link === "#home") {
+        const targetId = link.split("#")[1];
+        if (targetId === "home") {
           window.scrollTo({ top: 0, behavior: "smooth" });
         } else {
-          const targetId = link.replace("#", "");
           const element = document.getElementById(targetId);
           if (element) {
             element.scrollIntoView({ behavior: "smooth" });
@@ -92,7 +94,7 @@ export function MobileMenu() {
         </motion.button>
       </DrawerTrigger>
       <DrawerContent
-        className="border-l border-white/10 w-[100%]! md:w-[500px]! h-full"
+        className="border-l border-white/10 w-full! md:w-[500px]! h-full"
         style={{ backgroundColor: "#020013" }}
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
