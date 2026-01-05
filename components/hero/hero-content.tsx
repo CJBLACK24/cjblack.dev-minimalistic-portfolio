@@ -82,13 +82,13 @@ export const HeroContent = ({
       <div className="absolute bottom-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50">
         <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
       </div>
-      <div className="absolute top-0 left-[-1.5rem] right-[-1.5rem] md:left-0 md:right-0 h-px w-auto bg-neutral-800/50">
+      <div className="absolute top-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50">
         <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
       </div>
 
       <div className="py-8 md:py-12 w-full h-full flex flex-col justify-center">
         {/* Two Column Layout: Image Left, Content Right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center w-full px-6 sm:px-10 md:px-16 lg:px-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-8 items-center w-full px-6 sm:px-10 md:px-16 lg:px-20">
           {/* Left Column - Image */}
           <motion.div
             variants={imageVariants}
@@ -109,7 +109,7 @@ export const HeroContent = ({
           {/* Right Column - Content */}
           <div className="flex flex-col items-start text-left">
             {/* Hover Border Gradient Badge */}
-            <motion.div variants={itemVariants} className="mb-6">
+            <motion.div variants={itemVariants} className="mb-6 -ml-2 md:ml-0">
               <HoverBorderGradient
                 containerClassName="rounded-full"
                 className="text-xs sm:text-sm font-medium flex items-center gap-2"
@@ -124,7 +124,7 @@ export const HeroContent = ({
 
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 w-full text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-white mb-6 leading-[1.1]"
+              className="relative z-10 w-full text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-[1.1]"
             >
               <div className="flex flex-nowrap items-center justify-start gap-1.5 sm:gap-2">
                 <span className="inline-block text-white whitespace-nowrap">
@@ -164,7 +164,7 @@ export const HeroContent = ({
                   )}
                 </motion.div>
 
-                <div className="min-w-[70px] sm:min-w-[100px] md:min-w-[90px] lg:min-w-[160px] xl:min-w-[220px] 2xl:min-w-[280px]">
+                <div className="min-w-[70px] sm:min-w-[100px] md:min-w-[120px] lg:min-w-[160px] xl:min-w-[220px] 2xl:min-w-[280px]">
                   <FlipWords
                     words={["Ideas", "Plans", "Designs", "Code"]}
                     duration={2500}
