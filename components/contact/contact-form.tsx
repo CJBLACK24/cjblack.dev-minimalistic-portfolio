@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/primitives/label";
 import { Input } from "@/components/ui/primitives/input";
 import { AnimatedAlert } from "@/components/ui/misc/animated-alert";
 import { cn } from "@/lib/utils";
-
+import gsap from "gsap";
 import { motion } from "motion/react";
 import {
   AlertDialog,
@@ -73,6 +73,8 @@ const LabelInputContainer = ({
 };
 
 export const ContactForm = ({ itemVariants }: SectionProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
   const form = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [alertState, setAlertState] = useState<{
@@ -114,6 +116,53 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${minutes}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  // GTA 6 Style Effects logic
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current || !glowRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Spotlight glow
+    gsap.to(glowRef.current, {
+      opacity: 1,
+      x: x,
+      y: y,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+
+    // Suble 3D tilt
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 20; // Less tilt for larger container
+    const rotateY = (centerX - x) / 20;
+
+    gsap.to(containerRef.current, {
+      rotateX: rotateX,
+      rotateY: rotateY,
+      duration: 0.5,
+      transformPerspective: 1000,
+      ease: "power2.out",
+    });
+  };
+
+  const onMouseLeave = () => {
+    if (!containerRef.current || !glowRef.current) return;
+
+    gsap.to(glowRef.current, {
+      opacity: 0,
+      duration: 0.8,
+    });
+
+    gsap.to(containerRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.8,
+      ease: "elastic.out(1, 0.3)",
+    });
   };
 
   // Handle form submission - show confirmation dialog first
@@ -236,70 +285,90 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
 
       {/* Contact Form */}
       <motion.div
+        ref={containerRef}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
         variants={itemVariants}
-        className="lg:col-span-1 bg-neutral-900/50 border border-neutral-800 rounded-3xl p-8"
+        className="relative lg:col-span-1 bg-neutral-900/50 border border-neutral-800 rounded-3xl p-8 overflow-hidden transition-all duration-300 hover:border-neutral-700/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]"
       >
-        <div className="flex items-center gap-4 mb-8">
-          <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center">
-            <IconSend className="text-white w-6 h-6" />
+        {/* GTA 6 style glow spotlight */}
+        <div
+          ref={glowRef}
+          className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-0"
+          style={{
+            background:
+              "radial-gradient(600px circle at center, rgba(6, 182, 212, 0.12), transparent 80%)",
+            transform: "translate(-50%, -50%)",
+            width: "1200px",
+            height: "1200px",
+          }}
+        />
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center">
+              <IconSend className="text-white w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-semibold text-white">
+              Send me an email
+            </h3>
           </div>
-          <h3 className="text-xl font-semibold text-white">Send me an email</h3>
+
+          <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+            <LabelInputContainer>
+              <Label htmlFor="name" className="text-neutral-400">
+                Name
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                type="text"
+                required
+                className="bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500"
+              />
+            </LabelInputContainer>
+
+            <LabelInputContainer>
+              <Label htmlFor="email" className="text-neutral-400">
+                E-mail
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                placeholder="your@email.com"
+                type="email"
+                required
+                className="bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500"
+              />
+            </LabelInputContainer>
+
+            <LabelInputContainer>
+              <Label htmlFor="message" className="text-neutral-400">
+                Message
+              </Label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Your message..."
+                className="flex min-h-[120px] w-full rounded-md border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 disabled:cursor-not-allowed disabled:opacity-50"
+                required
+              />
+            </LabelInputContainer>
+
+            <button
+              type="submit"
+              disabled={loading || (countdown > 0 && cooldownTime > 0)}
+              className="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed relative z-20"
+            >
+              {loading
+                ? "Sending..."
+                : countdown > 0 && cooldownTime > 0
+                ? `Wait ${formatTime(countdown)}`
+                : "To send"}
+            </button>
+          </form>
         </div>
-
-        <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-          <LabelInputContainer>
-            <Label htmlFor="name" className="text-neutral-400">
-              Name
-            </Label>
-            <Input
-              id="name"
-              name="name"
-              placeholder="Your Name"
-              type="text"
-              required
-              className="bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500"
-            />
-          </LabelInputContainer>
-
-          <LabelInputContainer>
-            <Label htmlFor="email" className="text-neutral-400">
-              E-mail
-            </Label>
-            <Input
-              id="email"
-              name="email"
-              placeholder="your@email.com"
-              type="email"
-              required
-              className="bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500"
-            />
-          </LabelInputContainer>
-
-          <LabelInputContainer>
-            <Label htmlFor="message" className="text-neutral-400">
-              Message
-            </Label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Your message..."
-              className="flex min-h-[120px] w-full rounded-md border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 disabled:cursor-not-allowed disabled:opacity-50"
-              required
-            />
-          </LabelInputContainer>
-
-          <button
-            type="submit"
-            disabled={loading || (countdown > 0 && cooldownTime > 0)}
-            className="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading
-              ? "Sending..."
-              : countdown > 0 && cooldownTime > 0
-              ? `Wait ${formatTime(countdown)}`
-              : "To send"}
-          </button>
-        </form>
       </motion.div>
 
       {/* Confirmation Dialog */}
