@@ -51,7 +51,7 @@ export const ProjectPinCard = ({ project }: { project: ProjectProps }) => {
               ))}
             </div>
             {/* View Button - Right Edge */}
-            <div className="flex items-center gap-1 group/btn ml-auto">
+            <div className="flex items-center gap-1 group/btn ml-auto pointer-events-none">
               <span className="text-cyan-400 text-sm sm:text-base font-bold group-hover/btn:underline whitespace-nowrap">
                 {project.id === "patch-up" ? "View Project" : "Check Live Site"}
               </span>

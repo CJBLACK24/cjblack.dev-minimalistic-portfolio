@@ -14,12 +14,15 @@ import {
   IconBrandGithub,
   IconArrowNarrowDown,
 } from "@tabler/icons-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { BorderMagicButton } from "@/components/ui/buttons/border-magic-button";
 import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
 import { AnimatedTooltip } from "@/components/ui/misc/animated-hero-tooltip";
 import { Tooltip } from "@/components/ui/cards/tooltip-card";
 import { FlipWords } from "@/components/ui/text/flip-words";
 import { HeroContentProps } from "@/types";
+import React from "react";
 
 const techStack = [
   {
@@ -64,6 +67,63 @@ export const HeroContent = ({
   itemVariants,
 }: HeroContentProps) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const gridLinesRef = React.useRef<HTMLDivElement>(null);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  useGSAP(
+    () => {
+      if (!gridLinesRef.current) return;
+
+      const lines = gridLinesRef.current.children;
+
+      // Animate vertical lines (left and right)
+      gsap.fromTo(
+        [lines[0], lines[1]],
+        { scaleY: 0, opacity: 0 },
+        {
+          scaleY: 1,
+          opacity: 1,
+          duration: 1.8,
+          ease: "expo.inOut",
+          stagger: 0.3,
+          delay: 0.2,
+        }
+      );
+
+      // Animate horizontal lines (bottom and top)
+      gsap.fromTo(
+        [lines[2], lines[3]],
+        { scaleX: 0, opacity: 0 },
+        {
+          scaleX: 1,
+          opacity: 1,
+          duration: 1.8,
+          ease: "expo.inOut",
+          stagger: 0.3,
+          delay: 0.5,
+        }
+      );
+
+      // Animate the cyan highlights (the inner glow divs)
+      const highlights = gridLinesRef.current.querySelectorAll(
+        ".bg-linear-to-b, .bg-linear-to-r"
+      );
+      gsap.fromTo(
+        highlights,
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 2,
+          delay: 1.5,
+          stagger: 0.4,
+          ease: "power2.out",
+        }
+      );
+    },
+    { scope: containerRef }
+  );
 
   return (
     <motion.div
@@ -73,19 +133,20 @@ export const HeroContent = ({
       variants={containerVariants}
     >
       {/* Background/Grid Lines */}
-      <div className="absolute inset-y-0 -left-6 md:left-0 h-full w-px bg-neutral-800/50">
-        <div className="absolute top-0 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
+      <div ref={gridLinesRef} className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-y-0 -left-6 md:left-0 h-full w-px bg-neutral-800/50 origin-top opacity-0">
+          <div className="absolute top-0 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
+        </div>
+        <div className="absolute inset-y-0 -right-6 md:right-0 h-full w-px bg-neutral-800/50 origin-bottom opacity-0">
+          <div className="absolute h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50 origin-left opacity-0">
+          <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
+        </div>
+        <div className="absolute top-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50 origin-right opacity-0">
+          <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
+        </div>
       </div>
-      <div className="absolute inset-y-0 -right-6 md:right-0 h-full w-px bg-neutral-800/50">
-        <div className="absolute h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
-      </div>
-      <div className="absolute bottom-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50">
-        <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
-      </div>
-      <div className="absolute top-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50">
-        <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
-      </div>
-
       <div className="py-8 md:py-12 w-full h-full flex flex-col justify-center">
         {/* Two Column Layout: Image Left, Content Right */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-8 items-center w-full px-6 sm:px-10 md:px-16 lg:px-20">
@@ -94,15 +155,30 @@ export const HeroContent = ({
             variants={imageVariants}
             className="flex justify-center md:justify-end"
           >
-            <div className="relative w-full max-w-[280px] h-[340px] sm:max-w-[320px] sm:h-[400px] md:max-w-[340px] md:h-[420px] lg:max-w-[420px] lg:h-[520px] xl:max-w-[460px] xl:h-[580px]">
-              <Image
-                src="/cj.png"
-                alt="Profile"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="rounded-2xl object-cover shadow-2xl"
-                priority
-              />
+            <div className="relative w-full max-w-[280px] h-[340px] sm:max-w-[320px] sm:h-[400px] md:max-w-[340px] md:h-[420px] lg:max-w-[420px] lg:h-[520px] xl:max-w-[460px] xl:h-[580px] bg-neutral-900 rounded-2xl overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                animate={
+                  isImageLoaded ? { opacity: 1, filter: "blur(0px)" } : {}
+                }
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-full h-full"
+              >
+                <Image
+                  src="/cj.png"
+                  alt="Profile"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="rounded-2xl object-cover shadow-2xl"
+                  priority
+                  onLoad={() => setIsImageLoaded(true)}
+                />
+              </motion.div>
+              {!isImageLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-neutral-900">
+                  <div className="w-10 h-10 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
+                </div>
+              )}
             </div>
           </motion.div>
 
@@ -265,7 +341,6 @@ export const HeroContent = ({
               and developer with a passion for code.
             </motion.div>
 
-            {/* View Works Button and Tech Stack */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col items-start gap-6 mb-10 w-full"
