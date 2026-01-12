@@ -496,24 +496,10 @@ export default function AboutPage() {
               variants={contentVariants}
             >
               <motion.p variants={textItemVariants}>
-                Hey! I&apos;m Christian John Calderon Duque, a web and mobile
-                vibe coder and Next.js enthusiast working with the MERN and PERN
-                stacks, building modern applications from concept to deployment.
+                I&apos;m Christian John Calderon Duque, a web and mobile developer specializing in Next.js and the PERN/MERN stacks. I build full-stack applications with a focus on clean architecture and production-ready results. My recent project was a University Dashboard Management System, developed using the PERN stack with Next.js, PostgreSQL (NeonDB), Drizzle ORM, and Better Auth for passwordless login. I uses AI-assisted tools to efficiently integrate features, connect frontend and backend logic, and deliver secure, high-performance applications.
               </motion.p>
               <motion.p variants={textItemVariants}>
-                I develop faster using AI-assisted, agentic code editors to
-                integrate features, connect frontend and backend logic, and
-                maintain clean, structured codebases while actively reviewing
-                and refining what I ship. As a vibe coder, I focus on turning
-                ideas into real products—handling authentication like Google
-                OAuth, integrating databases, setting up custom domains and
-                hosting, deploying production-ready apps, and improving
-                performance and security.
-              </motion.p>
-              <motion.p variants={textItemVariants}>
-                I understand data flow across the stack, value code quality and
-                readability, and continuously sharpen my fundamentals while
-                building practical, real-world applications.
+                My approach is guided by systemic thinking, engineering fundamentals, and an entrepreneurial spirit, turning ideas into real solutions through focused development in authentication, databases, and deployment to maximize value and impact.
               </motion.p>
             </motion.div>
           </motion.article>
