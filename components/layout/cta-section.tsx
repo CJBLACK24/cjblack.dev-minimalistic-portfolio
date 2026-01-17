@@ -21,7 +21,7 @@ export function PreFooterCTA() {
           </h2>
           <p className="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
             Let&apos;s turn your ideas into reality. Whether you need a modern web
-            app, a complex dashboard, or a stunning portfolio, I'm here to help.
+            app, a complex dashboard, or a stunning portfolio, I&apos;m here to help.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -31,7 +31,7 @@ export function PreFooterCTA() {
             >
               <span className="mr-2">Start a Project</span>
               <IconArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 transition-opacity duration-500 group-hover:opacity-10" />
+              <div className="absolute inset-0 -z-10 bg-linear-to-r from-cyan-500 to-blue-500 opacity-0 transition-opacity duration-500 group-hover:opacity-10" />
             </a>
 
             <a

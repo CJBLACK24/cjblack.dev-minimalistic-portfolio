@@ -72,7 +72,7 @@ export const NUManagementHeader = () => (
 export const ModernUniversityHeader = () => (
   <div className="flex flex-1 w-full h-full min-h-60 rounded-xl bg-neutral-900 relative overflow-hidden group cursor-pointer">
     <Image
-      src="/assets/NUIMS/NUIMS.png"
+      src="/assets/Management-Dashboard/management-dashboard.png"
       alt="Modern University Management Dashboard"
       fill
       className="object-cover object-top opacity-90 transition-opacity duration-500"

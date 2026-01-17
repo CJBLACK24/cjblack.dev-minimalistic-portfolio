@@ -39,14 +39,14 @@ export const MinimalProjectCard = ({ project }: MinimalProjectCardProps) => {
         hover:border-neutral-500"
     >
       {/* Project Image with scale on hover */}
-      <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-5 border transition-colors duration-300 bg-neutral-100 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800/40">
+      <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden mb-5 border transition-colors duration-300 bg-neutral-100 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800/40">
         <div className="w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
           {project.header}
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-grow relative z-10">
+      <div className="flex flex-col grow relative z-10">
         <h3 className="font-bold text-lg md:text-xl mb-2 transition-colors duration-300 text-white group-hover:text-cyan-400">
           {project.title}
         </h3>

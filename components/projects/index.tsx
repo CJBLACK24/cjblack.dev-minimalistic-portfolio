@@ -12,7 +12,7 @@ export function ProjectsSection() {
       className="section-enhanced px-4 md:px-8 w-full relative"
     >
       {/* Subtle CSS gradient background - replaces heavy effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-950/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-neutral-950/30 to-transparent pointer-events-none" />
 
       {/* Content */}
       <div className="max-w-6xl mx-auto relative z-10">
