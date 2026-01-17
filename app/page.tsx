@@ -13,32 +13,39 @@ const FeaturesSection = dynamic(
   () => import("@/components/features").then((mod) => mod.FeaturesSection),
   {
     loading: () => <div className="min-h-screen" />,
-  }
+  },
 );
 const ProjectsSection = dynamic(
   () => import("@/components/projects").then((mod) => mod.ProjectsSection),
   {
     loading: () => <div className="min-h-screen" />,
-  }
+  },
 );
 const ContactSection = dynamic(
   () => import("@/components/contact").then((mod) => mod.ContactSection),
   {
     loading: () => <div className="min-h-screen" />,
-  }
+  },
 );
 const Footer = dynamic(
   () => import("@/components/layout/footer").then((mod) => mod.Footer),
   {
     loading: () => <div className="h-20" />,
-  }
+  },
 );
 const TechnologiesSection = dynamic(
   () =>
     import("@/components/technologies").then((mod) => mod.TechnologiesSection),
   {
     loading: () => <div className="min-h-screen" />,
-  }
+  },
+);
+const PreFooterCTA = dynamic(
+  () =>
+    import("@/components/layout/cta-section").then((mod) => mod.PreFooterCTA),
+  {
+    loading: () => <div className="h-40" />,
+  },
 );
 
 export default function Home() {
@@ -49,7 +56,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto px-4 sm:px-10 bg-black text-white">
+    <main className="relative flex justify-center items-center flex-col overflow-hidden mx-auto px-4 sm:px-10 transition-colors duration-300 bg-black text-white">
       <IntroLoader />
 
       <ScrollProgress className="bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
@@ -65,6 +72,7 @@ export default function Home() {
 
         <TechnologiesSection />
         <ContactSection />
+        <PreFooterCTA />
         <Footer />
       </div>
     </main>

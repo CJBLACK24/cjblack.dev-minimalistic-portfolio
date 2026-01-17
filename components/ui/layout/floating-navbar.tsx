@@ -26,7 +26,6 @@ export const FloatingNav = ({
   const pathname = usePathname();
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-    // Check if current is not undefined and is a number
     if (typeof current === "number") {
       const previous = scrollYProgress.getPrevious();
       const direction =
@@ -46,9 +45,8 @@ export const FloatingNav = ({
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    link: string
+    link: string,
   ) => {
-    // If we are on the home page, we can just scroll smoothly
     if (pathname === "/" && link.startsWith("#")) {
       e.preventDefault();
       if (link === "#home") {
@@ -60,13 +58,6 @@ export const FloatingNav = ({
           element.scrollIntoView({ behavior: "smooth" });
         }
       }
-    } else {
-      // If we are NOT on the home page, we need to navigate to the home page first
-      // The Link component will handle the navigation, but we might want to ensure
-      // the hash is correct.
-      // e.g. if link is "#technologies", we want to go to "/#technologies"
-      // We don't prevent default here, letting Next.js Link handle the routing
-      // But we ensure the href in the Link component is absolute
     }
   };
 
@@ -85,12 +76,13 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/20 rounded-full dark:bg-black bg-white shadow-input z-50 pr-2 pl-8 py-2 items-center justify-center space-x-4",
-          className
+          "flex max-w-fit fixed top-10 inset-x-0 mx-auto border rounded-full shadow-lg backdrop-blur-md z-50 pr-2 pl-8 py-2 items-center justify-center space-x-4 transition-colors duration-300",
+          "bg-white/80 dark:bg-black/80",
+          "border-neutral-200/50 dark:border-white/10",
+          className,
         )}
       >
         {navItems.map((navItem, idx: number) => {
-          // Ensure link is absolute if it's a hash
           const href = navItem.link.startsWith("#")
             ? `/${navItem.link}`
             : navItem.link;
@@ -100,20 +92,26 @@ export const FloatingNav = ({
               key={`link=${idx}`}
               href={href}
               onClick={(e) => handleNavClick(e, navItem.link)}
-              className={cn(
-                "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-cyan-400 hover:text-cyan-500 transition-colors"
-              )}
+              className="relative items-center flex space-x-1 transition-colors duration-300 text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 group"
               aria-label={`Navigate to ${navItem.name}`}
             >
               <span className="block sm:hidden">{navItem.icon}</span>
-              <span className="hidden sm:block text-sm">{navItem.name}</span>
+              <span className="hidden sm:block text-sm font-medium">
+                {navItem.name}
+              </span>
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full" />
             </Link>
           );
         })}
+
         <Link
           href="/#contact"
           onClick={(e) => handleNavClick(e, "#contact")}
-          className="border text-sm font-medium relative border-neutral-200 dark:border-white/20 text-black dark:text-white px-4 py-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
+          className="border text-sm font-medium relative px-4 py-2 rounded-full transition-all duration-300 
+            border-neutral-200 dark:border-white/20 
+            text-neutral-900 dark:text-white 
+            hover:bg-neutral-100 dark:hover:bg-neutral-800 
+            hover:border-cyan-400/50 dark:hover:border-cyan-500/30"
           aria-label="Navigate to Contact section"
         >
           <span>Contact</span>

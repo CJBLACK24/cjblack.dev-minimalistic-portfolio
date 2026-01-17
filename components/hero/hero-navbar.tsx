@@ -12,7 +12,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/primitives/avatar";
-import { BorderMagicButton } from "@/components/ui/buttons/border-magic-button";
 import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 
@@ -68,11 +67,11 @@ export const HeroNavbar = () => {
       <div className="flex items-center">
         <Link
           href="/"
-          className="text-2xl font-bold text-white tracking-tighter flex items-center group"
+          className="text-2xl font-bold tracking-tighter flex items-center group text-neutral-900 dark:text-white"
           aria-label="CJ Black Logo"
         >
           <span>CJ</span>
-          <span className="text-cyan-500 text-5xl leading-[0.1] mb-4 group-hover:scale-125 transition-transform duration-300">
+          <span className="text-cyan-500 dark:text-cyan-400 text-5xl leading-[0.1] mb-4 group-hover:scale-125 transition-transform duration-300">
             .
           </span>
         </Link>
@@ -83,19 +82,19 @@ export const HeroNavbar = () => {
           <Link
             key={item.name}
             href={item.link}
-            className="text-base font-medium text-neutral-300 hover:text-white transition-colors"
+            className="text-base font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300 relative group"
           >
             {item.name}
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full" />
           </Link>
         ))}
       </nav>
 
-      <div className="hidden md:flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-3">
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-blue-500/20 cursor-pointer"
-          style={{ backgroundColor: "#2FA4FF", color: "#020013" }}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="px-5 py-2.5 rounded-lg font-semibold text-sm cursor-pointer transition-all duration-300 bg-[#2FA4FF] text-[#020013] hover:bg-[#1a93ed] shadow-lg shadow-cyan-500/20"
           onClick={(e) => {
             setIsCVModalOpen(true);
             confetti({

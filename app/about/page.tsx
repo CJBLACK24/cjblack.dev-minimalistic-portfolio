@@ -13,367 +13,47 @@ import {
   IconDownload,
   IconMenu2,
   IconX,
+  IconArrowLeft,
 } from "@tabler/icons-react";
 import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
+
 import confetti from "canvas-confetti";
 
-interface NavItemProps {
-  href: string;
-  label: string;
-  isActive?: boolean;
-  onClick?: () => void;
-}
+const navItems = [
+  { href: "/#home", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#technologies", label: "Technologies" },
+  { href: "/#contact", label: "Contact" },
+];
 
-function NavItem({ href, label, isActive = false, onClick }: NavItemProps) {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className={`
-        relative py-4 px-3 text-xs sm:text-sm font-medium tracking-wider uppercase transition-all duration-300 ease-out 
-        ${
-          isActive
-            ? "text-white bg-[#020013]"
-            : "text-white/50 hover:text-white/80 hover:bg-[#020013]"
-        }
-      `}
-      style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-    >
-      {label}
-      {isActive && (
-        <motion.span
-          layoutId="activeNav"
-          className="absolute right-0 top-0 bottom-0 w-px bg-linear-to-b from-[#2FA4FF] to-purple-500 "
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-        />
-      )}
-    </Link>
-  );
-}
-
-function VerticalNavbar({
-  onDownloadCV,
-}: {
-  onDownloadCV: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}) {
-  const [activeItem] = useState("About");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Same nav items as hero navbar
-  const navItems = [
-    { href: "/#home", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/#projects", label: "Projects" },
-    { href: "/#technologies", label: "Technologies" },
-    { href: "/#contact", label: "Contact" },
-  ];
-
-  const socialLinks = [
-    {
-      href: "https://x.com/JohnCjblack",
-      icon: IconBrandX,
-      color: "hover:text-[#2FA4FF]",
-    },
-    {
-      href: "https://github.com/CJBLACK24",
-      icon: IconBrandGithub,
-      color: "hover:text-[#2FA4FF]",
-    },
-    {
-      href: "https://www.linkedin.com/in/cj-black-a5b110335",
-      icon: IconBrandLinkedin,
-      color: "hover:text-[#0A66C2]",
-    },
-    {
-      href: "https://www.facebook.com/ChrisNoLimit1124",
-      icon: IconBrandFacebook,
-      color: "hover:text-[#1877F2]",
-    },
-    {
-      href: "https://www.instagram.com/cjblack_24/",
-      icon: IconBrandInstagram,
-      color: "hover:text-[#E4405F]",
-    },
-  ];
-
-  // Animation variants for menu items
-  const menuItemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.05,
-        duration: 0.3,
-        ease: [0.25, 0.46, 0.45, 0.94] as const, // easeOutQuad
-      },
-    }),
-    exit: { opacity: 0, x: -20, transition: { duration: 0.2 } },
-  };
-
-  const socialItemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: (i: number) => ({
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: 0.2 + i * 0.05,
-        duration: 0.3,
-        type: "spring" as const,
-        stiffness: 300,
-        damping: 20,
-      },
-    }),
-  };
-
-  return (
-    <>
-      {/* Desktop Vertical Navbar - visible on sm and up */}
-      <nav
-        className="fixed left-0 top-0 h-screen w-10 sm:w-12 md:w-14 lg:w-16 hidden sm:flex flex-col items-center z-50"
-        style={{ backgroundColor: "#090b1d" }}
-      >
-        {/* Logo */}
-        <Link
-          href="/"
-          className="mt-4 sm:mt-6 mb-6 sm:mb-8 flex items-center justify-center px-2 py-1 bg-[#020013] rounded-br-xs"
-        >
-          <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">
-            CJ<span className="text-[#2FA4FF]">.</span>
-          </span>
-        </Link>
-
-        {/* Navigation Items */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-5 md:gap-2">
-          {navItems.map((item) => (
-            <NavItem
-              key={item.label}
-              href={item.href}
-              label={item.label}
-              isActive={item.label === activeItem}
-            />
-          ))}
-        </div>
-      </nav>
-
-      {/* Mobile Top Navbar with Glassmorphism */}
-      <motion.nav
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="fixed top-0 left-0 right-0 h-14 sm:hidden flex items-center justify-between px-4 z-50 border-b border-white/10 will-change-transform"
-        style={{
-          background: "rgba(9, 11, 29, 0.9)", // Slightly more opaque
-          backdropFilter: "blur(8px)", // Reduced blur for performance
-          WebkitBackdropFilter: "blur(8px)",
-        }}
-      >
-        {/* Logo */}
-        <Link href="/" className="flex items-center justify-center">
-          <span className="text-xl font-bold text-white">
-            CJ<span className="text-[#2FA4FF]">.</span>
-          </span>
-        </Link>
-
-        {/* Mobile Menu Button */}
-        <motion.button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 text-white/70 hover:text-white transition-colors"
-          aria-label="Toggle mobile menu"
-          whileTap={{ scale: 0.95 }}
-        >
-          <motion.div
-            animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            {isMobileMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
-          </motion.div>
-        </motion.button>
-      </motion.nav>
-
-      {/* Mobile Menu Dropdown with Glassmorphism */}
-      <motion.div
-        initial={false}
-        animate={{
-          height: isMobileMenuOpen ? "auto" : 0,
-          opacity: isMobileMenuOpen ? 1 : 0,
-        }}
-        transition={{
-          duration: 0.3, // Faster duration
-          ease: "easeInOut", // Simpler ease
-        }}
-        className="fixed top-14 left-0 right-0 sm:hidden z-40 overflow-hidden border-b border-white/10 will-change-transform"
-        style={{
-          background: "rgba(9, 11, 29, 0.98)", // Almost opaque for better perf
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-        }}
-      >
-        <div className="flex flex-col py-5 px-6 gap-4">
-          {/* Navigation Links */}
-          <div className="flex flex-col gap-2">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.label}
-                custom={index}
-                variants={menuItemVariants}
-                initial="hidden"
-                animate={isMobileMenuOpen ? "visible" : "hidden"}
-              >
-                <Link
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`
-                    py-2.5 text-base font-medium tracking-wider uppercase
-                    transition-all duration-300 ease-out block
-                    ${
-                      item.label === activeItem
-                        ? "text-white"
-                        : "text-white/50 hover:text-white/80"
-                    }
-                  `}
-                >
-                  {item.label}
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Divider */}
-          <motion.div
-            className="h-px bg-white/10 my-2"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: isMobileMenuOpen ? 1 : 0 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
-          />
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-3 py-2">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={social.href}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-2.5 bg-white/5 hover:bg-white/10 rounded-lg text-white/70 ${social.color} transition-all duration-300`}
-                custom={index}
-                variants={socialItemVariants}
-                initial="hidden"
-                animate={isMobileMenuOpen ? "visible" : "hidden"}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <social.icon size={20} />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* Download CV Button */}
-          <motion.button
-            onClick={(e) => {
-              onDownloadCV(e);
-              setIsMobileMenuOpen(false);
-            }}
-            className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg font-semibold text-base transition-all duration-300"
-            style={{
-              backgroundColor: "#2FA4FF",
-              color: "#020013",
-            }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{
-              opacity: isMobileMenuOpen ? 1 : 0,
-              y: isMobileMenuOpen ? 0 : 10,
-            }}
-            transition={{ delay: 0.35, duration: 0.3 }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0 0 20px rgba(47, 164, 255, 0.4)",
-            }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <IconDownload size={20} />
-            <span>Download CV</span>
-          </motion.button>
-        </div>
-      </motion.div>
-    </>
-  );
-}
-
-interface SocialLinkProps {
-  href: string;
-  icon: React.ReactNode;
-  hoverColor?: string;
-}
-
-function SocialLink({
-  href,
-  icon,
-  hoverColor = "hover:text-[#2FA4FF]",
-}: SocialLinkProps) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white/70 ${hoverColor} transition-all duration-300 hover:scale-110`}
-    >
-      {icon}
-    </a>
-  );
-}
+const socialLinks = [
+  { href: "https://x.com/JohnCjblack", icon: IconBrandX, label: "X" },
+  {
+    href: "https://github.com/CJBLACK24",
+    icon: IconBrandGithub,
+    label: "GitHub",
+  },
+  {
+    href: "https://www.linkedin.com/in/cj-black-a5b110335",
+    icon: IconBrandLinkedin,
+    label: "LinkedIn",
+  },
+  {
+    href: "https://www.facebook.com/ChrisNoLimit1124",
+    icon: IconBrandFacebook,
+    label: "Facebook",
+  },
+  {
+    href: "https://www.instagram.com/cjblack_24/",
+    icon: IconBrandInstagram,
+    label: "Instagram",
+  },
+];
 
 export default function AboutPage() {
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const headerVariants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  } as const;
-
-  const imageVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  } as const;
-
-  const contentVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.1 },
-    },
-  } as const;
-
-  const textItemVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  } as const;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleDownloadCVClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsCVModalOpen(true);
@@ -389,58 +69,138 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="min-h-screen w-full bg-[#020013] overflow-x-hidden flex items-center justify-center relative ">
-      {/* Vertical Navigation Bar */}
-      <VerticalNavbar onDownloadCV={handleDownloadCVClick} />
+    <main className="min-h-screen w-full overflow-x-hidden transition-colors duration-300 bg-white dark:bg-black">
+      {/* Fixed Header - Theme aware */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md transition-colors duration-300 border-neutral-200 dark:border-neutral-800/60 bg-white/80 dark:bg-black/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 group">
+              <IconArrowLeft className="w-4 h-4 text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors duration-300" />
+              <span className="text-xl font-bold text-neutral-900 dark:text-white">
+                CJ<span className="text-cyan-500 dark:text-[#2FA4FF]">.</span>
+              </span>
+            </Link>
 
-      {/* Top Right Actions - Social Icons & Download CV */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="fixed top-4 sm:top-6 right-4 sm:right-6 md:right-8 z-50 hidden sm:flex items-center gap-3 sm:gap-4"
-      >
-        {/* Social Icons */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <SocialLink
-            href="https://x.com/JohnCjblack"
-            icon={<IconBrandX size={18} className="sm:w-5 sm:h-5" />}
-          />
-          <SocialLink
-            href="https://github.com/CJBLACK24"
-            icon={<IconBrandGithub size={18} className="sm:w-5 sm:h-5" />}
-          />
-          <SocialLink
-            href="https://www.linkedin.com/in/cj-black-a5b110335"
-            icon={<IconBrandLinkedin size={18} className="sm:w-5 sm:h-5" />}
-            hoverColor="hover:text-[#0A66C2]"
-          />
-          <SocialLink
-            href="https://www.facebook.com/ChrisNoLimit1124"
-            icon={<IconBrandFacebook size={18} className="sm:w-5 sm:h-5" />}
-            hoverColor="hover:text-[#1877F2]"
-          />
-          <SocialLink
-            href="https://www.instagram.com/cjblack_24/"
-            icon={<IconBrandInstagram size={18} className="sm:w-5 sm:h-5" />}
-            hoverColor="hover:text-[#E4405F]"
-          />
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`text-sm font-medium transition-colors duration-300 relative group ${
+                    item.label === "About"
+                      ? "text-neutral-900 dark:text-white"
+                      : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-500 transition-all duration-300 ${
+                      item.label === "About"
+                        ? "w-full"
+                        : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              ))}
+            </nav>
+
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center gap-3">
+              <div className="flex items-center gap-1">
+                {socialLinks.slice(0, 3).map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
+                    aria-label={social.label}
+                  >
+                    <social.icon size={18} />
+                  </a>
+                ))}
+              </div>
+              <button
+                onClick={handleDownloadCVClick}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-[1.02] bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-[#020013]"
+              >
+                <IconDownload size={16} />
+                <span>Download CV</span>
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center gap-2">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <IconX size={24} />
+                ) : (
+                  <IconMenu2 size={24} />
+                )}
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Download CV Button */}
-        <button
-          onClick={handleDownloadCVClick}
-          className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#2FA4FF]/25"
-          style={{
-            backgroundColor: "#2FA4FF",
-            color: "#020013",
-          }}
-        >
-          <IconDownload size={18} className="sm:w-5 sm:h-5" />
-          <span className="hidden sm:inline">Download CV</span>
-          <span className="sm:hidden">CV</span>
-        </button>
-      </motion.div>
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden border-t border-neutral-200 dark:border-neutral-800/60 bg-white dark:bg-black"
+          >
+            <div className="px-4 py-4 space-y-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block py-2.5 text-base font-medium transition-colors duration-300 ${
+                    item.label === "About"
+                      ? "text-neutral-900 dark:text-white"
+                      : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800/60">
+                <div className="flex items-center gap-2 mb-4">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 bg-neutral-100 dark:bg-neutral-900/60 rounded-lg text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300"
+                    >
+                      <social.icon size={18} />
+                    </a>
+                  ))}
+                </div>
+                <button
+                  onClick={(e) => {
+                    handleDownloadCVClick(e);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-[#020013]"
+                >
+                  <IconDownload size={18} />
+                  <span>Download CV</span>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </header>
 
       {/* CV Preview Modal */}
       <CVPreviewModal
@@ -449,62 +209,99 @@ export default function AboutPage() {
         cvUrl="/CV/cjblack_resume.pdf"
       />
 
-      {/* About Section - Main Content */}
-      <motion.section
-        id="about-section"
-        aria-label="About Me"
-        className="max-w-6xl w-full flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 
-          px-4 sm:pl-16 md:pl-20 lg:pl-24 sm:pr-6 md:pr-10 lg:pr-16 
-          pt-20 sm:pt-6 md:pt-8 lg:pt-10 pb-6 sm:pb-8 md:pb-10 lg:pb-12"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Header Section */}
-        <header>
-          <motion.h1
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white"
-            variants={headerVariants}
+      {/* Main Content */}
+      <section className="pt-32 pb-24 md:pb-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-14 md:mb-20"
           >
-            Meet your junior <br className="hidden md:block" />
-            <span className="text-[#2FA4FF]">full-stack developer.</span>
-          </motion.h1>
-        </header>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-neutral-900 dark:text-white">
+              Meet your junior{" "}
+              <span className="text-cyan-500 dark:text-[#2FA4FF]">
+                full-stack developer.
+              </span>
+            </h1>
+          </motion.div>
 
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-start">
-          {/* Left Side - Image */}
-          <motion.figure
-            variants={imageVariants}
-            className="relative w-full aspect-square sm:aspect-square lg:aspect-square max-h-[280px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
-          >
-            <Image
-              src="/cjblackdev.jpg"
-              alt="CJ Black - Junior Full-Stack Developer"
-              fill
-              className="object-cover"
-              priority
-            />
-          </motion.figure>
-
-          {/* Right Side - Content */}
-          <motion.article
-            variants={contentVariants}
-            className="flex flex-col gap-4 sm:gap-5 md:gap-6 text-white/90"
-          >
+          {/* Two Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            {/* Image */}
             <motion.div
-              className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-white/80"
-              variants={contentVariants}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <motion.p variants={textItemVariants}>
-                I&apos;m Christian John Calderon Duque, a web and mobile developer specializing in Next.js and the PERN/MERN stacks. I build full-stack applications with a focus on clean architecture and production-ready results. My recent project was a University Dashboard Management System, developed using the PERN stack with Next.js, PostgreSQL (NeonDB), Drizzle ORM, and Better Auth for passwordless login. I uses AI-assisted tools to efficiently integrate features, connect frontend and backend logic, and deliver secure, high-performance applications.
-              </motion.p>
-              <motion.p variants={textItemVariants}>
-                My approach is guided by systemic thinking, engineering fundamentals, and an entrepreneurial spirit, turning ideas into real solutions through focused development in authentication, databases, and deployment to maximize value and impact.
-              </motion.p>
+              <div className="relative aspect-square max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden border transition-colors duration-300 border-neutral-200 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900/40 group">
+                <Image
+                  src="/cjblackdev.jpg"
+                  alt="CJ Black - Junior Full-Stack Developer"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  priority
+                />
+              </div>
             </motion.div>
-          </motion.article>
-        </section>
-      </motion.section>
+
+            {/* Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="space-y-8"
+            >
+              <div className="space-y-6 text-base md:text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
+                <p>
+                  I&apos;m Christian John Calderon Duque, a web and mobile
+                  developer specializing in Next.js and the PERN/MERN stacks. I
+                  build full-stack applications with a focus on clean
+                  architecture and production-ready results.
+                </p>
+                <p>
+                  My recent project was a University Dashboard Management
+                  System, developed using the PERN stack with Next.js,
+                  PostgreSQL (NeonDB), Drizzle ORM, and Better Auth for
+                  passwordless login. I use AI-assisted tools to efficiently
+                  integrate features, connect frontend and backend logic, and
+                  deliver secure, high-performance applications.
+                </p>
+                <p>
+                  My approach is guided by systemic thinking, engineering
+                  fundamentals, and an entrepreneurial spirit, turning ideas
+                  into real solutions through focused development in
+                  authentication, databases, and deployment to maximize value
+                  and impact.
+                </p>
+              </div>
+
+              {/* Stats */}
+              <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800/60">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="group cursor-default">
+                    <p className="text-3xl font-bold text-neutral-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors duration-300">
+                      2+
+                    </p>
+                    <p className="text-sm text-neutral-500 font-medium mt-1">
+                      Years Learning
+                    </p>
+                  </div>
+                  <div className="group cursor-default">
+                    <p className="text-3xl font-bold text-neutral-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors duration-300">
+                      5+
+                    </p>
+                    <p className="text-sm text-neutral-500 font-medium mt-1">
+                      Projects Built
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

@@ -74,12 +74,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} dark`}
-      suppressHydrationWarning
-    >
-      <head></head>
+    <html lang="en" className={`${inter.variable} dark`}>
+      <head />
       <body className={inter.className}>
         <WebVitalsReporter />
         <SmoothScroll>{children}</SmoothScroll>

@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/primitives/label";
 import { Input } from "@/components/ui/primitives/input";
 import { AnimatedAlert } from "@/components/ui/misc/animated-alert";
 import { cn } from "@/lib/utils";
-import gsap from "gsap";
+
 import { motion } from "motion/react";
 import {
   AlertDialog,
@@ -41,19 +41,16 @@ const loadCooldownState = () => {
   const { lastSendTime, attempts, cooldownEnd } = JSON.parse(storedData);
   const now = Date.now();
 
-  // Check if 1 hour has passed since last send
   if (now - lastSendTime > RESET_DURATION) {
     localStorage.removeItem("contactCooldown");
     return { attempts: 0, cooldownEnd: 0, countdown: 0 };
   } else if (cooldownEnd > now) {
-    // Still in cooldown
     return {
       attempts,
       cooldownEnd,
       countdown: Math.ceil((cooldownEnd - now) / 1000),
     };
   } else {
-    // Cooldown expired but within 1 hour
     return { attempts, cooldownEnd: 0, countdown: 0 };
   }
 };
@@ -74,7 +71,6 @@ const LabelInputContainer = ({
 
 export const ContactForm = ({ itemVariants }: SectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
   const form = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [alertState, setAlertState] = useState<{
@@ -89,19 +85,17 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
     variant: "default",
   });
 
-  // Anti-spam states with lazy initialization
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [cooldownTime, setCooldownTime] = useState(
-    () => loadCooldownState().cooldownEnd
+    () => loadCooldownState().cooldownEnd,
   );
   const [attemptCount, setAttemptCount] = useState(
-    () => loadCooldownState().attempts
+    () => loadCooldownState().attempts,
   );
   const [countdown, setCountdown] = useState(
-    () => loadCooldownState().countdown
+    () => loadCooldownState().countdown,
   );
 
-  // Countdown timer
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => {
@@ -111,79 +105,24 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
     }
   }, [countdown]);
 
-  // Format countdown time
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${minutes}:${secs.toString().padStart(2, "0")}`;
   };
 
-  // GTA 6 Style Effects logic
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current || !glowRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    // Spotlight glow
-    gsap.to(glowRef.current, {
-      opacity: 1,
-      x: x,
-      y: y,
-      duration: 0.4,
-      ease: "power2.out",
-    });
-
-    // Suble 3D tilt
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 20; // Less tilt for larger container
-    const rotateY = (centerX - x) / 20;
-
-    gsap.to(containerRef.current, {
-      rotateX: rotateX,
-      rotateY: rotateY,
-      duration: 0.5,
-      transformPerspective: 1000,
-      ease: "power2.out",
-    });
-  };
-
-  const onMouseLeave = () => {
-    if (!containerRef.current || !glowRef.current) return;
-
-    gsap.to(glowRef.current, {
-      opacity: 0,
-      duration: 0.8,
-    });
-
-    gsap.to(containerRef.current, {
-      rotateX: 0,
-      rotateY: 0,
-      duration: 0.8,
-      ease: "elastic.out(1, 0.3)",
-    });
-  };
-
-  // Handle form submission - show confirmation dialog first
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Check if in cooldown
     if (cooldownTime > 0 && countdown > 0) {
       return;
     }
-
-    // Show confirmation dialog
     setShowConfirmDialog(true);
   };
 
-  // Actually send the email after confirmation
   const sendEmail = () => {
     setShowConfirmDialog(false);
     setLoading(true);
 
-    // Using provided credentials directly as fallback since .env write was blocked
     const serviceId =
       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_y3wm8nt";
     const templateId =
@@ -197,8 +136,6 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
       const email = formData.get("email") as string;
       const message = formData.get("message") as string;
 
-      // Manually construct template params
-      // Appending email to message ensures it shows up in the body
       const templateParams = {
         name: name,
         email: email,
@@ -219,31 +156,28 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
           });
           form.current?.reset();
 
-          // Fire confetti on success
           confetti({
             particleCount: 100,
             spread: 70,
             origin: { y: 0.6 },
-            colors: ["#06b6d4", "#3b82f6", "#ffffff"], // Cyan, Blue, White
+            colors: ["#06b6d4", "#3b82f6", "#ffffff"],
           });
 
-          // Update cooldown and attempt count
           const now = Date.now();
           const newAttemptCount = attemptCount + 1;
           const cooldownIndex = Math.min(
             newAttemptCount - 1,
-            COOLDOWN_DURATIONS.length - 1
+            COOLDOWN_DURATIONS.length - 1,
           );
           const newCooldownEnd = now + COOLDOWN_DURATIONS[cooldownIndex];
 
-          // Save to localStorage
           localStorage.setItem(
             "contactCooldown",
             JSON.stringify({
               lastSendTime: now,
               attempts: newAttemptCount,
               cooldownEnd: newCooldownEnd,
-            })
+            }),
           );
 
           setAttemptCount(newAttemptCount);
@@ -252,7 +186,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
 
           setTimeout(
             () => setAlertState((prev) => ({ ...prev, isVisible: false })),
-            5000
+            5000,
           );
         },
         (error) => {
@@ -266,9 +200,9 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
           });
           setTimeout(
             () => setAlertState((prev) => ({ ...prev, isVisible: false })),
-            5000
+            5000,
           );
-        }
+        },
       );
     }
   };
@@ -283,40 +217,31 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
         onClose={() => setAlertState((prev) => ({ ...prev, isVisible: false }))}
       />
 
-      {/* Contact Form */}
+      {/* Contact Form - Theme aware */}
       <motion.div
         ref={containerRef}
-        onMouseMove={onMouseMove}
-        onMouseLeave={onMouseLeave}
         variants={itemVariants}
-        className="relative lg:col-span-1 bg-neutral-900/50 border border-neutral-800 rounded-3xl p-8 overflow-hidden transition-all duration-300 hover:border-neutral-700/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]"
+        className="relative lg:col-span-1 border rounded-xl p-6 md:p-8 transition-all duration-300 group
+          bg-[#0a0a0a] 
+          border-neutral-800 
+          hover:border-neutral-500"
       >
-        {/* GTA 6 style glow spotlight */}
-        <div
-          ref={glowRef}
-          className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-0"
-          style={{
-            background:
-              "radial-gradient(600px circle at center, rgba(6, 182, 212, 0.12), transparent 80%)",
-            transform: "translate(-50%, -50%)",
-            width: "1200px",
-            height: "1200px",
-          }}
-        />
-
-        <div className="relative z-10">
+        <div className="relative">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center">
-              <IconSend className="text-white w-6 h-6" />
+            <div className="w-11 h-11 rounded-lg flex items-center justify-center border transition-colors duration-300 bg-[#111] border-neutral-800 group-hover:border-neutral-600">
+              <IconSend className="w-5 h-5 text-white" />
             </div>
-            <h3 className="text-xl font-semibold text-white">
-              Send me an email
+            <h3 className="text-lg font-semibold text-white">
+              Send me a message
             </h3>
           </div>
 
-          <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-5">
             <LabelInputContainer>
-              <Label htmlFor="name" className="text-neutral-400">
+              <Label
+                htmlFor="name"
+                className="text-sm font-medium text-neutral-600 dark:text-neutral-500"
+              >
                 Name
               </Label>
               <Input
@@ -325,13 +250,22 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="Your Name"
                 type="text"
                 required
-                className="bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500"
+                className="rounded-xl px-4 py-3 transition-all duration-200 
+                  bg-neutral-50 dark:bg-neutral-900/60 
+                  border-neutral-200 dark:border-neutral-800 
+                  text-neutral-900 dark:text-white 
+                  placeholder:text-neutral-400 dark:placeholder:text-neutral-600 
+                  focus:border-cyan-500 dark:focus:border-cyan-500/40 
+                  focus:ring-2 focus:ring-cyan-500/10"
               />
             </LabelInputContainer>
 
             <LabelInputContainer>
-              <Label htmlFor="email" className="text-neutral-400">
-                E-mail
+              <Label
+                htmlFor="email"
+                className="text-sm font-medium text-neutral-600 dark:text-neutral-500"
+              >
+                Email
               </Label>
               <Input
                 id="email"
@@ -339,19 +273,35 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="your@email.com"
                 type="email"
                 required
-                className="bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500"
+                className="rounded-xl px-4 py-3 transition-all duration-200 
+                  bg-neutral-50 dark:bg-neutral-900/60 
+                  border-neutral-200 dark:border-neutral-800 
+                  text-neutral-900 dark:text-white 
+                  placeholder:text-neutral-400 dark:placeholder:text-neutral-600 
+                  focus:border-cyan-500 dark:focus:border-cyan-500/40 
+                  focus:ring-2 focus:ring-cyan-500/10"
               />
             </LabelInputContainer>
 
             <LabelInputContainer>
-              <Label htmlFor="message" className="text-neutral-400">
+              <Label
+                htmlFor="message"
+                className="text-sm font-medium text-neutral-600 dark:text-neutral-500"
+              >
                 Message
               </Label>
               <textarea
                 id="message"
                 name="message"
                 placeholder="Your message..."
-                className="flex min-h-[120px] w-full rounded-md border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex min-h-[120px] w-full rounded-lg border px-4 py-3 text-sm transition-all duration-200 resize-none
+                  bg-[#111] 
+                  border-neutral-800 
+                  text-white 
+                  placeholder:text-neutral-500 
+                  focus-visible:outline-none focus-visible:border-neutral-500 
+                  focus-visible:ring-1 focus-visible:ring-neutral-500 
+                  disabled:cursor-not-allowed disabled:opacity-50"
                 required
               />
             </LabelInputContainer>
@@ -359,13 +309,16 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
             <button
               type="submit"
               disabled={loading || (countdown > 0 && cooldownTime > 0)}
-              className="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed relative z-20"
+              className="w-full font-semibold py-3 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative z-20 mt-2
+                bg-white 
+                text-black 
+                hover:bg-neutral-200"
             >
               {loading
                 ? "Sending..."
                 : countdown > 0 && cooldownTime > 0
-                ? `Wait ${formatTime(countdown)}`
-                : "To send"}
+                  ? `Wait ${formatTime(countdown)}`
+                  : "Send Message"}
             </button>
           </form>
         </div>
@@ -373,48 +326,42 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
 
       {/* Confirmation Dialog */}
       <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
-        <AlertDialogContent className="bg-neutral-900 border-neutral-800">
+        <AlertDialogContent className="rounded-2xl bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-white text-xl">
+            <AlertDialogTitle className="text-xl text-neutral-900 dark:text-white">
               Confirm Send Message
             </AlertDialogTitle>
             <AlertDialogDescription asChild>
-              <div className="text-neutral-400 space-y-3">
+              <div className="text-neutral-600 dark:text-neutral-400 space-y-3">
                 <p>Are you sure you want to send this message?</p>
                 {attemptCount < 3 && (
-                  <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mt-3">
-                    <p className="text-yellow-400 text-sm font-medium">
+                  <div className="rounded-xl p-3 mt-3 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20">
+                    <p className="text-sm font-medium text-amber-700 dark:text-amber-400">
                       ⚠️ Anti-spam Notice:
                     </p>
-                    <p className="text-yellow-300/80 text-sm mt-1">
+                    <p className="text-sm mt-1 text-amber-600 dark:text-amber-300/80">
                       After sending, you&apos;ll need to wait{" "}
                       <span className="font-semibold">
                         {attemptCount === 0
                           ? "2 minutes"
                           : attemptCount === 1
-                          ? "5 minutes"
-                          : "10 minutes"}
+                            ? "5 minutes"
+                            : "10 minutes"}
                       </span>{" "}
                       before sending another message.
                     </p>
-                    {attemptCount > 0 && (
-                      <p className="text-yellow-300/60 text-xs mt-2">
-                        This is your {attemptCount === 1 ? "2nd" : "3rd"}{" "}
-                        attempt. Cooldown period increases with each send.
-                      </p>
-                    )}
                   </div>
                 )}
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="bg-neutral-800 text-white border-neutral-700 hover:bg-neutral-700">
+            <AlertDialogCancel className="rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
               onClick={sendEmail}
-              className="bg-white text-black hover:bg-neutral-200"
+              className="rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100"
             >
               Send Message
             </AlertDialogAction>

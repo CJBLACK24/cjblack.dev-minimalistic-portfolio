@@ -6,7 +6,6 @@ import {
   IconHome,
   IconCode,
   IconCpu,
-  IconClipboardCopy,
   IconTableColumn,
   IconSchool,
   IconCalendarEvent,
@@ -14,9 +13,9 @@ import {
 } from "@tabler/icons-react";
 import {
   BookWiseHeader,
-  PatchUpHeader,
   NUManagementHeader,
   DevEventHeader,
+  ModernUniversityHeader,
 } from "../components/projects/project-card-headers";
 
 // Floating Navigation Items
@@ -486,41 +485,46 @@ export const projectsData = [
     ],
   },
   {
-    id: "patch-up",
-    title: "Patch Up: Modern Tire Repair",
+    id: "modern-university",
+    title: "Modern University Management Dashboard",
     description:
-      "A revolutionary dual-app mobile-controlled electric vulcanizer system with real-time chat via Socket.io, routing map for location tracking, and seamless backend integration.",
-    header: <PatchUpHeader />,
-    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-    link: "/projects",
+      "A comprehensive education management system featuring role-based portals, academic analytics, Student Information System (SIS), and automated scheduling capabilities.",
+    header: <ModernUniversityHeader />,
+    icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
+    link: "https://modern-university-management-dashbo.vercel.app/",
+    liveDemo: "https://modern-university-management-dashbo.vercel.app/",
     className: "",
-    viewButton: "/projects",
     techStack: [
       {
         id: 1,
-        name: "React Native",
+        name: "Next.js",
         designation: "Framework",
-        image: "/react-native-logo.svg",
+        image: "/nextjs-logo.svg",
       },
       {
         id: 2,
-        name: "MongoDB",
-        designation: "Database",
-        image: "/mongodb-logo.svg",
+        name: "TypeScript",
+        designation: "Language",
+        image:
+          "https://camo.githubusercontent.com/5c3873b6812ecfb1d2bc6ece8c2c548d53d151c2edbf6b0281207672ca3ab0a8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f74732d69636f6e2e737667",
       },
       {
         id: 3,
-        name: "Arduino",
-        designation: "Hardware",
-        image: "/ardiuno.png",
+        name: "PostgreSQL",
+        designation: "Database",
+        image: "/postgresql-logo.svg",
       },
-      { id: 4, name: "C++", designation: "Language", image: "/C++.png" },
-      { id: 5, name: "Expo", designation: "Platform", image: "/expo.png" },
       {
-        id: 6,
-        name: "Socket.io",
-        designation: "Real-time",
-        image: "/socket.png",
+        id: 4,
+        name: "Tailwind CSS",
+        designation: "Styling",
+        image: "/tailwind-logo.svg",
+      },
+      {
+        id: 5,
+        name: "Prisma",
+        designation: "ORM",
+        image: "/prisma.png",
       },
     ],
   },

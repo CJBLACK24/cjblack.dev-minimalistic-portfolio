@@ -1,82 +1,41 @@
 "use client";
 
 import React from "react";
-import { SparklesCore } from "@/components/ui/backgrounds/sparkles";
 import { projectsData } from "@/constants";
-import { motion, Variants } from "motion/react";
-import { ProjectPinCard } from "./project-pin-card";
+import { motion } from "motion/react";
+import { MinimalProjectCard } from "./minimal-project-card";
 
 export function ProjectsSection() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
     <section
       id="projects"
-      className="py-24 md:py-32 px-2 md:px-8 w-full relative overflow-hidden"
+      className="section-enhanced px-4 md:px-8 w-full relative"
     >
-      {/* Sparkles Background Effect */}
-      <div className="absolute inset-0 w-full h-full">
-        <SparklesCore
-          id="projects-sparkles"
-          background="transparent"
-          minSize={0.4}
-          maxSize={1}
-          particleDensity={3}
-          className="w-full h-full"
-          particleColor="#FFFFFF"
-        />
-      </div>
+      {/* Subtle CSS gradient background - replaces heavy effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-950/30 to-transparent pointer-events-none" />
 
       {/* Content */}
-      <div className="w-full max-w-full mx-auto relative z-10 px-4 md:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white">
-            A small selection of{" "}
-            <span className="bg-linear-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              recent projects
-            </span>
-          </h2>
-        </div>
-
-        {/* Projects Grid with 3D Pin Effect */}
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Section Header - Cleaner */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14 md:mb-16"
         >
-          {projectsData.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={cardVariants}
-              className="w-full"
-            >
-              <ProjectPinCard project={project} />
-            </motion.div>
-          ))}
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white">
+            A small selection of{" "}
+            <span className="text-cyan-600 dark:text-cyan-400">recent projects</span>
+          </h2>
         </motion.div>
+
+        {/* Projects Grid - Minimal Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          {projectsData.map((project) => (
+            <MinimalProjectCard key={project.id} project={project} />
+          ))}
+        </div>
       </div>
     </section>
   );

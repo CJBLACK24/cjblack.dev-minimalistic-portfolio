@@ -69,6 +69,19 @@ export const NUManagementHeader = () => (
   </div>
 );
 
+export const ModernUniversityHeader = () => (
+  <div className="flex flex-1 w-full h-full min-h-60 rounded-xl bg-neutral-900 relative overflow-hidden group cursor-pointer">
+    <Image
+      src="/assets/NUIMS/NUIMS.png"
+      alt="Modern University Management Dashboard"
+      fill
+      className="object-cover object-top opacity-90 transition-opacity duration-500"
+    />
+    <InProgressBadge />
+    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+  </div>
+);
+
 export const DevEventHeader = () => (
   <div className="flex flex-1 w-full h-full min-h-60 rounded-xl bg-neutral-900 relative overflow-hidden group cursor-pointer">
     <Image

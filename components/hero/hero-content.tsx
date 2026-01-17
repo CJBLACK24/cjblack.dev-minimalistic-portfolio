@@ -88,7 +88,7 @@ export const HeroContent = ({
           ease: "expo.inOut",
           stagger: 0.3,
           delay: 0.2,
-        }
+        },
       );
 
       // Animate horizontal lines (bottom and top)
@@ -102,12 +102,12 @@ export const HeroContent = ({
           ease: "expo.inOut",
           stagger: 0.3,
           delay: 0.5,
-        }
+        },
       );
 
       // Animate the cyan highlights (the inner glow divs)
       const highlights = gridLinesRef.current.querySelectorAll(
-        ".bg-linear-to-b, .bg-linear-to-r"
+        ".bg-linear-to-b, .bg-linear-to-r",
       );
       gsap.fromTo(
         highlights,
@@ -119,10 +119,10 @@ export const HeroContent = ({
           delay: 1.5,
           stagger: 0.4,
           ease: "power2.out",
-        }
+        },
       );
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
@@ -200,10 +200,10 @@ export const HeroContent = ({
 
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 w-full text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-[1.1]"
+              className="relative z-10 w-full text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-[1.1] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500"
             >
               <div className="flex flex-nowrap items-center justify-start gap-1.5 sm:gap-2">
-                <span className="inline-block text-white whitespace-nowrap">
+                <span className="inline-block whitespace-nowrap text-white">
                   Shaping&nbsp;
                 </span>
 
@@ -212,7 +212,7 @@ export const HeroContent = ({
                   initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="p-1 rounded-lg bg-neutral-900/50 border border-neutral-800 text-cyan-400 shrink-0"
+                  className="p-1 rounded-lg border shrink-0 bg-neutral-900/50 border-neutral-800 text-cyan-400"
                 >
                   {currentWordIndex === 0 && (
                     <IconBulb
@@ -258,7 +258,7 @@ export const HeroContent = ({
 
               <div className="block whitespace-nowrap">
                 <span className="text-white">that </span>
-                <span className="inline-block text-transparent bg-clip-text bg-linear-to-bl from-cyan-400 to-white">
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-bl from-cyan-400 to-white">
                   Deliver Results
                 </span>
               </div>
@@ -266,23 +266,22 @@ export const HeroContent = ({
 
             <motion.div
               variants={itemVariants}
-              className="relative z-10 max-w-xl text-xl font-normal mb-6 md:mb-8"
-              style={{ color: "rgb(194, 205, 231)" }}
+              className="relative z-10 max-w-xl text-xl font-normal mb-6 md:mb-8 text-neutral-600 dark:text-neutral-300"
             >
               I&apos;m{" "}
               <Tooltip
                 content={
                   <div className="space-y-2">
-                    <div className="border-b border-neutral-700 pb-2">
-                      <p className="text-sm font-semibold text-white">
+                    <div className="border-b border-neutral-200 dark:border-neutral-700 pb-2">
+                      <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                         Christian John Calderon Duque
                       </p>
                     </div>
                     <div className="space-y-1">
-                      <p className="text-xs text-neutral-400">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">
                         Based in Iloilo, Philippines
                       </p>
-                      <p className="text-xs text-neutral-400">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">
                         Born: November 24, 2002
                       </p>
                     </div>
@@ -290,7 +289,7 @@ export const HeroContent = ({
                 }
                 containerClassName="inline"
               >
-                <span className="text-cyan-100 hover:text-cyan-300 cursor-help transition-colors">
+                <span className="cursor-help transition-colors text-cyan-600 dark:text-cyan-300 hover:text-cyan-700 dark:hover:text-cyan-200">
                   CJ
                 </span>
               </Tooltip>
