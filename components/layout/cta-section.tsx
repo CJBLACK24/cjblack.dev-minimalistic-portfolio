@@ -20,8 +20,9 @@ export function PreFooterCTA() {
             Ready to build?
           </h2>
           <p className="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Let&apos;s turn your ideas into reality. Whether you need a modern web
-            app, a complex dashboard, or a stunning portfolio, I&apos;m here to help.
+            Let&apos;s turn your ideas into reality. Whether you need a modern
+            web app, a complex dashboard, or a stunning portfolio, I&apos;m here
+            to help.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -35,7 +36,9 @@ export function PreFooterCTA() {
             </a>
 
             <a
-              href="mailto:duquechristianjohncalderon@gmail.com"
+              href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCKCHVHpbGPWxtXhphfXPzBbnGgNNDdntPzHZjjJbWsZNbnBzKLfXmvJWBPcGfFVZqxkHnvB"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex h-12 items-center justify-center rounded-md border border-neutral-800 bg-black px-8 font-medium text-white transition-all duration-300 hover:bg-neutral-900 hover:border-neutral-700"
             >
               Contact Me

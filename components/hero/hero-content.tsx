@@ -2,10 +2,10 @@
 
 "use client";
 
-import { motion, Variants } from "motion/react";
+import { motion, Variants, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   IconBulb,
   IconPalette,
@@ -14,6 +14,8 @@ import {
   IconBrandGithub,
   IconArrowNarrowDown,
   IconDownload,
+  IconEye,
+  IconChevronDown,
 } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -23,6 +25,7 @@ import { AnimatedTooltip } from "@/components/ui/misc/animated-hero-tooltip";
 import { Tooltip } from "@/components/ui/cards/tooltip-card";
 import { FlipWords } from "@/components/ui/text/flip-words";
 import { HeroContentProps } from "@/types";
+import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
 import React from "react";
 
 const techStack = [
@@ -39,22 +42,16 @@ const techStack = [
     image:
       "https://camo.githubusercontent.com/afdf5a3b933086604f6acf89a8fa2a321aaa6d912919c573f87545587a59333f/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656163742d69636f6e2e737667",
   },
+
   {
     id: 3,
-    name: "JavaScript",
-    designation: "Language",
-    image:
-      "https://camo.githubusercontent.com/739ff4cc642d6d72a274d75aa0a16d85782c91011453641c1bcc47d872faf42d/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6a732d69636f6e2e737667",
-  },
-  {
-    id: 4,
     name: "TypeScript",
     designation: "Type Safety",
     image:
       "https://camo.githubusercontent.com/5c3873b6812ecfb1d2bc6ece8c2c548d53d151c2edbf6b0281207672ca3ab0a8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f74732d69636f6e2e737667",
   },
   {
-    id: 5,
+    id: 4,
     name: "Webpack",
     designation: "Bundler",
     image:
@@ -71,6 +68,23 @@ export const HeroContent = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const gridLinesRef = React.useRef<HTMLDivElement>(null);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+  const [showCVOptions, setShowCVOptions] = useState(false);
+  const cvDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        cvDropdownRef.current &&
+        !cvDropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowCVOptions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useGSAP(
     () => {
@@ -356,21 +370,75 @@ export const HeroContent = ({
                     </div>
                   </a>
 
-                  {/* Download CV Button */}
-                  <a
-                    href="/CV/cjblack_resume.pdf"
-                    download
-                    className="block w-full"
-                  >
+                  {/* Curriculum Vitae / CV Options Button */}
+                  <div className="relative block w-full" ref={cvDropdownRef}>
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="cursor-pointer h-12 w-full flex items-center justify-center rounded-lg font-semibold text-sm transition-all duration-300 bg-[#2FA4FF] text-dark-bg hover:bg-[#1a93ed] shadow-lg shadow-cyan-500/20 gap-2 px-6"
+                      onClick={() => setShowCVOptions(!showCVOptions)}
+                      className="cursor-pointer h-12 w-full flex items-center justify-center rounded-xl font-bold text-sm transition-all duration-300 bg-cyan-400 text-black hover:bg-cyan-300 shadow-xl shadow-cyan-500/20 gap-2 px-6"
                     >
                       <IconDownload className="w-4 h-4" />
-                      <span>Download CV</span>
+                      <span>Curriculum Vitae</span>
+                      <IconChevronDown
+                        className={`w-4 h-4 transition-transform duration-500 ${showCVOptions ? "rotate-180" : ""}`}
+                      />
                     </motion.div>
-                  </a>
+
+                    <AnimatePresence mode="wait">
+                      {showCVOptions && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                          className="absolute top-full mt-3 left-0 w-full min-w-[220px] bg-zinc-950/90 border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-100 p-1.5 backdrop-blur-xl will-change-transform"
+                        >
+                          <button
+                            onClick={() => {
+                              const link = document.createElement("a");
+                              link.href = "/CV/cjblack_resume.pdf";
+                              link.download = "cjblack_resume.pdf";
+                              link.click();
+                              setShowCVOptions(false);
+                            }}
+                            className="w-full flex items-center gap-3 px-4 py-3.5 text-sm text-neutral-300 hover:bg-white/5 hover:text-white rounded-xl transition-all duration-300 group"
+                          >
+                            <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors border border-white/5 group-hover:border-cyan-500/30">
+                              <IconDownload size={20} />
+                            </div>
+                            <div className="flex flex-col items-start text-left">
+                              <span className="font-bold text-white text-sm">
+                                Download CV
+                              </span>
+                              <span className="text-[11px] text-neutral-400 group-hover:text-neutral-300">
+                                PDF Document
+                              </span>
+                            </div>
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              setIsCVModalOpen(true);
+                              setShowCVOptions(false);
+                            }}
+                            className="w-full flex items-center gap-3 px-4 py-3.5 text-sm text-neutral-300 hover:bg-white/5 hover:text-white rounded-xl transition-all duration-300 group mt-1"
+                          >
+                            <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors border border-white/5 group-hover:border-cyan-500/30">
+                              <IconEye size={20} />
+                            </div>
+                            <div className="flex flex-col items-start text-left">
+                              <span className="font-bold text-white text-sm">
+                                Preview CV
+                              </span>
+                              <span className="text-[11px] text-neutral-400 group-hover:text-neutral-300">
+                                In-browser view
+                              </span>
+                            </div>
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </div>
               </div>
 
@@ -381,6 +449,11 @@ export const HeroContent = ({
           </div>
         </div>
       </div>
+      <CVPreviewModal
+        isOpen={isCVModalOpen}
+        onClose={() => setIsCVModalOpen(false)}
+        cvUrl="/CV/cjblack_resume.pdf"
+      />
     </motion.div>
   );
 };
