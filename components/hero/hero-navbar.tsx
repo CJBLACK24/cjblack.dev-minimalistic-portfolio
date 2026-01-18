@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { IconLogout } from "@tabler/icons-react";
+import { IconLogout, IconClock } from "@tabler/icons-react";
 import { useSession, signOut } from "@/lib/auth-client";
 import confetti from "canvas-confetti";
 import {
@@ -28,6 +29,30 @@ export const HeroNavbar = () => {
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { data: session, isPending } = useSession();
   const router = useRouter();
+  const [currentTime, setCurrentTime] = useState<string>("");
+  const [userTimezone, setUserTimezone] = useState<string>("");
+
+  // Detect user's timezone and update clock
+  useEffect(() => {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    setUserTimezone(timezone);
+
+    const updateTime = () => {
+      const now = new Date();
+      const timeString = now.toLocaleString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+      setCurrentTime(timeString);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Close user menu when clicking outside
   useEffect(() => {
@@ -90,32 +115,17 @@ export const HeroNavbar = () => {
         ))}
       </nav>
 
-      <div className="hidden md:flex items-center gap-3">
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="px-5 py-2.5 rounded-lg font-semibold text-sm cursor-pointer transition-all duration-300 bg-[#2FA4FF] text-[#020013] hover:bg-[#1a93ed] shadow-lg shadow-cyan-500/20"
-          onClick={(e) => {
-            setIsCVModalOpen(true);
-            confetti({
-              particleCount: 100,
-              spread: 70,
-              origin: {
-                x: e.clientX / window.innerWidth,
-                y: e.clientY / window.innerHeight,
-              },
-              colors: ["#2FA4FF", "#020013", "#ffffff"],
-            });
-          }}
-        >
-          Download CV
-        </motion.button>
-
-        <CVPreviewModal
-          isOpen={isCVModalOpen}
-          onClose={() => setIsCVModalOpen(false)}
-          cvUrl="/CV/cjblack_resume.pdf"
-        />
+      <div className="hidden md:flex items-center gap-3 min-w-[200px] justify-end">
+        {/* Real-Time Clock */}
+        <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 text-sm">
+          <IconClock className="w-4 h-4 shrink-0" />
+          <span className="font-mono font-medium tabular-nums whitespace-nowrap">
+            {currentTime || "Loading..."}
+          </span>
+          <span className="text-xs text-neutral-400 dark:text-neutral-500 shrink-0">
+            ({userTimezone.split("/")[1] || userTimezone})
+          </span>
+        </div>
       </div>
 
       {/* Mobile Menu or Avatar */}

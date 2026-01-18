@@ -13,6 +13,7 @@ import {
   IconCode,
   IconBrandGithub,
   IconArrowNarrowDown,
+  IconDownload,
 } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -134,16 +135,16 @@ export const HeroContent = ({
     >
       {/* Background/Grid Lines */}
       <div ref={gridLinesRef} className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-y-0 -left-6 md:left-0 h-full w-px bg-neutral-800/50 origin-top opacity-0">
+        <div className="absolute inset-y-0 -left-6 md:left-0 h-full w-px bg-black origin-top opacity-0">
           <div className="absolute top-0 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
-        <div className="absolute inset-y-0 -right-6 md:right-0 h-full w-px bg-neutral-800/50 origin-bottom opacity-0">
+        <div className="absolute inset-y-0 -right-6 md:right-0 h-full w-px bg-black-500 origin-bottom opacity-0">
           <div className="absolute h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
-        <div className="absolute bottom-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50 origin-left opacity-0">
+        <div className="absolute bottom-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-black origin-left opacity-0">
           <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
         </div>
-        <div className="absolute top-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-neutral-800/50 origin-right opacity-0">
+        <div className="absolute top-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-black origin-right opacity-0">
           <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
         </div>
       </div>
@@ -151,10 +152,7 @@ export const HeroContent = ({
         {/* Two Column Layout: Image Left, Content Right */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-8 items-center w-full px-6 sm:px-10 md:px-16 lg:px-20">
           {/* Left Column - Image */}
-          <motion.div
-            variants={imageVariants}
-            className="flex justify-center md:justify-end"
-          >
+          <div className="flex justify-center md:justify-end">
             <div className="relative w-full max-w-[280px] h-[340px] sm:max-w-[320px] sm:h-[400px] md:max-w-[340px] md:h-[420px] lg:max-w-[420px] lg:h-[520px] xl:max-w-[460px] xl:h-[580px] bg-neutral-900 rounded-2xl overflow-hidden">
               <motion.div
                 initial={{ opacity: 0, filter: "blur(10px)" }}
@@ -180,7 +178,7 @@ export const HeroContent = ({
                 </div>
               )}
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column - Content */}
           <div className="flex flex-col items-start text-left">
@@ -200,7 +198,7 @@ export const HeroContent = ({
 
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 w-full text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-[1.1] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500"
+              className="relative z-10 w-full text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-[1.1] tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-neutral-500"
             >
               <div className="flex flex-nowrap items-center justify-start gap-1.5 sm:gap-2">
                 <span className="inline-block whitespace-nowrap text-white">
@@ -258,7 +256,7 @@ export const HeroContent = ({
 
               <div className="block whitespace-nowrap">
                 <span className="text-white">that </span>
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-bl from-cyan-400 to-white">
+                <span className="inline-block text-transparent bg-clip-text bg-linear-to-bl from-cyan-400 to-white">
                   Deliver Results
                 </span>
               </div>
@@ -337,35 +335,46 @@ export const HeroContent = ({
                   student
                 </span>
               </Tooltip>{" "}
-              and developer with a passion for code.
+              and Web & Mobile Fullstack Developer with a passion for code.
             </motion.div>
 
             <motion.div
               variants={itemVariants}
               className="flex flex-col items-start gap-6 mb-10 w-full"
             >
-              <div className="w-full sm:w-[90%] md:w-auto px-4 sm:px-0">
-                <a href="#projects" className="scroll-smooth block w-full">
-                  <div className="relative inline-flex h-12 overflow-hidden rounded-md p-px focus:outline-none w-full md:w-60">
-                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22d3ee_0%,#083344_50%,#22d3ee_100%)]" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-md bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl gap-2 group hover:bg-slate-900 transition-colors">
-                      <span>View works</span>
-                      <motion.div
-                        whileHover={{ y: 5 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        <IconArrowNarrowDown className="w-5 h-5" />
-                      </motion.div>
-                    </span>
-                  </div>
-                </a>
+              {/* Responsive Action Buttons */}
+              <div className="w-full px-4 sm:px-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
+                  {/* View Works Button */}
+                  <a href="#projects" className="scroll-smooth block w-full">
+                    <div className="relative inline-flex h-12 w-full overflow-hidden rounded-lg p-px focus:outline-none group">
+                      <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22d3ee_0%,#083344_50%,#22d3ee_100%)]" />
+                      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-black px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl gap-2 group transition-all duration-300">
+                        <span>View works</span>
+                        <IconArrowNarrowDown className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </a>
+
+                  {/* Download CV Button */}
+                  <a
+                    href="/CV/cjblack_resume.pdf"
+                    download
+                    className="block w-full"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="cursor-pointer h-12 w-full flex items-center justify-center rounded-lg font-semibold text-sm transition-all duration-300 bg-[#2FA4FF] text-dark-bg hover:bg-[#1a93ed] shadow-lg shadow-cyan-500/20 gap-2 px-6"
+                    >
+                      <IconDownload className="w-4 h-4" />
+                      <span>Download CV</span>
+                    </motion.div>
+                  </a>
+                </div>
               </div>
 
-              <div className="flex items-center justify-start mt-4">
+              <div className="flex items-center justify-start px-4 sm:px-0">
                 <AnimatedTooltip items={techStack} />
               </div>
             </motion.div>

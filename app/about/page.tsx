@@ -124,7 +124,7 @@ export default function AboutPage() {
               </div>
               <button
                 onClick={handleDownloadCVClick}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-[1.02] bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-[#020013]"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-[1.02] bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-dark-bg"
               >
                 <IconDownload size={16} />
                 <span>Download CV</span>
@@ -191,7 +191,7 @@ export default function AboutPage() {
                     handleDownloadCVClick(e);
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-[#020013]"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-dark-bg"
                 >
                   <IconDownload size={18} />
                   <span>Download CV</span>
@@ -210,38 +210,86 @@ export default function AboutPage() {
       />
 
       {/* Main Content */}
-      <section className="pt-32 pb-24 md:pb-32 px-4 sm:px-6 lg:px-8">
+      <section className="pt-20 pb-20 md:pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-14 md:mb-20"
+            className="mb-8 md:mb-10"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-neutral-900 dark:text-white">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-neutral-900 dark:text-white whitespace-nowrap">
               Meet your junior{" "}
-              <span className="text-cyan-500 dark:text-[#2FA4FF]">
+              <span className="bg-linear-to-br from-cyan-600 to-cyan-400 dark:from-white dark:to-[#2FA4FF] bg-clip-text text-transparent">
                 full-stack developer.
               </span>
             </h1>
           </motion.div>
 
           {/* Two Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
             {/* Image */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
+              className="relative w-full max-w-md mx-auto lg:mx-0"
             >
-              <div className="relative aspect-square max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden border transition-colors duration-300 border-neutral-200 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900/40 group">
+              {/* Top Right Corner Accent */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 z-0">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  className="overflow-visible"
+                >
+                  <motion.path
+                    d="M 20 20 L 60 20 Q 80 20 80 40 L 80 80"
+                    stroke="#06b6d4"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    fill="none"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+                    className="drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]"
+                  />
+                </svg>
+              </div>
+
+              {/* Bottom Left Corner Accent */}
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 z-0">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  className="overflow-visible"
+                >
+                  <motion.path
+                    d="M 80 80 L 40 80 Q 20 80 20 60 L 20 20"
+                    stroke="#06b6d4"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    fill="none"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.2, delay: 0.7, ease: "easeOut" }}
+                    className="drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]"
+                  />
+                </svg>
+              </div>
+
+              <div className="relative aspect-square w-full rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900/40 group z-10">
                 <Image
                   src="/cjblackdev.jpg"
                   alt="CJ Black - Junior Full-Stack Developer"
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-hover:scale-120"
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             </motion.div>
@@ -256,29 +304,22 @@ export default function AboutPage() {
               <div className="space-y-6 text-base md:text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
                 <p>
                   I&apos;m Christian John Calderon Duque, a web and mobile
-                  developer specializing in Next.js and the PERN/MERN stacks. I
-                  build full-stack applications with a focus on clean
-                  architecture and production-ready results.
-                </p>
-                <p>
-                  My recent project was a University Dashboard Management
-                  System, developed using the PERN stack with Next.js,
-                  PostgreSQL (NeonDB), Drizzle ORM, and Better Auth for
-                  passwordless login. I use AI-assisted tools to efficiently
-                  integrate features, connect frontend and backend logic, and
-                  deliver secure, high-performance applications.
-                </p>
-                <p>
-                  My approach is guided by systemic thinking, engineering
-                  fundamentals, and an entrepreneurial spirit, turning ideas
-                  into real solutions through focused development in
-                  authentication, databases, and deployment to maximize value
-                  and impact.
+                  developer focused on Next.js and the PERN/MERN stacks,
+                  building full-stack apps that are clean, solid, and ready for
+                  real-world use. One of my recent projects is a University
+                  Dashboard Management System built with Next.js, PostgreSQL
+                  (NeonDB), Drizzle ORM, and Better Auth for passwordless login,
+                  where I handled everything from frontend to backend. I use AI
+                  tools to speed things up without cutting corners, making sure
+                  features are wired correctly, secure, and fast. I build with
+                  strong fundamentals, clear system thinking, and a builder
+                  mindset—turning ideas into working products through smart
+                  auth, clean databases, and smooth deployment.
                 </p>
               </div>
 
               {/* Stats */}
-              <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800/60">
+              <div className="pt-8 border-t-2 border-neutral-200 dark:border-neutral-800/60">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="group cursor-default">
                     <p className="text-3xl font-bold text-neutral-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors duration-300">
