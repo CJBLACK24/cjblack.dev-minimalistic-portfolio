@@ -219,7 +219,7 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="mb-8 md:mb-10"
           >
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-neutral-900 dark:text-white whitespace-nowrap">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-neutral-900 dark:text-white">
               Meet your junior{" "}
               <span className="bg-linear-to-br from-cyan-600 to-cyan-400 dark:from-white dark:to-[#2FA4FF] bg-clip-text text-transparent">
                 full-stack developer.
