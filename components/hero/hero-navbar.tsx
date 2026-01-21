@@ -115,14 +115,14 @@ export const HeroNavbar = () => {
         ))}
       </nav>
 
-      <div className="hidden md:flex items-center gap-3 min-w-[200px] justify-end">
+      <div className="flex items-center gap-3 md:min-w-[200px] justify-end mr-2 md:mr-0">
         {/* Real-Time Clock */}
-        <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 text-sm">
-          <IconClock className="w-4 h-4 shrink-0" />
+        <div className="flex items-center gap-1.5 sm:gap-2 text-neutral-500 dark:text-neutral-400 text-[10px] sm:text-sm">
+          <IconClock className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />
           <span className="font-mono font-medium tabular-nums whitespace-nowrap">
             {currentTime || "Loading..."}
           </span>
-          <span className="text-xs text-neutral-400 dark:text-neutral-500 shrink-0">
+          <span className="hidden sm:inline text-xs text-neutral-400 dark:text-neutral-500 shrink-0">
             ({userTimezone.split("/")[1] || userTimezone})
           </span>
         </div>

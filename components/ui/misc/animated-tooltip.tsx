@@ -32,22 +32,18 @@ export const AnimatedTooltip = ({
 
   const rotate = useSpring(
     useTransform(x, [-100, 100], [-45, 45]),
-    springConfig
+    springConfig,
   );
   const translateX = useSpring(
     useTransform(x, [-100, 100], [-50, 50]),
-    springConfig
+    springConfig,
   );
 
-  const handleMouseMove = (event: any) => {
-    if (animationFrameRef.current) {
-      cancelAnimationFrame(animationFrameRef.current);
-    }
-
-    animationFrameRef.current = requestAnimationFrame(() => {
-      const halfWidth = event.target.offsetWidth / 2;
-      x.set(event.nativeEvent.offsetX - halfWidth);
-    });
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const halfWidth = rect.width / 2;
+    const xPos = event.clientX - rect.left - halfWidth;
+    x.set(xPos);
   };
 
   return (

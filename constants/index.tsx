@@ -90,12 +90,39 @@ export const backendItems = [
   },
   {
     id: 8,
-    name: "WebSocket",
-    designation: "Protocol",
-    image: "https://cdn.worldvectorlogo.com/logos/websocket.svg",
+    name: "MySQL",
+    designation: "Database",
+    image:
+      "https://camo.githubusercontent.com/166d7510eddc438981693781e5252ddcf99f0445f80b91b7986f2f7f122f9892/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6d7973716c2d69636f6e2e737667",
   },
   {
     id: 9,
+    name: "PHP",
+    designation: "Language",
+    image:
+      "https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg",
+  },
+  {
+    id: 10,
+    name: "gRPC",
+    designation: "Protocol",
+    image: "/gRPC.svg",
+  },
+  {
+    id: 11,
+    name: "Prisma ORM",
+    designation: "ORM",
+    image: "https://www.vectorlogo.zone/logos/prismaio/prismaio-icon.svg",
+  },
+  {
+    id: 12,
+    name: "Drizzle ORM",
+    designation: "ORM",
+    image:
+      "https://raw.githubusercontent.com/drizzle-team/drizzle-orm/main/svg/drizzle.svg",
+  },
+  {
+    id: 13,
     name: "Supabase",
     designation: "Backend as a Service",
     image: "/supabase.svg",
@@ -130,24 +157,38 @@ export const webMobileItems = [
   },
   {
     id: 5,
+    name: "Zustand",
+    designation: "State Management",
+    image:
+      "https://raw.githubusercontent.com/pmndrs/zustand/master/docs/zustand-logo.png",
+  },
+  {
+    id: 6,
+    name: "Redux",
+    designation: "State Management",
+    image:
+      "https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg",
+  },
+  {
+    id: 7,
     name: "Tailwind CSS",
     designation: "Framework",
     image: "/tailwind-logo.svg",
   },
   {
-    id: 6,
+    id: 8,
     name: "Framer Motion",
     designation: "Animation",
     image: "/framer-motion-logo.svg",
   },
   {
-    id: 7,
+    id: 9,
     name: "HTML",
     designation: "Markup",
     image: "/html-logo.svg",
   },
   {
-    id: 9,
+    id: 10,
     name: "CSS3",
     designation: "Styling",
     image: "/CSS3.svg",
@@ -233,33 +274,34 @@ export const toolsItems = [
   },
   {
     id: 4,
+    name: "npm",
+    designation: "Package Manager",
+    image: "https://www.vectorlogo.zone/logos/npmjs/npmjs-icon.svg",
+  },
+  {
+    id: 5,
+    name: "CI-CD Pipeline",
+    designation: "DevOps",
+    image: "https://www.vectorlogo.zone/logos/github/github-icon.svg",
+  },
+  {
+    id: 6,
+    name: "XAMPP",
+    designation: "Development Environment",
+    image:
+      "https://www.vectorlogo.zone/logos/apache_friends/apache_friends-icon.svg",
+  },
+  {
+    id: 7,
     name: "Hostinger",
     designation: "Hosting",
     image: "/hostinger-logo.svg",
   },
   {
-    id: 5,
-    name: "MongoDB Compass",
-    designation: "Tool",
-    image: "/mongodb-logo.svg",
-  },
-  {
-    id: 6,
-    name: "Google Antigravity",
-    designation: "Code Editor",
-    image: "/anti gravity.png",
-  },
-  {
-    id: 7,
-    name: "Terminal",
-    designation: "CLI",
-    image: "/terminal-logo.svg",
-  },
-  {
     id: 8,
-    name: "Figma",
-    designation: "Design",
-    image: "/figma-logo.svg",
+    name: "WebSocket",
+    designation: "Protocol",
+    image: "https://cdn.worldvectorlogo.com/logos/websocket.svg",
   },
   {
     id: 9,
@@ -269,48 +311,72 @@ export const toolsItems = [
   },
   {
     id: 10,
+    name: "MongoDB Compass",
+    designation: "Tool",
+    image: "/mongodb-logo.svg",
+  },
+  {
+    id: 11,
+    name: "Google Antigravity",
+    designation: "Code Editor",
+    image: "/anti gravity.png",
+  },
+  {
+    id: 12,
+    name: "Terminal",
+    designation: "CLI",
+    image: "/terminal-logo.svg",
+  },
+  {
+    id: 13,
+    name: "Figma",
+    designation: "Design",
+    image: "/figma-logo.svg",
+  },
+  {
+    id: 14,
     name: "Better Auth",
     designation: "Authentication",
     image: "/better-auth.png",
   },
   {
-    id: 11,
+    id: 15,
     name: "Aceternity",
     designation: "UI Components",
     image: "/acertinity.png",
   },
   {
-    id: 12,
+    id: 16,
     name: "Upstash",
     designation: "Database",
     image: "/Upstash.png",
   },
   {
-    id: 13,
+    id: 17,
     name: "RStudio",
     designation: "IDE",
     image: "/RStudio.png",
   },
   {
-    id: 14,
+    id: 18,
     name: "Resend",
     designation: "Email API",
     image: "/resend.png",
   },
   {
-    id: 15,
+    id: 19,
     name: "Shadcn UI",
     designation: "Component Lib",
     image: "/shadcn.png",
   },
   {
-    id: 16,
+    id: 20,
     name: "Cloudinary",
     designation: "Media Management",
     image: "https://cdn.worldvectorlogo.com/logos/cloudinary-2.svg",
   },
   {
-    id: 17,
+    id: 21,
     name: "Prettier",
     designation: "Code Formatter",
     image:
@@ -341,24 +407,11 @@ export const currentlyLearningItems = [
       "https://camo.githubusercontent.com/67bf0811ad0811af2ea7ac7b43e8c16f5fb89fa45e2dcc0a7035e8b053215794/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f646f636b65722d69636f6e2e737667",
   },
   {
-    id: 6,
+    id: 4,
     name: "Electron",
     designation: "Framework",
     image:
       "https://camo.githubusercontent.com/d4cdfe4caa793b7fe511a00e04f52a4b63918764633fe6772db58c4aab288762/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656475782d69636f6e2e737667",
-  },
-  {
-    id: 7,
-    name: "MySQL",
-    designation: "An open source RDBMS",
-    image:
-      "https://camo.githubusercontent.com/166d7510eddc438981693781e5252ddcf99f0445f80b91b7986f2f7f122f9892/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6d7973716c2d69636f6e2e737667",
-  },
-  {
-    id: 8,
-    name: "gRPC",
-    designation: "Protocol",
-    image: "/gRPC.svg",
   },
 ];
 
