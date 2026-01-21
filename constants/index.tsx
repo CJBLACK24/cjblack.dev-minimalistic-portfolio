@@ -112,14 +112,14 @@ export const backendItems = [
     id: 11,
     name: "Prisma ORM",
     designation: "ORM",
-    image: "https://www.vectorlogo.zone/logos/prismaio/prismaio-icon.svg",
+    image:
+      "https://raw.githubusercontent.com/devicons/devicon/master/icons/prisma/prisma-original.svg",
   },
   {
     id: 12,
     name: "Drizzle ORM",
     designation: "ORM",
-    image:
-      "https://raw.githubusercontent.com/drizzle-team/drizzle-orm/main/svg/drizzle.svg",
+    image: "https://images.opencollective.com/drizzle-orm/867cf76/logo/256.png",
   },
   {
     id: 13,
@@ -160,7 +160,7 @@ export const webMobileItems = [
     name: "Zustand",
     designation: "State Management",
     image:
-      "https://raw.githubusercontent.com/pmndrs/zustand/master/docs/zustand-logo.png",
+      "https://raw.githubusercontent.com/pmndrs/zustand/main/docs/zustand-logo.png",
   },
   {
     id: 6,
@@ -183,18 +183,31 @@ export const webMobileItems = [
   },
   {
     id: 9,
+    name: "Three.js",
+    designation: "3D Graphics",
+    image:
+      "https://raw.githubusercontent.com/mrdoob/three.js/master/files/icon.svg",
+  },
+  {
+    id: 10,
+    name: "GSAP",
+    designation: "Animation",
+    image: "https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg",
+  },
+  {
+    id: 11,
     name: "HTML",
     designation: "Markup",
     image: "/html-logo.svg",
   },
   {
-    id: 10,
+    id: 12,
     name: "CSS3",
     designation: "Styling",
     image: "/CSS3.svg",
   },
   {
-    id: 11,
+    id: 13,
     name: "Webpack",
     designation: "Bundler",
     image:
@@ -288,8 +301,7 @@ export const toolsItems = [
     id: 6,
     name: "XAMPP",
     designation: "Development Environment",
-    image:
-      "https://www.vectorlogo.zone/logos/apache_friends/apache_friends-icon.svg",
+    image: "https://www.vectorlogo.zone/logos/xampp/xampp-icon.svg",
   },
   {
     id: 7,
@@ -382,6 +394,26 @@ export const toolsItems = [
     image:
       "https://camo.githubusercontent.com/db583023070de5c6f93dcb742c28dde5f5c164e16543e39c1136df08b1436d03/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f70726574746965722d69636f6e2e737667",
   },
+  {
+    id: 22,
+    name: "JWT",
+    designation: "Authentication",
+    image:
+      "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/jwt/icon.svg",
+  },
+  {
+    id: 23,
+    name: "Netlify",
+    designation: "Deployment",
+    image:
+      "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/netlify/icon.svg",
+  },
+  {
+    id: 24,
+    name: "Render",
+    designation: "Deployment",
+    image: "https://render.com/icons/icon-512x512.png",
+  },
 ];
 
 export const currentlyLearningItems = [
@@ -394,24 +426,50 @@ export const currentlyLearningItems = [
   },
   {
     id: 2,
-    name: "Kubernetes",
-    designation: "Orchestration",
-    image:
-      "https://camo.githubusercontent.com/a6a8821f41607abeea51e83b36464bfee4628ad6f4fd1aea4e7415b925a46fc3/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6b756265726e657465732d69636f6e2e737667",
+    name: "Laravel",
+    designation: "Fullstack Framework",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Laravel.svg",
   },
   {
     id: 3,
+    name: "TanStack",
+    designation: "Data Management",
+    image: "https://www.vectorlogo.zone/logos/reactquery/reactquery-icon.svg",
+  },
+  {
+    id: 4,
+    name: ".NET ASP",
+    designation: "Backend Framework",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg",
+  },
+  {
+    id: 5,
     name: "Docker",
     designation: "Containerization",
     image:
       "https://camo.githubusercontent.com/67bf0811ad0811af2ea7ac7b43e8c16f5fb89fa45e2dcc0a7035e8b053215794/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f646f636b65722d69636f6e2e737667",
   },
   {
-    id: 4,
-    name: "Electron",
-    designation: "Framework",
+    id: 6,
+    name: "Sentry",
+    designation: "Monitoring",
     image:
-      "https://camo.githubusercontent.com/d4cdfe4caa793b7fe511a00e04f52a4b63918764633fe6772db58c4aab288762/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656475782d69636f6e2e737667",
+      "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/sentry/icon.svg",
+  },
+  {
+    id: 7,
+    name: "PostHog",
+    designation: "Analytics",
+    image:
+      "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/posthog/icon.svg",
+  },
+  {
+    id: 8,
+    name: "Sanity",
+    designation: "Headless CMS",
+    image:
+      "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/sanity/icon.svg",
   },
 ];
 

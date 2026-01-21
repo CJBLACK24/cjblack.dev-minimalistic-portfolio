@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import {
@@ -28,7 +27,6 @@ export const AnimatedTooltip = ({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
-  const animationFrameRef = useRef<number | null>(null);
 
   const rotate = useSpring(
     useTransform(x, [-100, 100], [-45, 45]),
@@ -88,7 +86,26 @@ export const AnimatedTooltip = ({
           </AnimatePresence>
           <div
             onMouseMove={handleMouseMove}
-            className="group-hover:z-30 group-hover:scale-105 transition duration-500 h-full w-full"
+            className={cn(
+              "group-hover:z-30 group-hover:scale-105 transition duration-500 h-full w-full",
+              item.name === "React" || item.name === "Three.js"
+                ? "animate-slow-spin"
+                : [
+                      "PHP",
+                      "Laravel",
+                      ".NET ASP",
+                      "Sanity",
+                      "JWT",
+                      "Netlify",
+                      "Render",
+                    ].includes(item.name)
+                  ? "animate-float"
+                  : item.name === "TanStack"
+                    ? "hover:animate-bounce"
+                    : ["GSAP", "Sentry", "PostHog"].includes(item.name)
+                      ? "hover:animate-pulse"
+                      : "",
+            )}
           >
             {item.icon ? (
               <div className="h-full w-full flex items-center justify-center group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)] transition-all">
@@ -100,7 +117,10 @@ export const AnimatedTooltip = ({
                 width={100}
                 src={item.image || ""}
                 alt={item.name}
-                className="object-contain m-0! p-0! object-top h-full w-full group-hover:scale-105 group-hover:z-30 relative transition duration-500 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
+                className={cn(
+                  "object-contain m-0! p-0! object-top h-full w-full group-hover:scale-105 group-hover:z-30 relative transition duration-500 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]",
+                  item.name === "Three.js" && "brightness-0 invert",
+                )}
               />
             )}
           </div>
