@@ -117,10 +117,7 @@ export const AnimatedTooltip = ({
                 width={100}
                 src={item.image || ""}
                 alt={item.name}
-                className={cn(
-                  "object-contain m-0! p-0! object-top h-full w-full group-hover:scale-105 group-hover:z-30 relative transition duration-500 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]",
-                  item.name === "Three.js" && "brightness-0 invert",
-                )}
+                className="object-contain m-0! p-0! object-top h-full w-full group-hover:scale-105 group-hover:z-30 relative transition duration-500 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
               />
             )}
           </div>

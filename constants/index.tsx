@@ -159,8 +159,7 @@ export const webMobileItems = [
     id: 5,
     name: "Zustand",
     designation: "State Management",
-    image:
-      "https://raw.githubusercontent.com/pmndrs/zustand/main/docs/zustand-logo.png",
+    image: "https://cdn.simpleicons.org/zustand/white",
   },
   {
     id: 6,
@@ -185,8 +184,7 @@ export const webMobileItems = [
     id: 9,
     name: "Three.js",
     designation: "3D Graphics",
-    image:
-      "https://raw.githubusercontent.com/mrdoob/three.js/master/files/icon.svg",
+    image: "https://cdn.simpleicons.org/threedotjs/white",
   },
   {
     id: 10,
@@ -301,7 +299,7 @@ export const toolsItems = [
     id: 6,
     name: "XAMPP",
     designation: "Development Environment",
-    image: "https://www.vectorlogo.zone/logos/xampp/xampp-icon.svg",
+    image: "https://cdn.simpleicons.org/xampp/white",
   },
   {
     id: 7,
@@ -434,7 +432,7 @@ export const currentlyLearningItems = [
     id: 3,
     name: "TanStack",
     designation: "Data Management",
-    image: "https://www.vectorlogo.zone/logos/reactquery/reactquery-icon.svg",
+    image: "https://cdn.simpleicons.org/tanstack/white",
   },
   {
     id: 4,
