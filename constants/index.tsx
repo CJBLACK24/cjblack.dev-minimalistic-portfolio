@@ -43,29 +43,30 @@ export const navItems = [
 ];
 
 // Technology Items
+// Technology Items
 export const backendItems = [
   {
     id: 1,
     name: "Node.js",
-    designation: "Runtime",
+    designation: "JS Runtime",
     image: "/nodejs-logo.svg",
   },
   {
     id: 2,
     name: "MongoDB",
-    designation: "Database",
+    designation: "NoSQL Database",
     image: "/mongodb-logo.svg",
   },
   {
     id: 3,
     name: "PostgreSQL",
-    designation: "Database",
+    designation: "Relational Database",
     image: "/postgresql-logo.svg",
   },
   {
     id: 4,
     name: "Express",
-    designation: "Framework",
+    designation: "Backend Framework",
     image: "/ExpressJS.png",
   },
   {
@@ -75,64 +76,57 @@ export const backendItems = [
     image:
       "https://camo.githubusercontent.com/3680d7839e81609a1618a06fa7d943dc6f8949169284adb3be6ce161e22d9570/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6772617068716c2d69636f6e2e737667",
   },
-    {
-    id: 3,
-    name: "NeonDB",
-    designation: "Serverless Postgres Platform",
-    image:
-      "/neon.jpeg",
-  },
-
   {
     id: 6,
-    name: "Redis",
-    designation: "Database",
-    image: "https://cdn.worldvectorlogo.com/logos/redis.svg",
+    name: "NeonDB",
+    designation: "Serverless Postgres",
+    image: "/neon.jpeg",
   },
   {
     id: 7,
+    name: "Redis",
+    designation: "In-Memory Store",
+    image: "https://cdn.worldvectorlogo.com/logos/redis.svg",
+  },
+  {
+    id: 8,
     name: "REST API",
-    designation: "Architecture",
+    designation: "API Architecture",
     image:
       "https://camo.githubusercontent.com/ab09de79f0629e01d86942513abff902dc6948e1d6194b4d4dc3724d82e52831/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f726573746170692d69636f6e2e737667",
   },
   {
-    id: 8,
+    id: 9,
     name: "MySQL",
-    designation: "Database",
+    designation: "Relational Database",
     image:
       "https://camo.githubusercontent.com/166d7510eddc438981693781e5252ddcf99f0445f80b91b7986f2f7f122f9892/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6d7973716c2d69636f6e2e737667",
   },
   {
-    id: 9,
+    id: 10,
     name: "PHP",
-    designation: "Language",
+    designation: "Server Language",
     image:
       "https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg",
   },
+  { id: 11, name: "gRPC", designation: "RPC Protocol", image: "/gRPC.svg" },
   {
-    id: 10,
-    name: "gRPC",
-    designation: "Protocol",
-    image: "/gRPC.svg",
-  },
-  {
-    id: 11,
+    id: 12,
     name: "Prisma ORM",
-    designation: "ORM",
+    designation: "Type-Safe ORM",
     image:
       "https://raw.githubusercontent.com/devicons/devicon/master/icons/prisma/prisma-original.svg",
   },
   {
-    id: 12,
+    id: 13,
     name: "Drizzle ORM",
-    designation: "ORM",
+    designation: "Lightweight ORM",
     image: "https://images.opencollective.com/drizzle-orm/867cf76/logo/256.png",
   },
   {
-    id: 13,
+    id: 14,
     name: "Supabase",
-    designation: "Backend as a Service",
+    designation: "Backend Platform",
     image: "/supabase.svg",
   },
 ];
@@ -141,75 +135,60 @@ export const webMobileItems = [
   {
     id: 1,
     name: "React",
-    designation: "Library",
+    designation: "UI Library",
     image:
       "https://camo.githubusercontent.com/afdf5a3b933086604f6acf89a8fa2a321aaa6d912919c573f87545587a59333f/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f72656163742d69636f6e2e737667",
   },
   {
     id: 2,
     name: "Next.js",
-    designation: "Framework",
+    designation: "Fullstack Framework",
     image: "/nextjs-logo.svg",
   },
   {
     id: 3,
     name: "React Native",
-    designation: "Framework",
+    designation: "Mobile Framework",
     image: "/react-native-logo.svg",
   },
-  {
-    id: 4,
-    name: "Expo",
-    designation: "Platform",
-    image: "/expo.png",
-  },
+  { id: 4, name: "Expo", designation: "Mobile Platform", image: "/expo.png" },
   {
     id: 5,
     name: "Zustand",
-    designation: "State Management",
-    image: "https://user-images.githubusercontent.com/958486/218346783-72be5ae3-b953-4dd7-b239-788a882fdad6.svg",
+    designation: "State Manager",
+    image:
+      "https://user-images.githubusercontent.com/958486/218346783-72be5ae3-b953-4dd7-b239-788a882fdad6.svg",
   },
-  
   {
     id: 6,
     name: "Tailwind CSS",
-    designation: "Framework",
+    designation: "Utility CSS",
     image: "/tailwind-logo.svg",
   },
   {
     id: 7,
     name: "Framer Motion",
-    designation: "Animation",
+    designation: "Motion Library",
     image: "/framer-motion-logo.svg",
   },
-  {
-    id: 8,
-    name: "Three.js",
-    designation: "3D Graphics",
-    image: "/Threejs.png",
-  },
+  { id: 8, name: "Three.js", designation: "3D Engine", image: "/Threejs.png" },
   {
     id: 9,
     name: "GSAP",
-    designation: "Animation",
+    designation: "Animation Engine",
     image: "https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg",
   },
   {
     id: 10,
     name: "HTML",
-    designation: "Markup",
+    designation: "Markup Language",
     image: "/html-logo.svg",
   },
-  {
-    id: 11,
-    name: "CSS3",
-    designation: "Styling",
-    image: "/CSS3.svg",
-  },
+  { id: 11, name: "CSS3", designation: "Styling Language", image: "/CSS3.svg" },
   {
     id: 12,
     name: "Webpack",
-    designation: "Bundler",
+    designation: "Module Bundler",
     image:
       "https://camo.githubusercontent.com/971dc0f889a81abf890b811ea97765459c01e50470aa92927fc63109867dc35e/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f7765627061636b2d69636f6e2e737667",
   },
@@ -219,52 +198,51 @@ export const programmingLanguageItems = [
   {
     id: 1,
     name: "JavaScript",
-    designation: "Language",
+    designation: "Core Language",
     image:
       "https://camo.githubusercontent.com/739ff4cc642d6d72a274d75aa0a16d85782c91011453641c1bcc47d872faf42d/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6a732d69636f6e2e737667",
   },
   {
     id: 2,
     name: "TypeScript",
-    designation: "Language",
+    designation: "Typed JavaScript",
     image:
       "https://camo.githubusercontent.com/5c3873b6812ecfb1d2bc6ece8c2c548d53d151c2edbf6b0281207672ca3ab0a8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f74732d69636f6e2e737667",
   },
   {
     id: 3,
     name: "Python",
-    designation: "Language",
+    designation: "General Language",
     image:
       "https://camo.githubusercontent.com/d7f81f6d4cfa55056568314a53cac1cfd12f690bccf1e2c1d315ca6a17d39747/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f707974686f6e2d69636f6e2e737667",
   },
   {
     id: 4,
     name: "Java",
-    designation: "Language",
+    designation: "Enterprise Language",
     image:
       "https://camo.githubusercontent.com/4accd2f20a00fd4364e3456b3525b9af98b827afb9d4ec9f62cce6732552fa06/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6a6176612d69636f6e2e737667",
   },
   {
     id: 5,
     name: "R",
-    designation: "Language",
+    designation: "Statistical Language",
     image: "/R_logo.svg",
   },
   {
     id: 6,
     name: "C#",
-    designation: "Language",
+    designation: "Dotnet Language",
     image:
       "https://camo.githubusercontent.com/dd75d21504d085f26ff74430df94f208f23beb055880df2bd5faa1219e87d6d8/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6373686172702d69636f6e2e737667",
   },
   {
     id: 7,
     name: "C++",
-    designation: "Language",
+    designation: "Systems Language",
     image:
       "https://camo.githubusercontent.com/c57992ccd8e44fbfa43178e6de1ec1d0974559148afeb3044100e6fc9142311c/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6370702d69636f6e2e737667",
   },
-
 ];
 
 export const toolsItems = [
@@ -274,16 +252,11 @@ export const toolsItems = [
     designation: "Version Control",
     image: "/git-logo.svg",
   },
-  {
-    id: 2,
-    name: "GitHub",
-    designation: "Platform",
-    image: "/github.svg",
-  },
+  { id: 2, name: "GitHub", designation: "Code Platform", image: "/github.svg" },
   {
     id: 3,
     name: "Vercel",
-    designation: "Deployment",
+    designation: "Hosting Platform",
     image: "/vercel.png",
   },
   {
@@ -295,37 +268,32 @@ export const toolsItems = [
   {
     id: 5,
     name: "CI-CD Pipeline",
-    designation: "DevOps",
+    designation: "DevOps Pipeline",
     image: "https://www.vectorlogo.zone/logos/github/github-icon.svg",
   },
-  {
-    id: 6,
-    name: "XAMPP",
-    designation: "Development Environment",
-    image: "/xampp.svg",
-  },
+  { id: 6, name: "XAMPP", designation: "Local Stack", image: "/xampp.svg" },
   {
     id: 7,
     name: "Hostinger",
-    designation: "Hosting",
+    designation: "Web Hosting",
     image: "/hostinger-logo.svg",
   },
   {
     id: 8,
     name: "WebSocket",
-    designation: "Protocol",
+    designation: "Realtime Protocol",
     image: "https://cdn.worldvectorlogo.com/logos/websocket.svg",
   },
   {
     id: 9,
     name: "Socket.IO",
-    designation: "Real-time",
+    designation: "Realtime Engine",
     image: "/socket.png",
   },
   {
     id: 10,
     name: "MongoDB Compass",
-    designation: "Tool",
+    designation: "Database GUI",
     image: "/mongodb-logo.svg",
   },
   {
@@ -337,19 +305,14 @@ export const toolsItems = [
   {
     id: 12,
     name: "Terminal",
-    designation: "CLI",
+    designation: "Command Line",
     image: "/terminal-logo.svg",
   },
-  {
-    id: 13,
-    name: "Figma",
-    designation: "Design",
-    image: "/figma-logo.svg",
-  },
+  { id: 13, name: "Figma", designation: "UI Design", image: "/figma-logo.svg" },
   {
     id: 14,
     name: "Better Auth",
-    designation: "Authentication",
+    designation: "Auth Platform",
     image: "/better-auth.png",
   },
   {
@@ -361,31 +324,21 @@ export const toolsItems = [
   {
     id: 16,
     name: "Upstash",
-    designation: "Database",
+    designation: "Serverless Redis",
     image: "/Upstash.png",
   },
-  {
-    id: 17,
-    name: "RStudio",
-    designation: "IDE",
-    image: "/RStudio.png",
-  },
-  {
-    id: 18,
-    name: "Resend",
-    designation: "Email API",
-    image: "/resend.png",
-  },
+  { id: 17, name: "RStudio", designation: "Data IDE", image: "/RStudio.png" },
+  { id: 18, name: "Resend", designation: "Email API", image: "/resend.png" },
   {
     id: 19,
     name: "Shadcn UI",
-    designation: "Component Lib",
+    designation: "Component Library",
     image: "/shadcn.png",
   },
   {
     id: 20,
     name: "Cloudinary",
-    designation: "Media Management",
+    designation: "Media Platform",
     image: "https://cdn.worldvectorlogo.com/logos/cloudinary-2.svg",
   },
   {
@@ -398,33 +351,28 @@ export const toolsItems = [
   {
     id: 22,
     name: "JWT",
-    designation: "Authentication",
+    designation: "Auth Token",
     image:
       "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/jwt/icon.svg",
   },
   {
     id: 23,
     name: "Netlify",
-    designation: "Deployment",
+    designation: "Hosting Platform",
     image:
       "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/netlify/icon.svg",
   },
   {
     id: 24,
     name: "Render",
-    designation: "Deployment",
+    designation: "Cloud Hosting",
     image: "/render.svg",
   },
+  { id: 25, name: "Zod", designation: "Schema Validation", image: "/zod.png" },
   {
-    id: 25,
-    name: "Zod",
-    designation: "Schema Validation Library",
-    image: "/zod.png",
-  },
-   {
     id: 26,
     name: "Xendit",
-    designation: "Payment Gateway API",
+    designation: "Payment Gateway",
     image: "/Xendit.png",
   },
 ];
@@ -433,7 +381,7 @@ export const currentlyLearningItems = [
   {
     id: 1,
     name: "AWS",
-    designation: "Cloud",
+    designation: "Cloud Platform",
     image:
       "https://camo.githubusercontent.com/7575696d9955b68522293ed8409d041e78dc26dd51add99b5a5d9aad0747e11e/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6177732d69636f6e2e737667",
   },
@@ -446,7 +394,7 @@ export const currentlyLearningItems = [
   {
     id: 3,
     name: "TanStack",
-    designation: "Data Management",
+    designation: "Data Toolkit",
     image: "/Tanstack.png",
   },
   {
@@ -459,21 +407,21 @@ export const currentlyLearningItems = [
   {
     id: 5,
     name: "Docker",
-    designation: "Containerization",
+    designation: "Container Platform",
     image:
       "https://camo.githubusercontent.com/67bf0811ad0811af2ea7ac7b43e8c16f5fb89fa45e2dcc0a7035e8b053215794/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f646f636b65722d69636f6e2e737667",
   },
   {
     id: 6,
     name: "Sentry",
-    designation: "Monitoring",
+    designation: "Error Monitoring",
     image:
       "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/sentry/icon.svg",
   },
   {
     id: 7,
     name: "PostHog",
-    designation: "Analytics",
+    designation: "Product Analytics",
     image:
       "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/posthog/icon.svg",
   },
@@ -481,10 +429,8 @@ export const currentlyLearningItems = [
     id: 8,
     name: "Sanity",
     designation: "Headless CMS",
-    image:
-      "/sanity.io.png",
+    image: "/sanity.io.png",
   },
-  
 ];
 
 const Skeleton = () => (

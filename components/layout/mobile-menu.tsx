@@ -59,7 +59,7 @@ export function MobileMenu() {
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    link: string
+    link: string,
   ) => {
     const isHashLink = link.includes("#");
 
@@ -87,10 +87,45 @@ export function MobileMenu() {
       <DrawerTrigger asChild>
         <motion.button
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer text-white"
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setOpen(true)}
+          className="p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer text-white flex items-center justify-center"
         >
-          <IconMenu2 className="w-8 h-8" />
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <motion.path
+              d="M4 6H20"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              initial={false}
+              animate={open ? { d: "M6 18L18 6" } : { d: "M4 6H20" }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.path
+              d="M4 12H20"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              initial={false}
+              animate={open ? { opacity: 0 } : { opacity: 1 }}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.path
+              d="M4 18H20"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              initial={false}
+              animate={open ? { d: "M6 6L18 18" } : { d: "M4 18H20" }}
+              transition={{ duration: 0.3 }}
+            />
+          </svg>
         </motion.button>
       </DrawerTrigger>
       <DrawerContent

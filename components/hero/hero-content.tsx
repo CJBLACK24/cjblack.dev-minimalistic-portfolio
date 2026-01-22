@@ -27,6 +27,7 @@ import { FlipWords } from "@/components/ui/text/flip-words";
 import { HeroContentProps } from "@/types";
 import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
 import React from "react";
+import { HeroClock } from "./hero-clock";
 
 const techStack = [
   {
@@ -186,6 +187,7 @@ export const HeroContent = ({
                   onLoad={() => setIsImageLoaded(true)}
                 />
               </motion.div>
+              {isImageLoaded && <HeroClock />}
               {!isImageLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-neutral-900">
                   <div className="w-10 h-10 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
