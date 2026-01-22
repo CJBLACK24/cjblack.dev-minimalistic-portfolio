@@ -87,24 +87,7 @@ export const AnimatedTooltip = ({
           <div
             onMouseMove={handleMouseMove}
             className={cn(
-              "group-hover:z-30 group-hover:scale-105 transition duration-500 h-full w-full",
-              item.name === "React" || item.name === "Three.js"
-                ? "animate-slow-spin"
-                : [
-                      "PHP",
-                      "Laravel",
-                      ".NET ASP",
-                      "Sanity",
-                      "JWT",
-                      "Netlify",
-                      "Render",
-                    ].includes(item.name)
-                  ? "animate-float"
-                  : item.name === "TanStack"
-                    ? "hover:animate-bounce"
-                    : ["GSAP", "Sentry", "PostHog"].includes(item.name)
-                      ? "hover:animate-pulse"
-                      : "",
+              "group-hover:z-30 transition duration-500 h-full w-full",
             )}
           >
             {item.icon ? (
@@ -117,7 +100,7 @@ export const AnimatedTooltip = ({
                 width={100}
                 src={item.image || ""}
                 alt={item.name}
-                className="object-contain m-0! p-0! object-top h-full w-full group-hover:scale-105 group-hover:z-30 relative transition duration-500 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
+                className="object-contain m-0! p-0! object-top h-full w-full group-hover:z-30 relative transition duration-500 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
               />
             )}
           </div>

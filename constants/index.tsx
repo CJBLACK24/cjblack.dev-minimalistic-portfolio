@@ -159,53 +159,47 @@ export const webMobileItems = [
     id: 5,
     name: "Zustand",
     designation: "State Management",
-    image: "https://cdn.simpleicons.org/zustand/white",
+    image: "https://user-images.githubusercontent.com/958486/218346783-72be5ae3-b953-4dd7-b239-788a882fdad6.svg",
   },
+  
   {
     id: 6,
-    name: "Redux",
-    designation: "State Management",
-    image:
-      "https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg",
-  },
-  {
-    id: 7,
     name: "Tailwind CSS",
     designation: "Framework",
     image: "/tailwind-logo.svg",
   },
   {
-    id: 8,
+    id: 7,
     name: "Framer Motion",
     designation: "Animation",
     image: "/framer-motion-logo.svg",
   },
   {
-    id: 9,
+    id: 8,
     name: "Three.js",
     designation: "3D Graphics",
     image: "https://cdn.simpleicons.org/threedotjs/white",
   },
   {
-    id: 10,
+    id: 9,
     name: "GSAP",
     designation: "Animation",
     image: "https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg",
   },
   {
-    id: 11,
+    id: 10,
     name: "HTML",
     designation: "Markup",
     image: "/html-logo.svg",
   },
   {
-    id: 12,
+    id: 11,
     name: "CSS3",
     designation: "Styling",
     image: "/CSS3.svg",
   },
   {
-    id: 13,
+    id: 12,
     name: "Webpack",
     designation: "Bundler",
     image:
@@ -410,7 +404,7 @@ export const toolsItems = [
     id: 24,
     name: "Render",
     designation: "Deployment",
-    image: "https://render.com/icons/icon-512x512.png",
+    image: "/render.svg",
   },
 ];
 

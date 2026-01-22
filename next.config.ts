@@ -19,8 +19,39 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.worldvectorlogo.com",
       },
-
-      
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.opencollective.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.simpleicons.org",
+      },
+      {
+        protocol: "https",
+        hostname: "www.vectorlogo.zone",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net",
+      },
+      {
+        protocol: "https",
+        hostname: "render.com",
+      },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+      },
+      {
+        protocol: "https",
+        hostname: "user-images.githubusercontent.com",
+      },
+  
     ],
     // Optimize images in production, disable in development for faster dev server
     unoptimized: process.env.NODE_ENV === "development",

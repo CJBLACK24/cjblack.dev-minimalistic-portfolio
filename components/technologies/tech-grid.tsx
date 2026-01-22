@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+
 import { motion, Variants } from "motion/react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/layout/bento-grid";
 import { AnimatedTooltip } from "@/components/ui/misc/animated-tooltip";
