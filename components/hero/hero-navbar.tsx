@@ -7,13 +7,13 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { IconLogout, IconClock } from "@tabler/icons-react";
 import { useSession, signOut } from "@/lib/auth-client";
-import confetti from "canvas-confetti";
+
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/primitives/avatar";
-import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
+
 import { MobileMenu } from "@/components/layout/mobile-menu";
 
 const navItems = [
@@ -24,7 +24,6 @@ const navItems = [
 ];
 
 export const HeroNavbar = () => {
-  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { data: session, isPending } = useSession();

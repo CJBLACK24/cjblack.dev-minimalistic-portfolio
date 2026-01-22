@@ -2,7 +2,6 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { IconArrowUpRight } from "@tabler/icons-react";
-import Image from "next/image";
 
 export const ProjectGrid = ({
   className,
@@ -15,7 +14,7 @@ export const ProjectGrid = ({
     <div
       className={cn(
         "mx-auto grid max-w-7xl grid-cols-1 gap-6 md:gap-8 md:grid-cols-2",
-        className
+        className,
       )}
     >
       {children}
@@ -51,7 +50,7 @@ export const ProjectGridItem = ({
     <div
       className={cn(
         "group/bento relative flex flex-col rounded-2xl border border-neutral-800/50 bg-neutral-950/80 backdrop-blur-sm p-4 md:p-5 h-full",
-        className
+        className,
       )}
       onClick={onClick}
     >
