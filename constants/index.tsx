@@ -75,6 +75,14 @@ export const backendItems = [
     image:
       "https://camo.githubusercontent.com/3680d7839e81609a1618a06fa7d943dc6f8949169284adb3be6ce161e22d9570/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6772617068716c2d69636f6e2e737667",
   },
+    {
+    id: 3,
+    name: "NeonDB",
+    designation: "Serverless Postgres Platform",
+    image:
+      "/neon.jpeg",
+  },
+
   {
     id: 6,
     name: "Redis",
@@ -256,6 +264,7 @@ export const programmingLanguageItems = [
     image:
       "https://camo.githubusercontent.com/c57992ccd8e44fbfa43178e6de1ec1d0974559148afeb3044100e6fc9142311c/68747470733a2f2f74656368737461636b2d67656e657261746f722e76657263656c2e6170702f6370702d69636f6e2e737667",
   },
+
 ];
 
 export const toolsItems = [
@@ -406,6 +415,18 @@ export const toolsItems = [
     designation: "Deployment",
     image: "/render.svg",
   },
+  {
+    id: 25,
+    name: "Zod",
+    designation: "Schema Validation Library",
+    image: "/zod.png",
+  },
+   {
+    id: 26,
+    name: "Xendit",
+    designation: "Payment Gateway API",
+    image: "/Xendit.png",
+  },
 ];
 
 export const currentlyLearningItems = [
@@ -461,8 +482,9 @@ export const currentlyLearningItems = [
     name: "Sanity",
     designation: "Headless CMS",
     image:
-      "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/sanity/icon.svg",
+      "/sanity.io.png",
   },
+  
 ];
 
 const Skeleton = () => (
