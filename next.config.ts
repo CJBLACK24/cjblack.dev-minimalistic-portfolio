@@ -50,8 +50,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "user-images.githubusercontent.com",
-      },
-  
+      },      
     ],
     // Optimize images in production, disable in development for faster dev server
     unoptimized: process.env.NODE_ENV === "development",

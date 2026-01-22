@@ -55,12 +55,12 @@ export const ProjectGridItem = ({
       onClick={onClick}
     >
       {/* Header Image */}
-      <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-5 border border-neutral-800/30">
+      <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden mb-5 border border-neutral-800/30">
         {header}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-grow space-y-3">
+      <div className="flex flex-col grow space-y-3">
         {icon && <div className="hidden">{icon}</div>}
         <h3 className="font-bold text-lg md:text-xl text-white leading-tight">
           {title}

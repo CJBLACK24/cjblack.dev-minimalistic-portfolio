@@ -178,7 +178,7 @@ export const webMobileItems = [
     id: 8,
     name: "Three.js",
     designation: "3D Graphics",
-    image: "https://cdn.simpleicons.org/threedotjs/white",
+    image: "/Threejs.png",
   },
   {
     id: 9,
@@ -293,7 +293,7 @@ export const toolsItems = [
     id: 6,
     name: "XAMPP",
     designation: "Development Environment",
-    image: "https://cdn.simpleicons.org/xampp/white",
+    image: "/xampp.svg",
   },
   {
     id: 7,
@@ -426,7 +426,7 @@ export const currentlyLearningItems = [
     id: 3,
     name: "TanStack",
     designation: "Data Management",
-    image: "https://cdn.simpleicons.org/tanstack/white",
+    image: "/Tanstack.png",
   },
   {
     id: 4,
