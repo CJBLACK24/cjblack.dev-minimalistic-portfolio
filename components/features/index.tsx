@@ -8,6 +8,8 @@ import {
   IconBolt,
 } from "@tabler/icons-react";
 
+import { FeatureCard } from "./feature-card";
+
 const features = [
   {
     icon: IconBuildingArch,
@@ -38,19 +40,20 @@ export function FeaturesSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.2,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
     visible: {
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
       transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.8,
+        ease: [0.25, 1, 0.5, 1],
       },
     },
   };
@@ -61,36 +64,23 @@ export function FeaturesSection() {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
-      className="py-24 md:py-32 px-4 w-full"
+      className="py-24 md:py-32 px-4 w-full relative"
       id="features"
     >
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 min-h-[400px]">
           {features.map((feature) => (
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              className="group relative flex flex-col items-center text-center p-8 rounded-xl border transition-all duration-300 hover:-translate-y-1
-                bg-[#0a0a0a] 
-                border-neutral-800 
-                hover:border-neutral-500"
+              className="h-full"
             >
-              {/* Subtle gradient on hover */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-b ${feature.accent} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+              <FeatureCard
+                title={feature.title}
+                description={feature.description}
+                icon={feature.icon}
+                accent={feature.accent}
               />
-
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-colors bg-[#111] border border-neutral-800 group-hover:border-neutral-600">
-                  <feature.icon className="w-7 h-7 transition-colors text-white" />
-                </div>
-                <h3 className="text-lg font-bold mb-3 text-white">
-                  {feature.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-neutral-400">
-                  {feature.description}
-                </p>
-              </div>
             </motion.div>
           ))}
         </div>

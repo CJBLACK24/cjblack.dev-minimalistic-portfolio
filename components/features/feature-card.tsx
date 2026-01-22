@@ -1,91 +1,112 @@
 "use client";
 
-import React from "react";
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
+import React, { useRef } from "react";
 
-import { FeatureCardProps } from "@/types";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useMotionTemplate,
+} from "motion/react";
 
-export const Icon = ({ className, ...rest }: React.SVGProps<SVGSVGElement>) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      className={className}
-      {...rest}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-    </svg>
-  );
-};
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: React.ElementType<{ className?: string }>;
+  accent: string;
+}
 
 export const FeatureCard = ({
   title,
-  icon,
-  children,
   description,
+  icon: Icon,
 }: FeatureCardProps) => {
-  const [hovered, setHovered] = React.useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // High-performance motion values for hover position
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Optimized Tilt - very subtle for a clean, professional feel
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
+    stiffness: 150,
+    damping: 20,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), {
+    stiffness: 150,
+    damping: 20,
+  });
+
+  // Performance optimized background gradients
+  const borderGradientStyle = useMotionTemplate`radial-gradient(400px circle at calc(50% + ${useTransform(mouseX, (x) => x * 100)}%) calc(50% + ${useTransform(mouseY, (y) => y * 100)}%), rgba(120, 119, 198, 0.3), transparent 40%), linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))`;
+  const spotlightStyle = useMotionTemplate`radial-gradient(600px circle at calc(50% + ${useTransform(mouseX, (x) => x * 100)}%) calc(50% + ${useTransform(mouseY, (y) => y * 100)}%), rgba(34, 211, 238, 0.05) 0%, transparent 60%)`;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={() => setHovered(!hovered)}
-      data-state={hovered ? "hovered" : "closed"}
-      className="border border-black/20 group/canvas-card flex items-center justify-center dark:border-white/20 max-w-sm w-full mx-auto p-4 relative h-120 cursor-pointer"
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className="relative h-full w-full group overflow-hidden rounded-2xl bg-[#0a0a0a] border border-white/5 transition-all duration-500 will-change-transform"
     >
-      <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
-      <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
-      <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
-      <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+      {/* 
+          BORDER GRADIENT RADIANT EFFECT 
+          Hardware accelerated via useMotionTemplate
+      */}
+      <motion.div
+        className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl p-[1.5px] pointer-events-none"
+        style={{
+          background: borderGradientStyle,
+          maskImage:
+            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMaskImage:
+            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          maskComposite: "exclude",
+          WebkitMaskComposite: "xor",
+        }}
+      />
 
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="h-full w-full absolute inset-0"
-          >
-            {children}
-            <div className="absolute inset-0 mask-[radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Subtle Background Glow Spotlight */}
+      <motion.div
+        className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          background: spotlightStyle,
+        }}
+      />
 
-      <div className="relative z-20 w-full flex flex-col items-center justify-center text-center">
-        <div
-          className={cn(
-            "group-hover/canvas-card:-translate-y-4 transition duration-200",
-            hovered && "-translate-y-4"
-          )}
-        >
-          {icon}
+      <div className="relative z-20 flex flex-col items-center justify-center p-12 h-full text-center">
+        {/* Centered Icon Container */}
+        <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 group-hover:border-cyan-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(34,211,238,0.15)] mb-8">
+          <Icon className="w-8 h-8 text-neutral-400 group-hover:text-cyan-400 transition-colors duration-500" />
         </div>
-        <h2
-          className={cn(
-            "dark:text-white text-xl text-black mt-4 font-bold transition duration-200",
-            hovered
-              ? "text-white -translate-y-2"
-              : "group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2"
-          )}
-        >
+
+        <h3 className="text-2xl font-extrabold mb-4 text-white tracking-tight group-hover:text-cyan-50 transition-colors duration-500">
           {title}
-        </h2>
-        <h2
-          className={cn(
-            "text-base dark:text-neutral-300 text-neutral-600 relative z-10 mt-2 font-normal transition duration-200",
-            hovered
-              ? "opacity-100 text-white -translate-y-2"
-              : "opacity-0 group-hover/canvas-card:opacity-100 group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2"
-          )}
-          style={{ color: "#e4e4e7" }}
-        >
+        </h3>
+
+        <p className="text-base leading-relaxed text-neutral-400 group-hover:text-neutral-300 transition-colors duration-500 max-w-[280px]">
           {description}
-        </h2>
+        </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
