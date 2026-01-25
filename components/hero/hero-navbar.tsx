@@ -66,13 +66,10 @@ export const HeroNavbar = () => {
       <div className="flex items-center">
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tighter flex items-center group text-neutral-900 dark:text-white"
+          className="text-2xl font-bold tracking-tighter flex items-center group text-neutral-500 dark:text-white font-sports"
           aria-label="CJ Black Logo"
         >
-          <span>CJ</span>
-          <span className="text-cyan-500 dark:text-cyan-400 text-5xl leading-[0.1] mb-4 group-hover:scale-125 transition-transform duration-300">
-            .
-          </span>
+          <span>CJBLACK</span>
         </Link>
       </div>
 
@@ -85,7 +82,6 @@ export const HeroNavbar = () => {
               className="text-base font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300 relative group"
             >
               {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </nav>

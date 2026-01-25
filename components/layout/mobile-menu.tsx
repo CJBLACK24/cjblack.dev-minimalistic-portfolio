@@ -1,22 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  IconCode,
-  IconMail,
   IconX,
-  IconMenu2,
   IconDownload,
   IconBrandX,
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandFacebook,
   IconBrandInstagram,
-  IconUser,
-  IconCpu,
+  IconArrowLeft,
 } from "@tabler/icons-react";
 import {
   Drawer,
@@ -26,36 +21,19 @@ import {
   DrawerTitle,
 } from "@/components/ui/primitives/drawer";
 import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
-import confetti from "canvas-confetti";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const pathname = usePathname();
 
-  const fullNavItems = [
-    { name: "About", link: "/about", icon: IconUser },
-    { name: "Projects", link: "/#projects", icon: IconCode },
-    { name: "Technologies", link: "/#technologies", icon: IconCpu },
-    { name: "Contact", link: "/#contact", icon: IconMail },
+  const navItems = [
+    { name: "Home", link: "/" },
+    { name: "About", link: "/about" },
+    { name: "Projects", link: "/#projects" },
+    { name: "Technologies", link: "/#technologies" },
+    { name: "Contact", link: "/#contact" },
   ];
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 },
-  };
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -66,17 +44,15 @@ export function MobileMenu() {
     if (pathname === "/" && isHashLink) {
       e.preventDefault();
       setOpen(false);
-      setTimeout(() => {
-        const targetId = link.split("#")[1];
-        if (targetId === "home") {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        } else {
-          const element = document.getElementById(targetId);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-          }
+      const targetId = link.split("#")[1];
+      if (targetId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
         }
-      }, 400); // Wait for drawer to close
+      }
     } else {
       setOpen(false);
     }
@@ -85,9 +61,7 @@ export function MobileMenu() {
   return (
     <Drawer direction="right" open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+        <button
           onClick={() => setOpen(true)}
           className="p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer text-white flex items-center justify-center"
         >
@@ -98,171 +72,129 @@ export function MobileMenu() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <motion.path
+            <path
               d="M4 6H20"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              initial={false}
-              animate={open ? { d: "M6 18L18 6" } : { d: "M4 6H20" }}
-              transition={{ duration: 0.3 }}
             />
-            <motion.path
+            <path
               d="M4 12H20"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              initial={false}
-              animate={open ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.2 }}
             />
-            <motion.path
+            <path
               d="M4 18H20"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              initial={false}
-              animate={open ? { d: "M6 6L18 18" } : { d: "M4 18H20" }}
-              transition={{ duration: 0.3 }}
             />
           </svg>
-        </motion.button>
+        </button>
       </DrawerTrigger>
       <DrawerContent
-        className="border-l border-white/10 w-full! md:w-[500px]! h-full"
-        style={{ backgroundColor: "#020013" }}
+        className="border-l border-white/10 w-full! md:w-[450px]! h-full shadow-2xl"
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          backdropFilter: "blur(20px)",
+        }}
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
         <DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
         <div className="flex flex-col h-full p-6 relative overflow-y-auto">
-          {/* Header with CV Button and Close Icon */}
-          <div className="flex justify-between items-center mb-10">
-            <motion.button
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              onClick={(e) => {
-                setIsCVModalOpen(true);
-                confetti({
-                  particleCount: 100,
-                  spread: 70,
-                  origin: {
-                    x: e.clientX / window.innerWidth,
-                    y: e.clientY / window.innerHeight,
-                  },
-                  colors: ["#2FA4FF", "#020013", "#ffffff"],
-                });
-              }}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-blue-500/20"
-              style={{ backgroundColor: "#2FA4FF", color: "#020013" }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <IconDownload className="w-4 h-4" />
-              Download CV
-            </motion.button>
+          {/* Header */}
+          <div className="flex justify-between items-center mb-10 pt-2">
+            <div className="flex items-center gap-3">
+              <IconArrowLeft className="w-5 h-5 text-white/70" />
+              <span
+                className="text-2xl font-bold text-white font-sports tracking-tighter"
+                style={{ fontSize: "24px" }}
+              >
+                CJBLACK
+              </span>
+            </div>
 
             <DrawerClose asChild>
-              <motion.button
-                initial={{ opacity: 0, rotate: -90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                transition={{ delay: 0.1 }}
+              <button
                 className="p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white"
+                aria-label="Close menu"
               >
                 <IconX className="w-8 h-8" />
-              </motion.button>
+              </button>
             </DrawerClose>
           </div>
 
           {/* Navigation Links */}
-          <motion.nav
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col gap-4 mb-auto will-change-transform"
-          >
-            {fullNavItems.map((item) => {
-              const Icon = item.icon;
-              const href = item.link.startsWith("#")
-                ? `/${item.link}`
-                : item.link;
+          <nav className="flex flex-col gap-8 mb-auto mt-4 px-2">
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.link ||
+                (item.link !== "/" && pathname.startsWith(item.link));
+              const href =
+                item.link.startsWith("#") && pathname !== "/"
+                  ? `/${item.link}`
+                  : item.link;
 
               return (
-                <motion.div
+                <Link
                   key={item.name}
-                  variants={itemVariants}
-                  className="will-change-transform"
+                  href={href}
+                  onClick={(e) => handleNavClick(e, item.link)}
+                  className={`text-xl transition-colors duration-200 ${
+                    isActive
+                      ? "text-white font-bold"
+                      : "text-neutral-500 hover:text-white"
+                  }`}
                 >
-                  <Link
-                    href={href}
-                    onClick={(e) => handleNavClick(e, item.link)}
-                    className="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group active:scale-95"
-                  >
-                    <span className="text-lg font-medium text-white/80 group-hover:text-white">
-                      {item.name}
-                    </span>
-                    <Icon className="w-5 h-5 text-white/50 group-hover:text-[#2FA4FF] transition-colors" />
-                  </Link>
-                </motion.div>
+                  {item.name}
+                </Link>
               );
             })}
-          </motion.nav>
+          </nav>
 
-          {/* Social Icons Footer */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-8 pt-8 border-t border-white/10"
-          >
-            <p className="text-white/40 text-sm font-medium mb-4 uppercase tracking-wider">
-              Connect with me
-            </p>
-            <div className="flex items-center gap-4 flex-wrap">
+          {/* Footer Area */}
+          <div className="mt-12">
+            <div className="h-px bg-white/5 mb-8 w-full" />
+
+            {/* Social Icons row */}
+            <div className="flex items-center gap-3 mb-8">
               {[
-                {
-                  icon: IconBrandX,
-                  href: "https://x.com/JohnCjblack",
-                  color: "hover:text-[#2FA4FF]",
-                },
-                {
-                  icon: IconBrandGithub,
-                  href: "https://github.com/CJBLACK24",
-                  color: "hover:text-white",
-                },
+                { icon: IconBrandX, href: "https://x.com/JohnCjblack" },
+                { icon: IconBrandGithub, href: "https://github.com/CJBLACK24" },
                 {
                   icon: IconBrandLinkedin,
                   href: "https://www.linkedin.com/in/cj-black-a5b110335",
-                  color: "hover:text-[#0A66C2]",
                 },
                 {
                   icon: IconBrandFacebook,
                   href: "https://www.facebook.com/ChrisNoLimit1124",
-                  color: "hover:text-[#1877F2]",
                 },
                 {
                   icon: IconBrandInstagram,
                   href: "https://www.instagram.com/cjblack_24/",
-                  color: "hover:text-[#E4405F]",
                 },
               ].map((social, i) => (
-                <motion.a
+                <a
                   key={i}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-3 bg-white/5 rounded-lg text-white/60 ${social.color} transition-colors border border-white/5`}
-                  whileHover={{
-                    scale: 1.1,
-                    backgroundColor: "rgba(255,255,255,0.1)",
-                  }}
-                  whileTap={{ scale: 0.9 }}
+                  className="w-12 h-12 flex items-center justify-center bg-neutral-900/50 rounded-xl text-neutral-400 hover:text-white hover:bg-neutral-800 transition-all border border-white/5"
                 >
                   <social.icon size={20} />
-                </motion.a>
+                </a>
               ))}
             </div>
-          </motion.div>
+
+            <button
+              onClick={() => setIsCVModalOpen(true)}
+              className="w-full flex items-center justify-center gap-3 py-4 rounded-xl font-bold bg-[#2FA4FF] text-[#020013] hover:bg-[#1a94ff] active:scale-[0.98] transition-all shadow-lg shadow-blue-500/10 mb-2"
+            >
+              <IconDownload className="w-5 h-5 font-bold" stroke={2.5} />
+              Download CV
+            </button>
+          </div>
         </div>
 
         <CVPreviewModal

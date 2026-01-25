@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { inter } from "@/lib/fonts";
+import { inter, sfSportsNight } from "@/lib/fonts";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -74,7 +74,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} dark`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${sfSportsNight.variable} dark`}
+    >
       <head />
       <body className={inter.className}>
         <WebVitalsReporter />
