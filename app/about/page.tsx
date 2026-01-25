@@ -16,6 +16,7 @@ import {
   IconArrowLeft,
 } from "@tabler/icons-react";
 import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
+import { DotBackground } from "@/components/backgrounds/dot-background";
 
 import confetti from "canvas-confetti";
 
@@ -209,8 +210,8 @@ export default function AboutPage() {
         cvUrl="/CV/cjblack_resume.pdf"
       />
 
-      {/* Main Content */}
-      <section className="pt-20 pb-20 md:pb-32 px-4 sm:px-6 lg:px-8">
+      {/* Main Content with Dot Background */}
+      <DotBackground className="min-h-screen pt-20 pb-20 md:pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <motion.div
@@ -342,7 +343,7 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </DotBackground>
     </main>
   );
 }
