@@ -12,6 +12,7 @@ import {
   IconBrandFacebook,
   IconBrandInstagram,
   IconArrowLeft,
+  IconEye,
 } from "@tabler/icons-react";
 import {
   Drawer,
@@ -96,8 +97,8 @@ export function MobileMenu() {
       <DrawerContent
         className="border-l border-white/10 w-full! md:w-[450px]! h-full shadow-2xl"
         style={{
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          backdropFilter: "blur(20px)",
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          backdropFilter: "blur(24px)",
         }}
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
@@ -187,13 +188,23 @@ export function MobileMenu() {
               ))}
             </div>
 
-            <button
-              onClick={() => setIsCVModalOpen(true)}
-              className="w-full flex items-center justify-center gap-3 py-4 rounded-xl font-bold bg-[#2FA4FF] text-[#020013] hover:bg-[#1a94ff] active:scale-[0.98] transition-all shadow-lg shadow-blue-500/10 mb-2"
-            >
-              <IconDownload className="w-5 h-5 font-bold" stroke={2.5} />
-              Download CV
-            </button>
+            <div className="grid grid-cols-2 gap-3 mb-2">
+              <button
+                onClick={() => setIsCVModalOpen(true)}
+                className="flex items-center justify-center gap-2 py-4 rounded-xl font-bold bg-white/5 border border-white/10 backdrop-blur-md text-white hover:bg-white/10 transition-all"
+              >
+                <IconEye className="w-5 h-5" />
+                View CV
+              </button>
+              <a
+                href="/CV/cjblack_resume.pdf"
+                download="CJBLACK_Resume.pdf"
+                className="flex items-center justify-center gap-2 py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition-all shadow-lg"
+              >
+                <IconDownload className="w-5 h-5" />
+                Download CV
+              </a>
+            </div>
           </div>
         </div>
 

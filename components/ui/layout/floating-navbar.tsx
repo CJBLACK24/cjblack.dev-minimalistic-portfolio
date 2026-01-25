@@ -99,7 +99,6 @@ export const FloatingNav = ({
               <span className="hidden sm:block text-sm font-medium">
                 {navItem.name}
               </span>
-              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full" />
             </Link>
           );
         })}

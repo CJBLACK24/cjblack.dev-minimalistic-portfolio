@@ -14,6 +14,7 @@ import {
   IconMenu2,
   IconX,
   IconArrowLeft,
+  IconEye,
 } from "@tabler/icons-react";
 import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
 
@@ -55,19 +56,6 @@ export default function AboutPage() {
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleDownloadCVClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsCVModalOpen(true);
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: {
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
-      },
-      colors: ["#2FA4FF", "#3b82f6", "#ffffff"],
-    });
-  };
-
   return (
     <main className="min-h-screen w-full overflow-x-hidden transition-colors duration-300 bg-white dark:bg-black">
       {/* Fixed Header - Theme aware */}
@@ -95,13 +83,6 @@ export default function AboutPage() {
                   }`}
                 >
                   {item.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-500 transition-all duration-300 ${
-                      item.label === "About"
-                        ? "w-full"
-                        : "w-0 group-hover:w-full"
-                    }`}
-                  />
                 </Link>
               ))}
             </nav>
@@ -122,13 +103,30 @@ export default function AboutPage() {
                   </a>
                 ))}
               </div>
-              <button
-                onClick={handleDownloadCVClick}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-[1.02] bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-dark-bg"
-              >
-                <IconDownload size={16} />
-                <span>Download CV</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setIsCVModalOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-[1.02] bg-neutral-100/50 dark:bg-white/5 border border-neutral-200 dark:border-white/10 backdrop-blur-md text-neutral-900 dark:text-white hover:bg-neutral-200/50 dark:hover:bg-white/10"
+                >
+                  <IconEye size={16} />
+                  <span>View CV</span>
+                </button>
+                <a
+                  href="/CV/cjblack_resume.pdf"
+                  download="CJBLACK_Resume.pdf"
+                  onClick={() => {
+                    confetti({
+                      particleCount: 100,
+                      spread: 70,
+                      origin: { y: 0.6 },
+                    });
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-[1.02] bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-neutral-200 shadow-md"
+                >
+                  <IconDownload size={16} />
+                  <span>Download CV</span>
+                </a>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -155,7 +153,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-t border-neutral-200 dark:border-neutral-800/60 bg-white dark:bg-black"
+            className="md:hidden border-t border-neutral-200 dark:border-neutral-800/60 bg-white/80 dark:bg-black/60 backdrop-blur-2xl"
           >
             <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => (
@@ -186,16 +184,37 @@ export default function AboutPage() {
                     </a>
                   ))}
                 </div>
-                <button
-                  onClick={(e) => {
-                    handleDownloadCVClick(e);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-dark-bg"
-                >
-                  <IconDownload size={18} />
-                  <span>Download CV</span>
-                </button>
+                <div className="grid grid-cols-2 gap-3 mb-2">
+                  <button
+                    onClick={() => {
+                      setIsCVModalOpen(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 bg-neutral-100/50 dark:bg-white/5 border border-neutral-200 dark:border-white/10 backdrop-blur-md text-neutral-900 dark:text-white hover:bg-neutral-200/50 dark:hover:bg-white/10"
+                  >
+                    <IconEye size={18} />
+                    <span>View CV</span>
+                  </button>
+                  <a
+                    href="/CV/cjblack_resume.pdf"
+                    download="CJBLACK_Resume.pdf"
+                    onClick={(e) => {
+                      confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: {
+                          x: e.clientX / window.innerWidth,
+                          y: e.clientY / window.innerHeight,
+                        },
+                      });
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 bg-neutral-900 dark:bg-white text-white dark:text-black hover:opacity-90 shadow-lg"
+                  >
+                    <IconDownload size={18} />
+                    <span>Download CV</span>
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -323,7 +342,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 gap-6">
                   <div className="group cursor-default">
                     <p className="text-3xl font-bold text-neutral-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors duration-300">
-                      2+
+                      4+
                     </p>
                     <p className="text-sm text-neutral-500 font-medium mt-1">
                       Years Learning
