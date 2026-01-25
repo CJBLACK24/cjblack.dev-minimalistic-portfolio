@@ -108,7 +108,7 @@ export function MobileMenu() {
             <div className="flex items-center gap-3">
               <IconArrowLeft className="w-5 h-5 text-white/70" />
               <span
-                className="text-2xl font-bold text-white font-sports tracking-tighter"
+                className="text-2xl font-bold text-white font-sports tracking-wider"
                 style={{ fontSize: "24px" }}
               >
                 CJBLACK

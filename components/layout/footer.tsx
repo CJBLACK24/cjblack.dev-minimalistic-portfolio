@@ -28,7 +28,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-6 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
         {/* Left: Branding & Copyright */}
         <div className="flex flex-col items-center md:items-start gap-1">
-          <p className="text-sm font-bold text-neutral-900 dark:text-white tracking-tighter">
+          <p className="text-sm font-bold text-neutral-900 dark:text-white tracking-wider">
             CJBLACK
           </p>
           <p className="text-[10px] text-neutral-400 dark:text-neutral-500 font-medium tracking-wide">

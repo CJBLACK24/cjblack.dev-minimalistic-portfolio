@@ -66,7 +66,7 @@ export const HeroNavbar = () => {
       <div className="flex items-center">
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tighter flex items-center group text-neutral-500 dark:text-white font-sports"
+          className="text-2xl font-bold tracking-wider flex items-center group text-neutral-500 dark:text-white font-sports"
           aria-label="CJ Black Logo"
         >
           <span>CJBLACK</span>
