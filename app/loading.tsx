@@ -5,7 +5,7 @@ import { Skeleton, SkeletonCard } from "@/components/ui/primitives/skeleton";
 
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-black text-white">
       <motion.div
         key="skeleton"
         initial={{ opacity: 0 }}
@@ -14,9 +14,9 @@ export default function Loading() {
         className="w-full"
       >
         {/* Nav Skeleton */}
-        <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6">
           <Skeleton className="h-8 w-24" />
-          <div className="hidden md:flex gap-8">
+          <div className="hidden gap-8 md:flex">
             <Skeleton className="h-4 w-20" />
             <Skeleton className="h-4 w-20" />
             <Skeleton className="h-4 w-20" />
@@ -25,17 +25,17 @@ export default function Loading() {
         </div>
 
         {/* Hero Section Skeleton */}
-        <div className="max-w-7xl mx-auto px-4 py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div className="mx-auto max-w-7xl px-4 py-20">
+          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
             {/* Image Skeleton */}
             <div className="flex justify-center md:justify-end">
-              <Skeleton className="w-full max-w-[380px] h-[480px] rounded-2xl" />
+              <Skeleton className="h-[480px] w-full max-w-[380px] rounded-2xl" />
             </div>
 
             {/* Content Skeleton */}
-            <div className="flex flex-col items-center md:items-start space-y-6">
+            <div className="flex flex-col items-center space-y-6 md:items-start">
               <Skeleton className="h-8 w-48 rounded-full" />
-              <div className="space-y-4 w-full max-w-lg">
+              <div className="w-full max-w-lg space-y-4">
                 <Skeleton className="h-12 w-full" />
                 <Skeleton className="h-12 w-3/4" />
               </div>
@@ -49,9 +49,9 @@ export default function Loading() {
         </div>
 
         {/* Projects Section Skeleton */}
-        <div className="max-w-7xl mx-auto px-4 py-20 mt-20">
-          <Skeleton className="h-10 w-48 mb-12 mx-auto" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mx-auto mt-20 max-w-7xl px-4 py-20">
+          <Skeleton className="mx-auto mb-12 h-10 w-48" />
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <SkeletonCard />
             <SkeletonCard />
             <SkeletonCard />

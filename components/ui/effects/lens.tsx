@@ -46,7 +46,7 @@ export const Lens: React.FC<LensProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden rounded-lg z-20"
+      className="relative z-20 overflow-hidden rounded-lg"
       onMouseEnter={() => {
         setIsHovering(true);
       }}

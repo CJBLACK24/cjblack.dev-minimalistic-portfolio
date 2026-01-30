@@ -31,15 +31,15 @@ export const AnimatedAlert = ({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.95 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-8 md:translate-x-0 z-50 w-[calc(100%-2rem)] max-w-sm md:bottom-8"
+          className="fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 md:right-8 md:bottom-8 md:left-auto md:translate-x-0"
         >
           <Alert
-            className={`border-l-4 shadow-lg flex items-center ${
+            className={`flex items-center border-l-4 shadow-lg ${
               variant === "success"
                 ? "border-cyan-500 bg-neutral-900 text-white"
                 : variant === "destructive"
-                ? "border-red-500 bg-neutral-900 text-white"
-                : "border-neutral-500 bg-neutral-900 text-white"
+                  ? "border-red-500 bg-neutral-900 text-white"
+                  : "border-neutral-500 bg-neutral-900 text-white"
             }`}
           >
             <div className="flex items-start gap-3">
@@ -48,8 +48,8 @@ export const AnimatedAlert = ({
                   variant === "success"
                     ? "bg-cyan-500/20 text-cyan-500"
                     : variant === "destructive"
-                    ? "bg-red-500/20 text-red-500"
-                    : "bg-neutral-500/20 text-neutral-500"
+                      ? "bg-red-500/20 text-red-500"
+                      : "bg-neutral-500/20 text-neutral-500"
                 }`}
               >
                 {variant === "success" ? (

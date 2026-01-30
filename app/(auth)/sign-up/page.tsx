@@ -88,19 +88,19 @@ function AuthContent() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-black bg-dot-white relative flex items-center justify-center">
+    <div className="bg-dot-white relative flex min-h-screen w-full items-center justify-center bg-black">
       {/* Radial gradient for the container to give a faded look */}
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
-      <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border border-neutral-800 relative z-10">
-        <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center">
+      <div className="shadow-input relative z-10 mx-auto w-full max-w-md rounded-none border border-neutral-800 bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
+        <h2 className="text-center text-xl font-bold text-neutral-800 dark:text-neutral-200">
           {isLogin ? "Log in to your account" : "Create a new account"}
         </h2>
 
         <form className="my-8" onSubmit={handleSubmit(handleAuth)}>
           {!isLogin && (
-            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-              <div className="flex flex-col space-y-2 w-full">
+            <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
+              <div className="flex w-full flex-col space-y-2">
                 <Label htmlFor="name">Full name</Label>
                 <Input
                   id="name"
@@ -109,13 +109,13 @@ function AuthContent() {
                   {...register("name")}
                 />
                 {errors.name && (
-                  <p className="text-red-500 text-xs">{errors.name.message}</p>
+                  <p className="text-xs text-red-500">{errors.name.message}</p>
                 )}
               </div>
             </div>
           )}
 
-          <div className="flex flex-col space-y-2 mb-4">
+          <div className="mb-4 flex flex-col space-y-2">
             <Label htmlFor="email">Email address</Label>
             <Input
               id="email"
@@ -124,18 +124,18 @@ function AuthContent() {
               {...register("email")}
             />
             {errors.email && (
-              <p className="text-red-500 text-xs">{errors.email.message}</p>
+              <p className="text-xs text-red-500">{errors.email.message}</p>
             )}
           </div>
 
           <button
-            className="bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
             disabled={isLoading}
           >
             {isLoading ? (
               <span className="flex items-center justify-center gap-2">
-                <IconLoader2 className="animate-spin w-4 h-4" />
+                <IconLoader2 className="h-4 w-4 animate-spin" />
                 Processing...
               </span>
             ) : isLogin ? (
@@ -145,29 +145,29 @@ function AuthContent() {
             )}
           </button>
 
-          <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
+          <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
 
           <div className="flex flex-col space-y-4">
             <button
-              className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] border border-neutral-200 dark:border-neutral-800 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md border border-neutral-200 bg-gray-50 px-4 font-medium text-black transition-colors hover:bg-gray-100 dark:border-neutral-800 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] dark:hover:bg-zinc-800"
               type="button"
               onClick={() => handleSocialLogin("github")}
               disabled={isLoading}
             >
               <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-              <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+              <span className="text-sm text-neutral-700 dark:text-neutral-300">
                 {isLogin ? "Log in with GitHub" : "Sign up with GitHub"}
               </span>
               <BottomGradient />
             </button>
             <button
-              className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] border border-neutral-200 dark:border-neutral-800 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md border border-neutral-200 bg-gray-50 px-4 font-medium text-black transition-colors hover:bg-gray-100 dark:border-neutral-800 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] dark:hover:bg-zinc-800"
               type="button"
               onClick={() => handleSocialLogin("google")}
               disabled={isLoading}
             >
               <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-              <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+              <span className="text-sm text-neutral-700 dark:text-neutral-300">
                 {isLogin ? "Log in with Google" : "Sign up with Google"}
               </span>
               <BottomGradient />
@@ -175,11 +175,11 @@ function AuthContent() {
           </div>
         </form>
 
-        <div className="text-center mt-4">
+        <div className="mt-4 text-center">
           <button
             type="button"
             onClick={() => setIsLogin(!isLogin)}
-            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors"
+            className="text-sm text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
           >
             {isLogin ? (
               <>
@@ -204,8 +204,8 @@ function AuthContent() {
 const BottomGradient = () => {
   return (
     <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+      <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
+      <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
     </>
   );
 };

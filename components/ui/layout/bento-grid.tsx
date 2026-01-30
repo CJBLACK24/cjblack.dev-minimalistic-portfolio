@@ -47,28 +47,28 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "group/bento row-span-1 flex flex-col justify-between space-y-4 rounded-xl border p-4 transition-all duration-300 relative",
-        "bg-[#0a0a0a] border-neutral-800 hover:border-neutral-500",
+        "group/bento relative row-span-1 flex flex-col justify-between space-y-4 rounded-xl border p-4 transition-all duration-300",
+        "border-neutral-800 bg-[#0a0a0a] hover:border-neutral-500",
         className,
       )}
       onClick={onClick}
     >
       {/* Card content - NOT clickable */}
-      <div className="flex flex-col justify-between h-full mb-12 sm:mb-14 md:mb-10">
+      <div className="mb-12 flex h-full flex-col justify-between sm:mb-14 md:mb-10">
         {header}
         <div className="transition duration-200 group-hover/bento:translate-x-2">
           {icon}
-          <div className="mt-2 mb-2 font-sans font-bold text-lg sm:text-xl md:text-2xl text-white">
+          <div className="mt-2 mb-2 font-sans text-lg font-bold text-white sm:text-xl md:text-2xl">
             {title}
           </div>
-          <div className="font-sans text-sm sm:text-base md:text-lg font-normal text-neutral-400">
+          <div className="font-sans text-sm font-normal text-neutral-400 sm:text-base md:text-lg">
             {description}
           </div>
         </div>
       </div>
 
       {/* Footer Area - Bottom of Card */}
-      <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 right-2 md:right-4 z-20 flex items-center justify-between gap-2">
+      <div className="absolute right-2 bottom-2 left-2 z-20 flex items-center justify-between gap-2 md:right-4 md:bottom-4 md:left-4">
         {/* Tech Stack */}
         <div className="flex items-center">{techStack}</div>
 
@@ -79,7 +79,7 @@ export const BentoGridItem = ({
             <Link
               href={viewButton}
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex h-8 md:h-9 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-size-[200%_100%] px-3 md:px-4 text-xs md:text-sm font-medium text-slate-400 transition-colors focus:outline-none hover:text-cyan-400 hover:border-cyan-500/50"
+              className="animate-shimmer inline-flex h-8 items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-size-[200%_100%] px-3 text-xs font-medium text-slate-400 transition-colors hover:border-cyan-500/50 hover:text-cyan-400 focus:outline-none md:h-9 md:px-4 md:text-sm"
             >
               View
             </Link>
@@ -89,10 +89,10 @@ export const BentoGridItem = ({
               href={liveDemo}
               target={liveDemo.startsWith("http") ? "_blank" : undefined}
               onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1 md:gap-1.5 text-cyan-500 hover:text-cyan-400 text-xs md:text-sm font-semibold transition-colors duration-200 group/demo whitespace-nowrap"
+              className="group/demo flex items-center gap-1 text-xs font-semibold whitespace-nowrap text-cyan-500 transition-colors duration-200 hover:text-cyan-400 md:gap-1.5 md:text-sm"
             >
               <span>Live Demo</span>
-              <IconArrowUpRight className="h-3 w-3 md:h-4 md:w-4 group-hover/demo:translate-x-0.5 group-hover/demo:-translate-y-0.5 transition-transform" />
+              <IconArrowUpRight className="h-3 w-3 transition-transform group-hover/demo:translate-x-0.5 group-hover/demo:-translate-y-0.5 md:h-4 md:w-4" />
             </Link>
           )}
         </div>

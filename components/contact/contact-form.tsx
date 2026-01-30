@@ -63,7 +63,7 @@ const LabelInputContainer = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex flex-col space-y-2 w-full", className)}>
+    <div className={cn("flex w-full flex-col space-y-2", className)}>
       {children}
     </div>
   );
@@ -221,15 +221,12 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
       <motion.div
         ref={containerRef}
         variants={itemVariants}
-        className="relative lg:col-span-1 border rounded-xl p-6 md:p-8 transition-all duration-300 group
-          bg-[#0a0a0a] 
-          border-neutral-800 
-          hover:border-neutral-500"
+        className="group relative rounded-xl border border-neutral-800 bg-[#0a0a0a] p-6 transition-all duration-300 hover:border-neutral-500 md:p-8 lg:col-span-1"
       >
         <div className="relative">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-11 h-11 rounded-lg flex items-center justify-center border transition-colors duration-300 bg-[#111] border-neutral-800 group-hover:border-neutral-600">
-              <IconSend className="w-5 h-5 text-white" />
+          <div className="mb-8 flex items-center gap-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-neutral-800 bg-[#111] transition-colors duration-300 group-hover:border-neutral-600">
+              <IconSend className="h-5 w-5 text-white" />
             </div>
             <h3 className="text-lg font-semibold text-white">
               Send me a message
@@ -250,13 +247,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="Your Name"
                 type="text"
                 required
-                className="rounded-xl px-4 py-3 transition-all duration-200 
-                  bg-neutral-50 dark:bg-neutral-900/60 
-                  border-neutral-200 dark:border-neutral-800 
-                  text-neutral-900 dark:text-white 
-                  placeholder:text-neutral-400 dark:placeholder:text-neutral-600 
-                  focus:border-cyan-500 dark:focus:border-cyan-500/40 
-                  focus:ring-2 focus:ring-cyan-500/10"
+                className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-neutral-900/60 dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
               />
             </LabelInputContainer>
 
@@ -273,13 +264,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="your@email.com"
                 type="email"
                 required
-                className="rounded-xl px-4 py-3 transition-all duration-200 
-                  bg-neutral-50 dark:bg-neutral-900/60 
-                  border-neutral-200 dark:border-neutral-800 
-                  text-neutral-900 dark:text-white 
-                  placeholder:text-neutral-400 dark:placeholder:text-neutral-600 
-                  focus:border-cyan-500 dark:focus:border-cyan-500/40 
-                  focus:ring-2 focus:ring-cyan-500/10"
+                className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-neutral-900/60 dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
               />
             </LabelInputContainer>
 
@@ -294,14 +279,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 id="message"
                 name="message"
                 placeholder="Your message..."
-                className="flex min-h-[120px] w-full rounded-lg border px-4 py-3 text-sm transition-all duration-200 resize-none
-                  bg-[#111] 
-                  border-neutral-800 
-                  text-white 
-                  placeholder:text-neutral-500 
-                  focus-visible:outline-none focus-visible:border-neutral-500 
-                  focus-visible:ring-1 focus-visible:ring-neutral-500 
-                  disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex min-h-[120px] w-full resize-none rounded-lg border border-neutral-800 bg-[#111] px-4 py-3 text-sm text-white transition-all duration-200 placeholder:text-neutral-500 focus-visible:border-neutral-500 focus-visible:ring-1 focus-visible:ring-neutral-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 required
               />
             </LabelInputContainer>
@@ -309,10 +287,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
             <button
               type="submit"
               disabled={loading || (countdown > 0 && cooldownTime > 0)}
-              className="w-full font-semibold py-3 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative z-20 mt-2
-                bg-white 
-                text-black 
-                hover:bg-neutral-200"
+              className="relative z-20 mt-2 w-full rounded-lg bg-white py-3 font-semibold text-black transition-all duration-300 hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading
                 ? "Sending..."
@@ -326,20 +301,20 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
 
       {/* Confirmation Dialog */}
       <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
-        <AlertDialogContent className="rounded-2xl bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800">
+        <AlertDialogContent className="rounded-2xl border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-xl text-neutral-900 dark:text-white">
               Confirm Send Message
             </AlertDialogTitle>
             <AlertDialogDescription asChild>
-              <div className="text-neutral-600 dark:text-neutral-400 space-y-3">
+              <div className="space-y-3 text-neutral-600 dark:text-neutral-400">
                 <p>Are you sure you want to send this message?</p>
                 {attemptCount < 3 && (
-                  <div className="rounded-xl p-3 mt-3 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20">
+                  <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 dark:border-amber-500/20 dark:bg-amber-500/10">
                     <p className="text-sm font-medium text-amber-700 dark:text-amber-400">
                       ⚠️ Anti-spam Notice:
                     </p>
-                    <p className="text-sm mt-1 text-amber-600 dark:text-amber-300/80">
+                    <p className="mt-1 text-sm text-amber-600 dark:text-amber-300/80">
                       After sending, you&apos;ll need to wait{" "}
                       <span className="font-semibold">
                         {attemptCount === 0
@@ -356,12 +331,12 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700">
+            <AlertDialogCancel className="rounded-xl border-neutral-200 bg-neutral-100 text-neutral-900 hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
               onClick={sendEmail}
-              className="rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100"
+              className="rounded-xl bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-100"
             >
               Send Message
             </AlertDialogAction>

@@ -56,16 +56,14 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative flex justify-center items-center flex-col overflow-hidden mx-auto px-4 sm:px-10 transition-colors duration-300 bg-black text-white">
+    <main className="relative mx-auto flex flex-col items-center justify-center overflow-hidden bg-black px-4 text-white transition-colors duration-300 sm:px-10">
       <IntroLoader />
 
       <ScrollProgress className="bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
 
-      <FloatingNav navItems={navItems} />
-
       <Spotlight />
 
-      <div className="max-w-7xl w-full">
+      <div className="w-full max-w-7xl">
         <HeroSection />
         <FeaturesSection />
         <ProjectsSection />

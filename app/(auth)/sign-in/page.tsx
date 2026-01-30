@@ -12,7 +12,7 @@ export default function SignInPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
+    <div className="flex min-h-screen items-center justify-center bg-black">
       <p className="text-white">Redirecting...</p>
     </div>
   );

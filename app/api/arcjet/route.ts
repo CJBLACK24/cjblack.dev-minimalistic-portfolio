@@ -40,17 +40,17 @@ export async function GET(req: Request) {
     if (decision.reason.isRateLimit()) {
       return NextResponse.json(
         { error: "Too Many Requests", reason: decision.reason },
-        { status: 429 }
+        { status: 429 },
       );
     } else if (decision.reason.isBot()) {
       return NextResponse.json(
         { error: "No bots allowed", reason: decision.reason },
-        { status: 403 }
+        { status: 403 },
       );
     } else {
       return NextResponse.json(
         { error: "Forbidden", reason: decision.reason },
-        { status: 403 }
+        { status: 403 },
       );
     }
   }
@@ -62,7 +62,7 @@ export async function GET(req: Request) {
   if (decision.ip.isHosting()) {
     return NextResponse.json(
       { error: "Forbidden", reason: decision.reason },
-      { status: 403 }
+      { status: 403 },
     );
   }
 
@@ -73,7 +73,7 @@ export async function GET(req: Request) {
   if (decision.results.some(isSpoofedBot)) {
     return NextResponse.json(
       { error: "Forbidden", reason: decision.reason },
-      { status: 403 }
+      { status: 403 },
     );
   }
 

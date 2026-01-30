@@ -74,7 +74,7 @@ export function IntroLoader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15, ease: "linear" }}
-            className="text-5xl md:text-7xl font-bold text-cyan-100"
+            className="text-5xl font-bold text-cyan-100 md:text-7xl"
           >
             {hellos[helloIndex]}
           </motion.div>

@@ -13,12 +13,12 @@ export function FeedbackForm() {
 
   if (!session) {
     return (
-      <div className="p-6 border border-dashed border-white/10 rounded-xl text-center">
+      <div className="rounded-xl border border-dashed border-white/10 p-6 text-center">
         <Button
           onClick={() =>
             (window.location.href = "/sign-up?tab=signin&callbackUrl=/wall")
           }
-          className="bg-white/10 hover:bg-white/20 text-white mb-2"
+          className="mb-2 bg-white/10 text-white hover:bg-white/20"
         >
           Sign in to share your thoughts
         </Button>
@@ -38,23 +38,23 @@ export function FeedbackForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 p-6 bg-white/5 border border-white/10 rounded-2xl"
+      className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6"
     >
-      <div className="flex items-center gap-2 text-white/80 font-medium">
-        <MessageSquarePlus className="w-4 h-4" />
+      <div className="flex items-center gap-2 font-medium text-white/80">
+        <MessageSquarePlus className="h-4 w-4" />
         <span>Share your feedback</span>
       </div>
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder="What people says about my portfolio..."
-        className="w-full h-32 p-4 bg-black/40 border border-white/10 rounded-xl text-white outline-none focus:border-blue-500/50 transition-colors resize-none"
+        className="h-32 w-full resize-none rounded-xl border border-white/10 bg-black/40 p-4 text-white transition-colors outline-none focus:border-blue-500/50"
       />
       <div className="flex justify-end">
         <Button
           type="submit"
           disabled={isCreatingFeedback || !content.trim()}
-          className="bg-blue-600 hover:bg-blue-700 text-white"
+          className="bg-blue-600 text-white hover:bg-blue-700"
         >
           {isCreatingFeedback ? "Posting..." : "Post Feedback"}
         </Button>

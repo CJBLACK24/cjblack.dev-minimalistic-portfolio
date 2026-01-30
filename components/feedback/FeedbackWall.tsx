@@ -21,16 +21,16 @@ export function FeedbackWall() {
   const { feedbacks, isLoadingFeedbacks } = useFeedback();
 
   return (
-    <section className="pt-10 pb-20 px-4 min-h-screen">
-      <div className="max-w-6xl mx-auto space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <section className="min-h-screen px-4 pt-10 pb-20">
+      <div className="mx-auto max-w-6xl space-y-8">
+        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
           {/* Left Column: Title, Description, Reactions */}
           <div className="space-y-6">
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+              <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
                 What <span className="text-blue-500">People</span> Say
               </h2>
-              <p className="text-white/40 text-lg max-w-xl">
+              <p className="max-w-xl text-lg text-white/40">
                 Thoughts, feedback, and reactions from the community. Share your
                 experience or just leave a heart.
               </p>
@@ -47,16 +47,16 @@ export function FeedbackWall() {
         {/* Feedbacks Feed */}
         <div className="space-y-6">
           {isLoadingFeedbacks ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[1, 2, 3].map((n) => (
                 <div
                   key={n}
-                  className="h-40 bg-white/5 border border-white/10 rounded-2xl animate-pulse"
+                  className="h-40 animate-pulse rounded-2xl border border-white/10 bg-white/5"
                 />
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <AnimatePresence mode="popLayout">
                 {feedbacks.map((feedback: Feedback) => (
                   <FeedbackItem key={feedback.id} feedback={feedback} />
@@ -64,7 +64,7 @@ export function FeedbackWall() {
               </AnimatePresence>
 
               {feedbacks.length === 0 && (
-                <div className="col-span-full text-center py-20 border border-dashed border-white/10 rounded-3xl">
+                <div className="col-span-full rounded-3xl border border-dashed border-white/10 py-20 text-center">
                   <p className="text-white/40">
                     No testimonials yet. Be the first to share your thoughts!
                   </p>
@@ -115,39 +115,39 @@ function FeedbackItem({ feedback }: { feedback: Feedback }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      className="p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/8 transition-colors group relative"
+      className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/8"
     >
       <div className="flex items-start gap-4">
-        <Avatar className="w-10 h-10 border border-white/10 shrink-0">
+        <Avatar className="h-10 w-10 shrink-0 border border-white/10">
           <AvatarImage
             src={feedback.user.image ?? undefined}
             alt={feedback.user.name}
           />
           <AvatarFallback>{feedback.user.name?.charAt(0)}</AvatarFallback>
         </Avatar>
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="font-semibold text-white/90 truncate">
+            <h3 className="truncate font-semibold text-white/90">
               {feedback.user.name}
             </h3>
             <div className="flex items-center gap-3">
-              <time className="text-xs text-white/30 whitespace-nowrap">
+              <time className="text-xs whitespace-nowrap text-white/30">
                 {formatDistanceToNow(new Date(feedback.createdAt), {
                   addSuffix: true,
                 })}
               </time>
               {canModify && !isEditing && (
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="p-1 hover:bg-white/10 rounded-md text-white/40 hover:text-white transition-colors"
+                    className="rounded-md p-1 text-white/40 transition-colors hover:bg-white/10 hover:text-white"
                     title="Edit feedback"
                   >
                     <IconPencil size={16} />
                   </button>
                   <button
                     onClick={handleDelete}
-                    className="p-1 hover:bg-red-500/10 rounded-md text-white/40 hover:text-red-500 transition-colors"
+                    className="rounded-md p-1 text-white/40 transition-colors hover:bg-red-500/10 hover:text-red-500"
                     title="Delete feedback"
                   >
                     <IconTrash size={16} />
@@ -162,13 +162,13 @@ function FeedbackItem({ feedback }: { feedback: Feedback }) {
               <textarea
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500/50 resize-none min-h-[100px]"
+                className="min-h-[100px] w-full resize-none rounded-xl border border-white/10 bg-white/5 p-3 text-white/80 focus:ring-2 focus:ring-blue-500/50 focus:outline-none"
                 autoFocus
               />
               <div className="flex justify-end gap-2">
                 <button
                   onClick={() => setIsEditing(false)}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/60 text-sm transition-colors"
+                  className="flex items-center gap-1 rounded-lg bg-white/5 px-3 py-1.5 text-sm text-white/60 transition-colors hover:bg-white/10"
                 >
                   <IconX size={16} />
                   Cancel
@@ -176,7 +176,7 @@ function FeedbackItem({ feedback }: { feedback: Feedback }) {
                 <button
                   onClick={handleUpdate}
                   disabled={isUpdatingFeedback}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 text-sm font-medium transition-colors disabled:opacity-50"
+                  className="flex items-center gap-1 rounded-lg bg-blue-500/20 px-3 py-1.5 text-sm font-medium text-blue-400 transition-colors hover:bg-blue-500/30 disabled:opacity-50"
                 >
                   <IconCheck size={16} />
                   {isUpdatingFeedback ? "Updating..." : "Save Changes"}
@@ -184,7 +184,7 @@ function FeedbackItem({ feedback }: { feedback: Feedback }) {
               </div>
             </div>
           ) : (
-            <p className="mt-2 text-white/60 leading-relaxed break-words">
+            <p className="mt-2 leading-relaxed break-words text-white/60">
               {feedback.content}
             </p>
           )}

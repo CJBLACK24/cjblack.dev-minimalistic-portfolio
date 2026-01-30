@@ -87,11 +87,11 @@ export const AnimatedTooltip = ({
           <div
             onMouseMove={handleMouseMove}
             className={cn(
-              "group-hover:z-30 transition duration-500 h-full w-full",
+              "h-full w-full transition duration-500 group-hover:z-30",
             )}
           >
             {item.icon ? (
-              <div className="h-full w-full flex items-center justify-center group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)] transition-all">
+              <div className="flex h-full w-full items-center justify-center transition-all group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]">
                 {item.icon}
               </div>
             ) : (
@@ -100,7 +100,7 @@ export const AnimatedTooltip = ({
                 width={100}
                 src={item.image || ""}
                 alt={item.name}
-                className="object-contain m-0! p-0! object-top h-full w-full group-hover:z-30 relative transition duration-500 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
+                className="relative m-0! h-full w-full object-contain object-top p-0! transition duration-500 group-hover:z-30 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
               />
             )}
           </div>

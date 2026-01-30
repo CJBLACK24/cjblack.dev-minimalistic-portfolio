@@ -20,21 +20,21 @@ export function FeaturesSection() {
       description:
         "Delivering high-quality results while maintaining attention to every detail.",
       revealColor: [47, 164, 255], // matches #2fa4ff
-      icon: <IconShieldCheck className="h-10 w-10 text-white mb-2" />,
+      icon: <IconShieldCheck className="mb-2 h-10 w-10 text-white" />,
     },
     {
       title: "Reliable Communication",
       description:
         "Keeping you updated at every step to ensure transparency and clarity.",
       revealColor: [6, 182, 212], // matches #06b6d4
-      icon: <IconMessage2Share className="h-10 w-10 text-white mb-2" />,
+      icon: <IconMessage2Share className="mb-2 h-10 w-10 text-white" />,
     },
     {
       title: "On-Time Delivery",
       description:
         "Making sure projects are completed on schedule, with quality & attention to detail.",
       revealColor: [47, 164, 255],
-      icon: <IconClockBolt className="h-10 w-10 text-white mb-2" />,
+      icon: <IconClockBolt className="mb-2 h-10 w-10 text-white" />,
     },
   ];
 
@@ -73,8 +73,8 @@ export function FeaturesSection() {
   }, [hasStarted, features.length]);
 
   return (
-    <section ref={sectionRef} className="w-full py-20 bg-black">
-      <div className="flex flex-col lg:flex-row items-center justify-center bg-black w-full gap-4 mx-auto px-8">
+    <section ref={sectionRef} className="w-full bg-black py-20">
+      <div className="mx-auto flex w-full flex-col items-center justify-center gap-4 bg-black px-8 lg:flex-row">
         {features.map((feature, idx) => (
           <Card
             key={idx}
@@ -91,7 +91,7 @@ export function FeaturesSection() {
               colors={[feature.revealColor]}
               dotSize={2}
             />
-            <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50" />
+            <div className="absolute inset-0 bg-black/50 [mask-image:radial-gradient(400px_at_center,white,transparent)]" />
           </Card>
         ))}
       </div>
@@ -128,19 +128,19 @@ const Card = ({
         onHover?.();
       }}
       onMouseLeave={() => setHovered(false)}
-      className="border border-white/20 group/canvas-card flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-[30rem] lg:h-[35rem]"
+      className="group/canvas-card relative mx-auto flex h-[30rem] w-full max-w-sm items-center justify-center border border-white/20 p-4 lg:h-[35rem]"
     >
-      <Icon className="absolute h-6 w-6 -top-3 -left-3 text-white" />
-      <Icon className="absolute h-6 w-6 -bottom-3 -left-3 text-white" />
-      <Icon className="absolute h-6 w-6 -top-3 -right-3 text-white" />
-      <Icon className="absolute h-6 w-6 -bottom-3 -right-3 text-white" />
+      <Icon className="absolute -top-3 -left-3 h-6 w-6 text-white" />
+      <Icon className="absolute -bottom-3 -left-3 h-6 w-6 text-white" />
+      <Icon className="absolute -top-3 -right-3 h-6 w-6 text-white" />
+      <Icon className="absolute -right-3 -bottom-3 h-6 w-6 text-white" />
 
       <AnimatePresence>
         {effectiveReveal && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="h-full w-full absolute inset-0"
+            className="absolute inset-0 h-full w-full"
           >
             {children}
           </motion.div>
@@ -149,18 +149,18 @@ const Card = ({
 
       <div className="relative z-20 flex flex-col items-center justify-center">
         <div
-          className={`text-center transition duration-200 w-full mx-auto flex items-center justify-center ${effectiveReveal ? "opacity-100 -translate-y-2" : "opacity-100"}`}
+          className={`mx-auto flex w-full items-center justify-center text-center transition duration-200 ${effectiveReveal ? "-translate-y-2 opacity-100" : "opacity-100"}`}
         >
           {effectiveReveal ? icon : defaultIcon}
         </div>
         <h2
-          className={`text-white text-3xl ${effectiveReveal ? "opacity-100 -translate-y-2" : "opacity-0 group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2"} relative z-10 mt-4 font-bold transition duration-200 text-center`}
+          className={`text-3xl text-white ${effectiveReveal ? "-translate-y-2 opacity-100" : "opacity-0 group-hover/canvas-card:-translate-y-2 group-hover/canvas-card:opacity-100"} relative z-10 mt-4 text-center font-bold transition duration-200`}
         >
           {title}
         </h2>
         {description && (
           <p
-            className={`text-sm text-neutral-300 ${effectiveReveal ? "opacity-100 -translate-y-2" : "opacity-0 group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2"} relative z-10 mt-4 font-normal transition duration-200 text-center`}
+            className={`text-sm text-neutral-300 ${effectiveReveal ? "-translate-y-2 opacity-100" : "opacity-0 group-hover/canvas-card:-translate-y-2 group-hover/canvas-card:opacity-100"} relative z-10 mt-4 text-center font-normal transition duration-200`}
           >
             {description}
           </p>
@@ -179,7 +179,7 @@ const PhaseIcon = () => {
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="text-white h-20 w-20"
+        className="h-20 w-20 text-white"
       >
         <path
           d="M9 6L15 12L9 18"

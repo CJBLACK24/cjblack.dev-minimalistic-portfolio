@@ -440,7 +440,7 @@ export const currentlyLearningItems = [
 ];
 
 const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-24 rounded-xl   dark:bg-dot-white/[0.2] bg-dot-black/[0.2] mask-[radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/20 bg-neutral-100 dark:bg-black"></div>
+  <div className="dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex h-full min-h-24 w-full flex-1 rounded-xl border border-transparent bg-neutral-100 mask-[radial-gradient(ellipse_at_center,white,transparent)] dark:border-white/20 dark:bg-black"></div>
 );
 
 export const gridItems = [

@@ -68,8 +68,8 @@ export default function ProfilePage() {
 
   if (isPending) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] text-white">
-        <IconLoader2 className="animate-spin w-8 h-8 text-cyan-500" />
+      <div className="flex min-h-screen items-center justify-center bg-[#0a0a0a] text-white">
+        <IconLoader2 className="h-8 w-8 animate-spin text-cyan-500" />
       </div>
     );
   }
@@ -107,74 +107,74 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#0a0a0a] relative overflow-hidden p-4">
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="cyan" />
+    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] p-4">
+      <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="cyan" />
 
-      <div className="w-full max-w-md relative z-10">
-        <div className="bg-[#121212] border border-[#2a2a2a] rounded-2xl shadow-2xl overflow-hidden backdrop-blur-sm p-8">
+      <div className="relative z-10 w-full max-w-md">
+        <div className="overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#121212] p-8 shadow-2xl backdrop-blur-sm">
           <div className="mb-6">
             <Link
               href="/"
-              className="text-xs text-gray-500 hover:text-cyan-400 transition-colors inline-flex items-center gap-2 group"
+              className="group inline-flex items-center gap-2 text-xs text-gray-500 transition-colors hover:text-cyan-400"
             >
-              <IconArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              <IconArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
               Back to Home
             </Link>
           </div>
 
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+          <div className="mb-8 text-center">
+            <h1 className="text-2xl font-bold tracking-tight text-white">
               Profile Settings
             </h1>
-            <p className="text-gray-400 text-sm mt-2">
+            <p className="mt-2 text-sm text-gray-400">
               Update your personal information
             </p>
           </div>
 
           <form onSubmit={handleUpdate} className="space-y-6">
             <div className="flex flex-col items-center gap-4">
-              <div className="relative group">
+              <div className="group relative">
                 <Avatar className="h-24 w-24 border-2 border-cyan-500/20">
                   <AvatarImage src={image || session.user.image || ""} />
-                  <AvatarFallback className="text-2xl bg-neutral-800 text-cyan-500">
+                  <AvatarFallback className="bg-neutral-800 text-2xl text-cyan-500">
                     {name?.charAt(0).toUpperCase() ||
                       session.user.name?.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
-                <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                  <IconCamera className="text-white w-6 h-6" />
+                <div className="absolute inset-0 flex cursor-pointer items-center justify-center rounded-full bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+                  <IconCamera className="h-6 w-6 text-white" />
                 </div>
                 {/* In a real app, you'd add file upload here. For now, we just let them edit the URL string or keep it simple */}
               </div>
               <p className="text-xs text-gray-500">
                 {session.user.email}
                 {session.user.emailVerified && (
-                  <span className="text-green-500 ml-1">(Verified)</span>
+                  <span className="ml-1 text-green-500">(Verified)</span>
                 )}
               </p>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-gray-300 ml-1">
+              <label className="ml-1 text-xs font-medium text-gray-300">
                 Full Name
               </label>
               <div className="relative">
-                <IconUser className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <IconUser className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-500" />
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+                  className="w-full rounded-lg border border-[#333] bg-[#0a0a0a] py-3 pr-4 pl-10 text-white placeholder-gray-600 transition-all focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 focus:outline-none"
                   placeholder="Your Name"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-gray-300 ml-1">
+              <label className="ml-1 text-xs font-medium text-gray-300">
                 Profile Picture
               </label>
-              <div className="w-full border border-[#333] rounded-lg bg-[#0a0a0a] overflow-hidden">
+              <div className="w-full overflow-hidden rounded-lg border border-[#333] bg-[#0a0a0a]">
                 <FileUpload
                   onChange={(files) => {
                     if (files.length > 0) {
@@ -188,17 +188,17 @@ export default function ProfilePage() {
                   }}
                 />
               </div>
-              <p className="text-[10px] text-gray-500 ml-1">
+              <p className="ml-1 text-[10px] text-gray-500">
                 Supported formats: JPG, PNG, GIF. Max size: 5MB.
               </p>
             </div>
 
             {message && (
               <div
-                className={`p-3 rounded-lg flex items-center gap-2 text-sm ${
+                className={`flex items-center gap-2 rounded-lg p-3 text-sm ${
                   message.type === "success"
-                    ? "bg-green-500/10 text-green-500 border border-green-500/20"
-                    : "bg-red-500/10 text-red-500 border border-red-500/20"
+                    ? "border border-green-500/20 bg-green-500/10 text-green-500"
+                    : "border border-red-500/20 bg-red-500/10 text-red-500"
                 }`}
               >
                 {message.type === "success" ? (
@@ -213,11 +213,11 @@ export default function ProfilePage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 px-4 bg-linear-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold rounded-lg transition-all duration-200 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-lg bg-linear-to-r from-cyan-600 to-blue-600 px-4 py-3 font-semibold text-white shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-200 hover:from-cyan-500 hover:to-blue-500 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">
-                  <IconLoader2 className="animate-spin w-4 h-4" />
+                  <IconLoader2 className="h-4 w-4 animate-spin" />
                   <span>Updating...</span>
                 </div>
               ) : (
@@ -227,9 +227,9 @@ export default function ProfilePage() {
           </form>
 
           {/* Delete Account Section */}
-          <div className="mt-8 pt-6 border-t border-[#2a2a2a]">
-            <h3 className="text-red-500 font-semibold mb-2">Danger Zone</h3>
-            <p className="text-gray-500 text-xs mb-4">
+          <div className="mt-8 border-t border-[#2a2a2a] pt-6">
+            <h3 className="mb-2 font-semibold text-red-500">Danger Zone</h3>
+            <p className="mb-4 text-xs text-gray-500">
               Once you delete your account, there is no going back. Please be
               certain.
             </p>
@@ -237,13 +237,13 @@ export default function ProfilePage() {
               <AlertDialogTrigger asChild>
                 <button
                   type="button"
-                  className="w-full py-3 px-4 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-500 font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 font-semibold text-red-500 transition-all duration-200 hover:bg-red-500/20"
                 >
-                  <IconTrash className="w-4 h-4" />
+                  <IconTrash className="h-4 w-4" />
                   Delete Account
                 </button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="bg-[#121212] border border-[#2a2a2a] text-white">
+              <AlertDialogContent className="border border-[#2a2a2a] bg-[#121212] text-white">
                 <AlertDialogHeader>
                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                   <AlertDialogDescription className="text-gray-400">
@@ -252,16 +252,16 @@ export default function ProfilePage() {
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel className="bg-transparent border border-[#333] text-white hover:bg-[#2a2a2a] hover:text-white">
+                  <AlertDialogCancel className="border border-[#333] bg-transparent text-white hover:bg-[#2a2a2a] hover:text-white">
                     Cancel
                   </AlertDialogCancel>
                   <AlertDialogAction
                     onClick={handleDeleteAccount}
-                    className="bg-red-600 text-white hover:bg-red-700 border-none"
+                    className="border-none bg-red-600 text-white hover:bg-red-700"
                   >
                     {isDeleting ? (
                       <div className="flex items-center gap-2">
-                        <IconLoader2 className="animate-spin w-4 h-4" />
+                        <IconLoader2 className="h-4 w-4 animate-spin" />
                         <span>Deleting...</span>
                       </div>
                     ) : (

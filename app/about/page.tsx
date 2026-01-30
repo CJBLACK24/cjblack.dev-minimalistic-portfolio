@@ -10,14 +10,10 @@ import {
   IconBrandGithub,
   IconBrandFacebook,
   IconBrandInstagram,
-  IconDownload,
   IconMenu2,
   IconX,
 } from "@tabler/icons-react";
-import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
 import { DotBackground } from "@/components/backgrounds/dot-background";
-
-import confetti from "canvas-confetti";
 
 const navItems = [
   { href: "/#home", label: "Home" },
@@ -53,62 +49,41 @@ const socialLinks = [
 ];
 
 export default function AboutPage() {
-  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleDownloadCVClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsCVModalOpen(true);
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: {
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
-      },
-      colors: ["#2FA4FF", "#3b82f6", "#ffffff"],
-    });
-  };
-
   return (
-    <main className="min-h-screen w-full overflow-x-hidden transition-colors duration-300 bg-white dark:bg-black">
+    <main className="min-h-screen w-full overflow-x-hidden bg-white transition-colors duration-300 dark:bg-black">
       {/* Fixed Header - Theme aware */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md transition-colors duration-300 border-neutral-200 dark:border-neutral-800/60 bg-white/80 dark:bg-black/80">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+      <header className="fixed top-0 right-0 left-0 z-50 border-b border-neutral-200/20 bg-white/10 backdrop-blur-xl transition-colors duration-300 dark:border-neutral-800/20 dark:bg-black/10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <span className="text-2xl font-bold tracking-wider text-neutral-900 dark:text-white font-sports">
+            <Link href="/" className="group flex items-center gap-2">
+              <span className="font-sports text-2xl font-bold tracking-wider text-neutral-900 dark:text-white">
                 CJBLACK
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden items-center gap-8 md:flex">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`text-sm font-medium transition-colors duration-300 relative group ${
+                  className={`relative text-sm font-medium transition-colors duration-300 ${
                     item.label === "About"
                       ? "text-neutral-900 dark:text-white"
-                      : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                      : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                   }`}
                 >
                   {item.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-500 transition-all duration-300 ${
-                      item.label === "About"
-                        ? "w-full"
-                        : "w-0 group-hover:w-full"
-                    }`}
-                  />
                 </Link>
               ))}
             </nav>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden items-center md:flex">
               <div className="flex items-center gap-1">
                 {socialLinks.slice(0, 3).map((social) => (
                   <a
@@ -116,27 +91,20 @@ export default function AboutPage() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
+                    className="rounded-lg p-2 text-neutral-400 transition-colors duration-300 hover:bg-neutral-100/50 hover:text-neutral-900 dark:text-neutral-500 dark:hover:bg-neutral-800/30 dark:hover:text-white"
                     aria-label={social.label}
                   >
                     <social.icon size={18} />
                   </a>
                 ))}
               </div>
-              <button
-                onClick={handleDownloadCVClick}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-[1.02] bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-dark-bg"
-              >
-                <IconDownload size={16} />
-                <span>Download CV</span>
-              </button>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center gap-2">
+            <div className="flex items-center gap-2 md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300"
+                className="p-2 text-neutral-500 transition-colors duration-300 hover:text-neutral-900 dark:hover:text-white"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
@@ -156,9 +124,9 @@ export default function AboutPage() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-t border-neutral-200 dark:border-neutral-800/60 bg-white dark:bg-black"
+            className="border-t border-neutral-200/20 bg-white/10 backdrop-blur-xl transition-colors duration-300 md:hidden dark:border-neutral-800/20 dark:bg-black/10"
           >
-            <div className="px-4 py-4 space-y-2">
+            <div className="space-y-2 px-4 py-4">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
@@ -167,52 +135,35 @@ export default function AboutPage() {
                   className={`block py-2.5 text-base font-medium transition-colors duration-300 ${
                     item.label === "About"
                       ? "text-neutral-900 dark:text-white"
-                      : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                      : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                   }`}
                 >
                   {item.label}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800/60">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="border-t border-neutral-200/30 pt-4 dark:border-neutral-800/30">
+                <div className="flex items-center gap-2">
                   {socialLinks.map((social) => (
                     <a
                       key={social.label}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 bg-neutral-100 dark:bg-neutral-900/60 rounded-lg text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300"
+                      className="rounded-lg bg-neutral-100/50 p-2.5 text-neutral-500 transition-colors duration-300 hover:text-neutral-900 dark:bg-neutral-900/30 dark:hover:text-white"
                     >
                       <social.icon size={18} />
                     </a>
                   ))}
                 </div>
-                <button
-                  onClick={(e) => {
-                    handleDownloadCVClick(e);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium bg-cyan-500 dark:bg-[#2FA4FF] text-white dark:text-dark-bg"
-                >
-                  <IconDownload size={18} />
-                  <span>Download CV</span>
-                </button>
               </div>
             </div>
           </motion.div>
         )}
       </header>
 
-      {/* CV Preview Modal */}
-      <CVPreviewModal
-        isOpen={isCVModalOpen}
-        onClose={() => setIsCVModalOpen(false)}
-        cvUrl="/CV/cjblack_resume.pdf"
-      />
-
       {/* Main Content with Dot Background */}
-      <DotBackground className="min-h-screen pt-20 pb-20 md:pb-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+      <DotBackground className="min-h-screen px-4 pt-20 pb-20 sm:px-6 md:pb-32 lg:px-8">
+        <div className="mx-auto max-w-5xl">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -220,25 +171,25 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="mb-8 md:mb-10"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-neutral-900 dark:text-white">
+            <h1 className="text-3xl leading-[1.1] font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-5xl lg:text-5xl dark:text-white">
               Meet your junior{" "}
-              <span className="bg-linear-to-br from-cyan-600 to-cyan-400 dark:from-white dark:to-[#2FA4FF] bg-clip-text text-transparent">
+              <span className="bg-linear-to-br from-cyan-600 to-cyan-400 bg-clip-text text-transparent dark:from-white dark:to-[#2FA4FF]">
                 full-stack developer.
               </span>
             </h1>
           </motion.div>
 
           {/* Two Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+          <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8">
             {/* Image */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="relative w-full max-w-md mx-auto lg:mx-0"
+              className="relative mx-auto w-full max-w-md lg:mx-0"
             >
               {/* Top Right Corner Accent */}
-              <div className="absolute -top-6 -right-6 w-24 h-24 z-0">
+              <div className="absolute -top-6 -right-6 z-0 h-24 w-24">
                 <svg
                   width="100%"
                   height="100%"
@@ -261,7 +212,7 @@ export default function AboutPage() {
               </div>
 
               {/* Bottom Left Corner Accent */}
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 z-0">
+              <div className="absolute -bottom-6 -left-6 z-0 h-24 w-24">
                 <svg
                   width="100%"
                   height="100%"
@@ -283,7 +234,7 @@ export default function AboutPage() {
                 </svg>
               </div>
 
-              <div className="relative aspect-square w-full rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900/40 group z-10">
+              <div className="group relative z-10 aspect-square w-full overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800/60 dark:bg-neutral-900/40">
                 <Image
                   src="/cjblackdev.jpg"
                   alt="CJBLACK - Junior Full-Stack Developer"
@@ -302,7 +253,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5, delay: 0.15 }}
               className="space-y-8"
             >
-              <div className="space-y-6 text-base md:text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
+              <div className="space-y-6 text-base leading-relaxed text-neutral-600 md:text-lg dark:text-neutral-300">
                 <p>
                   I&apos;m Christian John Calderon Duque, a web and mobile
                   developer focused on Next.js and the PERN/MERN stacks,
@@ -320,21 +271,21 @@ export default function AboutPage() {
               </div>
 
               {/* Stats */}
-              <div className="pt-8 border-t-2 border-neutral-200 dark:border-neutral-800/60">
+              <div className="border-t-2 border-neutral-200 pt-8 dark:border-neutral-800/60">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="group cursor-default">
-                    <p className="text-3xl font-bold text-neutral-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors duration-300">
+                    <p className="text-3xl font-bold text-neutral-900 transition-colors duration-300 group-hover:text-cyan-500 dark:text-white dark:group-hover:text-cyan-400">
                       4+
                     </p>
-                    <p className="text-sm text-neutral-500 font-medium mt-1">
+                    <p className="mt-1 text-sm font-medium text-neutral-500">
                       Years Learning
                     </p>
                   </div>
                   <div className="group cursor-default">
-                    <p className="text-3xl font-bold text-neutral-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors duration-300">
+                    <p className="text-3xl font-bold text-neutral-900 transition-colors duration-300 group-hover:text-cyan-500 dark:text-white dark:group-hover:text-cyan-400">
                       5+
                     </p>
-                    <p className="text-sm text-neutral-500 font-medium mt-1">
+                    <p className="mt-1 text-sm font-medium text-neutral-500">
                       Projects Built
                     </p>
                   </div>

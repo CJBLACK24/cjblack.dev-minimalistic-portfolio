@@ -15,7 +15,7 @@ export function DotBackground({
   return (
     <div
       className={cn(
-        "relative flex w-full flex-col items-center justify-center bg-white dark:bg-black overflow-hidden",
+        "relative flex w-full flex-col items-center justify-center overflow-hidden bg-white dark:bg-black",
         className,
       )}
     >
@@ -30,7 +30,7 @@ export function DotBackground({
         )}
       />
       {/* Radial gradient for the container to give a faded look */}
-      <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
       <div className="relative z-20 w-full">{children}</div>
     </div>
   );

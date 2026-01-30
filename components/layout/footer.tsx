@@ -21,17 +21,17 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="w-full py-8 border-t border-neutral-200 dark:border-white/5 bg-neutral-50 dark:bg-black/40 relative overflow-hidden">
+    <footer className="relative w-full overflow-hidden border-t border-neutral-200 bg-neutral-50 py-8 dark:border-white/5 dark:bg-black/40">
       {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-linear-to-r from-transparent via-cyan-500/50 to-transparent" />
+      <div className="absolute top-0 left-1/2 h-px w-full max-w-4xl -translate-x-1/2 bg-linear-to-r from-transparent via-cyan-500/50 to-transparent" />
 
-      <div className="max-w-6xl mx-auto px-6 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row md:gap-0 md:px-8">
         {/* Left: Branding & Copyright */}
-        <div className="flex flex-col items-center md:items-start gap-1">
-          <p className="text-sm font-bold text-neutral-900 dark:text-white tracking-wider">
+        <div className="flex flex-col items-center gap-1 md:items-start">
+          <p className="text-sm font-bold tracking-wider text-neutral-900 dark:text-white">
             CJBLACK
           </p>
-          <p className="text-[10px] text-neutral-400 dark:text-neutral-500 font-medium tracking-wide">
+          <p className="text-[10px] font-medium tracking-wide text-neutral-400 dark:text-neutral-500">
             © {new Date().getFullYear()} • Minimalist Developer Portfolio
           </p>
         </div>
@@ -44,13 +44,13 @@ export function Footer() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-2 rounded-xl transition-all duration-300 text-neutral-500 hover:text-cyan-500 dark:hover:text-cyan-400"
+              className="group rounded-xl p-2 text-neutral-500 transition-all duration-300 hover:text-cyan-500 dark:hover:text-cyan-400"
               aria-label={social.label}
             >
               <social.icon
                 size={20}
                 strokeWidth={1.5}
-                className="group-hover:scale-110 transition-transform"
+                className="transition-transform group-hover:scale-110"
               />
             </a>
           ))}

@@ -47,7 +47,7 @@ export function HeroSection() {
       id="hero"
       className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 sm:px-6 lg:px-8"
     >
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" />
+      <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" />
 
       {/* Header Navigation */}
       <HeroNavbar />

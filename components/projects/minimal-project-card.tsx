@@ -33,39 +33,33 @@ export const MinimalProjectCard = ({ project }: MinimalProjectCardProps) => {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       onMouseMove={handleMouseMove}
-      className="group relative flex flex-col rounded-xl border p-5 md:p-6 h-full overflow-hidden transition-all duration-300 
-        bg-[#0a0a0a] 
-        border-neutral-800 
-        hover:border-neutral-500"
+      className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-neutral-800 bg-[#0a0a0a] p-5 transition-all duration-300 hover:border-neutral-500 md:p-6"
     >
       {/* Project Image with scale on hover */}
-      <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden mb-5 border transition-colors duration-300 bg-neutral-100 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800/40">
-        <div className="w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+      <div className="relative mb-5 aspect-16/10 w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 transition-colors duration-300 dark:border-neutral-800/40 dark:bg-neutral-900">
+        <div className="h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
           {project.header}
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex flex-col grow relative z-10">
-        <h3 className="font-bold text-lg md:text-xl mb-2 transition-colors duration-300 text-white group-hover:text-cyan-400">
+      <div className="relative z-10 flex grow flex-col">
+        <h3 className="mb-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-cyan-400 md:text-xl">
           {project.title}
         </h3>
-        <p className="text-sm md:text-base mb-5 line-clamp-2 leading-relaxed text-neutral-400">
+        <p className="mb-5 line-clamp-2 text-sm leading-relaxed text-neutral-400 md:text-base">
           {project.description}
         </p>
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between pt-4 border-t mt-auto relative z-10 transition-colors duration-300 border-neutral-800">
+      <div className="relative z-10 mt-auto flex items-center justify-between border-t border-neutral-800 pt-4 transition-colors duration-300">
         {/* Tech Stack */}
-        <div className="flex items-center gap-1.5 flex-wrap">
+        <div className="flex flex-wrap items-center gap-1.5">
           {project.techStack.slice(0, 4).map((tech) => (
             <div
               key={tech.id}
-              className="relative w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden transition-all duration-300 hover:scale-110 hover:z-10 
-                bg-neutral-900 
-                border border-neutral-800
-                hover:border-neutral-600"
+              className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 transition-all duration-300 hover:z-10 hover:scale-110 hover:border-neutral-600"
               title={tech.name}
             >
               <Image
@@ -78,7 +72,7 @@ export const MinimalProjectCard = ({ project }: MinimalProjectCardProps) => {
             </div>
           ))}
           {project.techStack.length > 4 && (
-            <div className="px-2 py-1 rounded-md text-xs font-mono transition-colors duration-300 bg-neutral-900 border border-neutral-800 text-neutral-400">
+            <div className="rounded-md border border-neutral-800 bg-neutral-900 px-2 py-1 font-mono text-xs text-neutral-400 transition-colors duration-300">
               +{project.techStack.length - 4}
             </div>
           )}
@@ -90,13 +84,13 @@ export const MinimalProjectCard = ({ project }: MinimalProjectCardProps) => {
             href={project.link}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
-            className="flex items-center gap-1.5 text-sm font-semibold transition-all duration-300 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300"
+            className="flex items-center gap-1.5 text-sm font-semibold text-cyan-600 transition-all duration-300 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300"
             onClick={(e) => e.stopPropagation()}
           >
             <span className="hidden sm:inline">
               {project.id === "patch-up" ? "View Project" : "Live Site"}
             </span>
-            <IconArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <IconArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         )}
       </div>

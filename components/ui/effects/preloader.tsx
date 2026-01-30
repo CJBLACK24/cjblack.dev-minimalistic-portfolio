@@ -18,7 +18,7 @@ export const Preloader = ({ finishLoading }: { finishLoading: () => void }) => {
       () => {
         setIndex(index + 1);
       },
-      index === 0 ? 1000 : 400
+      index === 0 ? 1000 : 400,
     );
 
     return () => clearTimeout(timeout);
@@ -29,7 +29,7 @@ export const Preloader = ({ finishLoading }: { finishLoading: () => void }) => {
       variants={fadeOut}
       initial="initial"
       exit="exit"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black"
       style={{ height: "100vh", minHeight: "100vh" }}
     >
       <AnimatePresence mode="wait">

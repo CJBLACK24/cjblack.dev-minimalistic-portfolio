@@ -5,7 +5,7 @@ import { gridItems } from "@/constants";
 
 export function BentoGridSecondDemo() {
   return (
-    <BentoGrid className="max-w-full mx-auto md:auto-rows-[20rem]">
+    <BentoGrid className="mx-auto max-w-full md:auto-rows-[20rem]">
       {gridItems.map((item, i) => (
         <BentoGridItem
           key={i}

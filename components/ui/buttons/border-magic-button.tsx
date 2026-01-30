@@ -12,8 +12,8 @@ export const BorderMagicButton = ({
   return (
     <button
       className={cn(
-        "relative inline-flex h-12 overflow-hidden rounded-full p-px focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50",
-        className
+        "relative inline-flex h-12 overflow-hidden rounded-full p-px focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 focus:outline-none",
+        className,
       )}
       {...rest}
     >

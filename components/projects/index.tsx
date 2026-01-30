@@ -9,29 +9,31 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="section-enhanced px-4 md:px-8 w-full relative"
+      className="section-enhanced relative w-full px-4 md:px-8"
     >
       {/* Subtle CSS gradient background - replaces heavy effects */}
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-neutral-950/30 to-transparent pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-neutral-950/30 to-transparent" />
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="relative z-10 mx-auto max-w-6xl">
         {/* Section Header - Cleaner */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-14 md:mb-16"
+          className="mb-14 text-center md:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl dark:text-white">
             A small selection of{" "}
-            <span className="text-cyan-600 dark:text-cyan-400">recent projects</span>
+            <span className="text-cyan-600 dark:text-cyan-400">
+              recent projects
+            </span>
           </h2>
         </motion.div>
 
         {/* Projects Grid - Minimal Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2">
           {projectsData.map((project) => (
             <MinimalProjectCard key={project.id} project={project} />
           ))}

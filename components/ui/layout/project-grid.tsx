@@ -13,7 +13,7 @@ export const ProjectGrid = ({
   return (
     <div
       className={cn(
-        "mx-auto grid max-w-7xl grid-cols-1 gap-6 md:gap-8 md:grid-cols-2",
+        "mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8",
         className,
       )}
     >
@@ -49,29 +49,29 @@ export const ProjectGridItem = ({
   return (
     <div
       className={cn(
-        "group/bento relative flex flex-col rounded-2xl border border-neutral-800/50 bg-neutral-950/80 backdrop-blur-sm p-4 md:p-5 h-full",
+        "group/bento relative flex h-full flex-col rounded-2xl border border-neutral-800/50 bg-neutral-950/80 p-4 backdrop-blur-sm md:p-5",
         className,
       )}
       onClick={onClick}
     >
       {/* Header Image */}
-      <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden mb-5 border border-neutral-800/30">
+      <div className="relative mb-5 aspect-16/10 w-full overflow-hidden rounded-xl border border-neutral-800/30">
         {header}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col grow space-y-3">
+      <div className="flex grow flex-col space-y-3">
         {icon && <div className="hidden">{icon}</div>}
-        <h3 className="font-bold text-lg md:text-xl text-white leading-tight">
+        <h3 className="text-lg leading-tight font-bold text-white md:text-xl">
           {title}
         </h3>
-        <p className="text-sm md:text-base text-neutral-400 leading-relaxed line-clamp-2">
+        <p className="line-clamp-2 text-sm leading-relaxed text-neutral-400 md:text-base">
           {description}
         </p>
       </div>
 
       {/* Footer - Tech Stack & Actions */}
-      <div className="flex items-center justify-between mt-5 pt-4 border-t border-neutral-800/50">
+      <div className="mt-5 flex items-center justify-between border-t border-neutral-800/50 pt-4">
         {/* Tech Stack - Circular Icons */}
         <div className="flex items-center -space-x-1">{techStack}</div>
 
@@ -82,7 +82,7 @@ export const ProjectGridItem = ({
             <Link
               href={viewButton}
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-400 transition-colors duration-200 hover:text-cyan-300"
             >
               <span>View Project</span>
               <IconArrowUpRight className="h-4 w-4" />
@@ -93,7 +93,7 @@ export const ProjectGridItem = ({
               href={liveDemo}
               target={liveDemo.startsWith("http") ? "_blank" : undefined}
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-400 transition-colors duration-200 hover:text-cyan-300"
             >
               <span>Check Live Site</span>
               <IconArrowUpRight className="h-4 w-4" />

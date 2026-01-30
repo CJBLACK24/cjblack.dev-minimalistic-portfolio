@@ -1,6 +1,5 @@
 "use client";
 
-
 import { motion, Variants } from "motion/react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/layout/bento-grid";
 import { AnimatedTooltip } from "@/components/ui/misc/animated-tooltip";
@@ -25,7 +24,7 @@ export const TechGrid = () => {
       title: "Web/Mobile Development",
       description: (
         <span
-          className="text-base sm:text-lg md:text-xl font-normal"
+          className="text-base font-normal sm:text-lg md:text-xl"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Building modern, interactive user interfaces and cross-platform mobile
@@ -33,7 +32,7 @@ export const TechGrid = () => {
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={webMobileItems}
@@ -49,14 +48,14 @@ export const TechGrid = () => {
       title: "Programming Languages",
       description: (
         <span
-          className="text-base sm:text-lg md:text-xl font-normal"
+          className="text-base font-normal sm:text-lg md:text-xl"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Core languages for building robust and scalable applications.
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={programmingLanguageItems}
@@ -72,7 +71,7 @@ export const TechGrid = () => {
       title: "Backend",
       description: (
         <span
-          className="text-base sm:text-lg md:text-xl font-normal"
+          className="text-base font-normal sm:text-lg md:text-xl"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Server-side technologies, databases, and APIs for scalable, secure
@@ -80,7 +79,7 @@ export const TechGrid = () => {
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={backendItems}
@@ -96,7 +95,7 @@ export const TechGrid = () => {
       title: "Currently Learning",
       description: (
         <span
-          className="text-base sm:text-lg md:text-xl font-normal"
+          className="text-base font-normal sm:text-lg md:text-xl"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Expanding my skillset with cloud computing, containerization, and
@@ -104,7 +103,7 @@ export const TechGrid = () => {
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={currentlyLearningItems}
@@ -120,7 +119,7 @@ export const TechGrid = () => {
       title: "Tools",
       description: (
         <span
-          className="text-base sm:text-lg md:text-xl font-normal"
+          className="text-base font-normal sm:text-lg md:text-xl"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Development tools, version control, deployment platforms, design, and
@@ -128,7 +127,7 @@ export const TechGrid = () => {
         </span>
       ),
       header: (
-        <div className="flex flex-1 w-full h-full min-h-20 sm:min-h-24 rounded-xl p-2 sm:p-4 items-center justify-center">
+        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={toolsItems}
@@ -155,7 +154,7 @@ export const TechGrid = () => {
   };
 
   return (
-    <BentoGrid className="max-w-full mx-auto md:grid-cols-2 md:auto-rows-[26rem] gap-6 md:gap-8">
+    <BentoGrid className="mx-auto max-w-full gap-6 md:auto-rows-[26rem] md:grid-cols-2 md:gap-8">
       {items.map((item, i) => (
         <motion.div key={i} variants={bentoVariants} className={item.className}>
           <BentoGridItem

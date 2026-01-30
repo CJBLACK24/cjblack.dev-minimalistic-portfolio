@@ -10,7 +10,7 @@ describe("BorderMagicButton", () => {
 
   it("applies custom className", () => {
     const { container } = render(
-      <BorderMagicButton className="custom-class">Click me</BorderMagicButton>
+      <BorderMagicButton className="custom-class">Click me</BorderMagicButton>,
     );
     expect(container.firstChild).toHaveClass("custom-class");
   });

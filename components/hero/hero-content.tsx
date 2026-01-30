@@ -25,7 +25,7 @@ import { AnimatedTooltip } from "@/components/ui/misc/animated-hero-tooltip";
 import { Tooltip } from "@/components/ui/cards/tooltip-card";
 import { FlipWords } from "@/components/ui/text/flip-words";
 import { HeroContentProps } from "@/types";
-import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
+
 import React from "react";
 import { HeroClock } from "./hero-clock";
 
@@ -69,7 +69,7 @@ export const HeroContent = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const gridLinesRef = React.useRef<HTMLDivElement>(null);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+
   const [showCVOptions, setShowCVOptions] = useState(false);
   const cvDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -143,39 +143,39 @@ export const HeroContent = ({
 
   return (
     <motion.div
-      className="flex-1 flex flex-col items-center justify-center relative"
+      className="relative flex flex-1 flex-col items-center justify-center"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       {/* Background/Grid Lines */}
-      <div ref={gridLinesRef} className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-y-0 -left-6 md:left-0 h-full w-px bg-black origin-top opacity-0">
+      <div ref={gridLinesRef} className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-y-0 -left-6 h-full w-px origin-top bg-black opacity-0 md:left-0">
           <div className="absolute top-0 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
-        <div className="absolute inset-y-0 -right-6 md:right-0 h-full w-px bg-black-500 origin-bottom opacity-0">
+        <div className="bg-black-500 absolute inset-y-0 -right-6 h-full w-px origin-bottom opacity-0 md:right-0">
           <div className="absolute h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
-        <div className="absolute bottom-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-black origin-left opacity-0">
-          <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
+        <div className="absolute -right-6 bottom-0 -left-6 h-px w-auto origin-left bg-black opacity-0 md:right-0 md:left-0">
+          <div className="absolute inset-x-0 mx-auto h-px w-3/4 bg-linear-to-r from-transparent via-cyan-500 to-transparent md:w-40" />
         </div>
-        <div className="absolute top-0 -left-6 -right-6 md:left-0 md:right-0 h-px w-auto bg-black origin-right opacity-0">
-          <div className="absolute inset-x-0 mx-auto h-px w-3/4 md:w-40 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
+        <div className="absolute top-0 -right-6 -left-6 h-px w-auto origin-right bg-black opacity-0 md:right-0 md:left-0">
+          <div className="absolute inset-x-0 mx-auto h-px w-3/4 bg-linear-to-r from-transparent via-cyan-500 to-transparent md:w-40" />
         </div>
       </div>
-      <div className="py-8 md:py-12 w-full h-full flex flex-col justify-center">
+      <div className="flex h-full w-full flex-col justify-center mt-10 py-8 md:py-12">
         {/* Two Column Layout: Image Left, Content Right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-8 items-center w-full px-6 sm:px-10 md:px-16 lg:px-20">
+        <div className="grid w-full grid-cols-1 items-center gap-12 px-6 sm:px-10 md:grid-cols-2 md:gap-16 md:px-16 lg:gap-8 lg:px-20">
           {/* Left Column - Image */}
           <div className="flex justify-center md:justify-end">
-            <div className="relative w-full max-w-[280px] h-[340px] sm:max-w-[320px] sm:h-[400px] md:max-w-[340px] md:h-[420px] lg:max-w-[420px] lg:h-[520px] xl:max-w-[460px] xl:h-[580px] bg-neutral-900 rounded-2xl overflow-hidden">
+            <div className="relative h-[340px] w-full max-w-[280px] overflow-hidden rounded-2xl bg-neutral-900 sm:h-[400px] sm:max-w-[320px] md:h-[420px] md:max-w-[340px] lg:h-[520px] lg:max-w-[420px] xl:h-[580px] xl:max-w-[460px]">
               <motion.div
                 initial={{ opacity: 0, filter: "blur(10px)" }}
                 animate={
                   isImageLoaded ? { opacity: 1, filter: "blur(0px)" } : {}
                 }
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-full h-full"
+                className="h-full w-full"
               >
                 <Image
                   src="/cj.png"
@@ -190,7 +190,7 @@ export const HeroContent = ({
               {isImageLoaded && <HeroClock />}
               {!isImageLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-neutral-900">
-                  <div className="w-10 h-10 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
+                  <div className="h-10 w-10 animate-spin rounded-full border-2 border-cyan-500/20 border-t-cyan-500" />
                 </div>
               )}
             </div>
@@ -202,11 +202,11 @@ export const HeroContent = ({
             <motion.div variants={itemVariants} className="mb-6 -ml-2 md:ml-0">
               <HoverBorderGradient
                 containerClassName="rounded-full"
-                className="text-xs sm:text-sm font-medium flex items-center gap-2"
+                className="flex items-center gap-2 text-xs font-medium sm:text-sm"
               >
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan-500"></span>
                 </span>
                 Available for Opportunities
               </HoverBorderGradient>
@@ -214,7 +214,7 @@ export const HeroContent = ({
 
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 w-full text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-[1.1] tracking-tight text-transparent bg-clip-text bg-linear-to-b from-white to-neutral-500"
+              className="relative z-10 mb-6 w-full bg-linear-to-b from-white to-neutral-500 bg-clip-text text-3xl leading-[1.1] font-bold tracking-tight text-transparent sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
               <div className="flex flex-nowrap items-center justify-start gap-1.5 sm:gap-2">
                 <span className="inline-block whitespace-nowrap text-white">
@@ -226,29 +226,29 @@ export const HeroContent = ({
                   initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="p-1 rounded-lg border shrink-0 bg-neutral-900/50 border-neutral-800 text-cyan-400"
+                  className="shrink-0 rounded-lg border border-neutral-800 bg-neutral-900/50 p-1 text-cyan-400"
                 >
                   {currentWordIndex === 0 && (
                     <IconBulb
-                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
+                      className="h-5 w-5 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-9 lg:w-9"
                       stroke={2}
                     />
                   )}
                   {currentWordIndex === 1 && (
                     <IconPalette
-                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
+                      className="h-5 w-5 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-9 lg:w-9"
                       stroke={2}
                     />
                   )}
                   {currentWordIndex === 2 && (
                     <IconMessageCircle
-                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
+                      className="h-5 w-5 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-9 lg:w-9"
                       stroke={2}
                     />
                   )}
                   {currentWordIndex === 3 && (
                     <IconCode
-                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9"
+                      className="h-5 w-5 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-9 lg:w-9"
                       stroke={2}
                     />
                   )}
@@ -258,7 +258,7 @@ export const HeroContent = ({
                   <FlipWords
                     words={["Ideas", "Plans", "Designs", "Code"]}
                     duration={2500}
-                    className="text-white font-bold m-0! p-0! whitespace-nowrap"
+                    className="m-0! p-0! font-bold whitespace-nowrap text-white"
                     onWordChange={setCurrentWordIndex}
                   />
                 </div>
@@ -272,7 +272,7 @@ export const HeroContent = ({
 
               <div className="block whitespace-nowrap">
                 <span className="text-white">that </span>
-                <span className="inline-block text-transparent bg-clip-text bg-linear-to-bl from-cyan-400 to-white">
+                <span className="inline-block bg-linear-to-bl from-cyan-400 to-white bg-clip-text text-transparent">
                   Deliver Results
                 </span>
               </div>
@@ -280,13 +280,13 @@ export const HeroContent = ({
 
             <motion.div
               variants={itemVariants}
-              className="relative z-10 max-w-xl text-xl font-normal mb-6 md:mb-8 text-neutral-600 dark:text-neutral-300"
+              className="relative z-10 mb-6 max-w-xl text-xl font-normal text-neutral-600 md:mb-8 dark:text-neutral-300"
             >
               I&apos;m{" "}
               <Tooltip
                 content={
                   <div className="space-y-2">
-                    <div className="border-b border-neutral-200 dark:border-neutral-700 pb-2">
+                    <div className="border-b border-neutral-200 pb-2 dark:border-neutral-700">
                       <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                         Christian John Calderon Duque
                       </p>
@@ -303,7 +303,7 @@ export const HeroContent = ({
                 }
                 containerClassName="inline"
               >
-                <span className="cursor-help transition-colors text-cyan-600 dark:text-cyan-300 hover:text-cyan-700 dark:hover:text-cyan-200">
+                <span className="cursor-help text-cyan-600 transition-colors hover:text-cyan-700 dark:text-cyan-300 dark:hover:text-cyan-200">
                   CJBLACK
                 </span>
               </Tooltip>
@@ -312,7 +312,7 @@ export const HeroContent = ({
                 content={
                   <div className="space-y-3">
                     <div className="border-b border-neutral-700 pb-2">
-                      <h3 className="text-base font-semibold text-white mb-1">
+                      <h3 className="mb-1 text-base font-semibold text-white">
                         Western Institute of Technology
                       </h3>
                       <p className="text-xs text-neutral-500">
@@ -347,7 +347,7 @@ export const HeroContent = ({
                 }
                 containerClassName="inline"
               >
-                <span className="text-cyan-100 hover:text-cyan-300 cursor-help transition-colors">
+                <span className="cursor-help text-cyan-100 transition-colors hover:text-cyan-300">
                   student
                 </span>
               </Tooltip>{" "}
@@ -356,18 +356,18 @@ export const HeroContent = ({
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col items-start gap-6 mb-10 w-full"
+              className="mb-10 flex w-full flex-col items-start gap-6"
             >
               {/* Responsive Action Buttons */}
               <div className="w-full px-4 sm:px-0">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
+                <div className="grid w-full max-w-lg grid-cols-1 gap-4 sm:grid-cols-2">
                   {/* View Works Button */}
-                  <a href="#projects" className="scroll-smooth block w-full">
-                    <div className="relative inline-flex h-12 w-full overflow-hidden rounded-lg p-px focus:outline-none group">
+                  <a href="#projects" className="block w-full scroll-smooth">
+                    <div className="group relative inline-flex h-12 w-full overflow-hidden rounded-lg p-px focus:outline-none">
                       <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22d3ee_0%,#083344_50%,#22d3ee_100%)]" />
-                      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-black px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl gap-2 group transition-all duration-300">
+                      <span className="group inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-black px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl transition-all duration-300">
                         <span>View works</span>
-                        <IconArrowNarrowDown className="w-4 h-4" />
+                        <IconArrowNarrowDown className="h-4 w-4" />
                       </span>
                     </div>
                   </a>
@@ -378,12 +378,12 @@ export const HeroContent = ({
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setShowCVOptions(!showCVOptions)}
-                      className="cursor-pointer h-12 w-full flex items-center justify-center rounded-xl font-bold text-sm transition-all duration-300 bg-cyan-400 text-black hover:bg-cyan-300 shadow-xl shadow-cyan-500/20 gap-2 px-6"
+                      className="flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 text-sm font-bold text-black shadow-xl shadow-cyan-500/20 transition-all duration-300 hover:bg-cyan-300"
                     >
-                      <IconDownload className="w-4 h-4" />
+                      <IconDownload className="h-4 w-4" />
                       <span>Curriculum Vitae</span>
                       <IconChevronDown
-                        className={`w-4 h-4 transition-transform duration-500 ${showCVOptions ? "rotate-180" : ""}`}
+                        className={`h-4 w-4 transition-transform duration-500 ${showCVOptions ? "rotate-180" : ""}`}
                       />
                     </motion.div>
 
@@ -393,7 +393,7 @@ export const HeroContent = ({
                           initial={{ opacity: 0, scale: 0.95, y: -10 }}
                           animate={{ opacity: 1, scale: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                          className="absolute top-full mt-3 left-0 w-full min-w-[220px] bg-zinc-950/90 border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-100 p-1.5 backdrop-blur-xl will-change-transform"
+                          className="absolute top-full left-0 z-100 mt-3 w-full min-w-[220px] overflow-hidden rounded-2xl border border-white/10 bg-zinc-950/90 p-1.5 shadow-2xl backdrop-blur-xl will-change-transform"
                         >
                           <button
                             onClick={() => {
@@ -403,13 +403,13 @@ export const HeroContent = ({
                               link.click();
                               setShowCVOptions(false);
                             }}
-                            className="w-full flex items-center gap-3 px-4 py-3.5 text-sm text-neutral-300 hover:bg-white/5 hover:text-white rounded-xl transition-all duration-300 group"
+                            className="group flex w-full items-center gap-3 rounded-xl px-4 py-3.5 text-sm text-neutral-300 transition-all duration-300 hover:bg-white/5 hover:text-white"
                           >
-                            <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors border border-white/5 group-hover:border-cyan-500/30">
+                            <div className="rounded-lg border border-white/5 bg-white/5 p-2.5 transition-colors group-hover:border-cyan-500/30 group-hover:bg-cyan-500/20 group-hover:text-cyan-400">
                               <IconDownload size={20} />
                             </div>
                             <div className="flex flex-col items-start text-left">
-                              <span className="font-bold text-white text-sm">
+                              <span className="text-sm font-bold text-white">
                                 Download CV
                               </span>
                               <span className="text-[11px] text-neutral-400 group-hover:text-neutral-300">
@@ -420,17 +420,17 @@ export const HeroContent = ({
 
                           <button
                             onClick={() => {
-                              setIsCVModalOpen(true);
+                              window.open("/CV/cjblack_resume.pdf", "_blank");
                               setShowCVOptions(false);
                             }}
-                            className="w-full flex items-center gap-3 px-4 py-3.5 text-sm text-neutral-300 hover:bg-white/5 hover:text-white rounded-xl transition-all duration-300 group mt-1"
+                            className="group mt-1 flex w-full items-center gap-3 rounded-xl px-4 py-3.5 text-sm text-neutral-300 transition-all duration-300 hover:bg-white/5 hover:text-white"
                           >
-                            <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors border border-white/5 group-hover:border-cyan-500/30">
+                            <div className="rounded-lg border border-white/5 bg-white/5 p-2.5 transition-colors group-hover:border-cyan-500/30 group-hover:bg-cyan-500/20 group-hover:text-cyan-400">
                               <IconEye size={20} />
                             </div>
                             <div className="flex flex-col items-start text-left">
-                              <span className="font-bold text-white text-sm">
-                                Preview CV
+                              <span className="text-sm font-bold text-white">
+                                View CV
                               </span>
                               <span className="text-[11px] text-neutral-400 group-hover:text-neutral-300">
                                 In-browser view
@@ -451,11 +451,6 @@ export const HeroContent = ({
           </div>
         </div>
       </div>
-      <CVPreviewModal
-        isOpen={isCVModalOpen}
-        onClose={() => setIsCVModalOpen(false)}
-        cvUrl="/CV/cjblack_resume.pdf"
-      />
     </motion.div>
   );
 };

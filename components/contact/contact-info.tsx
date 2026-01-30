@@ -42,27 +42,27 @@ const ContactCard = ({
   };
 
   const CardInner = () => (
-    <div className="w-full h-full flex flex-col justify-between">
-      <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-6 transition-colors duration-300 bg-[#111] border border-neutral-800 group-hover:border-neutral-600">
-        <div className="transition-colors duration-300 text-white group-hover:text-neutral-200">
+    <div className="flex h-full w-full flex-col justify-between">
+      <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-800 bg-[#111] transition-colors duration-300 group-hover:border-neutral-600">
+        <div className="text-white transition-colors duration-300 group-hover:text-neutral-200">
           {icon}
         </div>
       </div>
       <div>
-        <h4 className="text-sm font-medium mb-1 uppercase tracking-wide text-neutral-500">
+        <h4 className="mb-1 text-sm font-medium tracking-wide text-neutral-600 uppercase dark:text-neutral-500">
           {title}
         </h4>
         <div className="flex items-center justify-between gap-2">
-          <span className="font-medium truncate transition-colors duration-300 text-neutral-900 dark:text-white">
+          <span className="truncate font-medium text-neutral-900 transition-colors duration-300 dark:text-white">
             {value}
           </span>
           {copyable && (
             <button
               onClick={handleCopy}
-              className="transition-colors duration-300 cursor-pointer shrink-0 text-neutral-500 hover:text-white"
+              className="shrink-0 cursor-pointer text-neutral-500 transition-colors duration-300 hover:text-white"
               aria-label={`Copy ${title}`}
             >
-              <IconCopy className="w-4 h-4" />
+              <IconCopy className="h-4 w-4" />
             </button>
           )}
         </div>
@@ -71,9 +71,9 @@ const ContactCard = ({
   );
 
   const containerClasses =
-    "border rounded-xl p-5 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 " +
+    "border rounded-xl p-6 md:p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 " +
     "bg-[#0a0a0a] " +
-    "border-neutral-800 " +
+    "border-neutral-800/50 " +
     "hover:border-neutral-500";
 
   if (!clickable) {
@@ -98,11 +98,11 @@ const ContactCard = ({
 
 export const ContactInfo = ({ itemVariants }: SectionProps) => {
   return (
-    <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:col-span-2">
       {/* Phone */}
       <motion.div variants={itemVariants}>
         <ContactCard
-          icon={<IconPhone className="w-6 h-6" />}
+          icon={<IconPhone className="h-6 w-6" />}
           title="Phone number"
           value="🇵🇭 +63 960 418 0219"
           href="#"
@@ -113,7 +113,7 @@ export const ContactInfo = ({ itemVariants }: SectionProps) => {
       {/* Email */}
       <motion.div variants={itemVariants}>
         <ContactCard
-          icon={<IconMail className="w-6 h-6" />}
+          icon={<IconMail className="h-6 w-6" />}
           title="E-mail"
           value="duquechristianjohncalderon@gmail.com"
           href="#"
@@ -125,7 +125,7 @@ export const ContactInfo = ({ itemVariants }: SectionProps) => {
       {/* LinkedIn */}
       <motion.div variants={itemVariants}>
         <ContactCard
-          icon={<IconBrandLinkedin className="w-6 h-6" />}
+          icon={<IconBrandLinkedin className="h-6 w-6" />}
           title="LinkedIn"
           value="cj-black-a5b110335"
           href="https://www.linkedin.com/in/cj-black-a5b110335"
@@ -135,7 +135,7 @@ export const ContactInfo = ({ itemVariants }: SectionProps) => {
       {/* GitHub */}
       <motion.div variants={itemVariants}>
         <ContactCard
-          icon={<IconBrandGithub className="w-6 h-6" />}
+          icon={<IconBrandGithub className="h-6 w-6" />}
           title="Github"
           value="github.com/CJBLACK24"
           href="https://github.com/CJBLACK24"
@@ -143,9 +143,9 @@ export const ContactInfo = ({ itemVariants }: SectionProps) => {
       </motion.div>
 
       {/* Instagram */}
-      <motion.div variants={itemVariants}>
+      <motion.div variants={itemVariants} className="md:col-span-2">
         <ContactCard
-          icon={<IconBrandInstagram className="w-6 h-6" />}
+          icon={<IconBrandInstagram className="h-6 w-6" />}
           title="Instagram"
           value="@cjblack_24"
           href="https://www.instagram.com/cjblack_24/"

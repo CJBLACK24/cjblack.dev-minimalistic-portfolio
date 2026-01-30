@@ -26,18 +26,18 @@ const PageHeader: React.FC = () => {
   return (
     <>
       {/* DESKTOP HEADER - visible on md screens and above */}
-      <div className="hidden md:flex relative z-10 justify-between items-center mb-4 shrink-0 px-4 md:px-8">
+      <div className="relative z-10 mb-4 hidden shrink-0 items-center justify-between px-4 md:flex md:px-8">
         {/* LEFT: Back to Home Button */}
         <Link
           href="/#home"
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 text-neutral-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-colors border border-neutral-800 text-sm"
+          className="flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-4 py-2 text-sm text-neutral-300 transition-colors hover:border-cyan-500/50 hover:text-cyan-400"
         >
-          <IconHome className="w-4 h-4" />
+          <IconHome className="h-4 w-4" />
           <span>Back to Home</span>
         </Link>
 
         {/* CENTER: Page Title */}
-        <h1 className="absolute left-1/2 transform -translate-x-1/2 text-2xl md:text-3xl font-bold bg-linear-to-br from-neutral-200 via-neutral-400 to-neutral-600 bg-clip-text text-transparent">
+        <h1 className="absolute left-1/2 -translate-x-1/2 transform bg-linear-to-br from-neutral-200 via-neutral-400 to-neutral-600 bg-clip-text text-2xl font-bold text-transparent md:text-3xl">
           Patch Up Ecosystem
         </h1>
 
@@ -46,38 +46,38 @@ const PageHeader: React.FC = () => {
           url="https://www.figma.com/design/1PoJ6cj2uOoGcSaqnZ3QC8/TITLE-1-MOBILE-UI"
           className="font-medium"
         >
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black font-medium hover:bg-cyan-50 hover:text-cyan-600 hover:shadow-[0_0_15px_-3px_rgba(6,182,212,0.4)] transition-all text-sm cursor-pointer border border-transparent hover:border-cyan-200">
-            <IconBrandFigma className="w-4 h-4" />
+          <div className="flex cursor-pointer items-center gap-2 rounded-full border border-transparent bg-white px-4 py-2 text-sm font-medium text-black transition-all hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-600 hover:shadow-[0_0_15px_-3px_rgba(6,182,212,0.4)]">
+            <IconBrandFigma className="h-4 w-4" />
             <span>View UI</span>
           </div>
         </LinkPreview>
       </div>
 
       {/* MOBILE HEADER - visible on screens below md */}
-      <div className="md:hidden relative z-50 flex justify-between items-center mb-4 shrink-0 px-4">
+      <div className="relative z-50 mb-4 flex shrink-0 items-center justify-between px-4 md:hidden">
         {/* CENTER: Page Title (smaller for mobile) */}
-        <h1 className="text-lg font-bold bg-linear-to-br from-neutral-200 via-neutral-400 to-neutral-600 bg-clip-text text-transparent flex-1 text-center">
+        <h1 className="flex-1 bg-linear-to-br from-neutral-200 via-neutral-400 to-neutral-600 bg-clip-text text-center text-lg font-bold text-transparent">
           Patch Up Ecosystem
         </h1>
 
         {/* RIGHT: Kebab Menu Icon */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 rounded-full bg-neutral-900 text-neutral-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-colors border border-neutral-800"
+          className="rounded-full border border-neutral-800 bg-neutral-900 p-2 text-neutral-300 transition-colors hover:border-cyan-500/50 hover:text-cyan-400"
           aria-label="Menu"
         >
-          <IconDotsVertical className="w-5 h-5" />
+          <IconDotsVertical className="h-5 w-5" />
         </button>
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full right-4 mt-2 w-48 bg-neutral-900 border border-neutral-800 rounded-lg shadow-xl overflow-hidden z-50">
+          <div className="absolute top-full right-4 z-50 mt-2 w-48 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 shadow-xl">
             <Link
               href="/#home"
-              className="flex items-center gap-3 px-4 py-3 text-neutral-300 hover:text-cyan-400 hover:bg-neutral-800 transition-colors border-b border-neutral-800"
+              className="flex items-center gap-3 border-b border-neutral-800 px-4 py-3 text-neutral-300 transition-colors hover:bg-neutral-800 hover:text-cyan-400"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <IconHome className="w-4 h-4" />
+              <IconHome className="h-4 w-4" />
               <span className="text-sm">Back to Home</span>
             </Link>
 
@@ -86,10 +86,10 @@ const PageHeader: React.FC = () => {
               className="block"
             >
               <div
-                className="flex items-center gap-3 px-4 py-3 text-neutral-300 hover:text-cyan-400 hover:bg-neutral-800 transition-colors cursor-pointer"
+                className="flex cursor-pointer items-center gap-3 px-4 py-3 text-neutral-300 transition-colors hover:bg-neutral-800 hover:text-cyan-400"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <IconBrandFigma className="w-4 h-4" />
+                <IconBrandFigma className="h-4 w-4" />
                 <span className="text-sm">View UI Design</span>
               </div>
             </LinkPreview>
@@ -106,12 +106,12 @@ const PageHeader: React.FC = () => {
  * LOCATION: Main content area
  */
 const ProjectsGrid: React.FC = () => (
-  <div className="relative z-10 flex-1 min-h-0">
-    <BentoGrid className="h-full grid-cols-1 md:grid-cols-2 gap-0 md:auto-rows-auto w-full max-w-none">
+  <div className="relative z-10 min-h-0 flex-1">
+    <BentoGrid className="h-full w-full max-w-none grid-cols-1 gap-0 md:auto-rows-auto md:grid-cols-2">
       {projectsData.map((item, i) => (
         <div
           key={i}
-          className="row-span-1 group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-3 dark:bg-black dark:border-white/20 bg-white border border-neutral-800 flex flex-col"
+          className="group/bento shadow-input row-span-1 flex flex-col border border-neutral-800 bg-white p-3 transition duration-200 hover:shadow-xl dark:border-white/20 dark:bg-black dark:shadow-none"
         >
           <ProjectCard item={item} />
         </div>
@@ -136,7 +136,7 @@ const ProjectsGrid: React.FC = () => (
  */
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white py-4 flex flex-col relative overflow-hidden">
+    <div className="relative flex min-h-screen flex-col overflow-hidden bg-neutral-950 py-4 text-white">
       {/* BACKGROUND: Decorative lines */}
       <BackgroundLines className="absolute inset-0 z-0 opacity-20">
         <div className="absolute inset-0" />
