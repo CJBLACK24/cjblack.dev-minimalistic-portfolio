@@ -10,6 +10,7 @@ import {
   IconSchool,
   IconCalendarEvent,
   IconUser,
+  IconMessage2,
 } from "@tabler/icons-react";
 import {
   BookWiseHeader,
@@ -29,6 +30,11 @@ export const navItems = [
     name: "Home",
     link: "#home",
     icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    name: "Wall",
+    link: "/wall",
+    icon: <IconMessage2 className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
     name: "Projects",

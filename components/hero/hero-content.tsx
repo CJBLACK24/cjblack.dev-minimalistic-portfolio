@@ -304,7 +304,7 @@ export const HeroContent = ({
                 containerClassName="inline"
               >
                 <span className="cursor-help transition-colors text-cyan-600 dark:text-cyan-300 hover:text-cyan-700 dark:hover:text-cyan-200">
-                  CJ
+                  CJBLACK
                 </span>
               </Tooltip>
               , a{" "}

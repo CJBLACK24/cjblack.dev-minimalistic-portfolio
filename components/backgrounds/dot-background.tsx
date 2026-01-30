@@ -22,15 +22,15 @@ export function DotBackground({
       <div
         className={cn(
           "absolute inset-0 z-0",
-          "bg-size-[20px_20px]",
-          "bg-[radial-gradient(#d4d4d4_1px,transparent_1px)]",
-          "dark:bg-[radial-gradient(#404040_1px,transparent_1px)]",
+          "bg-size-[32px_32px]",
+          "bg-[radial-gradient(#e5e7eb_1.5px,transparent_1.5px)]",
+          "dark:bg-[radial-gradient(#ffffff22_1.5px,transparent_1.5px)]",
           dotColor &&
-            `[background-image:radial-gradient(${dotColor}_1px,transparent_1px)]`,
+            `[background-image:radial-gradient(${dotColor}_1.5px,transparent_1.5px)]`,
         )}
       />
       {/* Radial gradient for the container to give a faded look */}
-      <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-white mask-[radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+      <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <div className="relative z-20 w-full">{children}</div>
     </div>
   );

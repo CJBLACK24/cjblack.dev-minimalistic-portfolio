@@ -13,7 +13,6 @@ import {
   IconDownload,
   IconMenu2,
   IconX,
-  IconArrowLeft,
 } from "@tabler/icons-react";
 import { CVPreviewModal } from "@/components/modals/cv-preview-modal";
 import { DotBackground } from "@/components/backgrounds/dot-background";
@@ -22,6 +21,7 @@ import confetti from "canvas-confetti";
 
 const navItems = [
   { href: "/#home", label: "Home" },
+  { href: "/wall", label: "Wall" },
   { href: "/about", label: "About" },
   { href: "/#projects", label: "Projects" },
   { href: "/#technologies", label: "Technologies" },
@@ -76,10 +76,10 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
+            {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <IconArrowLeft className="w-4 h-4 text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors duration-300" />
-              <span className="text-xl font-bold text-neutral-900 dark:text-white">
-                CJ<span className="text-cyan-500 dark:text-[#2FA4FF]">.</span>
+              <span className="text-2xl font-bold tracking-wider text-neutral-900 dark:text-white font-sports">
+                CJBLACK
               </span>
             </Link>
 
@@ -286,7 +286,7 @@ export default function AboutPage() {
               <div className="relative aspect-square w-full rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900/40 group z-10">
                 <Image
                   src="/cjblackdev.jpg"
-                  alt="CJ Black - Junior Full-Stack Developer"
+                  alt="CJBLACK - Junior Full-Stack Developer"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-120"
                   priority

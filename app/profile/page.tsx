@@ -17,7 +17,6 @@ import {
   IconCheck,
   IconX,
   IconArrowLeft,
-  IconLock,
   IconTrash,
 } from "@tabler/icons-react";
 import Link from "next/link";
@@ -192,16 +191,6 @@ export default function ProfilePage() {
               <p className="text-[10px] text-gray-500 ml-1">
                 Supported formats: JPG, PNG, GIF. Max size: 5MB.
               </p>
-            </div>
-
-            <div className="pt-2 border-t border-[#2a2a2a]">
-              <Link
-                href="/change-password"
-                className="text-sm text-cyan-500 hover:text-cyan-400 transition-colors inline-flex items-center gap-2 group"
-              >
-                <IconLock className="w-4 h-4" />
-                Change Password
-              </Link>
             </div>
 
             {message && (

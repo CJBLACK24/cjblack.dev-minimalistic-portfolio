@@ -5,6 +5,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { SmoothScroll } from "@/components/ui/effects/smooth-scroll";
 import { WebVitalsReporter } from "@/components/layout/web-vitals";
+import { QueryProvider } from "@/components/providers/query-provider";
+import { Toaster } from "@/components/ui/primitives/sonner";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cjblack.dev"),
@@ -81,7 +83,10 @@ export default function RootLayout({
       <head />
       <body className={inter.className}>
         <WebVitalsReporter />
-        <SmoothScroll>{children}</SmoothScroll>
+        <QueryProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </QueryProvider>
+        <Toaster />
         <SpeedInsights />
         <Analytics />
       </body>

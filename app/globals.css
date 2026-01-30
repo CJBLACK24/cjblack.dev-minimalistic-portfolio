@@ -800,6 +800,24 @@
   @apply relative inline-flex h-12 overflow-hidden rounded-full p-px focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:ring-offset-2 focus:ring-offset-black cursor-pointer;
 }
 
+@utility bg-dot-black {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(0, 0, 0, 0.4) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+}
+
+@utility bg-dot-white {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.3) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+}
+
 .btn-magic-glow {
   @apply absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22d3ee_0%,#083344_50%,#22d3ee_100%)];
 }

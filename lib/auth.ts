@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
+import { magicLink } from "better-auth/plugins";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./db";
 import { sendEmail } from "./email";
@@ -70,12 +71,12 @@ export const auth = betterAuth({
           text: `Reset your password: ${url}`,
         });
         console.log(
-          `✅ Password reset email sent successfully to: ${user.email}`
+          `✅ Password reset email sent successfully to: ${user.email}`,
         );
       } catch (error) {
         console.error(
           `❌ Failed to send password reset email to ${user.email}:`,
-          error
+          error,
         );
         throw error; // Re-throw to let Better Auth handle it
       }
@@ -117,47 +118,57 @@ export const auth = betterAuth({
           text: `Verify your email: ${finalUrl}`,
         });
         console.log(
-          `✅ Email verification sent successfully to: ${user.email}`
+          `✅ Email verification sent successfully to: ${user.email}`,
         );
       } catch (error) {
         console.error(
           `❌ Failed to send email verification to ${user.email}:`,
-          error
+          error,
         );
         throw error; // Re-throw to let Better Auth handle it
       }
     },
   },
 
-  magicLink: {
-    enabled: true,
-    sendMagicLink: async (
-      { email, url, token }: { email: string; url: string; token: string },
-      request: Request
-    ) => {
-      await sendEmail({
-        to: email,
-        subject: "Sign in to Christian's Portfolio",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #2563eb;">Sign In Request</h2>
-            <p>Hello,</p>
-            <p>We received a request to sign in to your account using this email address. Click the button below to sign in:</p>
-            <a href="${url}" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; margin: 16px 0;">
-              Sign In
-            </a>
-            <p>This link will expire in 5 minutes.</p>
-            <p>If you didn't request this, please ignore this email.</p>
-            <hr style="margin: 24px 0;">
-            <p style="color: #666; font-size: 14px;">Christian John Calderon Duque<br>Full Stack Developer</p>
-          </div>
-        `,
-        text: `Sign in to your account: ${url}`,
-      });
-    },
-  },
-
-  plugins: [nextCookies()],
+  plugins: [
+    nextCookies(),
+    magicLink({
+      sendMagicLink: async ({ email, url, token }, request) => {
+        await sendEmail({
+          to: email,
+          subject: "Log in to Christian's Portfolio",
+          html: `
+            <div style="background-color: #000; color: #fff; font-family: 'Inter', Arial, sans-serif; padding: 40px 20px; line-height: 1.6;">
+              <div style="max-width: 600px; margin: 0 auto; background-color: #0a0a0a; border: 1px solid #222; border-radius: 12px; padding: 40px; text-align: left;">
+                <h1 style="color: #fff; font-size: 24px; font-weight: 700; margin-bottom: 24px; font-family: 'Sports', sans-serif;">CJBLACK</h1>
+                
+                <p style="color: #d1d5db; font-size: 16px; margin-bottom: 30px;">Hi developer,</p>
+                
+                <p style="color: #d1d5db; font-size: 16px; margin-bottom: 32px;">Simply click the link below, and you'll be logged in automatically:</p>
+                
+                <div style="text-align: center; margin-bottom: 40px;">
+                  <a href="${url}" style="background-color: #2FA4FF; color: #fff; padding: 14px 40px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; display: inline-block; transition: background-color 0.3s ease;">
+                    Log In →
+                  </a>
+                </div>
+                
+                <p style="color: #6b7280; font-size: 14px; margin-bottom: 32px;">For security purposes, this link will expire in 24 hours and can only be used once. If you didn't request this link, please ignore this email or let us know immediately.</p>
+                
+                <div style="border-t: 1px solid #222; padding-top: 24px;">
+                  <p style="color: #9ca3af; font-size: 15px; margin-bottom: 4px;">Best regards,</p>
+                  <p style="color: #fff; font-size: 16px; font-weight: 600; margin: 0;">The CJBLACK</p>
+                </div>
+              </div>
+              <div style="text-align: center; margin-top: 24px;">
+                <p style="color: #4b5563; font-size: 12px;">© 2024 Christian John Calderon Duque. All rights reserved.</p>
+              </div>
+            </div>
+          `,
+          text: `Log in to your account: ${url}`,
+        });
+      },
+    }),
+  ],
   trustHost: true,
 });
 
