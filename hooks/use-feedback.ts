@@ -8,7 +8,7 @@ import {
   getReactionData,
   toggleReaction,
   updateFeedback,
-} from "@/lib/actions/feedback";
+} from "@/services/feedback";
 import { toast } from "sonner";
 
 export interface UserSummary {

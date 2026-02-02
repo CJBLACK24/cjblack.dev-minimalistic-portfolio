@@ -221,11 +221,11 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
       <motion.div
         ref={containerRef}
         variants={itemVariants}
-        className="group relative rounded-xl border border-neutral-800 bg-[#0a0a0a] p-6 transition-all duration-300 hover:border-neutral-500 md:p-8 lg:col-span-1"
+        className="group relative rounded-xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-white/20 md:p-8 lg:col-span-1"
       >
         <div className="relative">
           <div className="mb-8 flex items-center gap-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-neutral-800 bg-[#111] transition-colors duration-300 group-hover:border-neutral-600">
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 transition-colors duration-300 group-hover:border-white/20">
               <IconSend className="h-5 w-5 text-white" />
             </div>
             <h3 className="text-lg font-semibold text-white">
@@ -279,7 +279,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 id="message"
                 name="message"
                 placeholder="Your message..."
-                className="flex min-h-[120px] w-full resize-none rounded-lg border border-neutral-800 bg-[#111] px-4 py-3 text-sm text-white transition-all duration-200 placeholder:text-neutral-500 focus-visible:border-neutral-500 focus-visible:ring-1 focus-visible:ring-neutral-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex min-h-[120px] w-full resize-none rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-sm text-white transition-all duration-200 placeholder:text-neutral-500 focus-visible:border-white/30 focus-visible:ring-1 focus-visible:ring-white/30 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 required
               />
             </LabelInputContainer>

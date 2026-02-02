@@ -161,7 +161,8 @@ The Feedback Wall (`/wall`) allows authenticated users to leave feedback with fu
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Server Actions (`lib/actions/feedback.ts`):**
+- **Services**: Business logic and server actions in `services/`
+  **Server Actions (`services/feedback.ts`):**
 
 - `createFeedback(content)` - Creates new feedback (requires auth)
 - `getFeedbacks()` - Fetches all feedbacks with user data

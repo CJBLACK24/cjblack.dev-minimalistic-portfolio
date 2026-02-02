@@ -163,7 +163,7 @@ export const HeroContent = ({
           <div className="absolute inset-x-0 mx-auto h-px w-3/4 bg-linear-to-r from-transparent via-cyan-500 to-transparent md:w-40" />
         </div>
       </div>
-      <div className="flex h-full w-full flex-col justify-center mt-10 py-8 md:py-12">
+      <div className="mt-10 flex h-full w-full flex-col justify-center py-8 md:py-12">
         {/* Two Column Layout: Image Left, Content Right */}
         <div className="grid w-full grid-cols-1 items-center gap-12 px-6 sm:px-10 md:grid-cols-2 md:gap-16 md:px-16 lg:gap-8 lg:px-20">
           {/* Left Column - Image */}
@@ -288,7 +288,7 @@ export const HeroContent = ({
                   <div className="space-y-2">
                     <div className="border-b border-neutral-200 pb-2 dark:border-neutral-700">
                       <p className="text-sm font-semibold text-neutral-900 dark:text-white">
-                        Christian John Calderon Duque
+                        CJBLACK
                       </p>
                     </div>
                     <div className="space-y-1">
@@ -303,8 +303,8 @@ export const HeroContent = ({
                 }
                 containerClassName="inline"
               >
-                <span className="cursor-help text-cyan-600 transition-colors hover:text-cyan-700 dark:text-cyan-300 dark:hover:text-cyan-200">
-                  CJBLACK
+                <span className="cursor-help font-semibold text-cyan-100 underline decoration-cyan-100/30 decoration-dashed underline-offset-4 transition-all hover:text-cyan-300 hover:decoration-cyan-300">
+                  Christian John Calderon Duque
                 </span>
               </Tooltip>
               , a{" "}
@@ -331,15 +331,15 @@ export const HeroContent = ({
                       <div className="grid grid-cols-2 gap-2">
                         <div>
                           <p className="text-xs font-medium text-neutral-300">
-                            Started
+                            Role
                           </p>
-                          <p className="text-sm text-white">2022</p>
+                          <p className="text-sm text-white">IT Intern</p>
                         </div>
                         <div>
                           <p className="text-xs font-medium text-neutral-300">
-                            Expected Graduation
+                            Graduation
                           </p>
-                          <p className="text-sm text-white">April 2026</p>
+                          <p className="text-sm text-white">Held at April</p>
                         </div>
                       </div>
                     </div>
@@ -347,8 +347,8 @@ export const HeroContent = ({
                 }
                 containerClassName="inline"
               >
-                <span className="cursor-help text-cyan-100 transition-colors hover:text-cyan-300">
-                  student
+                <span className="cursor-help font-semibold text-cyan-100 underline decoration-cyan-100/30 decoration-dashed underline-offset-4 transition-all hover:text-cyan-300 hover:decoration-cyan-300">
+                  IT Professional
                 </span>
               </Tooltip>{" "}
               and Web & Mobile Fullstack Developer with a passion for code.

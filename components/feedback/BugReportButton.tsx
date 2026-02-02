@@ -14,10 +14,9 @@ export function BugReportButton({
   className,
   variant = "inline",
 }: BugReportButtonProps) {
-  const handleOpenFeedback = () => {
+  const handleOpenFeedback = async () => {
     try {
-      // The most reliable way in modern @sentry/nextjs is to use the global showReportDialog
-      // if the feedback integration is being tricky, but we try the integration first.
+      console.log("Bug Report button clicked");
       const feedback = Sentry.getFeedback();
 
       if (
@@ -25,18 +24,30 @@ export function BugReportButton({
         "open" in feedback &&
         typeof (feedback as any).open === "function"
       ) {
+        console.log("Opening Sentry Feedback widget");
         (feedback as any).open();
       } else {
-        // Fallback for different SDK versions or lazy-loading states
         console.warn(
-          "Feedback integration 'open' not available, using showReportDialog fallback",
+          "Feedback Integration not found, falling back to Report Dialog",
         );
-        Sentry.showReportDialog();
+        Sentry.showReportDialog({
+          label: "Report a Bug",
+          title: "Report a Bug",
+          subtitle:
+            "Our team has been notified. If you'd like to help, tell us what happened below.",
+          subtitle2: "",
+          user: {
+            name: "User",
+            email: "user@example.com",
+          },
+        });
       }
     } catch (error) {
       console.error("Failed to open Sentry Feedback:", error);
-      // Fail-safe fallback to ensure the user can still report issues
-      Sentry.showReportDialog();
+      // Fallback that definitely works
+      alert(
+        "Please email your bug report to: duquechristianjohncalderon@gmail.com",
+      );
     }
   };
 

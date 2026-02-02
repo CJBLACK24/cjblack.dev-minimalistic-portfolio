@@ -29,11 +29,8 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row md:gap-0 md:px-8">
         {/* Left: Branding & Copyright */}
         <div className="flex flex-col items-center gap-1 md:items-start">
-          <p className="text-sm font-bold tracking-wider text-neutral-900 dark:text-white">
-            CJBLACK
-          </p>
-          <p className="text-[10px] font-medium tracking-wide text-neutral-400 dark:text-neutral-500">
-            © {new Date().getFullYear()} • Minimalist Developer Portfolio
+          <p className="text-sm font-medium tracking-wide text-neutral-400 dark:text-neutral-500">
+            © 2026 Christian John Calderon Duque. All rights reserved.
           </p>
         </div>
 

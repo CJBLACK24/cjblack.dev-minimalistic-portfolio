@@ -44,7 +44,7 @@ const ContactCard = ({
 
   const CardInner = () => (
     <div className="flex h-full w-full flex-col justify-between">
-      <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-800 bg-[#111] transition-colors duration-300 group-hover:border-neutral-600">
+      <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 transition-colors duration-300 group-hover:border-white/20">
         <div className="text-white transition-colors duration-300 group-hover:text-neutral-200">
           {icon}
         </div>
@@ -72,10 +72,10 @@ const ContactCard = ({
   );
 
   const containerClasses =
-    "border rounded-xl p-6 md:p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 " +
-    "bg-[#0a0a0a] " +
-    "border-neutral-800/50 " +
-    "hover:border-neutral-500";
+    "border rounded-xl p-6 md:p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 shadow-xl " +
+    "bg-white/5 backdrop-blur-md " +
+    "border-white/10 " +
+    "hover:border-white/20";
 
   if (!clickable) {
     return (
