@@ -7,6 +7,7 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandInstagram,
+  IconBrandTiktok,
   IconMail,
   IconPhone,
   IconCopy,
@@ -143,12 +144,22 @@ export const ContactInfo = ({ itemVariants }: SectionProps) => {
       </motion.div>
 
       {/* Instagram */}
-      <motion.div variants={itemVariants} className="md:col-span-2">
+      <motion.div variants={itemVariants}>
         <ContactCard
           icon={<IconBrandInstagram className="h-6 w-6" />}
           title="Instagram"
           value="@cjblack_24"
           href="https://www.instagram.com/cjblack_24/"
+        />
+      </motion.div>
+
+      {/* TikTok */}
+      <motion.div variants={itemVariants}>
+        <ContactCard
+          icon={<IconBrandTiktok className="h-6 w-6" />}
+          title="TikTok"
+          value="@cjblack.dev"
+          href="https://www.tiktok.com/@cjblack.dev"
         />
       </motion.div>
     </div>

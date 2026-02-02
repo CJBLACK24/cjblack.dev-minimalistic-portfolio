@@ -4,6 +4,7 @@ import {
   IconBrandLinkedin,
   IconBrandX,
 } from "@tabler/icons-react";
+import { BugReportButton } from "@/components/feedback/BugReportButton";
 
 const socialLinks = [
   {
@@ -37,23 +38,26 @@ export function Footer() {
         </div>
 
         {/* Right: Social Links */}
-        <div className="flex items-center gap-4">
-          {socialLinks.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group rounded-xl p-2 text-neutral-500 transition-all duration-300 hover:text-cyan-500 dark:hover:text-cyan-400"
-              aria-label={social.label}
-            >
-              <social.icon
-                size={20}
-                strokeWidth={1.5}
-                className="transition-transform group-hover:scale-110"
-              />
-            </a>
-          ))}
+        <div className="flex items-center gap-6">
+          <BugReportButton />
+          <div className="flex items-center gap-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-xl p-2 text-neutral-500 transition-all duration-300 hover:text-cyan-500 dark:hover:text-cyan-400"
+                aria-label={social.label}
+              >
+                <social.icon
+                  size={20}
+                  strokeWidth={1.5}
+                  className="transition-transform group-hover:scale-110"
+                />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
