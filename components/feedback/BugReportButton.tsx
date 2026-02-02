@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import * as Sentry from "@sentry/nextjs";
@@ -14,34 +13,12 @@ export function BugReportButton({
   className,
   variant = "inline",
 }: BugReportButtonProps) {
-  const handleOpenFeedback = async () => {
+  const handleOpenFeedback = () => {
     try {
       console.log("Bug Report button clicked");
-      const feedback = Sentry.getFeedback();
+      const eventId = Sentry.captureMessage("User Feedback - Bug Report");
 
-      if (
-        feedback &&
-        "open" in feedback &&
-        typeof (feedback as any).open === "function"
-      ) {
-        console.log("Opening Sentry Feedback widget");
-        (feedback as any).open();
-      } else {
-        console.warn(
-          "Feedback Integration not found, falling back to Report Dialog",
-        );
-        Sentry.showReportDialog({
-          label: "Report a Bug",
-          title: "Report a Bug",
-          subtitle:
-            "Our team has been notified. If you'd like to help, tell us what happened below.",
-          subtitle2: "",
-          user: {
-            name: "User",
-            email: "user@example.com",
-          },
-        });
-      }
+      Sentry.showReportDialog({ eventId });
     } catch (error) {
       console.error("Failed to open Sentry Feedback:", error);
       // Fallback that definitely works
