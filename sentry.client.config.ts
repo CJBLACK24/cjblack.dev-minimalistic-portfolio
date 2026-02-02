@@ -4,6 +4,8 @@
 
 import * as Sentry from "@sentry/nextjs";
 
+console.log("Sentry Client Config Initializing...");
+
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
@@ -12,7 +14,7 @@ Sentry.init({
     Sentry.replayIntegration(),
     Sentry.feedbackIntegration({
       // Additional SDK configuration goes in here, for example:
-      autoInject: false,
+      autoInject: true,
       colorScheme: "dark",
       isNameRequired: true,
       isEmailRequired: true,

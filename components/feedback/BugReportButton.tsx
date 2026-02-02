@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import * as Sentry from "@sentry/nextjs";
@@ -16,15 +17,27 @@ export function BugReportButton({
   const handleOpenFeedback = () => {
     try {
       console.log("Bug Report button clicked");
-      const eventId = Sentry.captureMessage("User Feedback - Bug Report");
+      const feedback = Sentry.getFeedback();
+      console.log("Feedback object from Sentry.getFeedback():", feedback);
 
-      Sentry.showReportDialog({ eventId });
+      if (
+        feedback &&
+        "open" in feedback &&
+        typeof (feedback as any).open === "function"
+      ) {
+        console.log("Opening Sentry Feedback widget");
+        (feedback as any).open();
+      } else {
+        console.warn(
+          "Sentry Feedback widget not available or not initialized correctly.",
+        );
+        // Fallback if Sentry Feedback widget is not available
+        alert(
+          "Please email your bug report to: duquechristianjohncalderon@gmail.com",
+        );
+      }
     } catch (error) {
       console.error("Failed to open Sentry Feedback:", error);
-      // Fallback that definitely works
-      alert(
-        "Please email your bug report to: duquechristianjohncalderon@gmail.com",
-      );
     }
   };
 
