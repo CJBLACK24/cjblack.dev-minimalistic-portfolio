@@ -4,6 +4,7 @@
 import * as Sentry from "@sentry/nextjs";
 import { Bug } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface BugReportButtonProps {
   className?: string;
@@ -14,58 +15,63 @@ export function BugReportButton({
   className,
   variant = "inline",
 }: BugReportButtonProps) {
-  const handleOpenFeedback = () => {
-    try {
-      console.log("Bug Report button clicked");
-      const feedback = Sentry.getFeedback();
-      console.log("Feedback object from Sentry.getFeedback():", feedback);
+  const handleClick = () => {
+    console.log("Bug Report Clicked");
 
-      if (
-        feedback &&
-        "open" in feedback &&
-        typeof (feedback as any).open === "function"
-      ) {
-        console.log("Opening Sentry Feedback widget");
-        (feedback as any).open();
+    // Show toast immediately to give user feedback
+    toast.info("Preparing bug report...");
+
+    try {
+      // 1. Capture a silent event to generate an eventId
+      const eventId = Sentry.captureMessage("User opened bug report dialog");
+      console.log("Captured Sentry Event ID:", eventId);
+
+      if (eventId) {
+        // 2. Show the Crash-Report Modal with that eventId
+        Sentry.showReportDialog({
+          eventId,
+          title: "It looks like we're having internal issues.",
+          subtitle:
+            "Our team has been notified. If you'd like to help, tell us what happened below.",
+          labelName: "Name",
+          labelEmail: "Email",
+          labelComments: "What happened?",
+        });
       } else {
-        console.warn(
-          "Sentry Feedback widget not available or not initialized correctly.",
-        );
-        // Fallback if Sentry Feedback widget is not available
-        alert(
-          "Please email your bug report to: duquechristianjohncalderon@gmail.com",
-        );
+        console.warn("No Event ID returned from Sentry");
+        toast.error("Failed to initialize report system.");
       }
-    } catch (error) {
-      console.error("Failed to open Sentry Feedback:", error);
+    } catch (e) {
+      console.error("Error opening dialog:", e);
+      toast.error("Something went wrong opening the report dialog.");
     }
   };
 
   if (variant === "floating") {
     return (
       <button
-        onClick={handleOpenFeedback}
+        onClick={handleClick}
         className={cn(
-          "fixed right-6 bottom-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-blue-600 text-white shadow-xl transition-all hover:scale-110 hover:bg-blue-700 active:scale-95 dark:bg-blue-600/90 dark:backdrop-blur-sm",
+          "fixed right-6 bottom-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-white shadow-lg transition-transform hover:scale-110 active:scale-95 dark:bg-white dark:text-black",
           className,
         )}
         title="Report a Bug"
       >
-        <Bug className="h-6 w-6" />
+        <Bug className="h-5 w-5" />
       </button>
     );
   }
 
   return (
     <button
-      onClick={handleOpenFeedback}
+      onClick={handleClick}
       className={cn(
-        "flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/60 transition-all hover:border-blue-500/30 hover:bg-white/10 hover:text-white",
+        "group flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-white",
         className,
       )}
     >
-      <Bug className="h-4 w-4 text-blue-400" />
-      Report a Bug
+      <Bug className="h-4 w-4" />
+      <span>Report Bug</span>
     </button>
   );
 }
