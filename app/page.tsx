@@ -5,9 +5,7 @@ import dynamic from "next/dynamic";
 import { IntroLoader } from "@/components/layout/intro-loader";
 import { Spotlight } from "@/components/ui/backgrounds/spotlight-new";
 import { HeroSection } from "@/components/hero";
-import { FloatingNav } from "@/components/ui/layout/floating-navbar";
 import { ScrollProgress } from "@/components/ui/effects/scroll-progress";
-import { navItems } from "@/constants";
 
 const FeaturesSection = dynamic(
   () => import("@/components/features").then((mod) => mod.FeaturesSection),
@@ -36,6 +34,15 @@ const Footer = dynamic(
 const TechnologiesSection = dynamic(
   () =>
     import("@/components/technologies").then((mod) => mod.TechnologiesSection),
+  {
+    loading: () => <div className="min-h-screen" />,
+  },
+);
+const WorkExperienceSection = dynamic(
+  () =>
+    import("@/components/work-experience").then(
+      (mod) => mod.WorkExperienceSection,
+    ),
   {
     loading: () => <div className="min-h-screen" />,
   },
@@ -69,6 +76,7 @@ export default function Home() {
         <ProjectsSection />
 
         <TechnologiesSection />
+        <WorkExperienceSection />
         <ContactSection />
         <PreFooterCTA />
         <Footer />

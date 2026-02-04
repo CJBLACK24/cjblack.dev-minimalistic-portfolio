@@ -15,10 +15,11 @@ import {
 
 const navItems = [
   { href: "/#home", label: "Home" },
-  { href: "/wall", label: "Wall" },
   { href: "/about", label: "About" },
+  { href: "/wall", label: "Wall" },
   { href: "/#projects", label: "Projects" },
   { href: "/#technologies", label: "Technologies" },
+  { href: "/#work-experience", label: "Work exp." },
   { href: "/#contact", label: "Contact" },
 ];
 

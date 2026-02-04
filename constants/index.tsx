@@ -11,6 +11,7 @@ import {
   IconCalendarEvent,
   IconUser,
   IconMessage2,
+  IconBriefcase,
 } from "@tabler/icons-react";
 import {
   BookWiseHeader,
@@ -22,29 +23,36 @@ import {
 // Floating Navigation Items
 export const navItems = [
   {
-    name: "About",
-    link: "/about",
-    icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    name: "Home",
-    link: "#home",
-    icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
     name: "Wall",
     link: "/wall",
     icon: <IconMessage2 className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
+    name: "Home",
+    link: "/#home",
+    icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    name: "About",
+    link: "/about",
+    icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
     name: "Projects",
-    link: "#projects",
+    link: "/#projects",
     icon: <IconCode className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
     name: "Technologies",
-    link: "#technologies",
+    link: "/#technologies",
     icon: <IconCpu className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    name: "Work exp.",
+    link: "/#work-experience",
+    icon: (
+      <IconBriefcase className="h-4 w-4 text-neutral-500 dark:text-white" />
+    ),
   },
 ];
 
