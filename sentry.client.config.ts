@@ -6,27 +6,32 @@ import * as Sentry from "@sentry/nextjs";
 
 console.log("Sentry Client Config Initializing...");
 
+// Create the feedback integration and store a reference to it
+const feedbackIntegrationInstance = Sentry.feedbackIntegration({
+  // Additional SDK configuration goes in here, for example:
+  autoInject: false,
+  colorScheme: "dark",
+  isNameRequired: true,
+  isEmailRequired: true,
+  buttonLabel: "Report a Bug",
+  submitButtonLabel: "Send Bug Report",
+  formTitle: "Report a Bug",
+  addScreenshotLabel: "Add a screenshot",
+  descriptionPlaceholder: "What's the bug? What did you expect?",
+  successMessageText: "Thank you for your report!",
+});
+
+// Export the feedback integration for use in components
+export { feedbackIntegrationInstance };
+
 Sentry.init({
   dsn: "https://f25e64c95a91f88f1cd4292f0f091ce3@o4507578446643200.ingest.us.sentry.io/4510816453656576",
 
+  // Enable debug mode to see detailed logs
+  debug: true,
+
   // Add optional integrations for additional features
-  integrations: [
-    Sentry.replayIntegration(),
-    Sentry.feedbackIntegration({
-      // Additional SDK configuration goes in here, for example:
-      autoInject: false,
-      colorScheme: "dark",
-      isNameRequired: true,
-      isEmailRequired: true,
-      buttonLabel: "Report a Bug",
-      submitButtonLabel: "Send Bug Report",
-      formTitle: "Report a Bug",
-      addScreenshotLabel: "Add a screenshot",
-      descriptionPlaceholder: "What's the bug? What did you expect?",
-      successMessageText: "Thank you for your report!",
-      // You can also add more labels if needed
-    }),
-  ],
+  integrations: [Sentry.replayIntegration(), feedbackIntegrationInstance],
 
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
   tracesSampleRate: 1,
@@ -44,6 +49,15 @@ Sentry.init({
   // Enable sending user PII (Personally Identifiable Information)
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
   sendDefaultPii: true,
+
+  // Show Crash-Report modal when an exception occurs
+  beforeSend(event, hint) {
+    // Check if it is an exception, and if so, show the report dialog
+    if (event.exception && event.event_id) {
+      Sentry.showReportDialog({ eventId: event.event_id });
+    }
+    return event;
+  },
 });
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
