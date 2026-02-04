@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useEffect, useState, useCallback } from "react";
 import * as Sentry from "@sentry/nextjs";
 import { Bug } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-import { feedbackIntegrationInstance } from "../../sentry.client.config";
 
 interface BugReportButtonProps {
   className?: string;
@@ -16,56 +15,71 @@ export function BugReportButton({
   className,
   variant = "inline",
 }: BugReportButtonProps) {
-  const handleClick = async () => {
+  const [feedback, setFeedback] = useState<ReturnType<
+    typeof Sentry.getFeedback
+  > | null>(null);
+
+  // Get feedback instance on client mount only
+  useEffect(() => {
+    // Small delay to ensure Sentry is fully initialized
+    const timeoutId = setTimeout(() => {
+      const feedbackInstance = Sentry.getFeedback();
+      console.log("Sentry Feedback instance:", feedbackInstance);
+      setFeedback(feedbackInstance ?? null);
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  const handleClick = useCallback(async () => {
     console.log("Bug Report Button Clicked");
+    console.log("Current feedback instance:", feedback);
 
-    try {
-      // Use the exported integration instance directly
-      const feedback = feedbackIntegrationInstance as any;
-      console.log("Feedback instance from config:", feedback);
+    if (!feedback) {
+      // Try getting it again in case it wasn't ready before
+      const freshFeedback = Sentry.getFeedback();
+      console.log("Fresh feedback attempt:", freshFeedback);
 
-      if (!feedback) {
-        console.error("Sentry Feedback integration instance not found");
-        toast.error("Bug report system not available");
+      if (!freshFeedback) {
+        console.error("Sentry Feedback integration not found");
+        toast.error(
+          "Bug report system is loading, please try again in a moment",
+        );
         return;
       }
 
-      // In Sentry v8+, the integration instance has methods to create the form
-      console.log("Creating feedback form...");
-      // Try to open it directly if openDialog exists, or create form
-      if (typeof feedback.openDialog === "function") {
-        console.log("Opening via openDialog()");
-        feedback.openDialog();
-      } else if (typeof feedback.createForm === "function") {
-        const form = await feedback.createForm();
-        console.log("Form created:", form);
+      // Use the fresh instance
+      try {
+        const form = await freshFeedback.createForm();
         if (form) {
           form.appendToDom();
           form.open();
         }
-      } else {
-        // Fallback to Sentry.getFeedback() if the instance isn't helping
-        const globalFeedback = Sentry.getFeedback();
-        console.log("Global Feedback instance:", globalFeedback);
-        if (globalFeedback) {
-          const form = await globalFeedback.createForm();
-          form.appendToDom();
-          form.open();
-        } else {
-          throw new Error("No feedback integration methods found");
-        }
+      } catch (e) {
+        console.error("Error creating form:", e);
+        toast.error("Something went wrong opening the bug report form");
       }
+      return;
+    }
 
-      console.log("Feedback process initiated");
+    try {
+      // Use createForm to open the feedback dialog
+      const form = await feedback.createForm();
+      if (form) {
+        form.appendToDom();
+        form.open();
+      }
+      console.log("Feedback form opened");
     } catch (e) {
       console.error("Error opening feedback form:", e);
       toast.error("Something went wrong opening the bug report form");
     }
-  };
+  }, [feedback]);
 
   if (variant === "floating") {
     return (
       <button
+        type="button"
         onClick={handleClick}
         className={cn(
           "fixed right-6 bottom-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-white shadow-lg transition-transform hover:scale-110 active:scale-95 dark:bg-white dark:text-black",
@@ -80,6 +94,7 @@ export function BugReportButton({
 
   return (
     <button
+      type="button"
       onClick={handleClick}
       className={cn(
         "group flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-white",

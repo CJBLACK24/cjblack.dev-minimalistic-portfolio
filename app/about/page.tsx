@@ -255,18 +255,7 @@ export default function AboutPage() {
             >
               <div className="space-y-6 text-base leading-relaxed text-neutral-600 md:text-lg dark:text-neutral-300">
                 <p>
-                  I&apos;m Christian John Calderon Duque, a web and mobile
-                  developer focused on Next.js and the PERN/MERN stacks,
-                  building full-stack apps that are clean, solid, and ready for
-                  real-world use. One of my recent projects is a University
-                  Dashboard Management System built with Next.js, PostgreSQL
-                  (NeonDB), Drizzle ORM, and Better Auth for passwordless login,
-                  where I handled everything from frontend to backend. I use AI
-                  tools to speed things up without cutting corners, making sure
-                  features are wired correctly, secure, and fast. I build with
-                  strong fundamentals, clear system thinking, and a builder
-                  mindset—turning ideas into working products through smart
-                  auth, clean databases, and smooth deployment.
+                 I&apos;m Christian John Calderon Duque, a web and mobile developer focused on building scalable, robust, and responsive full-stack applications for individuals and small businesses. I craft engaging, seamless digital experiences that align with your goals, ensuring your website looks great and performs flawlessly across all devices. My approach prioritizes code quality, maintainability, and organized architecture. I integrate AI-assisted tools like ChatGPT and DeepSeek, along with innovative tools like the Google Antigravity code editor, to streamline my workflow and accelerate development—delivering secure, well-structured products that bring tangible, sustainable value from concept to deployment.
                 </p>
               </div>
 

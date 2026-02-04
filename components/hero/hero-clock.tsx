@@ -6,15 +6,16 @@ import { motion } from "motion/react";
 
 export const HeroClock = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
-  const [userTimezone] = useState<string>(
-    () => Intl.DateTimeFormat().resolvedOptions().timeZone,
-  );
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
       const timeString = now.toLocaleString("en-US", {
-        hour: "2-digit",
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        hour: "numeric",
         minute: "2-digit",
         second: "2-digit",
         hour12: true,
@@ -38,10 +39,7 @@ export const HeroClock = () => {
       <IconClock className="h-3.5 w-3.5" />
       <div className="flex items-baseline gap-1.5">
         <span className="font-mono text-xs font-medium tabular-nums sm:text-sm">
-          {currentTime || "00:00:00 AM"}
-        </span>
-        <span className="text-[10px] font-medium text-white/50">
-          ({userTimezone.split("/")[1]?.replace("_", " ") || userTimezone})
+          {currentTime || "Loading..."}
         </span>
       </div>
     </motion.div>
