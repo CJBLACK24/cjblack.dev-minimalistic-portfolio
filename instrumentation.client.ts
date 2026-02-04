@@ -1,22 +1,20 @@
 // This file configures the initialization of Sentry on the client.
-// The added config here will be used whenever a users loads a page in their browser.
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/
-
+// This is the new standard for Next.js 15+ with @sentry/nextjs v8+
 import * as Sentry from "@sentry/nextjs";
+import { feedbackIntegration, replayIntegration } from "@sentry/nextjs";
 
-console.log("Sentry Client Config Initializing...");
+console.log("Sentry Client Instrumentation Initializing...");
 
 Sentry.init({
   dsn: "https://f25e64c95a91f88f1cd4292f0f091ce3@o4507578446643200.ingest.us.sentry.io/4510816453656576",
 
-  // Enable debug mode to see detailed logs
-  debug: true,
+  // Enable debug mode to see detailed logs during development
+  debug: process.env.NODE_ENV === "development",
 
-  // Add optional integrations for additional features
   integrations: [
-    Sentry.replayIntegration(),
-    Sentry.feedbackIntegration({
-      // Additional SDK configuration goes in here, for example:
+    replayIntegration(),
+    feedbackIntegration({
+      // Additional SDK configuration goes in here
       autoInject: false,
       colorScheme: "dark",
       isNameRequired: true,
@@ -30,26 +28,23 @@ Sentry.init({
     }),
   ],
 
-  // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
-  tracesSampleRate: 1,
+  // Define how likely traces are sampled.
+  tracesSampleRate: 1.0,
+
   // Enable logs to be sent to Sentry
   enableLogs: true,
 
   // Define how likely Replay events are sampled.
-  // This sets the sample rate to be 10%. You may want this to be 100% while
-  // in development and sample at a lower rate in production
   replaysSessionSampleRate: 0.1,
 
   // Define how likely Replay events are sampled when an error occurs.
   replaysOnErrorSampleRate: 1.0,
 
-  // Enable sending user PII (Personally Identifiable Information)
-  // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
+  // Enable sending user PII
   sendDefaultPii: true,
 
   // Show Crash-Report modal when an exception occurs
   beforeSend(event) {
-    // Check if it is an exception, and if so, show the report dialog
     if (event.exception && event.event_id) {
       Sentry.showReportDialog({ eventId: event.event_id });
     }
@@ -57,4 +52,5 @@ Sentry.init({
   },
 });
 
+// App Router routing instrumentation
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

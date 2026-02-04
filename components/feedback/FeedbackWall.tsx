@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useSession } from "@/lib/auth-client";
 import { IconPencil, IconTrash, IconCheck, IconX } from "@tabler/icons-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+// cn unused, removed
 
 const ADMIN_EMAIL = "duquechristianjohncalderon@gmail.com";
 
@@ -80,12 +80,7 @@ export function FeedbackWall() {
 
 function FeedbackItem({ feedback }: { feedback: Feedback }) {
   const { data: session } = useSession();
-  const {
-    deleteFeedback,
-    updateFeedback,
-    isUpdatingFeedback,
-    isDeletingFeedback,
-  } = useFeedback();
+  const { deleteFeedback, updateFeedback, isUpdatingFeedback } = useFeedback();
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(feedback.content);
 
