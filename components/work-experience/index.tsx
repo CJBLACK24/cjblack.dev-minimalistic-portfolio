@@ -32,8 +32,8 @@ export function WorkExperienceSection() {
           className="rounded-2xl border border-neutral-800 bg-neutral-900/30 p-4 md:p-5"
         >
           <div className="mb-8 flex items-center gap-2">
-            <IconBriefcase className="h-6 w-6 text-white" />
-            <h3 className="text-xl font-semibold text-white">
+            <IconBriefcase className="h-5 w-5 text-white" />
+            <h3 className="text-base font-semibold text-white">
               Professional Experience
             </h3>
           </div>
@@ -51,15 +51,21 @@ export function WorkExperienceSection() {
             <div className="flex w-full flex-col">
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-lg leading-tight font-medium text-white md:text-xl">
-                  DOLE VI
+                  {/* Mobile: short name */}
+                  <span className="md:hidden">DOLE VI</span>
+                  {/* Desktop: full name */}
+                  <span className="hidden md:inline">
+                    Department of Labor and Employment Region 6 - Western
+                    Visayas Region
+                  </span>
                 </h3>
                 <div className="text-sm whitespace-nowrap text-neutral-500 md:text-base">
                   Feb 2026—Present
                 </div>
               </div>
               <div className="mt-1 flex flex-col gap-1">
-                <p className="text-base text-neutral-400">
-                  IT Internship / OJT
+                <p className="text-sm text-neutral-400">
+                  Intern | IMSD - ICT Unit
                 </p>
 
                 <a

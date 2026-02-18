@@ -24,7 +24,7 @@ export const TechGrid = () => {
       title: "Web/Mobile Development",
       description: (
         <span
-          className="text-base font-normal sm:text-lg md:text-xl"
+          className="text-sm font-normal sm:text-base md:text-lg"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Building modern, interactive user interfaces and cross-platform mobile
@@ -48,7 +48,7 @@ export const TechGrid = () => {
       title: "Programming Languages",
       description: (
         <span
-          className="text-base font-normal sm:text-lg md:text-xl"
+          className="text-sm font-normal sm:text-base md:text-lg"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Core languages for building robust and scalable applications.
@@ -71,7 +71,7 @@ export const TechGrid = () => {
       title: "Backend",
       description: (
         <span
-          className="text-base font-normal sm:text-lg md:text-xl"
+          className="text-sm font-normal sm:text-base md:text-lg"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Server-side technologies, databases, and APIs for scalable, secure
@@ -95,7 +95,7 @@ export const TechGrid = () => {
       title: "Currently Learning",
       description: (
         <span
-          className="text-base font-normal sm:text-lg md:text-xl"
+          className="text-sm font-normal sm:text-base md:text-lg"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Expanding my skillset with cloud computing, containerization, and
@@ -119,7 +119,7 @@ export const TechGrid = () => {
       title: "Tools",
       description: (
         <span
-          className="text-base font-normal sm:text-lg md:text-xl"
+          className="text-sm font-normal sm:text-base md:text-lg"
           style={{ color: "rgb(194, 205, 231)" }}
         >
           Development tools, version control, deployment platforms, design, and

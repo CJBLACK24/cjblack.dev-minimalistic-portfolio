@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { getFeedback } from "@sentry/nextjs";
+import * as Sentry from "@sentry/nextjs";
 import { Bug } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -15,27 +15,26 @@ export function BugReportButton({
   className,
   variant = "inline",
 }: BugReportButtonProps) {
-  const [feedback, setFeedback] = useState<ReturnType<
-    typeof getFeedback
-  > | null>(null);
+  const [feedbackReady, setFeedbackReady] = useState(false);
 
-  // Get feedback instance on client mount only
+  // Wait for Sentry Feedback integration to be available
   useEffect(() => {
     let retryCount = 0;
-    const maxRetries = 5;
+    const maxRetries = 10;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     const tryGetFeedback = () => {
-      const feedbackInstance = getFeedback();
+      const feedbackInstance = Sentry.getFeedback();
       console.log(
         `[BugReportButton] Attempt ${retryCount + 1} to get feedback:`,
-        feedbackInstance,
+        !!feedbackInstance,
       );
 
       if (feedbackInstance) {
-        setFeedback(feedbackInstance);
+        setFeedbackReady(true);
       } else if (retryCount < maxRetries) {
         retryCount++;
-        setTimeout(tryGetFeedback, 1000); // Wait 1s between retries
+        timeoutId = setTimeout(tryGetFeedback, 1000);
       } else {
         console.warn(
           "[BugReportButton] Failed to find Sentry Feedback integration after retries",
@@ -44,7 +43,7 @@ export function BugReportButton({
     };
 
     // Initial attempt after a small delay to allow Sentry to initialize
-    const timeoutId = setTimeout(tryGetFeedback, 500);
+    timeoutId = setTimeout(tryGetFeedback, 500);
 
     return () => clearTimeout(timeoutId);
   }, []);
@@ -52,8 +51,8 @@ export function BugReportButton({
   const handleClick = useCallback(async () => {
     console.log("[BugReportButton] Clicked");
 
-    // Try getting a fresh instance if state is null
-    const feedbackInstance = feedback || getFeedback();
+    // Always grab a fresh reference via the Sentry namespace
+    const feedbackInstance = Sentry.getFeedback();
 
     if (!feedbackInstance) {
       console.error("[BugReportButton] Sentry Feedback integration not found");
@@ -64,10 +63,8 @@ export function BugReportButton({
     }
 
     try {
-      // For Sentry v8+, use createForm explicitly when autoInject is false
       const form = await feedbackInstance.createForm();
       if (form) {
-        // Form might already be in DOM depending on implementation, but appendToDom is safe for v8
         if (typeof form.appendToDom === "function") {
           form.appendToDom();
         }
@@ -82,7 +79,7 @@ export function BugReportButton({
         "Something went wrong opening the bug report form. Please try again.",
       );
     }
-  }, [feedback]);
+  }, []);
 
   if (variant === "floating") {
     return (

@@ -179,7 +179,7 @@ function FeedbackItem({ feedback }: { feedback: Feedback }) {
               </div>
             </div>
           ) : (
-            <p className="mt-2 leading-relaxed break-words text-white/60">
+            <p className="mt-2 leading-relaxed wrap-break-word text-white/60">
               {feedback.content}
             </p>
           )}

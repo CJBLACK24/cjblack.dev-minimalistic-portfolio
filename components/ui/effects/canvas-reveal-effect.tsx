@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-
 import { AnimatePresence, motion } from "motion/react";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 
@@ -25,7 +24,7 @@ export function CanvasRevealEffectDemo() {
             dotSize={2}
           />
           {/* Radial gradient for the cute fade */}
-          <div className="absolute inset-0 bg-black/50 [mask-image:radial-gradient(400px_at_center,white,transparent)] dark:bg-black/90" />
+          <div className="absolute inset-0 bg-black/50 mask-[radial-gradient(400px_at_center,white,transparent)] dark:bg-black/90" />
         </Card>
         <Card title="Munni is Aditi" icon={<AceternityIcon />}>
           <CanvasRevealEffect
@@ -53,7 +52,7 @@ const Card = ({
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group/canvas-card relative mx-auto flex h-[30rem] w-full max-w-sm items-center justify-center border border-black/[0.2] p-4 dark:border-white/[0.2]"
+      className="group/canvas-card relative mx-auto flex h-120 w-full max-w-sm items-center justify-center border border-black/20 p-4 dark:border-white/20"
     >
       <Icon className="absolute -top-3 -left-3 h-6 w-6 text-black dark:text-white" />
       <Icon className="absolute -bottom-3 -left-3 h-6 w-6 text-black dark:text-white" />
