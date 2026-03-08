@@ -127,7 +127,10 @@ export function Globe({ globeConfig, data }: WorldProps) {
     const points = [];
     for (let i = 0; i < arcs.length; i++) {
       const arc = arcs[i];
-      const rgb = hexToRgb(arc.color) as { r: number; g: number; b: number };
+      if (!arc) continue;
+      const rgb = hexToRgb(arc.color);
+      if (!rgb) continue;
+
       points.push({
         size: defaultProps.pointSize,
         order: arc.order,
@@ -149,7 +152,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       (v, i, a) =>
         a.findIndex((v2) =>
           ["lat", "lng"].every(
-            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"],
+            (k) => v2[k as keyof typeof v2] === v[k as keyof typeof v],
           ),
         ) === i,
     );
@@ -170,12 +173,12 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .arcEndLat((d) => (d as { endLat: number }).endLat * 1)
       .arcEndLng((d) => (d as { endLng: number }).endLng * 1)
       .arcColor((e: any) => (e as { color: string }).color)
-      .arcAltitude((e) => (e as { arcAlt: number }).arcAlt * 1)
-      .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)])
+      .arcAltitude((e) => ((e as { arcAlt: number }).arcAlt || 0) * 1)
+      .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)] || 0.3)
       .arcDashLength(defaultProps.arcLength)
-      .arcDashInitialGap((e) => (e as { order: number }).order * 1)
+      .arcDashInitialGap((e) => ((e as { order: number }).order || 0) * 1)
       .arcDashGap(15)
-      .arcDashAnimateTime(() => defaultProps.arcTime);
+      .arcDashAnimateTime(() => defaultProps.arcTime || 2000);
 
     globeRef.current
       .pointsData(filteredPoints)
@@ -190,7 +193,8 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
-        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings,
+        ((defaultProps.arcTime || 2000) * (defaultProps.arcLength || 0.9)) /
+          (defaultProps.rings || 1),
       );
   }, [
     isInitialized,
@@ -257,17 +261,20 @@ export function World(props: WorldProps) {
   return (
     <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
       <WebGLRendererConfig />
-      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
+      <ambientLight
+        color={globeConfig.ambientLight || "#ffffff"}
+        intensity={0.6}
+      />
       <directionalLight
-        color={globeConfig.directionalLeftLight}
+        color={globeConfig.directionalLeftLight || "#ffffff"}
         position={new Vector3(-400, 100, 400)}
       />
       <directionalLight
-        color={globeConfig.directionalTopLight}
+        color={globeConfig.directionalTopLight || "#ffffff"}
         position={new Vector3(-200, 500, 200)}
       />
       <pointLight
-        color={globeConfig.pointLight}
+        color={globeConfig.pointLight || "#ffffff"}
         position={new Vector3(-200, 500, 200)}
         intensity={0.8}
       />
@@ -295,9 +302,9 @@ export function hexToRgb(hex: string) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
+        r: parseInt(result[1] || "0", 16),
+        g: parseInt(result[2] || "0", 16),
+        b: parseInt(result[3] || "0", 16),
       }
     : null;
 }

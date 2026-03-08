@@ -728,6 +728,25 @@
 
 /* 
   =============================================================================
+  7b. ACCESSIBILITY — REDUCED MOTION
+  =============================================================================
+  Respects the OS-level "Reduce Motion" setting (WCAG 2.3.3).
+  Disables all CSS animations and transitions for users who prefer reduced motion.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 
+  =============================================================================
   8. DETAILED COMPONENT SUB-ELEMENTS (Atomic Granularity)
   =============================================================================
   The following classes provide ultra-specific styling for internal component elements

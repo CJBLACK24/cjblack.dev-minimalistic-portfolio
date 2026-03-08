@@ -98,9 +98,9 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
     return {
       u_colors: {
         value: colorsArray.map((color) => [
-          color[0] / 255,
-          color[1] / 255,
-          color[2] / 255,
+          (color?.[0] ?? 0) / 255,
+          (color?.[1] ?? 0) / 255,
+          (color?.[2] ?? 0) / 255,
         ]),
         type: "uniform3fv",
       },
@@ -215,6 +215,7 @@ const ShaderMaterial = ({
 
     for (const uniformName in uniforms) {
       const uniform = uniforms[uniformName];
+      if (!uniform) continue;
 
       switch (uniform.type) {
         case "uniform1f":

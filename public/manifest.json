@@ -1,0 +1,17 @@
+{
+  "name": "CJ Black Portfolio",
+  "short_name": "cjblack.dev",
+  "description": "Minimalistic modern portfolio of a passionate Full Stack Developer building digital experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#2fa4ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

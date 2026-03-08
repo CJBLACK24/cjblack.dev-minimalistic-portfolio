@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   IconX,
-  IconDownload,
   IconBrandX,
   IconBrandGithub,
   IconBrandLinkedin,
@@ -43,6 +42,8 @@ export function MobileMenu() {
       e.preventDefault();
       setOpen(false);
       const targetId = link.split("#")[1];
+      if (!targetId) return;
+
       if (targetId === "home") {
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { inter, sfSportsNight } from "@/lib/fonts";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -7,6 +7,14 @@ import { SmoothScroll } from "@/components/ui/effects/smooth-scroll";
 import { WebVitalsReporter } from "@/components/layout/web-vitals";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { Toaster } from "@/components/ui/primitives/sonner";
+import { PersonJsonLd, WebsiteJsonLd } from "@/components/layout/json-ld";
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#000000" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cjblack.dev"),
@@ -68,6 +76,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -80,8 +89,18 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${sfSportsNight.variable} dark`}
     >
-      <head />
+      <head>
+        <PersonJsonLd />
+        <WebsiteJsonLd />
+      </head>
       <body className={inter.className}>
+        {/* Skip to main content — WCAG 2.1 Level A */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:rounded-lg focus:bg-cyan-500 focus:px-4 focus:py-2 focus:font-bold focus:text-black focus:outline-none"
+        >
+          Skip to main content
+        </a>
         <WebVitalsReporter />
         <QueryProvider>
           <SmoothScroll>{children}</SmoothScroll>

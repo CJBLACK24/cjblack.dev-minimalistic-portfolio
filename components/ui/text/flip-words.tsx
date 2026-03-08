@@ -15,13 +15,13 @@ export const FlipWords = ({
   className?: string;
   onWordChange?: (index: number) => void;
 }) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
+  const [currentWord, setCurrentWord] = useState(words[0] || "");
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
     const nextIndex = words.indexOf(currentWord) + 1;
-    const word = words[nextIndex] || words[0];
+    const word = words[nextIndex] || words[0] || "";
     setCurrentWord(word);
     setIsAnimating(true);
     if (onWordChange) {

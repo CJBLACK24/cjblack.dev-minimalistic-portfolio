@@ -24,15 +24,18 @@ export const Tabs = ({
   tabClassName?: string;
   contentClassName?: string;
 }) => {
-  const [active, setActive] = useState<Tab>(propTabs[0]);
+  const [active, setActive] = useState<Tab>(propTabs[0]!);
   const [tabs, setTabs] = useState<Tab[]>(propTabs);
 
   const moveSelectedTabToTop = (idx: number) => {
     const newTabs = [...propTabs];
     const selectedTab = newTabs.splice(idx, 1);
-    newTabs.unshift(selectedTab[0]);
-    setTabs(newTabs);
-    setActive(newTabs[0]);
+    const tabToMove = selectedTab[0];
+    if (tabToMove) {
+      newTabs.unshift(tabToMove);
+      setTabs(newTabs);
+      setActive(newTabs[0]!);
+    }
   };
 
   const [hovering, setHovering] = useState(false);
@@ -102,7 +105,7 @@ export const FadeInDiv = ({
   hovering?: boolean;
 }) => {
   const isActive = (tab: Tab) => {
-    return tab.value === tabs[0].value;
+    return tab.value === tabs[0]?.value;
   };
   return (
     <div className="relative h-full w-full">

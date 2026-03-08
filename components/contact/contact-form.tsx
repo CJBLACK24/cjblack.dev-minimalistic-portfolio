@@ -169,7 +169,8 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
             newAttemptCount - 1,
             COOLDOWN_DURATIONS.length - 1,
           );
-          const newCooldownEnd = now + COOLDOWN_DURATIONS[cooldownIndex];
+          const cooldownDuration = COOLDOWN_DURATIONS[cooldownIndex] ?? 0;
+          const newCooldownEnd = now + cooldownDuration;
 
           localStorage.setItem(
             "contactCooldown",
@@ -182,7 +183,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
 
           setAttemptCount(newAttemptCount);
           setCooldownTime(newCooldownEnd);
-          setCountdown(Math.ceil(COOLDOWN_DURATIONS[cooldownIndex] / 1000));
+          setCountdown(Math.ceil(cooldownDuration / 1000));
 
           setTimeout(
             () => setAlertState((prev) => ({ ...prev, isVisible: false })),

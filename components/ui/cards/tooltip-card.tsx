@@ -103,6 +103,7 @@ export const Tooltip = ({
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const touch = e.touches[0];
+    if (!touch) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const mouseX = touch.clientX - rect.left;
     const mouseY = touch.clientY - rect.top;

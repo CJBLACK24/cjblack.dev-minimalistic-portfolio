@@ -40,8 +40,9 @@ export function FeaturesSection() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
+      (entries) => {
+        const entry = entries[0];
+        if (entry?.isIntersecting) {
           setHasStarted(true);
           observer.disconnect();
         }
@@ -91,7 +92,7 @@ export function FeaturesSection() {
               colors={[feature.revealColor]}
               dotSize={2}
             />
-            <div className="absolute inset-0 bg-black/50 [mask-image:radial-gradient(400px_at_center,white,transparent)]" />
+            <div className="absolute inset-0 bg-black/50 mask-[radial-gradient(400px_at_center,white,transparent)]" />
           </Card>
         ))}
       </div>
@@ -128,7 +129,7 @@ const Card = ({
         onHover?.();
       }}
       onMouseLeave={() => setHovered(false)}
-      className="group/canvas-card relative mx-auto flex h-[30rem] w-full max-w-sm items-center justify-center border border-white/20 p-4 lg:h-[35rem]"
+      className="group/canvas-card relative mx-auto flex h-120 w-full max-w-sm items-center justify-center border border-white/20 p-4 lg:h-140"
     >
       <Icon className="absolute -top-3 -left-3 h-6 w-6 text-white" />
       <Icon className="absolute -bottom-3 -left-3 h-6 w-6 text-white" />

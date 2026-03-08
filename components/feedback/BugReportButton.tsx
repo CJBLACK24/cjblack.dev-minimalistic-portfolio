@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import * as Sentry from "@sentry/nextjs";
 import { Bug } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -15,8 +15,6 @@ export function BugReportButton({
   className,
   variant = "inline",
 }: BugReportButtonProps) {
-  const [feedbackReady, setFeedbackReady] = useState(false);
-
   // Wait for Sentry Feedback integration to be available
   useEffect(() => {
     let retryCount = 0;
@@ -31,7 +29,7 @@ export function BugReportButton({
       );
 
       if (feedbackInstance) {
-        setFeedbackReady(true);
+        // feedbackInstance found
       } else if (retryCount < maxRetries) {
         retryCount++;
         timeoutId = setTimeout(tryGetFeedback, 1000);
