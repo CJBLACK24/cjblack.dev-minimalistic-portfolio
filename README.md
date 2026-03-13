@@ -64,38 +64,38 @@ The authentication system supports multiple methods with complete email verifica
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    AUTHENTICATION FLOW                       │
+│                    AUTHENTICATION FLOW                      │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │   Sign Up   │    │   Sign In   │    │ Magic Link  │     │
-│  │  (Email +   │    │  (Email +   │    │  (Email     │     │
-│  │  Password)  │    │  Password)  │    │   Only)     │     │
-│  └──────┬──────┘    └──────┬──────┘    └──────┬──────┘     │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐      │
+│  │   Sign Up   │    │   Sign In   │    │ Magic Link  │      │
+│  │  (Email +   │    │  (Email +   │    │  (Email     │      │
+│  │  Password)  │    │  Password)  │    │   Only)     │      │
+│  └──────┬──────┘    └──────┬──────┘    └──────┬──────┘      │
 │         │                  │                  │             │
 │         ▼                  ▼                  ▼             │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │              Email Verification                  │       │
-│  │  • Verification email sent with 24hr expiry     │       │
-│  │  • Custom branded email templates               │       │
-│  │  • Redirect to sign-up page after verification  │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │              Email Verification                 │        │
+│  │  • Verification email sent with 24hr expiry     │        │
+│  │  • Custom branded email templates               │        │
+│  │  • Redirect to sign-up page after verification  │        │
+│  └─────────────────────────────────────────────────┘        │
 │                          │                                  │
 │                          ▼                                  │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │                OAuth Providers                   │       │
-│  │  ┌──────────┐           ┌──────────┐            │       │
-│  │  │  GitHub  │           │  Google  │            │       │
-│  │  │  OAuth   │           │  OAuth   │            │       │
-│  │  └──────────┘           └──────────┘            │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │                OAuth Providers                  │        │
+│  │  ┌──────────┐           ┌──────────┐            │        │
+│  │  │  GitHub  │           │  Google  │            │        │
+│  │  │  OAuth   │           │  OAuth   │            │        │
+│  │  └──────────┘           └──────────┘            │        │
+│  └─────────────────────────────────────────────────┘        │
 │                          │                                  │
 │                          ▼                                  │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │              Password Reset Flow                 │       │
-│  │  • Reset email sent with 1hr expiry             │       │
-│  │  • Secure token-based verification              │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │              Password Reset Flow                │        │
+│  │  • Reset email sent with 1hr expiry             │        │
+│  │  • Secure token-based verification              │        │
+│  └─────────────────────────────────────────────────┘        │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -113,50 +113,50 @@ The Feedback Wall (`/wall`) allows authenticated users to leave feedback with fu
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    FEEDBACK WALL FLOW                        │
+│                    FEEDBACK WALL FLOW                       │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  User visits /wall page                                     │
 │         │                                                   │
 │         ▼                                                   │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    Authentication Check                          │       │
-│  │    • Session verified via Better Auth            │       │
-│  │    • Unauthenticated? Show login prompt          │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    Authentication Check                         │        │
+│  │    • Session verified via Better Auth           │        │
+│  │    • Unauthenticated? Show login prompt         │        │
+│  └─────────────────────────────────────────────────┘        │
 │         │                                                   │
 │         ▼                                                   │
-│  ┌─────────────────┐  ┌─────────────────┐                  │
-│  │  CREATE         │  │  READ           │                  │
-│  │  • Auth required│  │  • Public view  │                  │
-│  │  • Server action│  │  • Real-time    │                  │
-│  │  • Path revalidate│ │  • With author  │                  │
-│  └────────┬────────┘  └────────┬────────┘                  │
+│  ┌─────────────────┐  ┌─────────────────┐                   │
+│  │  CREATE         │  │  READ           │                   │
+│  │  • Auth required│  │  • Public view  │                   │
+│  │  • Server action│  │  • Real-time    │                   │
+│  │  • Path revalidate│ │  • With author │                   │
+│  └────────┬────────┘  └────────┬────────┘                   │
 │           │                    │                            │
 │           ▼                    ▼                            │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    Feedback Card Display                         │       │
-│  │    • User avatar & name                          │       │
-│  │    • Timestamp (relative date)                   │       │
-│  │    • Content                                     │       │
-│  │    • Action buttons (owner/admin)                │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    Feedback Card Display                        │        │
+│  │    • User avatar & name                         │        │
+│  │    • Timestamp (relative date)                  │        │
+│  │    • Content                                    │        │
+│  │    • Action buttons (owner/admin)               │        │
+│  └─────────────────────────────────────────────────┘        │
 │           │                                                 │
-│  ┌────────┴────────┐                                       │
+│  ┌────────┴────────┐                                        │
 │  ▼                 ▼                                        │
-│  ┌─────────────────┐  ┌─────────────────┐                  │
-│  │  UPDATE         │  │  DELETE         │                  │
-│  │  • Owner/Admin  │  │  • Owner/Admin  │                  │
-│  │  • Pencil icon  │  │  • Trash icon   │                  │
-│  │  • Inline edit  │  │  • Confirmation │                  │
-│  └─────────────────┘  └─────────────────┘                  │
+│  ┌─────────────────┐  ┌─────────────────┐                   │
+│  │  UPDATE         │  │  DELETE         │                   │
+│  │  • Owner/Admin  │  │  • Owner/Admin  │                   │
+│  │  • Pencil icon  │  │  • Trash icon   │                   │
+│  │  • Inline edit  │  │  • Confirmation │                   │
+│  └─────────────────┘  └─────────────────┘                   │
 │                                                             │
 │  PERMISSIONS:                                               │
-│  • Create: Any authenticated user                          │
-│  • Read: Public (no auth required)                         │
-│  • Update: Author OR Admin only                            │
-│  • Delete: Author OR Admin only                            │
-│  • Admin Email: duquechristianjohncalderon@gmail.com       │
+│  • Create: Any authenticated user                           │
+│  • Read: Public (no auth required)                          │
+│  • Update: Author OR Admin only                             │
+│  • Delete: Author OR Admin only                             │
+│  • Admin Email: duquechristianjohncalderon@gmail.com        │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -175,24 +175,24 @@ Heart reaction system with toggle functionality:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    REACTION SYSTEM FLOW                      │
+│                    REACTION SYSTEM FLOW                     │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  User clicks heart button                                   │
 │         │                                                   │
 │         ▼                                                   │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    Authentication Check                          │       │
-│  │    • Unauthorized? Prompt login                  │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    Authentication Check                         │        │
+│  │    • Unauthorized? Prompt login                 │        │
+│  └─────────────────────────────────────────────────┘        │
 │         │                                                   │
 │         ▼                                                   │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    Check Existing Reaction                       │       │
-│  │    • Query: userId + type = "HEART" (unique)    │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    Check Existing Reaction                      │        │
+│  │    • Query: userId + type = "HEART" (unique)    │        │
+│  └─────────────────────────────────────────────────┘        │
 │         │                                                   │
-│    ┌────┴────┐                                             │
+│    ┌────┴────┐                                              │
 │    ▼         ▼                                              │
 │  EXISTS    NOT EXISTS                                       │
 │    │           │                                            │
@@ -200,16 +200,16 @@ Heart reaction system with toggle functionality:
 │  DELETE    CREATE                                           │
 │  reaction  reaction                                         │
 │    │           │                                            │
-│    └─────┬─────┘                                           │
+│    └─────┬─────┘                                            │
 │          ▼                                                  │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    Revalidate Path & Update UI                   │       │
-│  │    • Show reaction count                         │       │
-│  │    • Display user avatars who reacted           │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    Revalidate Path & Update UI                  │        │
+│  │    • Show reaction count                        │        │
+│  │    • Display user avatars who reacted           │        │
+│  └─────────────────────────────────────────────────┘        │
 │                                                             │
 │  DATABASE CONSTRAINT:                                       │
-│  • @@unique([userId, type]) - One reaction per type/user   │
+│  • @@unique([userId, type]) - One reaction per type/user    │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -225,41 +225,41 @@ Professional contact form with EmailJS integration:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    CONTACT FORM FLOW                         │
+│                    CONTACT FORM FLOW                        │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  User fills contact form                                    │
 │         │                                                   │
 │         ▼                                                   │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    Form Validation (Zod)                         │       │
-│  │    • Name (required)                             │       │
-│  │    • Email (valid format)                        │       │
-│  │    • Message (required)                          │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    Form Validation (Zod)                        │        │
+│  │    • Name (required)                            │        │
+│  │    • Email (valid format)                       │        │
+│  │    • Message (required)                         │        │
+│  └─────────────────────────────────────────────────┘        │
 │         │                                                   │
 │         ▼                                                   │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    Arcjet Security Layer                         │       │
-│  │    • Bot detection & verification                │       │
-│  │    • Rate limiting (token bucket)                │       │
-│  │    • Shield protection (SQL/XSS)                 │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    Arcjet Security Layer                        │        │
+│  │    • Bot detection & verification               │        │
+│  │    • Rate limiting (token bucket)               │        │
+│  │    • Shield protection (SQL/XSS)                │        │
+│  └─────────────────────────────────────────────────┘        │
 │         │                                                   │
 │         ▼                                                   │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    EmailJS Integration                           │       │
-│  │    • Service ID configuration                    │       │
-│  │    • Template-based emails                       │       │
-│  │    • Public key authentication                   │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    EmailJS Integration                          │        │
+│  │    • Service ID configuration                   │        │
+│  │    • Template-based emails                      │        │
+│  │    • Public key authentication                  │        │
+│  └─────────────────────────────────────────────────┘        │
 │         │                                                   │
 │         ▼                                                   │
-│  ┌─────────────────────────────────────────────────┐       │
-│  │    Success Response                              │       │
-│  │    • Toast notification                          │       │
-│  │    • Form reset                                  │       │
-│  └─────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │    Success Response                             │        │
+│  │    • Toast notification                         │        │
+│  │    • Form reset                                 │        │
+│  └─────────────────────────────────────────────────┘        │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -268,7 +268,7 @@ Professional contact form with EmailJS integration:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    APPLICATION ROUTES                        │
+│                    APPLICATION ROUTES                       │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  PUBLIC ROUTES:                                             │
