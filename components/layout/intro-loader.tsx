@@ -10,14 +10,14 @@ export function IntroLoader() {
   const [customDelay, setCustomDelay] = useState(500); // Start with .5 delay for first word
 
   const hellos = [
-    "👋Hello",
-    "👋Hola",
-    "👋Bonjour",
-    "👋hallå",
-    "👋안녕하세요",
-    "👋Ciao",
-    "👋Hallo",
-    "👋Olá",
+    "Hello",
+    "Hola",
+    "Bonjour",
+    "hallå",
+    "안녕하세요",
+    "Ciao",
+    "Hallo",
+    "Olá",
   ];
 
   useEffect(() => {

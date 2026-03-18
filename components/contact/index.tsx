@@ -45,7 +45,7 @@ export function ContactSection() {
             <p className="mb-3 text-sm font-medium tracking-wider text-cyan-600 uppercase dark:text-cyan-400">
               Get in touch
             </p>
-            <h2 className="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl dark:text-white">
+            <h2 className="section-heading">
               Let&apos;s Connect
             </h2>
           </motion.div>

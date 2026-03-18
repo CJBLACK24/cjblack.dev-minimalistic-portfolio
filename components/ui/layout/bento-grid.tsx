@@ -47,21 +47,21 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "group/bento relative row-span-1 flex flex-col justify-between space-y-4 rounded-xl border p-4 transition-all duration-300",
+        "group/bento relative row-span-1 flex flex-col justify-between space-y-2 rounded-xl border p-3 transition-all duration-300 sm:p-4",
         "border-neutral-800 bg-[#0a0a0a] hover:border-neutral-500",
         className,
       )}
       onClick={onClick}
     >
       {/* Card content - NOT clickable */}
-      <div className="mb-12 flex h-full flex-col justify-between sm:mb-14 md:mb-10">
+      <div className="mb-6 flex h-full flex-col justify-between sm:mb-8 md:mb-6">
         {header}
         <div className="transition duration-200 group-hover/bento:translate-x-2">
           {icon}
-          <div className="mt-2 mb-2 font-sans text-lg font-bold text-white sm:text-xl md:text-2xl">
+          <div className="mt-1 mb-1 font-sans text-base font-bold text-white sm:text-lg md:text-xl">
             {title}
           </div>
-          <div className="font-sans text-sm font-normal text-neutral-400 sm:text-base md:text-lg">
+          <div className="font-sans text-xs font-normal text-neutral-400 sm:text-sm">
             {description}
           </div>
         </div>

@@ -197,6 +197,18 @@
   --input: rgba(255, 255, 255, 0.1);
   --ring: #525252;
 
+  --accents-8: #fafafa;
+  --accents-7: #eaeaea;
+  --accents-6: #999;
+  --accents-5: #888;
+  --accents-4: #666;
+  --accents-3: #444;
+  --accents-2: #333;
+  --accents-1: #111;
+  --letter-spacing-1: -0.02em;
+  --letter-spacing-2: -0.02em;
+  --geist-foreground: #fff;
+
   /* Theme specific - Next.js style */
   --page-bg: #000000;
   --section-bg: #0a0a0a;
@@ -250,8 +262,20 @@
   }
 
   p {
-    @apply text-base leading-relaxed font-normal;
-    color: var(--text-secondary);
+    @apply font-normal;
+    color: var(--accents-5);
+    letter-spacing: var(--letter-spacing-1);
+    line-height: 1.6; /* Increased slightly from 1.5 for better readability similar to Next.js */
+    font-size: 14px; /* Interpreted 5x as 14px - standard Next.js body small */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #hero p {
+    color: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    font-size: inherit;
   }
 
   /* Selection styling */
@@ -285,7 +309,12 @@
   }
 
   /* Heading Resets */
-  h1,
+  h1 {
+    @apply font-extrabold;
+    letter-spacing: -0.05em;
+    color: #fff;
+  }
+
   h2,
   h3,
   h4,
@@ -475,6 +504,17 @@
     @apply flex items-center -space-x-3 transition-all duration-300 hover:space-x-1 sm:-space-x-4;
   }
 
+  /* --- 5.5b SECTION HEADING STYLE --- */
+  /* Shared heading style for major section titles */
+  .section-heading {
+    letter-spacing: var(--letter-spacing-2);
+    color: var(--accents-8);
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
   /* --- 5.6 TECHNOLOGIES SECTION (Expertise) --- */
   /* Purpose: Visual Stack and Skill Groups */
 
@@ -540,7 +580,7 @@
   /* --- 5.8 GLOBAL UI COMPONENTS (Modals, Alerts, Nav) --- */
 
   .nav-floating-bg {
-    @apply fixed inset-x-0 top-10 z-[1000] mx-auto flex max-w-fit items-center space-x-6 rounded-full border border-neutral-800 bg-black/80 px-8 py-3 shadow-[0_0_30px_rgba(0,0,0,0.5)] backdrop-blur-lg;
+    @apply fixed inset-x-0 top-10 z-1000 mx-auto flex max-w-fit items-center space-x-6 rounded-full border border-neutral-800 bg-black/80 px-8 py-3 shadow-[0_0_30px_rgba(0,0,0,0.5)] backdrop-blur-lg;
   }
 
   .nav-action-btn {

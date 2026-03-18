@@ -16,7 +16,7 @@ export function PreFooterCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
+          <h2 className="section-heading mb-6">
             Ready to build?
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-neutral-400 md:text-xl">

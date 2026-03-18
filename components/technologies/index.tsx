@@ -69,7 +69,7 @@ export function TechnologiesSection() {
 
           <motion.h2
             variants={itemVariants}
-            className="mb-16 text-center text-3xl font-bold text-neutral-800 md:text-5xl dark:text-neutral-200"
+            className="section-heading mb-16 text-center"
           >
             Technologies
           </motion.h2>

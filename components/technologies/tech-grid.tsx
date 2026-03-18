@@ -23,20 +23,17 @@ export const TechGrid = () => {
     {
       title: "Web/Mobile Development",
       description: (
-        <span
-          className="text-sm font-normal sm:text-base md:text-lg"
-          style={{ color: "rgb(194, 205, 231)" }}
-        >
-          Building modern, interactive user interfaces and cross-platform mobile
-          apps.
-        </span>
+        <p className="mt-1" style={{ fontSize: "14px", lineHeight: 1.5 }}>
+          Building interactive user interfaces and cross-platform mobile
+          applications.
+        </p>
       ),
       header: (
-        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
+        <div className="flex h-full min-h-16 w-full flex-1 items-center justify-center rounded-xl p-1.5 sm:min-h-20 sm:p-3">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={webMobileItems}
-              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
+              itemClassName="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
             />
           </div>
         </div>
@@ -47,19 +44,16 @@ export const TechGrid = () => {
     {
       title: "Programming Languages",
       description: (
-        <span
-          className="text-sm font-normal sm:text-base md:text-lg"
-          style={{ color: "rgb(194, 205, 231)" }}
-        >
-          Core languages for building robust and scalable applications.
-        </span>
+        <p className="mt-1" style={{ fontSize: "14px", lineHeight: 1.5 }}>
+          Core languages for building robust, type-safe, and scalable applications.
+        </p>
       ),
       header: (
-        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
+        <div className="flex h-full min-h-16 w-full flex-1 items-center justify-center rounded-xl p-1.5 sm:min-h-20 sm:p-3">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={programmingLanguageItems}
-              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
+              itemClassName="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
             />
           </div>
         </div>
@@ -70,20 +64,16 @@ export const TechGrid = () => {
     {
       title: "Backend",
       description: (
-        <span
-          className="text-sm font-normal sm:text-base md:text-lg"
-          style={{ color: "rgb(194, 205, 231)" }}
-        >
-          Server-side technologies, databases, and APIs for scalable, secure
-          applications.
-        </span>
+        <p className="mt-1" style={{ fontSize: "14px", lineHeight: 1.5 }}>
+          Server-side technologies and databases for high-performance backend systems.
+        </p>
       ),
       header: (
-        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
+        <div className="flex h-full min-h-16 w-full flex-1 items-center justify-center rounded-xl p-1.5 sm:min-h-20 sm:p-3">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={backendItems}
-              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
+              itemClassName="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
             />
           </div>
         </div>
@@ -94,20 +84,16 @@ export const TechGrid = () => {
     {
       title: "Currently Learning",
       description: (
-        <span
-          className="text-sm font-normal sm:text-base md:text-lg"
-          style={{ color: "rgb(194, 205, 231)" }}
-        >
-          Expanding my skillset with cloud computing, containerization, and
-          system programming.
-        </span>
+        <p className="mt-1" style={{ fontSize: "14px", lineHeight: 1.5 }}>
+          Expanding my skillset with cloud infrastructure and advanced system architecture.
+        </p>
       ),
       header: (
-        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
+        <div className="flex h-full min-h-16 w-full flex-1 items-center justify-center rounded-xl p-1.5 sm:min-h-20 sm:p-3">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={currentlyLearningItems}
-              itemClassName="w-12 h-12 sm:w-14 sm:h-14 md:w-20 md:h-20"
+              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
             />
           </div>
         </div>
@@ -118,20 +104,16 @@ export const TechGrid = () => {
     {
       title: "Tools",
       description: (
-        <span
-          className="text-sm font-normal sm:text-base md:text-lg"
-          style={{ color: "rgb(194, 205, 231)" }}
-        >
-          Development tools, version control, deployment platforms, design, and
-          real-time communication.
-        </span>
+        <p className="mt-1" style={{ fontSize: "14px", lineHeight: 1.5 }}>
+          Essential tools for version control, deployment, design, and efficient development workflows.
+        </p>
       ),
       header: (
-        <div className="flex h-full min-h-20 w-full flex-1 items-center justify-center rounded-xl p-2 sm:min-h-24 sm:p-4">
+        <div className="flex h-full min-h-16 w-full flex-1 items-center justify-center rounded-xl p-1.5 sm:min-h-20 sm:p-3">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={toolsItems}
-              itemClassName="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
+              itemClassName="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
             />
           </div>
         </div>
@@ -154,7 +136,7 @@ export const TechGrid = () => {
   };
 
   return (
-    <BentoGrid className="mx-auto max-w-full gap-6 md:auto-rows-[26rem] md:grid-cols-2 md:gap-8">
+    <BentoGrid className="mx-auto max-w-full gap-4 md:auto-rows-[20rem] md:grid-cols-2 md:gap-6">
       {items.map((item, i) => (
         <motion.div key={i} variants={bentoVariants} className={item.className}>
           <BentoGridItem

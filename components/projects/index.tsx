@@ -24,7 +24,7 @@ export function ProjectsSection() {
           transition={{ duration: 0.5 }}
           className="mb-14 text-center md:mb-16"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl dark:text-white">
+          <h2 className="section-heading">
             A small selection of{" "}
             <span className="text-cyan-600 dark:text-cyan-400">
               recent projects

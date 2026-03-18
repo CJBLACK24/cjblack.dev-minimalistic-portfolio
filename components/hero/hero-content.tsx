@@ -151,10 +151,10 @@ export const HeroContent = ({
       {/* Background/Grid Lines */}
       <div ref={gridLinesRef} className="pointer-events-none absolute inset-0">
         <div className="absolute inset-y-0 -left-6 h-full w-px origin-top bg-black opacity-0 md:left-0">
-          <div className="absolute top-0 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
+          <div className="absolute top-20 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
         <div className="bg-black-500 absolute inset-y-0 -right-6 h-full w-px origin-bottom opacity-0 md:right-0">
-          <div className="absolute h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
+          <div className="absolute top-20 h-100 w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent" />
         </div>
         <div className="absolute -right-6 bottom-0 -left-6 h-px w-auto origin-left bg-black opacity-0 md:right-0 md:left-0">
           <div className="absolute inset-x-0 mx-auto h-px w-3/4 bg-linear-to-r from-transparent via-cyan-500 to-transparent md:w-40" />
