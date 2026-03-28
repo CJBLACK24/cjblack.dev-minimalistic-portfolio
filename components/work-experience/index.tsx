@@ -50,7 +50,7 @@ export function WorkExperienceSection() {
           <div className="flex items-start gap-5">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white ring-2 ring-neutral-800 transition-transform duration-300 group-hover:scale-110">
               <Image
-                src="/work exp/DOLE.png"
+                src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Department_of_Labor_and_Employment_%28DOLE%29.svg"
                 alt="DOLE Logo"
                 width={40}
                 height={40}
@@ -58,7 +58,7 @@ export function WorkExperienceSection() {
               />
             </div>
             <div className="flex w-full flex-col">
-              <div className="flex flex-col items-start justify-between gap-1 sm:flex-row sm:items-center">
+              <div className="flex flex-row items-center justify-between gap-4">
                 <h3 className="text-lg leading-tight font-semibold text-white md:text-xl">
                   {/* Mobile: short name */}
                   <span className="md:hidden">DOLE VI</span>
@@ -67,7 +67,7 @@ export function WorkExperienceSection() {
                     Department of Labor and Employment Region 6
                   </span>
                 </h3>
-                <div className="text-[10px] font-medium tracking-tight text-neutral-500 uppercase sm:text-xs">
+                <div className="shrink-0 text-[10px] font-medium tracking-tight text-neutral-500 uppercase sm:text-xs">
                   Feb 2026 — Present
                 </div>
               </div>
