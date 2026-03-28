@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -145,8 +146,9 @@ function useInView(ref: React.RefObject<HTMLElement | null>, once = true) {
     if (!el || (once && triggered.current)) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !triggered.current) {
+      (entries) => {
+        const entry = entries[0];
+        if (entry && entry.isIntersecting && !triggered.current) {
           setInView(true);
           if (once) {
             triggered.current = true;
@@ -320,25 +322,32 @@ export function Terminal({
 
   useEffect(() => {
     if (!inView || phase !== "idle") return;
-    const t = setTimeout(() => setPhase("typing"), initialDelay);
+    const t = setTimeout(() => {
+      setPhase("typing");
+      // Optionally play a 'startup' sound if Enter exists in the sprite
+      down("Enter");
+      setTimeout(() => up("Enter"), 100);
+    }, initialDelay);
     return () => clearTimeout(t);
-  }, [inView, phase, initialDelay]);
+  }, [inView, phase, initialDelay, down, up]);
 
   useEffect(() => {
     if (phase !== "typing") return;
 
     if (charIdx < currentCommand.length) {
       const char = currentCommand[charIdx];
-      down(char);
-      const t = setTimeout(
-        () => {
-          up(char);
-          setCurrentText(currentCommand.slice(0, charIdx + 1));
-          setCharIdx((c) => c + 1);
-        },
-        typingSpeed + Math.random() * 30,
-      );
-      return () => clearTimeout(t);
+      if (char) {
+        down(char);
+        const t = setTimeout(
+          () => {
+            up(char);
+            setCurrentText(currentCommand.slice(0, charIdx + 1));
+            setCharIdx((c) => c + 1);
+          },
+          typingSpeed + Math.random() * 30,
+        );
+        return () => clearTimeout(t);
+      }
     } else {
       down("Enter");
       const t = setTimeout(() => {
@@ -369,14 +378,17 @@ export function Terminal({
     if (phase !== "outputting") return;
 
     if (outputIdx >= 0 && outputIdx < currentOutputs.length) {
-      const t = setTimeout(() => {
-        setLines((prev) => [
-          ...prev,
-          { type: "output", content: currentOutputs[outputIdx] },
-        ]);
-        setOutputIdx((i) => i + 1);
-      }, 150);
-      return () => clearTimeout(t);
+      const outputContent = currentOutputs[outputIdx];
+      if (outputContent !== undefined) {
+        const t = setTimeout(() => {
+          setLines((prev) => [
+            ...prev,
+            { type: "output", content: outputContent },
+          ]);
+          setOutputIdx((i) => i + 1);
+        }, 150);
+        return () => clearTimeout(t);
+      }
     } else if (outputIdx >= currentOutputs.length) {
       const t = setTimeout(() => {
         if (isLastCommand) {
