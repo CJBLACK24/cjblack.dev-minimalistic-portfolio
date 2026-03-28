@@ -107,10 +107,21 @@ export function useAudio(enabled: boolean, playbackRate = 1.0, gainValue = 0.05,
       if (ctxRef.current?.state === "suspended") {
         ctxRef.current.resume();
       }
+      // Mobile Safari / Chrome often need an actual sound to play to fully unlock
+      if (ctxRef.current && readyRef.current && bufferRef.current) {
+         const src = ctxRef.current.createBufferSource();
+         const g = ctxRef.current.createGain();
+         g.gain.value = 0.0001; // Silent
+         src.buffer = bufferRef.current;
+         src.connect(g);
+         g.connect(ctxRef.current.destination);
+         src.start(0, 0, 0.001);
+      }
     };
 
     document.addEventListener("click", resumeContext, { once: true });
     document.addEventListener("keydown", resumeContext, { once: true });
+    document.addEventListener("touchstart", resumeContext, { once: true });
 
     const init = async () => {
       try {
@@ -129,6 +140,7 @@ export function useAudio(enabled: boolean, playbackRate = 1.0, gainValue = 0.05,
       ctxRef.current?.close();
       document.removeEventListener("click", resumeContext);
       document.removeEventListener("keydown", resumeContext);
+      document.removeEventListener("touchstart", resumeContext);
     };
   }, [enabled]);
 

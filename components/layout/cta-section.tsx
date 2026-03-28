@@ -27,10 +27,10 @@ export function PreFooterCTA() {
               here to help.
             </p>
 
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+            <div className="flex flex-row w-full items-center justify-center gap-2 sm:gap-4 lg:justify-start">
               <a
                 href="#contact"
-                className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-white px-8 font-medium text-black transition-all duration-300 hover:scale-105 hover:bg-neutral-200"
+                className="group relative inline-flex h-12 flex-1 sm:flex-initial items-center justify-center overflow-hidden rounded-none bg-white px-4 sm:px-8 text-sm sm:text-base font-medium text-black transition-all duration-300 hover:scale-105 hover:bg-neutral-200"
               >
                 <span className="mr-2">Start a Project</span>
                 <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -41,7 +41,7 @@ export function PreFooterCTA() {
                 href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCKCHVHpbGPWxtXhphfXPzBbnGgNNDdntPzHZjjJbWsZNbnBzKLfXmvJWBPcGfFVZqxkHnvB"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-md border border-neutral-800 bg-black px-8 font-medium text-white transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900"
+                className="inline-flex h-12 flex-1 sm:flex-initial items-center justify-center rounded-none border border-neutral-800 bg-black px-4 sm:px-8 text-sm sm:text-base font-medium text-white transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900"
               >
                 Contact Me
               </a>
