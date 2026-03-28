@@ -143,6 +143,7 @@ export const HeroContent = ({
 
   return (
     <motion.div
+      ref={containerRef}
       className="relative flex flex-1 flex-col items-center justify-center"
       initial="hidden"
       animate="visible"
@@ -175,7 +176,7 @@ export const HeroContent = ({
                   isImageLoaded ? { opacity: 1, filter: "blur(0px)" } : {}
                 }
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="h-full w-full"
+                className="relative h-full w-full"
               >
                 <Image
                   src="/cj.png"

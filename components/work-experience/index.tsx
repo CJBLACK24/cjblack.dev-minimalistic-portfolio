@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+
 import Image from "next/image";
 import { motion } from "motion/react";
 import { IconBriefcase } from "@tabler/icons-react";
@@ -50,11 +51,12 @@ export function WorkExperienceSection() {
           <div className="flex items-start gap-5">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white ring-2 ring-neutral-800 transition-transform duration-300 group-hover:scale-110">
               <Image
-                src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Department_of_Labor_and_Employment_%28DOLE%29.svg"
+                src="/dole-logo.svg"
                 alt="DOLE Logo"
                 width={40}
                 height={40}
                 className="object-contain"
+                unoptimized
               />
             </div>
             <div className="flex w-full flex-col">
