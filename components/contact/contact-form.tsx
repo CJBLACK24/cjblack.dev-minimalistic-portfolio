@@ -9,6 +9,7 @@ import { AnimatedAlert } from "@/components/ui/misc/animated-alert";
 import { cn } from "@/lib/utils";
 
 import { motion } from "motion/react";
+import { useAudio } from "@/components/ui/terminal";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -95,6 +96,8 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
   const [countdown, setCountdown] = useState(
     () => loadCooldownState().countdown,
   );
+
+  const { down, up } = useAudio(true, 1.1, 0.05);
 
   useEffect(() => {
     if (countdown > 0) {
@@ -248,10 +251,12 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="Your Name"
                 type="text"
                 required
+                onKeyDown={(e) => down(e.key)}
+                onKeyUp={(e) => up(e.key)}
                 className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-black dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
               />
             </LabelInputContainer>
-
+ 
             <LabelInputContainer>
               <Label
                 htmlFor="email"
@@ -265,10 +270,12 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="your@email.com"
                 type="email"
                 required
+                onKeyDown={(e) => down(e.key)}
+                onKeyUp={(e) => up(e.key)}
                 className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-black dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
               />
             </LabelInputContainer>
-
+ 
             <LabelInputContainer>
               <Label
                 htmlFor="message"
@@ -280,6 +287,8 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 id="message"
                 name="message"
                 placeholder="Your message..."
+                onKeyDown={(e) => down(e.key)}
+                onKeyUp={(e) => up(e.key)}
                 className="flex min-h-[120px] w-full resize-none rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-sm text-white transition-all duration-200 placeholder:text-neutral-500 focus-visible:border-white/30 focus-visible:ring-1 focus-visible:ring-white/30 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 required
               />
