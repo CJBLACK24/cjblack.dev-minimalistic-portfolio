@@ -95,13 +95,23 @@ const KEY_SOUNDS_UP: Record<string, [number, number]> = {
   Enter: [19180, 100],
 };
 
-function useAudio(enabled: boolean) {
+function useAudio(enabled: boolean, playbackRate = 1.0, gainValue = 0.05, delay = 0) {
   const ctxRef = useRef<AudioContext | null>(null);
   const bufferRef = useRef<AudioBuffer | null>(null);
   const readyRef = useRef(false);
 
   useEffect(() => {
     if (!enabled) return;
+
+    const resumeContext = () => {
+      if (ctxRef.current?.state === "suspended") {
+        ctxRef.current.resume();
+      }
+    };
+
+    document.addEventListener("click", resumeContext, { once: true });
+    document.addEventListener("keydown", resumeContext, { once: true });
+
     const init = async () => {
       try {
         ctxRef.current = new AudioContext();
@@ -113,20 +123,47 @@ function useAudio(enabled: boolean) {
         readyRef.current = true;
       } catch {}
     };
+
     init();
     return () => {
       ctxRef.current?.close();
+      document.removeEventListener("click", resumeContext);
+      document.removeEventListener("keydown", resumeContext);
     };
   }, [enabled]);
 
+  const playSynth = (freq: number, dur: number, gVal: number) => {
+    if (!ctxRef.current) return;
+    if (ctxRef.current.state === "suspended") ctxRef.current.resume();
+    const osc = ctxRef.current.createOscillator();
+    const g = ctxRef.current.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(freq, ctxRef.current.currentTime + (delay / 1000));
+    osc.frequency.exponentialRampToValueAtTime(0.01, ctxRef.current.currentTime + (delay / 1000) + dur / playbackRate);
+    g.gain.setValueAtTime(gVal, ctxRef.current.currentTime + (delay / 1000));
+    g.gain.exponentialRampToValueAtTime(0.01, ctxRef.current.currentTime + (delay / 1000) + dur / playbackRate);
+    osc.connect(g);
+    g.connect(ctxRef.current.destination);
+    osc.start(ctxRef.current.currentTime + (delay / 1000));
+    osc.stop(ctxRef.current.currentTime + (delay / 1000) + dur / playbackRate);
+  };
+
   const playSound = (sound: [number, number] | undefined) => {
-    if (!readyRef.current || !ctxRef.current || !bufferRef.current || !sound)
+    if (!enabled || !ctxRef.current) return;
+    if (!readyRef.current || !bufferRef.current || !sound) {
+      // Fallback click
+      playSynth(200, 0.05, gainValue);
       return;
+    }
     if (ctxRef.current.state === "suspended") ctxRef.current.resume();
     const src = ctxRef.current.createBufferSource();
     src.buffer = bufferRef.current;
-    src.connect(ctxRef.current.destination);
-    src.start(0, sound[0] / 1000, sound[1] / 1000);
+    src.playbackRate.value = playbackRate;
+    const gainNode = ctxRef.current.createGain();
+    gainNode.gain.value = 1.0; 
+    src.connect(gainNode);
+    gainNode.connect(ctxRef.current.destination);
+    src.start(ctxRef.current.currentTime + (delay / 1000), sound[0] / 1000, (sound[1] / 1000) / playbackRate);
   };
 
   const down = (key: string) =>
@@ -134,7 +171,13 @@ function useAudio(enabled: boolean) {
   const up = (key: string) =>
     playSound(KEY_SOUNDS_UP[key.toUpperCase()] || KEY_SOUNDS_UP[key]);
 
-  return { down, up };
+  const playStartup = () => {
+    if (!enabled || !ctxRef.current) return;
+    playSynth(440, 0.2, gainValue * 2);
+    setTimeout(() => playSynth(880, 0.2, gainValue * 2), 100);
+  };
+
+  return { down, up, playStartup };
 }
 
 function useInView(ref: React.RefObject<HTMLElement | null>, once = true) {
@@ -286,8 +329,11 @@ export interface TerminalProps {
   delayBetweenCommands?: number;
   initialDelay?: number;
   enableSound?: boolean;
+  soundPlaybackRate?: number;
+  soundGain?: number;
+  soundDelay?: number;
 }
-
+ 
 export function Terminal({
   commands = ["npx shadcn@latest init"],
   outputs = {},
@@ -297,11 +343,14 @@ export function Terminal({
   delayBetweenCommands = 800,
   initialDelay = 500,
   enableSound = true,
+  soundPlaybackRate = 1.0,
+  soundGain = 0.05,
+  soundDelay = 0,
 }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const inView = useInView(containerRef);
-  const { down, up } = useAudio(enableSound);
+  const { down, up, playStartup } = useAudio(enableSound, soundPlaybackRate, soundGain, soundDelay);
 
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [currentText, setCurrentText] = useState("");
@@ -324,12 +373,10 @@ export function Terminal({
     if (!inView || phase !== "idle") return;
     const t = setTimeout(() => {
       setPhase("typing");
-      // Optionally play a 'startup' sound if Enter exists in the sprite
-      down("Enter");
-      setTimeout(() => up("Enter"), 100);
+      playStartup();
     }, initialDelay);
     return () => clearTimeout(t);
-  }, [inView, phase, initialDelay, down, up]);
+  }, [inView, phase, initialDelay, playStartup]);
 
   useEffect(() => {
     if (phase !== "typing") return;

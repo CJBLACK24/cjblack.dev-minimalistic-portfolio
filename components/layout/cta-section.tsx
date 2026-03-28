@@ -79,6 +79,9 @@ export function PreFooterCTA() {
               }}
               typingSpeed={40}
               delayBetweenCommands={900}
+              soundPlaybackRate={1.2}
+              soundGain={0.07}
+              soundDelay={20}
               className="max-w-full"
             />
           </div>
