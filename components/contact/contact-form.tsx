@@ -99,6 +99,28 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
 
   const { down, up } = useAudio(true, 1.1, 0.05);
 
+  const lastKeyTime = useRef<number>(0);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    lastKeyTime.current = Date.now();
+    down(e.key);
+  };
+
+  const handleKeyUp = (e: React.KeyboardEvent) => {
+    up(e.key);
+  };
+
+  const handleInput = (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    // Mobile browsers often bypass keydown due to composition, so we use input events as a reliable fallback.
+    // If a physical keydown happened in the last 50ms, skip this to avoid double sounds.
+    if (Date.now() - lastKeyTime.current > 50) {
+      const val = (e.target as HTMLInputElement).value;
+      const lastChar = val.slice(-1) || "a"; // Default to 'a' sound for backspaces
+      down(lastChar);
+      setTimeout(() => up(lastChar), 50);
+    }
+  };
+
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => {
@@ -251,8 +273,9 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="Your Name"
                 type="text"
                 required
-                onKeyDown={(e) => down(e.key)}
-                onKeyUp={(e) => up(e.key)}
+                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
+                onInput={handleInput}
                 className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-black dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
               />
             </LabelInputContainer>
@@ -270,8 +293,9 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="your@email.com"
                 type="email"
                 required
-                onKeyDown={(e) => down(e.key)}
-                onKeyUp={(e) => up(e.key)}
+                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
+                onInput={handleInput}
                 className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-black dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
               />
             </LabelInputContainer>
@@ -287,8 +311,9 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 id="message"
                 name="message"
                 placeholder="Your message..."
-                onKeyDown={(e) => down(e.key)}
-                onKeyUp={(e) => up(e.key)}
+                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
+                onInput={handleInput}
                 className="flex min-h-[120px] w-full resize-none rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-sm text-white transition-all duration-200 placeholder:text-neutral-500 focus-visible:border-white/30 focus-visible:ring-1 focus-visible:ring-white/30 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 required
               />

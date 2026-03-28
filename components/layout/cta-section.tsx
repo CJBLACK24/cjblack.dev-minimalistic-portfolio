@@ -30,10 +30,10 @@ export function PreFooterCTA() {
             <div className="flex flex-row w-full items-center justify-center gap-2 sm:gap-4 lg:justify-start">
               <a
                 href="#contact"
-                className="group relative inline-flex h-12 flex-1 sm:flex-initial items-center justify-center overflow-hidden rounded-none bg-white px-4 sm:px-8 text-sm sm:text-base font-medium text-black transition-all duration-300 hover:scale-105 hover:bg-neutral-200"
+                className="group relative inline-flex h-12 flex-1 sm:flex-initial items-center justify-center overflow-hidden rounded-none bg-white px-2 min-[400px]:px-4 sm:px-8 text-xs min-[400px]:text-sm sm:text-base font-medium text-black transition-all duration-300 hover:scale-105 hover:bg-neutral-200 whitespace-nowrap"
               >
-                <span className="mr-2">Start a Project</span>
-                <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <span className="mr-1 min-[400px]:mr-2">Start a Project</span>
+                <IconArrowRight className="h-3 w-3 min-[400px]:h-4 min-[400px]:w-4 shrink-0 transition-transform group-hover:translate-x-1" />
                 <div className="absolute inset-0 -z-10 bg-linear-to-r from-cyan-500 to-blue-500 opacity-0 transition-opacity duration-500 group-hover:opacity-10" />
               </a>
 
@@ -41,7 +41,7 @@ export function PreFooterCTA() {
                 href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCKCHVHpbGPWxtXhphfXPzBbnGgNNDdntPzHZjjJbWsZNbnBzKLfXmvJWBPcGfFVZqxkHnvB"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 flex-1 sm:flex-initial items-center justify-center rounded-none border border-neutral-800 bg-black px-4 sm:px-8 text-sm sm:text-base font-medium text-white transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900"
+                className="inline-flex h-12 flex-1 sm:flex-initial items-center justify-center rounded-none border border-neutral-800 bg-black px-2 min-[400px]:px-4 sm:px-8 text-xs min-[400px]:text-sm sm:text-base font-medium text-white transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900 whitespace-nowrap"
               >
                 Contact Me
               </a>
