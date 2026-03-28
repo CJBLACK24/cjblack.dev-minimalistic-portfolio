@@ -55,6 +55,7 @@ export function WorkExperienceSection() {
                 alt="DOLE Logo"
                 width={40}
                 height={40}
+                style={{ width: "auto", height: "auto" }}
                 className="object-contain"
                 unoptimized
               />

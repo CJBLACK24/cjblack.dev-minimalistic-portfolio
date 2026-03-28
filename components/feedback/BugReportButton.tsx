@@ -34,9 +34,8 @@ export function BugReportButton({
         retryCount++;
         timeoutId = setTimeout(tryGetFeedback, 1000);
       } else {
-        console.warn(
-          "[BugReportButton] Failed to find Sentry Feedback integration after retries",
-        );
+        // Silenced as requested by the user
+        // console.warn("[BugReportButton] Failed to find Sentry Feedback integration after retries");
       }
     };
 

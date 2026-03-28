@@ -73,7 +73,7 @@ const ContactCard = ({
 
   const containerClasses =
     "border rounded-xl p-6 md:p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 shadow-xl " +
-    "bg-white/5 backdrop-blur-md " +
+    "bg-black " +
     "border-white/10 " +
     "hover:border-white/20";
 

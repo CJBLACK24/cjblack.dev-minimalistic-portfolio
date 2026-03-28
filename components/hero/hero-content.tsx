@@ -87,11 +87,12 @@ export const HeroContent = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  useGSAP(
-    () => {
-      if (!gridLinesRef.current) return;
+  useEffect(() => {
+    if (!gridLinesRef.current) return;
 
-      const lines = gridLinesRef.current.children;
+    const ctx = gsap.context(() => {
+      const lines = gridLinesRef.current!.children;
+      if (!lines || lines.length < 4) return;
 
       // Animate vertical lines (left and right)
       gsap.fromTo(
@@ -122,7 +123,7 @@ export const HeroContent = ({
       );
 
       // Animate the cyan highlights (the inner glow divs)
-      const highlights = gridLinesRef.current.querySelectorAll(
+      const highlights = gridLinesRef.current!.querySelectorAll(
         ".bg-linear-to-b, .bg-linear-to-r",
       );
       gsap.fromTo(
@@ -137,9 +138,10 @@ export const HeroContent = ({
           ease: "power2.out",
         },
       );
-    },
-    { scope: containerRef },
-  );
+    }, containerRef); // Passing containerRef as the context/scope
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <motion.div

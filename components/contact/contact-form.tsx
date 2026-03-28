@@ -222,7 +222,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
       <motion.div
         ref={containerRef}
         variants={itemVariants}
-        className="group relative rounded-xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-white/20 md:p-8 lg:col-span-1"
+        className="group relative rounded-xl border border-white/10 bg-black p-6 shadow-xl transition-all duration-300 hover:border-white/20 md:p-8 lg:col-span-1"
       >
         <div className="relative">
           <div className="mb-8 flex items-center gap-4">
@@ -248,7 +248,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="Your Name"
                 type="text"
                 required
-                className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-neutral-900/60 dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
+                className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-black dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
               />
             </LabelInputContainer>
 
@@ -265,7 +265,7 @@ export const ContactForm = ({ itemVariants }: SectionProps) => {
                 placeholder="your@email.com"
                 type="email"
                 required
-                className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-neutral-900/60 dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
+                className="rounded-xl border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 transition-all duration-200 placeholder:text-neutral-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/10 dark:border-neutral-800 dark:bg-black dark:text-white dark:placeholder:text-neutral-600 dark:focus:border-cyan-500/40"
               />
             </LabelInputContainer>
 

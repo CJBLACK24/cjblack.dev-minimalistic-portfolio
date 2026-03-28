@@ -19,6 +19,22 @@ declare module "@react-three/fiber" {
 
 extend({ ThreeGlobe: ThreeGlobe });
 
+// Suppress THREE.Clock deprecation warning from @react-three/fiber internals
+// This is a known upstream compatibility issue with three.js >=0.173
+if (typeof window !== "undefined") {
+  const _warn = console.warn.bind(console);
+  console.warn = (...args: Parameters<typeof console.warn>) => {
+    if (
+      typeof args[0] === "string" &&
+      args[0].includes("THREE.Clock") &&
+      args[0].includes("deprecated")
+    )
+      return;
+    _warn(...args);
+  };
+}
+
+
 const RING_PROPAGATION_SPEED = 3;
 const aspect = 1.2;
 const cameraZ = 300;

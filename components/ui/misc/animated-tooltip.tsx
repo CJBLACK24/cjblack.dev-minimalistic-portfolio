@@ -100,7 +100,8 @@ export const AnimatedTooltip = ({
                 width={100}
                 src={item.image || ""}
                 alt={item.name}
-                className="relative m-0! h-full w-full object-contain object-top p-0! transition duration-500 group-hover:z-30 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
+                style={{ height: "auto" }}
+                className="relative m-0! w-full object-contain object-top p-0! transition duration-500 group-hover:z-30 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
               />
             )}
           </div>
