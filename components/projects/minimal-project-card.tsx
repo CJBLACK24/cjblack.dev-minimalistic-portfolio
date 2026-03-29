@@ -33,10 +33,10 @@ export const MinimalProjectCard = ({ project }: MinimalProjectCardProps) => {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       onMouseMove={handleMouseMove}
-      className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-neutral-800 bg-[#0a0a0a] p-5 transition-all duration-300 hover:border-neutral-500 md:p-6"
+      className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-neutral-800 bg-[#0a0a0a] p-5 transition-all duration-300 hover:border-neutral-500 md:p-6"
     >
       {/* Project Image with scale on hover */}
-      <div className="relative mb-5 aspect-16/10 w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 transition-colors duration-300 dark:border-neutral-800/40 dark:bg-neutral-900">
+      <div className="relative mb-5 aspect-16/10 w-full overflow-hidden rounded-none border border-neutral-200 bg-neutral-100 transition-colors duration-300 dark:border-neutral-800/40 dark:bg-neutral-900">
         <div className="h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
           {project.header}
         </div>
@@ -59,7 +59,8 @@ export const MinimalProjectCard = ({ project }: MinimalProjectCardProps) => {
           {project.techStack.slice(0, 4).map((tech) => (
             <div
               key={tech.id}
-              className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 transition-all duration-300 hover:z-10 hover:scale-110 hover:border-neutral-600"
+              className="
+              relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-none border border-neutral-800 bg-neutral-900 transition-all duration-300 hover:z-10 hover:scale-110 hover:border-neutral-600"
               title={tech.name}
             >
               <Image
@@ -84,7 +85,7 @@ export const MinimalProjectCard = ({ project }: MinimalProjectCardProps) => {
             href={project.link}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
-            className="flex items-center gap-1.5 text-sm font-semibold text-cyan-600 transition-all duration-300 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300"
+            className="flex items-center gap-1.5 text-sm font-semibold text-white transition-all duration-300 hover:text-cyan-400"
             onClick={(e) => e.stopPropagation()}
           >
             <span className="hidden sm:inline">

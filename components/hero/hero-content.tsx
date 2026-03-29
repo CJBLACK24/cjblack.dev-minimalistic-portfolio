@@ -171,7 +171,7 @@ export const HeroContent = ({
         <div className="grid w-full grid-cols-1 items-center gap-12 px-6 sm:px-10 md:grid-cols-2 md:gap-16 md:px-16 lg:gap-8 lg:px-20">
           {/* Left Column - Image */}
           <div className="flex justify-center md:justify-end">
-            <div className="relative h-[340px] w-full max-w-[280px] overflow-hidden rounded-2xl bg-neutral-900 sm:h-[400px] sm:max-w-[320px] md:h-[420px] md:max-w-[340px] lg:h-[520px] lg:max-w-[420px] xl:h-[580px] xl:max-w-[460px]">
+            <div className="relative h-[340px] w-full max-w-[280px] overflow-hidden rounded-none bg-neutral-900 sm:h-[400px] sm:max-w-[320px] md:h-[420px] md:max-w-[340px] lg:h-[520px] lg:max-w-[420px] xl:h-[580px] xl:max-w-[460px]">
               <motion.div
                 initial={{ opacity: 0, filter: "blur(10px)" }}
                 animate={
@@ -185,7 +185,7 @@ export const HeroContent = ({
                   alt="Profile"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="rounded-2xl object-cover shadow-2xl"
+                  className="rounded-none object-cover shadow-2xl"
                   priority
                   onLoad={() => setIsImageLoaded(true)}
                 />
@@ -193,7 +193,7 @@ export const HeroContent = ({
               {isImageLoaded && <HeroClock />}
               {!isImageLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-neutral-900">
-                  <div className="h-10 w-10 animate-spin rounded-full border-2 border-cyan-500/20 border-t-cyan-500" />
+                  <div className="h-10 w-10 animate-spin rounded-none border-2 border-cyan-500/20 border-t-cyan-500" />
                 </div>
               )}
             </div>
@@ -366,9 +366,9 @@ export const HeroContent = ({
                 <div className="grid w-full max-w-lg grid-cols-1 gap-4 sm:grid-cols-2">
                   {/* View Works Button */}
                   <a href="#projects" className="block w-full scroll-smooth">
-                    <div className="group relative inline-flex h-12 w-full overflow-hidden rounded-lg p-px focus:outline-none">
+                    <div className="group relative inline-flex h-12 w-full overflow-hidden rounded-none p-px focus:outline-none">
                       <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22d3ee_0%,#083344_50%,#22d3ee_100%)]" />
-                      <span className="group inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-black px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl transition-all duration-300">
+                      <span className="group inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-none bg-black px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl transition-all duration-300">
                         <span>View works</span>
                         <IconArrowNarrowDown className="h-4 w-4" />
                       </span>
@@ -381,7 +381,7 @@ export const HeroContent = ({
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setShowCVOptions(!showCVOptions)}
-                      className="flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 text-sm font-bold text-black shadow-xl shadow-cyan-500/20 transition-all duration-300 hover:bg-cyan-300"
+                      className="flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-none bg-cyan-400 px-6 text-sm font-bold text-black shadow-xl shadow-cyan-500/20 transition-all duration-300 hover:bg-cyan-300"
                     >
                       <IconDownload className="h-4 w-4" />
                       <span>Curriculum Vitae</span>

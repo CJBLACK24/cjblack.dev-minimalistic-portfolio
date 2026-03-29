@@ -49,12 +49,12 @@ export function WorkExperienceSection() {
           </div>
 
           <div className="flex items-start gap-5">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white ring-2 ring-neutral-800 transition-transform duration-300 group-hover:scale-110">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-neutral-900 ring-1 ring-neutral-800 transition-transform duration-300 group-hover:scale-110">
               <Image
                 src="/dole-logo.svg"
                 alt="DOLE Logo"
-                width={40}
-                height={40}
+                width={36}
+                height={36}
                 style={{ width: "auto", height: "auto" }}
                 className="object-contain"
                 unoptimized
@@ -67,7 +67,7 @@ export function WorkExperienceSection() {
                   <span className="md:hidden">DOLE VI</span>
                   {/* Desktop: full name */}
                   <span className="hidden md:inline">
-                    Department of Labor and Employment Region 6
+                    Department of Labor and Employment Region VI
                   </span>
                 </h3>
                 <div className="shrink-0 text-[10px] font-medium tracking-tight text-neutral-500 uppercase sm:text-xs">

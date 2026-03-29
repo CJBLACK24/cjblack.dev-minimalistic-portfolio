@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { IconBrandFigma, IconCheck } from "@tabler/icons-react";
 import { LinkPreview } from "@/components/ui/media/link-preview";
@@ -20,7 +19,7 @@ export const ProjectCard = ({ item }: { item: ProjectItem }) => {
     <div className="flex h-full flex-col">
       {/* Category Badge */}
       <div className="mb-2">
-        <span className="rounded-full bg-cyan-500/10 px-2 py-0.5 text-[10px] font-bold tracking-widest text-cyan-500 uppercase">
+        <span className="rounded-none bg-cyan-500/10 px-2 py-0.5 text-[10px] font-bold tracking-widest text-cyan-500 uppercase">
           {item.category}
         </span>
       </div>

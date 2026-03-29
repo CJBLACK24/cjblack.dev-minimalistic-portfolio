@@ -29,7 +29,7 @@ export const TechGrid = () => {
         </p>
       ),
       header: (
-        <div className="flex h-full min-h-16 w-full flex-1 items-center justify-center rounded-xl p-1.5 sm:min-h-20 sm:p-3">
+        <div className="flex h-full min-h-16 w-full flex-1 items-center justify-center rounded-none p-1.5 sm:min-h-20 sm:p-3">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             <AnimatedTooltip
               items={webMobileItems}
