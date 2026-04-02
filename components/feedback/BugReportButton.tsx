@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import * as Sentry from "@sentry/nextjs";
+import { getFeedback } from "@sentry/nextjs";
 import { Bug } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -18,7 +19,7 @@ function getFeedbackWithRetry(
 ): Promise<ReturnType<typeof Sentry.getFeedback>> {
   return new Promise((resolve, reject) => {
     const attempt = (remaining: number) => {
-      const feedback = Sentry.getFeedback();
+      const feedback = getFeedback();
       if (feedback) {
         resolve(feedback);
       } else if (remaining === 0) {
