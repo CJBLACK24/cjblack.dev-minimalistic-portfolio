@@ -405,7 +405,7 @@
   }
 
   .text-gradient-cyan {
-    @apply bg-linear-to-r from-cyan-400 via-blue-500 to-purple-400 bg-clip-text font-semibold text-transparent italic;
+    @apply inline-block bg-linear-to-r from-cyan-400 via-blue-500 to-purple-400 bg-clip-text font-semibold text-transparent italic px-2;
   }
 
   .text-shimmer {
