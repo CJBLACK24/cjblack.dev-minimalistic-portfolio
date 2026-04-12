@@ -11,6 +11,8 @@ import {
 } from "@/lib/redis";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
+import aj from "@/lib/security";
+import { userRateLimitRule, strictSensitiveInfoRule } from "@/lib/security/rules";
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -140,6 +142,28 @@ export async function createFeedback(content: string) {
   if (!session || !session.user) {
     throw new Error("Unauthorized: You must be logged in to leave feedback.");
   }
+
+  // ─── Arcjet Protection ──────────────────────────────────────────────────
+  const req = await headers();
+  const decision = await aj
+    .withRule(userRateLimitRule)
+    .withRule(strictSensitiveInfoRule)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .protect(req as any, { 
+      userId: session.user.id,
+      sensitiveInfoValue: content 
+    });
+
+  if (decision.isDenied()) {
+    if (decision.reason.isRateLimit()) {
+      throw new Error("Too many requests — please try again in a minute.");
+    }
+    if (decision.reason.isSensitiveInfo()) {
+      throw new Error("Your feedback contains sensitive information (like emails or phone numbers) and cannot be posted.");
+    }
+    throw new Error("Access denied by security policies.");
+  }
+  // ────────────────────────────────────────────────────────────────────────
 
   const feedback = await prisma.feedback.create({
     data: {

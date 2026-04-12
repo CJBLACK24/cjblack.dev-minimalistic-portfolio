@@ -1,39 +1,70 @@
+import aj from "@/lib/security";
+import { logDecision, buildDeniedResponse } from "@/lib/security/helpers";
+import { botProtectionRule } from "@/lib/security/rules";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 /**
- * Edge Proxy — Security Headers
+ * Edge Proxy — Security & Traffic Management
  *
- * Fires before any route handler, providing security headers on every response.
- * This complements Arcjet (which handles rate limiting and request inspection).
- * Renamed from 'middleware' to 'proxy' as per Next.js 16/17 convention.
+ * This serves as the global gateway for all requests. 
+ * Replaces the deprecated 'middleware' pattern in favor of the 'proxy' convention.
+ *
+ * Implements:
+ *  1. Global Shield WAF (via Arcjet base instance)
+ *  2. Baseline Bot Protection (blocks common malicious bots globally)
+ *  3. Security Headers (X-Frame, CSP-ready, etc.)
  */
-export function proxy() {
+export async function proxy(req: NextRequest) {
+  // ─── 1. Arcjet Protection ───────────────────────────────────────────
+  // We apply a baseline bot detection rule to all non-static routes.
+  // This helps prevent automated scraping and reconnaissance.
+  const decision = await aj
+    .withRule(botProtectionRule)
+    .protect(req);
+
+  logDecision("GLOBAL_PROXY", decision);
+
+  // If Arcjet denies the request, we block immediately at the edge.
+  if (decision.isDenied()) {
+    return buildDeniedResponse(decision);
+  }
+
+  // ─── 2. Security Headers ──────────────────────────────────────────────
   const response = NextResponse.next();
 
-  // Prevent clickjacking
+  // Prevent Clickjacking
   response.headers.set("X-Frame-Options", "DENY");
-
-  // Prevent MIME type sniffing
+  
+  // Prevent MIME-type sniffing
   response.headers.set("X-Content-Type-Options", "nosniff");
-
-  // Control referrer information
+  
+  // Referrer Policy
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  
+  // Implementation of HSTS (Strict-Transport-Security) for production
+  if (process.env.NODE_ENV === "production") {
+    response.headers.set(
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains; preload"
+    );
+  }
 
-  // Restrict browser features
+  // Permissions Policy
   response.headers.set(
     "Permissions-Policy",
-    "camera=(), microphone=(), geolocation=(), payment=()",
+    "camera=(), microphone=(), geolocation=(), payment=()"
   );
-
-  // XSS protection (legacy browsers)
-  response.headers.set("X-XSS-Protection", "1; mode=block");
-
-  // DNS prefetch control
-  response.headers.set("X-DNS-Prefetch-Control", "on");
 
   return response;
 }
 
+/**
+ * Proxy Matcher Configuration
+ *
+ * Optimized to exclude static assets and internal Next.js paths.
+ * Systemically ensuring that we don't waste Arcjet tokens on images or CSS.
+ */
 export const config = {
   matcher: [
     /*

@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "render.com" },
       { protocol: "https", hostname: "upload.wikimedia.org" },
       { protocol: "https", hostname: "user-images.githubusercontent.com" },
+      { protocol: "https", hostname: "www.cloudflare.com" },
+      { protocol: "https", hostname: "www.vectorlogo.zone" },
     ],
     // Optimize images in production, disable in development for faster dev server
     unoptimized: process.env.NODE_ENV === "development",

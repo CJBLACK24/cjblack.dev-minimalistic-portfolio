@@ -24,7 +24,8 @@ export function PreFooterCTA() {
             <p className="mx-auto mb-10 max-w-md text-lg leading-relaxed text-neutral-400 md:text-xl lg:mx-0">
               Let&apos;s turn your ideas into reality. Whether you need a modern
               web app, a complex dashboard, or a stunning portfolio, I&apos;m
-              here to help.
+              here to help. I prioritize the security of your website with robust 
+              solutions like rate limiting and WAF powered by Arcjet and Cloudflare.
             </p>
 
             <div className="flex flex-row w-full items-center justify-center gap-2 sm:gap-4 lg:justify-start">

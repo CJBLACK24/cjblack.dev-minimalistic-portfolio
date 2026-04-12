@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work Experience — CJ Black</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       CSS VARIABLES — Mirrored from globals.css
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      --background: #000000;
+      --foreground: #ededed;
+      --card: #0a0a0a;
+      --card-foreground: #ededed;
+      --secondary: #1a1a1a;
+      --secondary-foreground: #ededed;
+      --muted: #1a1a1a;
+      --muted-foreground: #a3a3a3;
+      --accent-cyan: #2fa4ff;
+      --border: rgba(255, 255, 255, 0.1);
+      --text-primary: #ededed;
+      --text-secondary: #a3a3a3;
+      --text-muted: #737373;
+      --page-bg: #000000;
+      --card-bg: rgba(23, 23, 23, 0.5);
+      --card-border: rgba(38, 38, 38, 0.6);
+
+      /* Semantic aliases */
+      --success: #10b981;
+      --info: var(--accent-cyan);
+      --accent-blue: rgba(47, 164, 255, 0.12);
+      --accent-amber: rgba(245, 158, 11, 0.12);
+      --accent-green: rgba(16, 185, 129, 0.12);
+      --accent-purple: rgba(168, 85, 247, 0.12);
+      --accent-pink: rgba(236, 72, 153, 0.12);
+      --icon-blue: #60a5fa;
+      --icon-amber: #fbbf24;
+      --icon-green: #34d399;
+      --icon-purple: #a78bfa;
+      --icon-pink: #f472b6;
+      --chip-bg: var(--secondary);
+      --chip-border: var(--border);
+      --tag-muted-bg: var(--secondary);
+      --tag-muted-border: var(--border);
+      --radius: 0.625rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════════════════════════ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background-color: var(--page-bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYOUT
+       ═══════════════════════════════════════════════════════════ */
+    .section-wrapper {
+      width: 100%;
+      max-width: 390px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTION HEADER
+       ═══════════════════════════════════════════════════════════ */
+    .section-title {
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CARD
+       ═══════════════════════════════════════════════════════════ */
+    .card {
+      background-color: var(--card);
+      border: 0.5px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-accent-line {
+      height: 2px;
+      background-color: var(--accent-cyan);
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CARD HEADER
+       ═══════════════════════════════════════════════════════════ */
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .company-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .company-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .header-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .company-name {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .company-role {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    .badge-active {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background-color: rgba(16, 185, 129, 0.1);
+      border: 0.5px solid rgba(16, 185, 129, 0.25);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--success);
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--success);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       METADATA CHIPS
+       ═══════════════════════════════════════════════════════════ */
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 100px;
+      background-color: var(--chip-bg);
+      border: 0.5px solid var(--chip-border);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    .chip svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       DIVIDER
+       ═══════════════════════════════════════════════════════════ */
+    .divider {
+      height: 0.5px;
+      background-color: var(--border);
+      margin: 16px 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIBILITIES
+       ═══════════════════════════════════════════════════════════ */
+    .micro-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .responsibilities-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .responsibility-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-tile {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-tile svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .icon-tile--blue {
+      background-color: var(--accent-blue);
+    }
+    .icon-tile--blue svg {
+      stroke: var(--icon-blue);
+    }
+
+    .icon-tile--amber {
+      background-color: var(--accent-amber);
+    }
+    .icon-tile--amber svg {
+      stroke: var(--icon-amber);
+    }
+
+    .icon-tile--green {
+      background-color: var(--accent-green);
+    }
+    .icon-tile--green svg {
+      stroke: var(--icon-green);
+    }
+
+    .icon-tile--purple {
+      background-color: var(--accent-purple);
+    }
+    .icon-tile--purple svg {
+      stroke: var(--icon-purple);
+    }
+
+    .icon-tile--pink {
+      background-color: var(--accent-pink);
+    }
+    .icon-tile--pink svg {
+      stroke: var(--icon-pink);
+    }
+
+    .responsibility-text {
+      min-width: 0;
+    }
+
+    .responsibility-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .responsibility-desc {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      margin-top: 1px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       TAGS
+       ═══════════════════════════════════════════════════════════ */
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1;
+      border: 0.5px solid var(--tag-muted-border);
+      background-color: var(--tag-muted-bg);
+      color: var(--text-secondary);
+    }
+
+    .tag--highlight {
+      background-color: rgba(47, 164, 255, 0.1);
+      border-color: rgba(47, 164, 255, 0.25);
+      color: var(--info);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       DESKTOP RESPONSIVE — 768px+
+       ═══════════════════════════════════════════════════════════ */
+    @media (min-width: 768px) {
+      body {
+        padding: 60px 24px;
+      }
+
+      .section-wrapper {
+        max-width: 700px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .section-subtitle {
+        font-size: 15px;
+        margin-bottom: 28px;
+      }
+
+      .card-body {
+        padding: 24px;
+      }
+
+      .card-header {
+        gap: 16px;
+      }
+
+      .company-logo {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+      }
+
+      .company-name {
+        font-size: 18px;
+      }
+
+      .company-role {
+        font-size: 14px;
+      }
+
+      .badge-active {
+        font-size: 12px;
+        padding: 4px 12px;
+      }
+
+      .chips-row {
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .chip {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+
+      .divider {
+        margin: 20px 0;
+      }
+
+      .micro-label {
+        margin-bottom: 14px;
+      }
+
+      .responsibilities-list {
+        gap: 12px;
+      }
+
+      .icon-tile {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+      }
+
+      .icon-tile svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .responsibility-row {
+        gap: 12px;
+      }
+
+      .responsibility-title {
+        font-size: 14px;
+      }
+
+      .responsibility-desc {
+        font-size: 13px;
+      }
+
+      .tags-row {
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .tag {
+        font-size: 12px;
+        padding: 5px 12px;
+        border-radius: 8px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LARGE DESKTOP — 1024px+
+       ═══════════════════════════════════════════════════════════ */
+    @media (min-width: 1024px) {
+      .section-wrapper {
+        max-width: 780px;
+      }
+
+      .card {
+        border-radius: 20px;
+      }
+
+      .card-accent-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        border-radius: 20px 0 0 20px;
+      }
+
+      .card-body {
+        padding: 28px 28px 28px 32px;
+      }
+
+      .responsibilities-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="section-wrapper">
+    <!-- Section heading -->
+    <h2 class="section-title">Work Experience</h2>
+    <p class="section-subtitle">Professional roles and internships</p>
+
+    <!-- Card -->
+    <div class="card">
+      <div class="card-accent-line"></div>
+      <div class="card-body">
+
+        <!-- Card Header -->
+        <div class="card-header">
+          <div class="company-logo">
+            <img src="/work%20exp/DOLE.png" alt="DOLE Logo" />
+          </div>
+          <div class="header-info">
+            <div class="company-name">DOLE VI</div>
+            <div class="company-role">Intern · IMSD – ICT Unit</div>
+          </div>
+          <div class="badge-active">
+            <span class="badge-dot"></span>
+            Active
+          </div>
+        </div>
+
+        <!-- Metadata Chips -->
+        <div class="chips-row">
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            Feb 2026 – Present
+          </span>
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            Mon–Fri · 8:00–5:00 PM
+          </span>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Responsibilities -->
+        <div class="micro-label">Responsibilities</div>
+
+        <div class="responsibilities-list">
+          <!-- 1. Network Technician — Blue -->
+          <div class="responsibility-row">
+            <div class="icon-tile icon-tile--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" />
+                <rect x="2" y="14" width="20" height="8" rx="2" />
+                <line x1="6" y1="6" x2="6.01" y2="6" />
+                <line x1="6" y1="18" x2="6.01" y2="18" />
+              </svg>
+            </div>
+            <div class="responsibility-text">
+              <div class="responsibility-title">Network Technician</div>
+              <div class="responsibility-desc">LAN cabling, SSID config & cable management</div>
+            </div>
+          </div>
+
+          <!-- 2. Hardware Support Specialist — Amber -->
+          <div class="responsibility-row">
+            <div class="icon-tile icon-tile--amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <rect x="9" y="9" width="6" height="6" />
+                <line x1="9" y1="1" x2="9" y2="4" />
+                <line x1="15" y1="1" x2="15" y2="4" />
+                <line x1="9" y1="20" x2="9" y2="23" />
+                <line x1="15" y1="20" x2="15" y2="23" />
+                <line x1="20" y1="9" x2="23" y2="9" />
+                <line x1="20" y1="14" x2="23" y2="14" />
+                <line x1="1" y1="9" x2="4" y2="9" />
+                <line x1="1" y1="14" x2="4" y2="14" />
+              </svg>
+            </div>
+            <div class="responsibility-text">
+              <div class="responsibility-title">Hardware Support Specialist</div>
+              <div class="responsibility-desc">Diagnostics & repair for Epson printing systems</div>
+            </div>
+          </div>
+
+          <!-- 3. IT Asset Coordinator — Green -->
+          <div class="responsibility-row">
+            <div class="icon-tile icon-tile--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                <rect x="9" y="3" width="6" height="4" rx="1" />
+                <line x1="9" y1="12" x2="15" y2="12" />
+                <line x1="9" y1="16" x2="13" y2="16" />
+              </svg>
+            </div>
+            <div class="responsibility-text">
+              <div class="responsibility-title">IT Asset Coordinator</div>
+              <div class="responsibility-desc">Inventory lifecycle tracking, serial numbers & specs</div>
+            </div>
+          </div>
+
+          <!-- 4. Data Entry & Reporting — Purple -->
+          <div class="responsibility-row">
+            <div class="icon-tile icon-tile--purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="8" y1="13" x2="16" y2="13" />
+                <line x1="8" y1="17" x2="12" y2="17" />
+              </svg>
+            </div>
+            <div class="responsibility-text">
+              <div class="responsibility-title">Data Entry & Reporting</div>
+              <div class="responsibility-desc">Structured Excel encoding from verbal/written input</div>
+            </div>
+          </div>
+
+          <!-- 5. Creative Technical Assistant — Pink -->
+          <div class="responsibility-row">
+            <div class="icon-tile icon-tile--pink">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                <path d="M2 2l7.586 7.586" />
+                <circle cx="11" cy="11" r="2" />
+              </svg>
+            </div>
+            <div class="responsibility-text">
+              <div class="responsibility-title">Creative Technical Assistant</div>
+              <div class="responsibility-desc">AI-assisted graphic design for company branding</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="tags-row">
+          <span class="tag tag--highlight">Tech Support</span>
+          <span class="tag">Networking</span>
+          <span class="tag">Hardware</span>
+          <span class="tag">IT Assets</span>
+          <span class="tag">Government</span>
+          <span class="tag">Intern</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

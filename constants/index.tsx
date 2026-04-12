@@ -445,6 +445,12 @@ export const currentlyLearningItems = [
     designation: "Headless CMS",
     image: "/sanity.io.png",
   },
+  {
+    id: 9,
+    name: "Cloudflare",
+    designation: "Edge Security",
+    image: "https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg",
+  },
 ];
 
 const Skeleton = () => (
