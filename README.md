@@ -2,7 +2,7 @@
 
 > A minimalistic modern portfolio website built with Next.js 16, featuring authentication, database integration, feedback wall, reaction system, and security protection.
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.0.7-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2.6-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-7.0-2D3748?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
@@ -307,7 +307,7 @@ Professional contact form with EmailJS integration:
 
 | Technology       | Purpose             | Version  |
 | ---------------- | ------------------- | -------- |
-| **Next.js**      | React Framework     | 16.0.7   |
+| **Next.js**      | React Framework     | 16.2.6   |
 | **React**        | UI Library          | 19.2.0   |
 | **TypeScript**   | Type Safety         | 5.x      |
 | **Tailwind CSS** | Styling             | 4.x      |

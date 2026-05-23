@@ -30,18 +30,6 @@ export function HeroSection() {
     },
   };
 
-  const imageVariants: Variants = {
-    hidden: { opacity: 0, rotate: -2 },
-    visible: {
-      opacity: 1,
-      rotate: 0,
-      transition: {
-        duration: 1.2,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
     <section
       id="hero"
@@ -56,7 +44,6 @@ export function HeroSection() {
       <HeroContent
         containerVariants={containerVariants}
         itemVariants={itemVariants}
-        imageVariants={imageVariants}
       />
     </section>
   );

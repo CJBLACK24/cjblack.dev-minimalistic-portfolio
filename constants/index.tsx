@@ -18,6 +18,7 @@ import {
   NUManagementHeader,
   DevEventHeader,
   ModernUniversityHeader,
+  NextLMSHeader,
 } from "../components/projects/project-card-headers";
 
 // Floating Navigation Items
@@ -427,26 +428,19 @@ export const currentlyLearningItems = [
   },
   {
     id: 6,
-    name: "Sentry",
-    designation: "Error Monitoring",
-    image:
-      "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/sentry/icon.svg",
-  },
-  {
-    id: 7,
     name: "PostHog",
     designation: "Product Analytics",
     image:
       "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/posthog/icon.svg",
   },
   {
-    id: 8,
+    id: 7,
     name: "Sanity",
     designation: "Headless CMS",
     image: "/sanity.io.png",
   },
   {
-    id: 9,
+    id: 8,
     name: "Cloudflare",
     designation: "Edge Security",
     image: "https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg",
@@ -495,6 +489,43 @@ export const gridItems = [
 export const words = ["Hello 👋"];
 
 export const projectsData = [
+  {
+    id: "next-lms",
+    title: "Next LMS",
+    description:
+      "A modern, interactive learning management system (LMS) built with Next.js. It features a sleek course catalog, real-time progress tracking, interactive learning modules, and a premium dashboard.",
+    header: <NextLMSHeader />,
+    icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
+    link: "https://next-lms-omega.vercel.app",
+    liveDemo: "https://next-lms-omega.vercel.app",
+    className: "",
+    techStack: [
+      {
+        id: 1,
+        name: "Next.js",
+        designation: "Framework",
+        image: "/nextjs-logo.svg",
+      },
+      {
+        id: 2,
+        name: "Tailwind CSS",
+        designation: "Styling",
+        image: "/tailwind-logo.svg",
+      },
+      {
+        id: 3,
+        name: "PostgreSQL",
+        designation: "Database",
+        image: "/postgresql-logo.svg",
+      },
+      {
+        id: 4,
+        name: "Prisma",
+        designation: "ORM",
+        image: "/prisma.png",
+      },
+    ],
+  },
   {
     id: "devevent",
     title: "DevEvent Platform",

@@ -5,7 +5,6 @@ import { IntroLoader } from "@/components/layout/intro-loader";
 import { Spotlight } from "@/components/ui/backgrounds/spotlight-new";
 import { HeroSection } from "@/components/hero";
 import { ScrollProgress } from "@/components/ui/effects/scroll-progress";
-import { ScrollToTop } from "@/components/ui/effects/scroll-to-top";
 import { SectionSkeleton } from "@/components/ui/skeletons/section-skeleton";
 
 const FeaturesSection = dynamic(
@@ -80,8 +79,6 @@ export default function Home() {
         <Footer />
       </div>
 
-      {/* Scroll-to-top button — appears after 600px scroll */}
-      <ScrollToTop />
     </main>
   );
 }

@@ -93,3 +93,16 @@ export const DevEventHeader = () => (
     <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
   </div>
 );
+
+export const NextLMSHeader = () => (
+  <div className="group relative flex h-full min-h-60 w-full flex-1 cursor-pointer overflow-hidden rounded-xl bg-neutral-900">
+    <Image
+      src="/assets/NextLMS/NextLMS.png"
+      alt="Next LMS"
+      fill
+      className="object-cover object-top opacity-90 transition-opacity duration-500"
+    />
+    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+  </div>
+);
+

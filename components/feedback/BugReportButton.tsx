@@ -1,8 +1,6 @@
 "use client";
 
 import { useCallback } from "react";
-import * as Sentry from "@sentry/nextjs";
-import { getFeedback } from "@sentry/nextjs";
 import { Bug } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -12,53 +10,13 @@ interface BugReportButtonProps {
   variant?: "floating" | "inline";
 }
 
-// Helper function to wait for Sentry Feedback integration to be available
-function getFeedbackWithRetry(
-  retries = 10,
-  delay = 1000,
-): Promise<ReturnType<typeof Sentry.getFeedback>> {
-  return new Promise((resolve, reject) => {
-    const attempt = (remaining: number) => {
-      const feedback = getFeedback();
-      if (feedback) {
-        resolve(feedback);
-      } else if (remaining === 0) {
-        reject(new Error("Sentry Feedback integration not found"));
-      } else {
-        setTimeout(() => attempt(remaining - 1), delay);
-      }
-    };
-    attempt(retries);
-  });
-}
-
 export function BugReportButton({
   className,
   variant = "inline",
 }: BugReportButtonProps) {
-  const handleClick = useCallback(async () => {
+  const handleClick = useCallback(() => {
     console.log("[BugReportButton] Clicked");
-
-    try {
-      const feedbackInstance = await getFeedbackWithRetry();
-      if (!feedbackInstance) throw new Error("Feedback instance not available");
-      const form = await feedbackInstance.createForm();
-
-      if (form) {
-        if (typeof form.appendToDom === "function") {
-          form.appendToDom();
-        }
-        form.open();
-        console.log("[BugReportButton] Feedback form opened");
-      } else {
-        throw new Error("Form could not be created");
-      }
-    } catch (e) {
-      console.error("[BugReportButton] Error:", e);
-      toast.error(
-        "Bug report system is still loading. Please try again in a few seconds.",
-      );
-    }
+    toast.info("Bug reporting is currently disabled.");
   }, []);
 
   if (variant === "floating") {

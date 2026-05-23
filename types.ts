@@ -3,7 +3,6 @@ import React from "react";
 
 export interface HeroContentProps {
   containerVariants: Variants;
-  imageVariants: Variants;
   itemVariants: Variants;
 }
 

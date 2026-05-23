@@ -1,25 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 "use client";
 
-import { motion, Variants, AnimatePresence } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
+import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import {
   IconBulb,
   IconPalette,
   IconMessageCircle,
   IconCode,
-  IconBrandGithub,
   IconArrowNarrowDown,
   IconDownload,
   IconEye,
   IconChevronDown,
 } from "@tabler/icons-react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { BorderMagicButton } from "@/components/ui/buttons/border-magic-button";
 import { HoverBorderGradient } from "@/components/ui/buttons/hover-border-gradient";
 import { AnimatedTooltip } from "@/components/ui/misc/animated-hero-tooltip";
 import { Tooltip } from "@/components/ui/cards/tooltip-card";
@@ -27,7 +20,7 @@ import { FlipWords } from "@/components/ui/text/flip-words";
 import { HeroContentProps } from "@/types";
 
 import React from "react";
-import { HeroClock } from "./hero-clock";
+
 
 const techStack = [
   {
@@ -62,13 +55,11 @@ const techStack = [
 
 export const HeroContent = ({
   containerVariants,
-  imageVariants,
   itemVariants,
 }: HeroContentProps) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const gridLinesRef = React.useRef<HTMLDivElement>(null);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const [showCVOptions, setShowCVOptions] = useState(false);
   const cvDropdownRef = useRef<HTMLDivElement>(null);
@@ -167,42 +158,11 @@ export const HeroContent = ({
         </div>
       </div>
       <div className="mt-10 flex h-full w-full flex-col justify-center py-8 md:py-12">
-        {/* Two Column Layout: Image Left, Content Right */}
-        <div className="grid w-full grid-cols-1 items-center gap-12 px-6 sm:px-10 md:grid-cols-2 md:gap-16 md:px-16 lg:gap-8 lg:px-20">
-          {/* Left Column - Image */}
-          <div className="flex justify-center md:justify-end">
-            <div className="relative h-[340px] w-full max-w-[280px] overflow-hidden rounded-none bg-neutral-900 sm:h-[400px] sm:max-w-[320px] md:h-[420px] md:max-w-[340px] lg:h-[520px] lg:max-w-[420px] xl:h-[580px] xl:max-w-[460px]">
-              <motion.div
-                initial={{ opacity: 0, filter: "blur(10px)" }}
-                animate={
-                  isImageLoaded ? { opacity: 1, filter: "blur(0px)" } : {}
-                }
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative h-full w-full"
-              >
-                <Image
-                  src="/cj.png"
-                  alt="Profile"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="rounded-none object-cover shadow-2xl"
-                  priority
-                  onLoad={() => setIsImageLoaded(true)}
-                />
-              </motion.div>
-              {isImageLoaded && <HeroClock />}
-              {!isImageLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-neutral-900">
-                  <div className="h-10 w-10 animate-spin rounded-none border-2 border-cyan-500/20 border-t-cyan-500" />
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Right Column - Content */}
-          <div className="flex flex-col items-start text-left">
+        {/* Centered Content Layout */}
+        <div className="flex w-full flex-col items-center justify-center px-6 sm:px-10 md:px-16 lg:px-20">
+          <div className="flex flex-col items-center text-center max-w-3xl">
             {/* Hover Border Gradient Badge */}
-            <motion.div variants={itemVariants} className="mb-6 -ml-2 md:ml-0">
+            <motion.div variants={itemVariants} className="mb-6">
               <HoverBorderGradient
                 containerClassName="rounded-full"
                 className="flex items-center gap-2 text-xs font-medium sm:text-sm"
@@ -217,9 +177,9 @@ export const HeroContent = ({
 
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 mb-6 w-full bg-linear-to-b from-white to-neutral-500 bg-clip-text text-3xl leading-[1.1] font-bold tracking-tight text-transparent sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
+              className="relative z-10 mb-6 w-full bg-linear-to-b from-white to-neutral-500 bg-clip-text text-3xl leading-[1.1] font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
             >
-              <div className="flex flex-nowrap items-center justify-start gap-1.5 sm:gap-2">
+              <div className="flex flex-nowrap items-center justify-center gap-1.5 sm:gap-2">
                 <span className="inline-block whitespace-nowrap text-white">
                   Shaping&nbsp;
                 </span>
@@ -283,7 +243,7 @@ export const HeroContent = ({
 
             <motion.div
               variants={itemVariants}
-              className="relative z-10 mb-6 max-w-xl text-xl font-normal text-neutral-600 md:mb-8 dark:text-neutral-300"
+              className="relative z-10 mb-6 max-w-xl text-lg font-normal text-neutral-600 md:text-xl md:mb-8 dark:text-neutral-300"
             >
               I&apos;m{" "}
               <Tooltip
@@ -359,11 +319,11 @@ export const HeroContent = ({
 
             <motion.div
               variants={itemVariants}
-              className="mb-10 flex w-full flex-col items-start gap-6"
+              className="mb-10 flex w-full flex-col items-center gap-6"
             >
               {/* Responsive Action Buttons */}
               <div className="w-full px-4 sm:px-0">
-                <div className="grid w-full max-w-lg grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="grid w-full max-w-lg grid-cols-1 gap-4 sm:grid-cols-2 mx-auto">
                   {/* View Works Button */}
                   <a href="#projects" className="block w-full scroll-smooth">
                     <div className="group relative inline-flex h-12 w-full overflow-hidden rounded-none p-px focus:outline-none">
@@ -447,7 +407,7 @@ export const HeroContent = ({
                 </div>
               </div>
 
-              <div className="flex items-center justify-start px-4 sm:px-0">
+              <div className="flex items-center justify-center px-4 sm:px-0">
                 <AnimatedTooltip items={techStack} />
               </div>
             </motion.div>
