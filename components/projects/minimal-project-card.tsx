@@ -77,11 +77,6 @@ export const MinimalProjectCard = ({ project, onDetailsClick }: MinimalProjectCa
           </div>
         </div>
 
-        {/* Tech Stack Subtitle */}
-        <p className="mb-3.5 text-xs font-semibold text-purple-400/90 dark:text-purple-400 tracking-wide">
-          {project.subtitle || project.techStack.map((tech) => tech.name).join(" · ")}
-        </p>
-
         {/* Description */}
         <p className="mb-5 line-clamp-2 text-sm leading-relaxed text-neutral-400 md:text-base">
           {project.description}

@@ -40,12 +40,15 @@ export function ProjectDetailsModal({ project, isOpen, onClose }: ProjectDetails
   return (
     <AnimatePresence>
       {isOpen && project && (
-        <>
+        <motion.div
+          key="project-details-modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+        >
           {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
             onClick={onClose}
             className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md cursor-pointer"
           />
@@ -58,9 +61,9 @@ export function ProjectDetailsModal({ project, isOpen, onClose }: ProjectDetails
             <div className="flex min-h-full items-center justify-center p-4 md:p-6">
               {/* Modal Card */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                initial={{ scale: 0.95, y: 15 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.95, y: 15 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 onClick={(e) => e.stopPropagation()}
                 className="relative w-full max-w-3xl my-8"
@@ -152,7 +155,7 @@ export function ProjectDetailsModal({ project, isOpen, onClose }: ProjectDetails
               </motion.div>
             </div>
           </div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );
