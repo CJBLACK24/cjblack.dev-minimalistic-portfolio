@@ -24,6 +24,10 @@ export interface ProjectProps {
   link: string;
   techStack: TechItem[];
   header?: React.ReactNode;
+  github?: string;
+  subtitle?: string;
+  longDescription?: string;
+  features?: string[];
 }
 
 export interface ContactCardProps {

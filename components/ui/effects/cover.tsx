@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useId, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
@@ -18,22 +17,39 @@ export const Cover = ({
 
   const ref = useRef<HTMLDivElement>(null);
 
+  interface BeamPosition {
+    position: number;
+    duration: number;
+    delay: number;
+    hoverDelay: number;
+    hoverRepeatDelay: number;
+  }
+
   const [containerWidth, setContainerWidth] = useState(0);
-  const [beamPositions, setBeamPositions] = useState<number[]>([]);
+  const [beamPositions, setBeamPositions] = useState<BeamPosition[]>([]);
 
   useEffect(() => {
     if (ref.current) {
-      setContainerWidth(ref.current?.clientWidth ?? 0);
+      setContainerWidth(ref.current.clientWidth ?? 0);
 
-      const height = ref.current?.clientHeight ?? 0;
-      const numberOfBeams = Math.floor(height / 10); // Adjust the divisor to control the spacing
+      const height = ref.current.clientHeight ?? 0;
+      const numberOfBeams = Math.floor(height / 10);
       const positions = Array.from(
         { length: numberOfBeams },
-        (_, i) => (i + 1) * (height / (numberOfBeams + 1)),
+        (_, i) => {
+          const pos = (i + 1) * (height / (numberOfBeams + 1));
+          return {
+            position: pos,
+            duration: Math.random() * 2 + 1,
+            delay: Math.random() * 2 + 1,
+            hoverDelay: Math.random() * (1 - 0.2) + 0.2,
+            hoverRepeatDelay: Math.random() * (2 - 1) + 1,
+          };
+        }
       );
       setBeamPositions(positions);
     }
-  }, [ref.current]);
+  }, []);
 
   return (
     <div
@@ -88,15 +104,17 @@ export const Cover = ({
           </motion.div>
         )}
       </AnimatePresence>
-      {beamPositions.map((position, index) => (
+      {beamPositions.map((beam, index) => (
         <Beam
           key={index}
           hovered={hovered}
-          duration={Math.random() * 2 + 1}
-          delay={Math.random() * 2 + 1}
+          duration={beam.duration}
+          delay={beam.delay}
+          hoverDelay={beam.hoverDelay}
+          hoverRepeatDelay={beam.hoverRepeatDelay}
           width={containerWidth}
           style={{
-            top: `${position}px`,
+            top: `${beam.position}px`,
           }}
         />
       ))}
@@ -139,10 +157,10 @@ export const Cover = ({
       >
         {children}
       </motion.span>
-      <CircleIcon className="absolute -top-[2px] -right-[2px]" />
-      <CircleIcon className="absolute -right-[2px] -bottom-[2px]" delay={0.4} />
-      <CircleIcon className="absolute -top-[2px] -left-[2px]" delay={0.8} />
-      <CircleIcon className="absolute -bottom-[2px] -left-[2px]" delay={1.6} />
+      <CircleIcon className="absolute top-[-2px] right-[-2px]" />
+      <CircleIcon className="absolute right-[-2px] bottom-[-2px]" delay={0.4} />
+      <CircleIcon className="absolute top-[-2px] left-[-2px]" delay={0.8} />
+      <CircleIcon className="absolute bottom-[-2px] left-[-2px]" delay={1.6} />
     </div>
   );
 };
@@ -151,6 +169,8 @@ export const Beam = ({
   className,
   delay,
   duration,
+  hoverDelay,
+  hoverRepeatDelay,
   hovered,
   width = 600,
   ...svgProps
@@ -158,6 +178,8 @@ export const Beam = ({
   className?: string;
   delay?: number;
   duration?: number;
+  hoverDelay?: number;
+  hoverRepeatDelay?: number;
   hovered?: boolean;
   width?: number;
 } & React.ComponentProps<typeof motion.svg>) => {
@@ -199,8 +221,8 @@ export const Beam = ({
             duration: hovered ? 0.5 : (duration ?? 2),
             ease: "linear",
             repeat: Infinity,
-            delay: hovered ? Math.random() * (1 - 0.2) + 0.2 : 0,
-            repeatDelay: hovered ? Math.random() * (2 - 1) + 1 : (delay ?? 1),
+            delay: hovered ? (hoverDelay ?? 0.5) : 0,
+            repeatDelay: hovered ? (hoverRepeatDelay ?? 1.5) : (delay ?? 1),
           }}
         >
           <stop stopColor="#2EB9DF" stopOpacity="0" />

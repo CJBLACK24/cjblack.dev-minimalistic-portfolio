@@ -494,6 +494,17 @@ export const projectsData = [
     title: "Next LMS",
     description:
       "A modern, interactive learning management system (LMS) built with Next.js. It features a sleek course catalog, real-time progress tracking, interactive learning modules, and a premium dashboard.",
+    subtitle: "Next.js 16 - Neon Postgres - Prisma ORM - Arcjet WAF - Better-Auth",
+    longDescription:
+      "NextLMS is an enterprise-grade, multi-tenant B2B/B2C Learning Management SaaS platform built for scale, lightning-fast edge delivery, and secure logical tenant isolation. It enables organizations, corporate universities, and independent creators to spin up custom-branded academies instantly. Tenant isolation is enforced programmatically at both routing and data layers using Next.js middleware and active tenant context database query filters.",
+    features: [
+      "Logical isolation with Single Database, Shared Schema model",
+      "High-performance tech stack: Next.js 16 (App Router) and Tailwind CSS v4",
+      "Arcjet WAF protection with bot detection, rate limits, and shield protection",
+      "Better-Auth integration supporting credentials, OAuth, and OTP passwordless Email",
+      "Regionalized Southeast Asian billing with Xendit SDK",
+      "Media uploads directly to Cloudinary under marshal-lms/ namespace"
+    ],
     header: <NextLMSHeader />,
     icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
     link: "https://next-lms-omega.vercel.app",
@@ -531,6 +542,17 @@ export const projectsData = [
     title: "DevEvent Platform",
     description:
       "The hub for every developer event! A modern platform for discovering, hosting, and attending tech events with advanced search, booking wizard, and PDF ticket generation.",
+    subtitle: "Next.js 16 - React 19 - Tailwind CSS v4 - Supabase - Arcjet",
+    longDescription:
+      "DevEvent is a modern, full-stack web application designed for developers to discover, host, and attend tech events. Built with the latest technologies including Next.js 16, React 19, and Turbopack for blazing-fast performance, it features a highly premium dark mode aesthetic with glassmorphism effects, smooth Framer Motion animations, and WebGL spotlight effects powered by OGL.",
+    features: [
+      "Advanced event discovery with real-time filtering (Virtual / Hybrid / In-Person)",
+      "Smart booking system with ticket PDF generation using jsPDF & html2canvas",
+      "Role-based access control (Admin, Organizer, Attendee) via middleware",
+      "Arcjet-powered protection with rate limiting, bot detection, and shield defense",
+      "Nodemailer integration for automated booking and confirmation HTML emails"
+    ],
+    github: "https://github.com/CJBLACK24/Developer-Events-Platform",
     header: <DevEventHeader />,
     icon: <IconCalendarEvent className="h-4 w-4 text-neutral-500" />,
     link: "https://developer-events-platform.vercel.app",
@@ -568,6 +590,17 @@ export const projectsData = [
     title: "NU Iloilo Management System",
     description:
       "A comprehensive university management system with role-based dashboards for administrators, teachers, students, and parents. Features real-time messaging via Socket.io and interactive calendars.",
+    subtitle: "",
+    longDescription:
+      "The NU Iloilo Management System is a full-featured, production-ready university management platform. It offers role-based dashboards with live statistics, real-time messaging capabilities, parent-student linking, and full academic management (classes, subjects, lessons, grades, and exams) backed by a robust PostgreSQL database schema.",
+    features: [
+      "Comprehensive multi-role RBAC (Admin, Teacher, Student, Parent)",
+      "Real-time messaging & chat system powered by Socket.io and Cloudinary uploads",
+      "Interactive calendar tracking lessons, exams, and events using React Big Calendar",
+      "Visual academic analytics, attendance, and finance dashboards via Recharts",
+      "Better Auth integration supporting credentials & Google OAuth"
+    ],
+    github: "https://github.com/CJBLACK24/National-University-Iloilo-Management-System",
     header: <NUManagementHeader />,
     icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
     link: "https://national-university-iloilo-manageme.vercel.app/",
@@ -611,6 +644,15 @@ export const projectsData = [
     title: "Modern University Management Dashboard",
     description:
       "A comprehensive education management system featuring role-based portals, academic analytics, Student Information System (SIS), and automated scheduling capabilities.",
+    subtitle: "Next.js - TypeScript - PostgreSQL - Tailwind CSS - Prisma",
+    longDescription:
+      "A comprehensive education management dashboard system featuring role-based portals, academic analytics, Student Information System (SIS), and automated scheduling capabilities.",
+    features: [
+      "Role-based administrative portals for education tracking",
+      "Academic analytics and count charts for users",
+      "Student Information System (SIS) for records & grading",
+      "Automated scheduling for lessons & classrooms"
+    ],
     header: <ModernUniversityHeader />,
     icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
     link: "https://modern-university-management-dashbo.vercel.app/",
@@ -655,6 +697,15 @@ export const projectsData = [
     title: "BookWise: Library System",
     description:
       "A comprehensive university library management system for accessing resources, managing inventory, and tracking borrowing history.",
+    subtitle: "Next.js - Tailwind CSS - PostgreSQL - Prisma ORM",
+    longDescription:
+      "BookWise is a comprehensive university library management system designed to make resources easily accessible. It allows students and administrators to browse, check out books, track borrowing history, and manage the campus library inventory with an intuitive interface.",
+    features: [
+      "University library catalog browsing and search",
+      "Resource check-outs and borrowing history tracking",
+      "Real-time inventory management and availability updates",
+      "Elegant, responsive glassmorphic design system"
+    ],
     header: <BookWiseHeader />,
     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
     link: "https://university-library-management-syste-jet.vercel.app/",

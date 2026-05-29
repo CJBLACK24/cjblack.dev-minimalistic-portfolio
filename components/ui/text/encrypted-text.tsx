@@ -76,7 +76,9 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
     scrambleCharsRef.current = initial.split("");
     startTimeRef.current = performance.now();
     lastFlipTimeRef.current = startTimeRef.current;
-    setRevealCount(0);
+    requestAnimationFrame(() => {
+      setRevealCount(0);
+    });
 
     let isCancelled = false;
 

@@ -58,7 +58,10 @@ export const LinkPreview = ({
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
-    setIsMounted(true);
+    const handle = requestAnimationFrame(() => {
+      setIsMounted(true);
+    });
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   const springConfig = { stiffness: 100, damping: 15 };

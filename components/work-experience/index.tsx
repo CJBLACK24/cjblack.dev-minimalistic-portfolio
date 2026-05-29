@@ -125,10 +125,10 @@ export function WorkExperienceSection() {
                 </p>
               </div>
 
-              {/* Active badge */}
-              <span className="mt-0.5 inline-flex shrink-0 items-center gap-[5px] rounded-full border-[0.5px] border-success-border bg-success-soft px-2.5 py-[3px] text-[11px] font-medium leading-none text-success md:px-3 md:py-1 md:text-xs">
-                <span className="h-[5px] w-[5px] rounded-full bg-success" />
-                Active
+              {/* Completed badge */}
+              <span className="mt-0.5 inline-flex shrink-0 items-center gap-[5px] rounded-full border-[0.5px] border-neutral-800 bg-neutral-900/50 px-2.5 py-[3px] text-[11px] font-medium leading-none text-neutral-400 md:px-3 md:py-1 md:text-xs">
+                <span className="h-[5px] w-[5px] rounded-full bg-neutral-500" />
+                Completed
               </span>
             </div>
 
@@ -136,7 +136,7 @@ export function WorkExperienceSection() {
             <div className="mt-3.5 flex flex-wrap gap-2 md:mt-4 md:gap-2.5">
               <span className="inline-flex items-center gap-[5px] rounded-full border-[0.5px] border-[var(--border)] bg-[var(--secondary)] px-2.5 py-[5px] text-xs font-normal leading-none text-[var(--text-muted)] md:px-3 md:py-1.5 md:text-[13px]">
                 <Calendar className="h-[13px] w-[13px] shrink-0" />
-                Feb 2026 – Present
+                Feb 2026 – May 2026
               </span>
               <span className="inline-flex items-center gap-[5px] rounded-full border-[0.5px] border-[var(--border)] bg-[var(--secondary)] px-2.5 py-[5px] text-xs font-normal leading-none text-[var(--text-muted)] md:px-3 md:py-1.5 md:text-[13px]">
                 <Clock className="h-[13px] w-[13px] shrink-0" />

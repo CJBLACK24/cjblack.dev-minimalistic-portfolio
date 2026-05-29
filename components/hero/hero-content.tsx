@@ -177,7 +177,7 @@ export const HeroContent = ({
 
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 mb-6 w-full bg-linear-to-b from-white to-neutral-500 bg-clip-text text-3xl leading-[1.1] font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+              className="relative z-10 mb-6 w-full bg-linear-to-b from-white to-neutral-500 bg-clip-text text-2xl leading-[1.1] font-bold tracking-tight text-transparent sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
               <div className="flex flex-nowrap items-center justify-center gap-1.5 sm:gap-2">
                 <span className="inline-block whitespace-nowrap text-white">

@@ -34,6 +34,30 @@ export { getRedisClient };
 const DEFAULT_TTL = 300;
 
 /**
+ * Handle Redis errors cleanly, warning instead of erroring for typical
+ * network resolution or connection failures (e.g. when offline).
+ */
+function handleRedisError(operation: string, key: string, error: unknown) {
+  const isNetworkError =
+    error instanceof TypeError ||
+    (error !== null &&
+      typeof error === "object" &&
+      (("code" in error && error.code === "ENOTFOUND") ||
+        ("syscall" in error && error.syscall === "getaddrinfo") ||
+        ("message" in error &&
+          typeof error.message === "string" &&
+          error.message.includes("fetch failed"))));
+
+  if (isNetworkError) {
+    console.warn(
+      `⚠️ [Redis] Network error during ${operation} for "${key}": Unable to connect to Upstash Redis host (offline or misconfigured).`
+    );
+  } else {
+    console.error(`[Redis] Error during ${operation} for "${key}":`, error);
+  }
+}
+
+/**
  * Get a cached value by key.
  * Returns null if cache miss or Redis unavailable.
  */
@@ -45,7 +69,7 @@ export async function cacheGet<T>(key: string): Promise<T | null> {
     const data = await client.get<T>(key);
     return data;
   } catch (error) {
-    console.error(`[Redis] Error getting key "${key}":`, error);
+    handleRedisError("get", key, error);
     return null;
   }
 }
@@ -67,7 +91,7 @@ export async function cacheSet<T>(
 
     await client.set(key, value, { ex: ttl });
   } catch (error) {
-    console.error(`[Redis] Error setting key "${key}":`, error);
+    handleRedisError("set", key, error);
   }
 }
 
@@ -81,7 +105,7 @@ export async function cacheDel(key: string): Promise<void> {
 
     await client.del(key);
   } catch (error) {
-    console.error(`[Redis] Error deleting key "${key}":`, error);
+    handleRedisError("delete", key, error);
   }
 }
 
@@ -110,10 +134,7 @@ export async function invalidateByPrefix(prefix: string): Promise<void> {
       }
     } while (cursor !== 0);
   } catch (error) {
-    console.error(
-      `[Redis] Error invalidating keys with prefix "${prefix}":`,
-      error,
-    );
+    handleRedisError("invalidateByPrefix", prefix, error);
   }
 }
 

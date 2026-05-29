@@ -4,6 +4,7 @@
 import {
   Children,
   createContext,
+  JSX,
   useContext,
   useEffect,
   useMemo,
@@ -108,13 +109,14 @@ export const TypingAnimation = ({
     throw new Error("TypingAnimation: children must be a string. Received:");
   }
 
-  const MotionComponent = useMemo(
-    () =>
-      motion.create(Component, {
-        forwardMotionProps: true,
-      }),
-    [Component],
-  );
+  // Cast to a known safe motion component type to avoid 'never' inference
+  const MotionComponent = motion(
+    Component as keyof JSX.IntrinsicElements,
+  ) as React.ComponentType<
+    React.HTMLAttributes<HTMLElement> & {
+      ref?: React.Ref<HTMLElement>;
+    }
+  >;
 
   const [displayedText, setDisplayedText] = useState<string>("");
   const [started, setStarted] = useState(false);
@@ -182,7 +184,7 @@ export const TypingAnimation = ({
     <MotionComponent
       ref={elementRef}
       className={cn("text-sm font-normal tracking-tight", className)}
-      {...props}
+      {...(props as React.HTMLAttributes<HTMLElement>)}
     >
       {displayedText}
     </MotionComponent>
