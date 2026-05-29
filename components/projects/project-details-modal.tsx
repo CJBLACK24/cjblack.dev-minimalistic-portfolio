@@ -119,13 +119,35 @@ export function ProjectDetailsModal({ project, isOpen, onClose }: ProjectDetails
                     )}
 
                     {/* Links */}
-                    {(project.github || project.link) && (
+                    {(project.github || project.customerGithub || project.operatorGithub || project.link) && (
                       <div className="border-t border-neutral-900 pt-5">
                         <h3 className="text-xs font-bold text-neutral-500 mb-3 tracking-wider uppercase">
                           Links
                         </h3>
                         <div className="flex flex-wrap gap-6 items-center">
-                          {project.github && (
+                          {project.customerGithub && (
+                            <a
+                              href={project.customerGithub}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors text-base font-semibold"
+                            >
+                              <IconBrandGithub className="h-5 w-5" />
+                              <span>Customer App Code</span>
+                            </a>
+                          )}
+                          {project.operatorGithub && (
+                            <a
+                              href={project.operatorGithub}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors text-base font-semibold"
+                            >
+                              <IconBrandGithub className="h-5 w-5" />
+                              <span>Operator App Code</span>
+                            </a>
+                          )}
+                          {project.github && !project.customerGithub && !project.operatorGithub && (
                             <a
                               href={project.github}
                               target="_blank"

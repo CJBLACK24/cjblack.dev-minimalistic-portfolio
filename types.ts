@@ -25,6 +25,8 @@ export interface ProjectProps {
   techStack: TechItem[];
   header?: React.ReactNode;
   github?: string;
+  customerGithub?: string;
+  operatorGithub?: string;
   subtitle?: string;
   longDescription?: string;
   features?: string[];

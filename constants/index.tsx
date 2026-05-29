@@ -19,6 +19,7 @@ import {
   DevEventHeader,
   ModernUniversityHeader,
   NextLMSHeader,
+  PatchUpHeader,
 } from "../components/projects/project-card-headers";
 
 // Floating Navigation Items
@@ -489,6 +490,68 @@ export const gridItems = [
 export const words = ["Hello 👋"];
 
 export const projectsData = [
+  {
+    id: "patch-up",
+    title: "PatchUp: Roadside Assistance Ecosystem",
+    description:
+      "A dual-application ecosystem orchestrating real-time roadside recovery and driver-operator synchronization with an integrated Bluetooth Low Energy (BLE) smart electric vulcanizer.",
+    subtitle: "React Native · Expo SDK 54 · Node.js · Express 5 · MongoDB · Socket.IO · BLE · ESP32",
+    longDescription:
+      "PatchUp is an advanced, dual-application roadside assistance ecosystem built as an IT Capstone Research Project. The platform bridges the gap between stranded motorists and roadside vulcanizing operators through high-fidelity mobile apps (built with React Native and Expo SDK 54) that sync via Socket.io and real-time mapping. It integrates custom portable electric vulcanizing hardware controlled wirelessly over Bluetooth Low Energy (BLE) via an ESP32 microcontroller, automating heating and temperature curves for safe, precise tire repair.",
+    features: [
+      "Instant Roadside Assistance: One-tap dispatch system with intelligent routing",
+      "Real-Time Navigation & Tracking: MapLibre mapping + Socket.IO-powered GPS tracking",
+      "ESP32 IoT Integration: Hardware wireless control via Bluetooth Low Energy (BLE)",
+      "Automated Heat Curves: Secure, real-time temperature monitoring and heating automation",
+      "High-Fidelity UI: Dual-application mobile apps with sleek dark modes and interactive states"
+    ],
+    github: "https://github.com/CJBLACK24/PatchUp",
+    customerGithub: "https://github.com/CJBLACK24/customer-rider",
+    operatorGithub: "https://github.com/TimmyhalfZombie/Operator",
+    header: <PatchUpHeader />,
+    icon: <IconTerminal2 className="h-4 w-4 text-neutral-500" />,
+    link: "",
+    liveDemo: "",
+    className: "",
+    techStack: [
+      {
+        id: 1,
+        name: "React Native",
+        designation: "Mobile Framework",
+        image: "/react-native-logo.svg",
+      },
+      {
+        id: 2,
+        name: "Expo",
+        designation: "Platform",
+        image: "/expo.png",
+      },
+      {
+        id: 3,
+        name: "Node.js",
+        designation: "Backend Runtime",
+        image: "/nodejs-logo.svg",
+      },
+      {
+        id: 4,
+        name: "MongoDB",
+        designation: "Database",
+        image: "/mongodb-logo.svg",
+      },
+      {
+        id: 5,
+        name: "Socket.IO",
+        designation: "Real-time",
+        image: "/socket.png",
+      },
+      {
+        id: 6,
+        name: "Arduino / C++",
+        designation: "Hardware IoT",
+        image: "/ardiuno.png",
+      },
+    ],
+  },
   {
     id: "next-lms",
     title: "Next LMS",
